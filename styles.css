@@ -1,0 +1,16 @@
+/* Ajustes finos que não valem uma utility class em todo lugar */
+:root {
+  --header-h: 72px;
+}
+
+/* Compensa o header fixo quando navegar por âncoras */
+[id] { scroll-margin-top: var(--header-h); }
+
+/* Delays para animação (usados nos ícones flutuantes) */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }

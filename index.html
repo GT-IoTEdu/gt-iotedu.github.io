@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GT IoT EDU - Plataforma de Internet das Coisas para Educação</title>
+  <meta name="description" content="Uma plataforma educacional para Internet das Coisas em parceria com a RNP" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Play CDN (para usar as util classes sem build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide (ícones SVG) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Seus ajustes extras -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-slate-900 text-white font-[Inter]">
+  <!-- NAV -->
+  <nav class="flex items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+    <div class="flex items-center space-x-2">
+      <div class="relative">
+        <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
+        <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+      </div>
+      <span class="text-xl font-bold">GT IoT EDU</span>
+    </div>
+
+    <div class="hidden md:flex items-center space-x-8">
+      <a href="#contexto"   class="hover:text-blue-400 transition-colors">Contexto</a>
+      <a href="#proposta"   class="hover:text-blue-400 transition-colors">Proposta</a>
+      <a href="#tecnologias" class="hover:text-blue-400 transition-colors">Tecnologias</a>
+      <a href="#parceria"   class="hover:text-blue-400 transition-colors">Parceria RNP</a>
+      <a href="#apoio"      class="hover:text-blue-400 transition-colors">Apoio</a>
+      <a href="#equipe"     class="hover:text-blue-400 transition-colors">Equipe</a>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <a href="#contexto" class="px-4 py-2 rounded-lg border border-slate-600 text-white hover:bg-slate-800 bg-transparent">Saiba Mais</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pt-24 pb-16 px-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+
+    <!-- Ícones flutuantes -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 left-10 animate-bounce delay-100">
+        <i data-lucide="smartphone" class="w-8 h-8 text-blue-400/30"></i>
+      </div>
+      <div class="absolute top-32 right-20 animate-bounce delay-300">
+        <i data-lucide="camera" class="w-6 h-6 text-green-400/30"></i>
+      </div>
+      <div class="absolute top-40 left-1/4 animate-bounce delay-500">
+        <i data-lucide="thermometer" class="w-7 h-7 text-purple-400/30"></i>
+      </div>
+      <div class="absolute top-60 right-1/3 animate-bounce delay-700">
+        <i data-lucide="lightbulb" class="w-6 h-6 text-yellow-400/30"></i>
+      </div>
+      <div class="absolute bottom-40 left-16 animate-bounce delay-200">
+        <i data-lucide="home" class="w-8 h-8 text-teal-400/30"></i>
+      </div>
+      <div class="absolute bottom-32 right-16 animate-bounce delay-600">
+        <i data-lucide="car" class="w-7 h-7 text-orange-400/30"></i>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto text-center relative z-10">
+      <span class="inline-flex items-center mb-8 bg-blue-600/20 text-blue-300 border border-blue-500/30 px-4 py-2 rounded-lg">
+        <i data-lucide="network" class="w-4 h-4 mr-2"></i>
+        IoT para Educação
+        <span class="w-2 h-2 bg-green-400 rounded-full ml-2 animate-pulse"></span>
+      </span>
+
+      <h1 class="text-6xl md:text-8xl font-extrabold mb-8 leading-[0.95]">
+        <span class="text-white">GT IoT</span><br />
+        <span class="bg-gradient-to-r from-blue-400 via-green-400 to-blue-600 bg-clip-text text-transparent">EDU</span>
+      </h1>
+
+      <p class="text-xl md:text-2xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+        Plataforma inovadora para <span class="text-blue-400 font-semibold">simplificar e proteger</span> o uso de dispositivos IoT em
+        <span class="text-green-400 font-semibold"> instituições acadêmicas</span>, oferecendo
+        <span class="text-blue-400 font-semibold"> cadastro fácil e redes otimizadas</span>.
+      </p>
+
+      <div class="flex justify-center items-center gap-8 mb-12 opacity-60">
+        <div class="flex items-center gap-2">
+          <i data-lucide="wifi" class="w-6 h-6 text-blue-400"></i>
+          <span class="text-sm text-slate-400">WiFi</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="bluetooth" class="w-6 h-6 text-blue-400"></i>
+          <span class="text-sm text-slate-400">Bluetooth</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="radio" class="w-6 h-6 text-green-400"></i>
+          <span class="text-sm text-slate-400">LoRa</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="satellite" class="w-6 h-6 text-purple-400"></i>
+          <span class="text-sm text-slate-400">5G</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#contexto" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg rounded-xl transition">
+          Explore a Plataforma
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXTO -->
+  <section id="contexto" class="py-16 px-6 bg-slate-800 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="inline-flex items-center mb-6 bg-green-600/20 text-green-300 border border-green-500/30 px-4 py-2 rounded-lg">
+          <i data-lucide="settings" class="w-4 h-4 mr-2"></i>
+          Contexto
+        </span>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Sobre o Projeto</h2>
+        <p class="text-xl text-slate-300 max-w-4xl mx-auto">
+          O crescimento exponencial de dispositivos IoT em ambientes acadêmicos trouxe novos desafios de gestão, segurança e
+          usabilidade. Nossa solução visa democratizar o acesso à tecnologia IoT de forma segura e eficiente.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h3 class="text-2xl font-bold text-white mb-6">Desafios Atuais</h3>
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-red-600/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i data-lucide="settings" class="w-4 h-4 text-red-400"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-1">Complexidade de Configuração</h4>
+                <p class="text-slate-400">Processos burocráticos e técnicos que dificultam a adoção de dispositivos IoT</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-orange-600/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i data-lucide="shield" class="w-4 h-4 text-orange-400"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-1">Segurança Inadequada</h4>
+                <p class="text-slate-400">Falta de protocolos padronizados para dispositivos IoT em redes acadêmicas</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-yellow-600/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i data-lucide="users" class="w-4 h-4 text-yellow-400"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-1">Dependência de TI</h4>
+                <p class="text-slate-400">Usuários dependem constantemente da equipe técnica para configurações básicas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-blue-900/30 to-green-900/30 rounded-2xl p-8 border border-blue-700/30">
+          <h3 class="text-2xl font-bold text-white mb-6">Nossa Solução</h3>
+          <p class="text-slate-300 mb-6">
+            Uma plataforma intuitiva que permite aos usuários registrar e gerenciar seus dispositivos IoT de forma autônoma,
+            com segurança integrada e redes otimizadas especificamente para o ambiente educacional.
+          </p>
+
+          <div class="grid grid-cols-5 gap-4">
+            <div class="text-center">
+              <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i data-lucide="thermometer" class="w-6 h-6 text-blue-400"></i>
+              </div>
+              <div class="text-xs text-slate-400">Sensores</div>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-green-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i data-lucide="camera" class="w-6 h-6 text-green-400"></i>
+              </div>
+              <div class="text-xs text-slate-400">Câmeras</div>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i data-lucide="lightbulb" class="w-6 h-6 text-purple-400"></i>
+              </div>
+              <div class="text-xs text-slate-400">Smart</div>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-orange-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i data-lucide="monitor" class="w-6 h-6 text-orange-400"></i>
+              </div>
+              <div class="text-xs text-slate-400">Áudio/Vídeo</div>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-red-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i data-lucide="home" class="w-6 h-6 text-red-400"></i>
+              </div>
+              <div class="text-xs text-slate-400">Automação</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPOSTA -->
+  <section id="proposta" class="py-16 px-6 bg-slate-900 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="inline-flex items-center mb-6 bg-blue-600/20 text-blue-300 border border-blue-500/30 px-4 py-2 rounded-lg">
+          <i data-lucide="zap" class="w-4 h-4 mr-2"></i>
+          Proposta
+        </span>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Nossa Proposta</h2>
+        <p class="text-2xl text-blue-400 font-semibold max-w-4xl mx-auto">
+          Simplificar e proteger o uso de dispositivos IoT em instituições acadêmicas.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl">
+          <div class="p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mr-4">
+                <i data-lucide="clock" class="w-8 h-8 text-blue-400"></i>
+              </div>
+              <div class="flex gap-2 opacity-60">
+                <i data-lucide="smartphone" class="w-6 h-6"></i>
+                <i data-lucide="wifi" class="w-6 h-6"></i>
+                <i data-lucide="check-circle" class="w-6 h-6 text-green-400"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Cadastro Fácil e Sem Burocracia</h3>
+            <p class="text-slate-300 mb-6">Usuários registram seus dispositivos em segundos, sem precisar da equipe de TI.</p>
+            <div class="space-y-3">
+              <div class="flex items-center text-blue-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Interface intuitiva</div>
+              <div class="flex items-center text-blue-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Validação automatizada</div>
+              <div class="flex items-center text-blue-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Configuração automática de rede</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl">
+          <div class="p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center mr-4">
+                <i data-lucide="network" class="w-8 h-8 text-green-400"></i>
+              </div>
+              <div class="flex gap-2 opacity-60">
+                <i data-lucide="router" class="w-6 h-6"></i>
+                <i data-lucide="shield" class="w-6 h-6"></i>
+                <i data-lucide="activity" class="w-6 h-6"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Redes Otimizadas para IoT</h3>
+            <p class="text-slate-300 mb-6">Dispositivos conectados com segurança, eficiência e responsabilidade do usuário.</p>
+            <div class="space-y-3">
+              <div class="flex items-center text-green-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Segmentação automática</div>
+              <div class="flex items-center text-green-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Monitoramento em tempo real</div>
+              <div class="flex items-center text-green-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Políticas de segurança integradas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ecossistema -->
+      <div class="mt-16 text-center">
+        <h3 class="text-2xl font-bold text-white mb-8">Ecossistema IoT Suportado</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div class="flex flex-col items-center">
+            <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
+              <i data-lucide="thermometer" class="w-8 h-8 text-blue-400"></i>
+            </div>
+            <span class="text-sm text-slate-400">Sensores</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
+              <i data-lucide="camera" class="w-8 h-8 text-green-400"></i>
+            </div>
+            <span class="text-sm text-slate-400">Câmeras</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
+              <i data-lucide="lightbulb" class="w-8 h-8 text-purple-400"></i>
+            </div>
+            <span class="text-sm text-slate-400">Iluminação</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-16 h-16 bg-orange-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
+              <i data-lucide="monitor" class="w-8 h-8 text-orange-400"></i>
+            </div>
+            <span class="text-sm text-slate-400">Áudio/Vídeo</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-16 h-16 bg-teal-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
+              <i data-lucide="gauge" class="w-8 h-8 text-teal-400"></i>
+            </div>
+            <span class="text-sm text-slate-400">Medidores</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-16 h-16 bg-red-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
+              <i data-lucide="home" class="w-8 h-8 text-red-400"></i>
+            </div>
+            <span class="text-sm text-slate-400">Automação</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECNOLOGIAS -->
+  <section id="tecnologias" class="py-16 px-6 bg-slate-800 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="inline-flex items-center mb-6 bg-slate-600/20 text-slate-300 border border-slate-500/30 px-4 py-2 rounded-lg">
+          <i data-lucide="cpu" class="w-4 h-4 mr-2"></i>
+          Stack Tecnológico
+        </span>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Tecnologias Utilizadas</h2>
+        <p class="text-xl text-slate-300 max-w-4xl mx-auto">
+          Tecnologias modernas e robustas para garantir performance, segurança e escalabilidade em ambientes IoT.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- React -->
+        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
+          <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="code" class="w-6 h-6 text-blue-400"></i>
+          </div>
+          <h4 class="text-sm font-bold text-white mb-1">React</h4>
+          <p class="text-xs text-slate-400">Frontend Framework</p>
+        </div>
+        <!-- Node -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
+          <div class="w-12 h-12 bg-green-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="server" class="w-6 h-6 text-green-400"></i>
+          </div>
+          <h4 class="text-sm font-bold text-white mb-1">Node.js</h4>
+          <p class="text-xs text-slate-400">Backend Runtime</p>
+        </div>
+        <!-- Postgres -->
+        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
+          <div class="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="database" class="w-6 h-6 text-purple-400"></i>
+          </div>
+          <h4 class="text-sm font-bold text-white mb-1">PostgreSQL</h4>
+          <p class="text-xs text-slate-400">Database</p>
+        </div>
+        <!-- MQTT -->
+        <div class="bg-gradient-to-br from-orange-900/50 to-orange-800/30 border border-orange-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
+          <div class="w-12 h-12 bg-orange-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="radio" class="w-6 h-6 text-orange-400"></i>
+          </div>
+          <h4 class="text-sm font-bold text-white mb-1">MQTT</h4>
+          <p class="text-xs text-slate-400">IoT Protocol</p>
+        </div>
+        <!-- Docker -->
+        <div class="bg-gradient-to-br from-teal-900/50 to-teal-800/30 border border-teal-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
+          <div class="w-12 h-12 bg-teal-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="layers" class="w-6 h-6 text-teal-400"></i>
+          </div>
+          <h4 class="text-sm font-bold text-white mb-1">Docker</h4>
+          <p class="text-xs text-slate-400">Containerization</p>
+        </div>
+        <!-- Redis -->
+        <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
+          <div class="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="network" class="w-6 h-6 text-red-400"></i>
+          </div>
+          <h4 class="text-sm font-bold text-white mb-1">Redis</h4>
+          <p class="text-xs text-slate-400">Cache & Queue</p>
+        </div>
+        <!-- InfluxDB -->
+        <div class="bg-gradient-to-br from-yellow-900/50 to-yellow-800/30 border border-yellow-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
+          <div class="w-12 h-12 bg-yellow-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="activity" class="w-6 h-6 text-yellow-400"></i>
+          </div>
+          <h4 class="text-sm font-bold text-white mb-1">InfluxDB</h4>
+          <p class="text-xs text-slate-400">Time Series DB</p>
+        </div>
+        <!-- Kubernetes -->
+        <div class="bg-gradient-to-br from-indigo-900/50 to-indigo-800/30 border border-indigo-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
+          <div class="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="cloud-upload" class="w-6 h-6 text-indigo-400"></i>
+          </div>
+          <h4 class="text-sm font-bold text-white mb-1">Kubernetes</h4>
+          <p class="text-xs text-slate-400">Orchestration</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCERIA RNP -->
+  <section id="parceria" class="py-16 px-6 bg-slate-900 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="inline-flex items-center mb-6 bg-blue-600/20 text-blue-300 border border-blue-500/30 px-4 py-2 rounded-lg">
+          <i data-lucide="network" class="w-4 h-4 mr-2"></i>
+          Parceria Estratégica
+        </span>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Rede Parceira</h2>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 relative overflow-hidden rounded-2xl">
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-transparent"></div>
+          <div class="p-12 text-center relative z-10">
+            <div class="w-64 h-40 mx-auto mb-8 relative">
+              <img src="images/rnp.png" alt="RNP Logo" class="w-full h-full object-contain drop-shadow-lg" />
+            </div>
+            <h3 class="text-3xl font-bold text-white mb-4">RNP</h3>
+            <p class="text-xl text-blue-300 font-semibold mb-6">Rede Nacional de Ensino e Pesquisa</p>
+            <p class="text-slate-300 mb-8 text-lg leading-relaxed">
+              Parceria estratégica com a RNP para desenvolvimento e implementação da plataforma GT IoT EDU, aproveitando a
+              infraestrutura nacional de rede acadêmica para conectar dispositivos IoT de forma segura e eficiente em
+              instituições de ensino superior.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+              <div class="text-center">
+                <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                  <i data-lucide="globe" class="w-8 h-8 text-blue-400"></i>
+                </div>
+                <h4 class="text-lg font-bold text-white mb-2">Infraestrutura Nacional</h4>
+                <p class="text-slate-400 text-sm">Rede de alta velocidade conectando universidades</p>
+              </div>
+              <div class="text-center">
+                <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                  <i data-lucide="shield" class="w-8 h-8 text-green-400"></i>
+                </div>
+                <h4 class="text-lg font-bold text-white mb-2">Segurança Avançada</h4>
+                <p class="text-slate-400 text-sm">Protocolos de segurança para ambiente acadêmico</p>
+              </div>
+              <div class="text-center">
+                <div class="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                  <i data-lucide="users" class="w-8 h-8 text-purple-400"></i>
+                </div>
+                <h4 class="text-lg font-bold text-white mb-2">Comunidade Acadêmica</h4>
+                <p class="text-slate-400 text-sm">Suporte especializado para instituições</p>
+              </div>
+            </div>
+
+            <a href="#contexto" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl transition">
+              Saiba Mais sobre a Parceria
+              <i data-lucide="network" class="w-5 h-5 ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APOIO -->
+  <section id="apoio" class="py-16 px-6 bg-slate-800 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="inline-flex items-center mb-6 bg-green-600/20 text-green-300 border border-green-500/30 px-4 py-2 rounded-lg">
+          <i data-lucide="star" class="w-4 h-4 mr-2"></i>
+          Apoiadores
+        </span>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Apoio Institucional</h2>
+        <p class="text-xl text-slate-300 max-w-4xl mx-auto">
+          Projeto desenvolvido com o apoio de importantes instituições de ensino superior do Brasil.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- UNIPAMPA -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 relative overflow-hidden rounded-2xl">
+          <div class="absolute inset-0 bg-gradient-to-r from-green-600/10 to-transparent"></div>
+          <div class="p-8 text-center relative z-10">
+            <div class="w-64 h-44 mx-auto mb-6 relative">
+              <img src="images/unipampa.png" alt="UNIPAMPA Logo" class="w-full h-full object-contain drop-shadow-lg" />
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">UNIPAMPA</h3>
+            <p class="text-green-300 font-semibold mb-4">Universidade Federal do Pampa</p>
+          </div>
+        </div>
+
+        <!-- UFRGS -->
+        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 relative overflow-hidden rounded-2xl">
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-transparent"></div>
+          <div class="p-8 text-center relative z-10">
+            <div class="w-64 h-44 mx-auto mb-6 relative">
+              <img src="images/ufrgs.png" alt="UFRGS Logo" class="w-full h-full object-contain drop-shadow-lg" />
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">UFRGS</h3>
+            <p class="text-blue-300 font-semibold mb-4">Universidade Federal do Rio Grande do Sul</p>
+          </div>
+        </div>
+
+        <!-- UFU -->
+        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 relative overflow-hidden rounded-2xl">
+          <div class="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-transparent"></div>
+          <div class="p-8 text-center relative z-10">
+            <div class="w-64 h-44 mx-auto mb-6 relative">
+              <img src="images/ufu.png" alt="UFU Logo" class="w-full h-full object-contain drop-shadow-lg" />
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">UFU</h3>
+            <p class="text-purple-300 font-semibold mb-4">Universidade Federal de Uberlândia</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPE -->
+<section id="equipe" class="py-16 px-6 bg-slate-900 scroll-mt-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="inline-flex items-center mb-6 bg-purple-600/20 text-purple-300 border border-purple-500/30 px-4 py-2 rounded-lg">
+        <i data-lucide="users" class="w-4 h-4 mr-2"></i>
+        Equipe
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Equipe</h2>
+      <p class="text-xl text-slate-300 max-w-4xl mx-auto">Conheça os pesquisadores e desenvolvedores por trás do projeto.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Diego Kreutz -->
+      <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-blue-400/30 mx-auto mb-4">
+            <img src="images/diego.png" alt="Foto de Diego Kreutz" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Diego Kreutz</h4>
+          <p class="text-blue-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
+          <p class="text-slate-400 text-xs">Coordenador acadêmico<br/>diegokreutz@unipampa.edu.br</p>
+        </div>
+      </div>
+
+      <!-- Leandro M. Bertholdo -->
+      <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-purple-400/30 mx-auto mb-4">
+            <img src="images/bertholdo.png" alt="Foto de Leandro M. Bertholdo" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Leandro M. Bertholdo</h4>
+          <p class="text-purple-300 text-sm font-semibold mb-3">Professor - UFRGS</p>
+          <p class="text-slate-400 text-xs">Líder de Inovação<br/>berthold@penta.ufrgs.br</p>
+        </div>
+      </div>
+
+      <!-- Angelo Gaspar Diniz Nogueira -->
+      <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+            <img src="images/angelo.jpg" alt="Foto de Angelo Gaspar Diniz Nogueira" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Angelo Gaspar Diniz Nogueira</h4>
+          <p class="text-green-300 text-sm font-semibold mb-3">Mestrando - Unipampa</p>
+          <p class="text-slate-400 text-xs">Assistente de Inovação<br/>angelonogueira.aluno@unipampa.edu.br</p>
+        </div>
+      </div>
+
+      <!-- Vagner Quincozes -->
+      <div class="bg-gradient-to-br from-orange-900/50 to-orange-800/30 border border-orange-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-orange-400/30 mx-auto mb-4">
+            <img src="images/vagner.png" alt="Foto de Vagner Quincozes" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Vagner Quincozes</h4>
+          <p class="text-orange-300 text-sm font-semibold mb-3">Doutorando - UFF</p>
+          <p class="text-slate-400 text-xs">Assistente de Inovação<br/>vequincozes@gmail.com</p>
+        </div>
+      </div>
+
+      <!-- Rodrigo Mansilha -->
+      <div class="bg-gradient-to-br from-teal-900/50 to-teal-800/30 border border-teal-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-teal-400/30 mx-auto mb-4">
+            <img src="images/mansilha.png" alt="Foto de Rodrigo Mansilha" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Rodrigo Mansilha</h4>
+          <p class="text-teal-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
+          <p class="text-slate-400 text-xs">Pesquisador<br/>mansilha@unipampa.edu.br</p>
+        </div>
+      </div>
+
+      <!-- Silvio Quincozes -->
+      <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
+            <img src="images/silvio.jpg" alt="Foto de Silvio Quincozes" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Silvio Quincozes</h4>
+          <p class="text-red-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
+          <p class="text-slate-400 text-xs">Pesquisador<br/>silvioquincozes@unipampa.edu.br</p>
+        </div>
+      </div>
+
+      <!-- Rodrigo Miani -->
+      <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-blue-400/30 mx-auto mb-4">
+            <img src="images/miani.jpg" alt="Foto de Rodrigo Miani" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Rodrigo Miani</h4>
+          <p class="text-blue-300 text-sm font-semibold mb-3">Professor</p>
+          <p class="text-slate-400 text-xs">Pesquisador<br/>miani@ufu.br</p>
+        </div>
+      </div>
+
+      <!-- Anna Letycia Reis -->
+      <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-purple-400/30 mx-auto mb-4">
+            <img src="images/anna-letycia.jpg" alt="Foto de Anna Letycia Reis" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Anna Letycia Reis</h4>
+          <p class="text-purple-300 text-sm font-semibold mb-3">Mestranda - UFU</p>
+          <p class="text-slate-400 text-xs">&nbsp;</p>
+        </div>
+      </div>
+
+      <!-- Rafael Barboza Torres -->
+      <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+            <img src="images/rafael.png" alt="Foto de Rafael Barboza Torres" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Rafael Barboza Torres</h4>
+          <p class="text-green-300 text-sm font-semibold mb-3">Mestrando - Unipampa</p>
+          <p class="text-slate-400 text-xs">&nbsp;</p>
+        </div>
+      </div>
+
+      <!-- Emanuel Carricio -->
+      <div class="bg-gradient-to-br from-orange-900/50 to-orange-800/30 border border-orange-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-orange-400/30 mx-auto mb-4">
+            <img src="images/emanuel.png" alt="Foto de Emanuel Carricio" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Emanuel Carricio</h4>
+          <p class="text-orange-300 text-sm font-semibold mb-3">Graduando - Unipampa</p>
+          <p class="text-slate-400 text-xs">&nbsp;</p>
+        </div>
+      </div>
+
+      <!-- Joner de Mello Assolin -->
+      <div class="bg-gradient-to-br from-teal-900/50 to-teal-800/30 border border-teal-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-teal-400/30 mx-auto mb-4">
+            <img src="images/joner.jpg" alt="Foto de Joner de Mello Assolin" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Joner de Mello Assolin</h4>
+          <p class="text-teal-300 text-sm font-semibold mb-3">Mestrando - UFAM</p>
+          <p class="text-slate-400 text-xs">&nbsp;</p>
+        </div>
+      </div>
+
+      <!-- Matheus Ciocca -->
+      <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
+            <img src="images/matheus.jpg" alt="Foto de Matheus Ciocca" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Matheus Ciocca</h4>
+          <p class="text-red-300 text-sm font-semibold mb-3">Graduando - Unipampa</p>
+          <p class="text-slate-400 text-xs">&nbsp;</p>
+        </div>
+      </div>
+
+      <!-- Leonardo Bitzki -->
+      <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl">
+        <div class="p-6 text-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
+            <img src="images/leonardo.png" alt="Foto de Leonardo Bitzki" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Leonardo Bitzki</h4>
+          <p class="text-red-300 text-sm font-semibold mb-3">Mestrando - Unipampa</p>
+          <p class="text-slate-400 text-xs">&nbsp;</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- FOOTER -->
+  <footer class="py-8 px-6 bg-slate-900 border-t border-slate-700">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex items-center justify-center space-x-2 mb-4">
+        <div class="relative">
+          <i data-lucide="wifi" class="h-6 w-6 text-blue-400"></i>
+          <div class="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        </div>
+        <span class="text-lg font-bold">GT IoT EDU</span>
+      </div>
+      <p class="text-slate-400 text-sm">
+        © 2025 GT-IoTEDU — Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Inicializa ícones Lucide
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) { window.lucide.createIcons(); }
+    });
+
+    // Rolagem suave para âncoras
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href && href.length > 1) {
+          const el = document.querySelector(href);
+          if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
