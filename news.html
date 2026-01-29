@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notícias - GT IoT EDU</title>
+  <meta name="description" content="Últimas notícias e publicações do GT IoT EDU" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide (ícones SVG) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Seus ajustes extras -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-slate-900 text-white font-[Inter]">
+  <!-- NAV -->
+  <nav class="flex items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+    <a href="index.html" class="flex items-center space-x-2">
+      <div class="relative">
+        <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
+        <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+      </div>
+      <span class="text-xl font-bold">GT IoT EDU</span>
+    </a>
+
+    <div class="hidden md:flex items-center space-x-8">
+      <a href="index.html#contexto"   class="hover:text-blue-400 transition-colors">Contexto</a>
+      <a href="index.html#proposta"   class="hover:text-blue-400 transition-colors">Proposta</a>
+      <a href="index.html#tecnologias" class="hover:text-blue-400 transition-colors">Tecnologias</a>
+      <a href="index.html#parceria"   class="hover:text-blue-400 transition-colors">Parceria RNP</a>
+      <a href="index.html#apoio"      class="hover:text-blue-400 transition-colors">Apoio</a>
+      <a href="index.html#equipe"     class="hover:text-blue-400 transition-colors">Equipe</a>
+      <a href="news.html"   class="text-blue-400 font-semibold">Notícias</a>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <a href="index.html" class="px-4 py-2 rounded-lg border border-slate-600 text-white hover:bg-slate-800 bg-transparent">Voltar ao Início</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="pt-32 pb-16 px-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+
+    <div class="max-w-6xl mx-auto text-center relative z-10">
+      <span class="inline-flex items-center mb-8 bg-blue-600/20 text-blue-300 border border-blue-500/30 px-4 py-2 rounded-lg">
+        <i data-lucide="newspaper" class="w-4 h-4 mr-2"></i>
+        Últimas Atualizações
+        <span class="w-2 h-2 bg-green-400 rounded-full ml-2 animate-pulse"></span>
+      </span>
+
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight">
+        <span class="text-white">Notícias e</span><br />
+        <span class="bg-gradient-to-r from-blue-400 via-green-400 to-blue-600 bg-clip-text text-transparent">Publicações</span>
+      </h1>
+
+      <p class="text-xl md:text-2xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+        Acompanhe as últimas novidades, publicações acadêmicas e conquistas do projeto GT IoT EDU
+      </p>
+    </div>
+  </section>
+
+  <!-- NEWS SECTION -->
+  <section class="py-16 px-6 bg-slate-800">
+    <div class="max-w-6xl mx-auto">
+      <div class="space-y-6">
+        
+        <!-- Notícia 1 -->
+        <article class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl hover:scale-[1.02] transition-transform">
+          <a href="https://sbrc2024.ufrj.br/" target="_blank" rel="noopener noreferrer" class="block p-8">
+            <div class="flex items-start gap-6">
+              <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <i data-lucide="book-open" class="w-8 h-8 text-blue-400"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="inline-flex items-center bg-blue-600/30 text-blue-300 border border-blue-500/40 px-3 py-1 rounded-lg text-xs font-semibold">
+                    <i data-lucide="calendar" class="w-3 h-3 mr-1"></i>
+                    Janeiro 2025
+                  </span>
+                  <span class="inline-flex items-center bg-green-600/30 text-green-300 border border-green-500/40 px-3 py-1 rounded-lg text-xs font-semibold">
+                    <i data-lucide="award" class="w-3 h-3 mr-1"></i>
+                    Publicação
+                  </span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3 hover:text-blue-400 transition-colors">
+                  Artigo Publicado no SBRC 2024
+                </h3>
+                <p class="text-slate-300 mb-4 leading-relaxed">
+                  Nosso artigo sobre gerenciamento seguro de dispositivos IoT em ambientes educacionais foi aceito e apresentado no Simpósio Brasileiro de Redes de Computadores (SBRC) 2024, um dos principais eventos da área no Brasil.
+                </p>
+                <div class="flex items-center text-blue-400">
+                  <span class="text-sm font-semibold mr-2">Ler mais</span>
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Notícia 2 -->
+        <article class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl hover:scale-[1.02] transition-transform">
+          <a href="https://escoladeredes.rnp.br/" target="_blank" rel="noopener noreferrer" class="block p-8">
+            <div class="flex items-start gap-6">
+              <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <i data-lucide="graduation-cap" class="w-8 h-8 text-green-400"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="inline-flex items-center bg-green-600/30 text-green-300 border border-green-500/40 px-3 py-1 rounded-lg text-xs font-semibold">
+                    <i data-lucide="calendar" class="w-3 h-3 mr-1"></i>
+                    Dezembro 2024
+                  </span>
+                  <span class="inline-flex items-center bg-purple-600/30 text-purple-300 border border-purple-500/40 px-3 py-1 rounded-lg text-xs font-semibold">
+                    <i data-lucide="presentation" class="w-3 h-3 mr-1"></i>
+                    Curso
+                  </span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3 hover:text-green-400 transition-colors">
+                  Curso na Escola de Redes da RNP
+                </h3>
+                <p class="text-slate-300 mb-4 leading-relaxed">
+                  Ministrado curso sobre "Segurança e Gerenciamento de IoT em Redes Acadêmicas" na Escola de Redes da RNP, capacitando profissionais de TI de diversas instituições federais de ensino.
+                </p>
+                <div class="flex items-center text-green-400">
+                  <span class="text-sm font-semibold mr-2">Saiba mais</span>
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Notícia 3 -->
+        <article class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl hover:scale-[1.02] transition-transform">
+          <a href="https://www.rnp.br/" target="_blank" rel="noopener noreferrer" class="block p-8">
+            <div class="flex items-start gap-6">
+              <div class="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <i data-lucide="handshake" class="w-8 h-8 text-purple-400"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="inline-flex items-center bg-purple-600/30 text-purple-300 border border-purple-500/40 px-3 py-1 rounded-lg text-xs font-semibold">
+                    <i data-lucide="calendar" class="w-3 h-3 mr-1"></i>
+                    Novembro 2024
+                  </span>
+                  <span class="inline-flex items-center bg-blue-600/30 text-blue-300 border border-blue-500/40 px-3 py-1 rounded-lg text-xs font-semibold">
+                    <i data-lucide="rocket" class="w-3 h-3 mr-1"></i>
+                    Parceria
+                  </span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3 hover:text-purple-400 transition-colors">
+                  Formalização da Parceria com RNP
+                </h3>
+                <p class="text-slate-300 mb-4 leading-relaxed">
+                  Assinatura oficial da parceria entre o GT IoT EDU e a Rede Nacional de Ensino e Pesquisa (RNP), permitindo a integração da plataforma com a infraestrutura nacional de rede acadêmica.
+                </p>
+                <div class="flex items-center text-purple-400">
+                  <span class="text-sm font-semibold mr-2">Leia o comunicado</span>
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Notícia 4 -->
+        <article class="bg-gradient-to-br from-orange-900/50 to-orange-800/30 border border-orange-700/50 rounded-2xl hover:scale-[1.02] transition-transform">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="block p-8">
+            <div class="flex items-start gap-6">
+              <div class="w-16 h-16 bg-orange-600/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <i data-lucide="flask-conical" class="w-8 h-8 text-orange-400"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="inline-flex items-center bg-orange-600/30 text-orange-300 border border-orange-500/40 px-3 py-1 rounded-lg text-xs font-semibold">
+                    <i data-lucide="calendar" class="w-3 h-3 mr-1"></i>
+                    Outubro 2024
+                  </span>
+                  <span class="inline-flex items-center bg-teal-600/30 text-teal-300 border border-teal-500/40 px-3 py-1 rounded-lg text-xs font-semibold">
+                    <i data-lucide="beaker" class="w-3 h-3 mr-1"></i>
+                    Pesquisa
+                  </span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3 hover:text-orange-400 transition-colors">
+                  Projeto Piloto na UNIPAMPA
+                </h3>
+                <p class="text-slate-300 mb-4 leading-relaxed">
+                  Início do projeto piloto de implantação da plataforma GT IoT EDU na Universidade Federal do Pampa (UNIPAMPA), com o cadastramento e monitoramento de mais de 50 dispositivos IoT no campus.
+                </p>
+                <div class="flex items-center text-orange-400">
+                  <span class="text-sm font-semibold mr-2">Ver detalhes</span>
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Notícia 5 -->
+        <article class="bg-gradient-to-br from-teal-900/50 to-teal-800/30 border border-teal-700/50 rounded-2xl hover:scale-[1.02] transition-transform">
+          <a href="https://github.com/gt-iotedu" target="_blank" rel="noopener noreferrer" class="block p-8">
+            <div class="flex items-start gap-6">
+              <div class="w-16 h-16 bg-teal-600/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <i data-lucide="code-2" class="w-8 h-8 text-teal-400"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="inline-flex items-center bg-teal-600/30 text-teal-300 border border-teal-500/40 px-3 py-1 rounded-lg text-xs font-semibold">
+                    <i data-lucide="calendar" class="w-3 h-3 mr-1"></i>
+                    Setembro 2024
+                  </span>
+                  <span class="inline-flex items-center bg-slate-600/30 text-slate-300 border border-slate-500/40 px-3 py-1 rounded-lg text-xs font-semibold">
+                    <i data-lucide="git-branch" class="w-3 h-3 mr-1"></i>
+                    Código Aberto
+                  </span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3 hover:text-teal-400 transition-colors">
+                  Código Open Source Disponível
+                </h3>
+                <p class="text-slate-300 mb-4 leading-relaxed">
+                  Liberação do código-fonte da plataforma GT IoT EDU no GitHub, permitindo que outras instituições possam contribuir e adaptar a solução para suas necessidades específicas.
+                </p>
+                <div class="flex items-center text-teal-400">
+                  <span class="text-sm font-semibold mr-2">Acessar repositório</span>
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+
+      </div>
+
+    
+      <!-- <div class="mt-16 bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl p-12 text-center">
+        <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <i data-lucide="bell" class="w-8 h-8 text-blue-400"></i>
+        </div>
+        <h3 class="text-3xl font-bold text-white mb-4">Quer Receber Atualizações?</h3>
+        <p class="text-slate-300 mb-8 max-w-2xl mx-auto">
+          Entre em contato com nossa equipe para saber mais sobre o projeto e receber notificações sobre novas publicações e eventos.
+        </p>
+        <a href="index.html#equipe" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl transition">
+          Falar com a Equipe
+          <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+        </a>
+      </div>  -->
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 px-6 bg-slate-900 border-t border-slate-700">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex items-center justify-center space-x-2 mb-4">
+        <div class="relative">
+          <i data-lucide="wifi" class="h-6 w-6 text-blue-400"></i>
+          <div class="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        </div>
+        <span class="text-lg font-bold">GT IoT EDU</span>
+      </div>
+      <p class="text-slate-400 text-sm">
+        © 2025 GT-IoTEDU — Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Inicializa ícones Lucide
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) { window.lucide.createIcons(); }
+    });
+  </script>
+</body>
+</html>
