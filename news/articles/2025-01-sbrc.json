@@ -1,0 +1,17 @@
+{
+  "id": "2025-01-sbrc",
+  "date": "2025-01",
+  "dateDisplay": "Janeiro 2025",
+  "title": "Artigo Publicado no SBRC 2024",
+  "description": "Nosso artigo sobre gerenciamento seguro de dispositivos IoT em ambientes educacionais foi aceito e apresentado no Simpósio Brasileiro de Redes de Computadores (SBRC) 2024, um dos principais eventos da área no Brasil.",
+  "link": "https://sbrc2024.ufrj.br/",
+  "icon": "book-open",
+  "colorScheme": "blue",
+  "tags": [
+    {
+      "label": "Publicação",
+      "icon": "award",
+      "color": "green"
+    }
+  ]
+}

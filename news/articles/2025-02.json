@@ -1,0 +1,22 @@
+{
+  "id": "2025-02",
+  "date": "2025-02",
+  "dateDisplay": "Fevereiro 2025",
+  "title": "Exemplo de inserção de uma notícia via script",
+  "description": "Descrição completinha",
+  "link": "https://youtube.com",
+  "icon": "book-open",
+  "colorScheme": "teal",
+  "tags": [
+    {
+      "label": "Teste",
+      "icon": "award",
+      "color": "green"
+    },
+    {
+      "label": "PoC",
+      "icon": "award",
+      "color": "green"
+    }
+  ]
+}
