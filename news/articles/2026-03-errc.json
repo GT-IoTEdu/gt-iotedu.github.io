@@ -1,0 +1,17 @@
+{
+  "id": "2026-03-artigos-errc25",
+  "date": "2026-03",
+  "dateDisplay": "Março 2026",
+  "title": "IoTEdu tem três artigos publicados na ERRC 2025",
+  "description": "O projeto IoTEdu teve três trabalhos científicos aceitos e publicados nos anais da ERRC 2025 (Escola Regional de Redes de Computadores), um dos principais eventos acadêmicos da área de redes e infraestrutura de Internet no sul do Brasil. Os artigos apresentam resultados técnicos e avanços do projeto relacionados à arquitetura da plataforma, serviços de rede e mecanismos de segurança para gestão de dispositivos IoT em ambientes acadêmicos\nOs trabalhos exploram diferentes aspectos da solução IoTEdu, incluindo a arquitetura do sistema, a integração de serviços de rede e a utilização de sondas de segurança para monitoramento e detecção de ameaças. Em conjunto, os artigos contribuem para o desenvolvimento de abordagens mais seguras e eficientes para a gestão de dispositivos IoT em redes acadêmicas e de pesquisa.\nA publicação desses trabalhos reforça o compromisso do GT-IoTEdu com pesquisa aplicada, desenvolvimento tecnológico e disseminação científica, contribuindo para o avanço de soluções de segurança e gestão de dispositivos IoT no ecossistema da RNP.\nArtigos publicados\nAnálise do uso do Zeek como sonda de segurança para redes IoT institucionais\nhttps://sol.sbc.org.br/index.php/errc/article/view/39173\nArquitetura e mecanismos de segurança da plataforma IoTEdu para redes acadêmicas\nhttps://sol.sbc.org.br/index.php/errc/article/view/39179\nServiços de rede e gerenciamento automatizado de dispositivos IoT no contexto do IoTEdu\nhttps://sol.sbc.org.br/index.php/errc/article/view/39180",
+  "link": "https://sol.sbc.org.br/index.php/errc/article/view/39173",
+  "icon": "book-open",
+  "colorScheme": "blue",
+  "tags": [
+    {
+      "label": "Publicações",
+      "icon": "award",
+      "color": "green"
+    }
+  ]
+}

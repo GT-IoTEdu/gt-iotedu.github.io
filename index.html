@@ -30,6 +30,7 @@
       <span class="text-xl font-bold">GT IoT EDU</span>
     </div>
 
+
     <div class="hidden md:flex items-center space-x-8">
       <a href="#contexto"   class="hover:text-blue-400 transition-colors">Contexto</a>
       <a href="#proposta"   class="hover:text-blue-400 transition-colors">Proposta</a>
@@ -41,7 +42,7 @@
     </div>
 
     <div class="flex items-center space-x-4">
-      <a href="#contexto" class="px-4 py-2 rounded-lg border border-slate-600 text-white hover:bg-slate-800 bg-transparent">Saiba Mais</a>
+      <a href="#contexto" class="px-4 py-2 rounded-lg border-slate-600 text-white hover:bg-slate-800 bg-transparent"></a>
     </div>
   </nav>
 
@@ -123,10 +124,10 @@
   <section id="contexto" class="py-16 px-6 bg-slate-900 scroll-mt-24">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12">
-        <span class="inline-flex items-center mb-6 bg-green-600/20 text-green-300 border border-green-500/30 px-4 py-2 rounded-lg">
+        <!-- <span class="inline-flex items-center mb-6 bg-green-600/20 text-green-300 border border-green-500/30 px-4 py-2 rounded-lg">
           <i data-lucide="settings" class="w-4 h-4 mr-2"></i>
           Contexto
-        </span>
+        </span> -->
         <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Sobre o Projeto</h2>
         <p class="text-xl text-slate-300 max-w-4xl mx-auto">
           O crescimento exponencial de dispositivos IoT em ambientes acadêmicos trouxe novos desafios de gestão, segurança e
@@ -215,22 +216,20 @@
   </section>
 
   <!-- PROPOSTA -->
-  <section id="proposta" class="py-16 px-6 bg-slate-800 scroll-mt-24">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <span class="inline-flex items-center mb-6 bg-blue-600/20 text-blue-300 border border-blue-500/30 px-4 py-2 rounded-lg">
-          <i data-lucide="zap" class="w-4 h-4 mr-2"></i>
-          Proposta
-        </span>
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Nossa Proposta</h2>
-        <p class="text-2xl text-blue-400 font-semibold max-w-4xl mx-auto">
-          Simplificar e proteger o uso de dispositivos IoT em instituições acadêmicas.
-        </p>
-      </div>
+<section id="proposta" class="py-16 px-6 bg-slate-800 scroll-mt-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Nossa Proposta</h2>
+      <p class="text-2xl text-blue-400 font-semibold max-w-4xl mx-auto">
+        Simplificar e proteger o uso de dispositivos IoT em instituições acadêmicas.
+      </p>
+    </div>
 
-      <div class="grid lg:grid-cols-2 gap-8">
-        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl">
-          <div class="p-8">
+    <div class="space-y-12">
+      <!-- 3 cards lado a lado (desktop) -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl h-full">
+          <div class="p-8 h-full flex flex-col">
             <div class="flex items-center mb-6">
               <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mr-4">
                 <i data-lucide="clock" class="w-8 h-8 text-blue-400"></i>
@@ -243,7 +242,7 @@
             </div>
             <h3 class="text-2xl font-bold text-white mb-4">Cadastro Fácil e Sem Burocracia</h3>
             <p class="text-slate-300 mb-6">Usuários registram seus dispositivos em segundos, sem precisar da equipe de TI.</p>
-            <div class="space-y-3">
+            <div class="space-y-3 mt-auto">
               <div class="flex items-center text-blue-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Interface intuitiva</div>
               <div class="flex items-center text-blue-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Validação automatizada</div>
               <div class="flex items-center text-blue-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Configuração automática de rede</div>
@@ -251,8 +250,8 @@
           </div>
         </div>
 
-        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl">
-          <div class="p-8">
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl h-full">
+          <div class="p-8 h-full flex flex-col">
             <div class="flex items-center mb-6">
               <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center mr-4">
                 <i data-lucide="network" class="w-8 h-8 text-green-400"></i>
@@ -265,59 +264,214 @@
             </div>
             <h3 class="text-2xl font-bold text-white mb-4">Redes Otimizadas para IoT</h3>
             <p class="text-slate-300 mb-6">Dispositivos conectados com segurança, eficiência e responsabilidade do usuário.</p>
-            <div class="space-y-3">
+            <div class="space-y-3 mt-auto">
               <div class="flex items-center text-green-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Segmentação automática</div>
               <div class="flex items-center text-green-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Monitoramento em tempo real</div>
               <div class="flex items-center text-green-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Políticas de segurança integradas</div>
             </div>
           </div>
         </div>
+
+        <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl h-full lg:min-h-[28rem]">
+          <div class="p-8 h-full flex flex-col">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-red-600/20 rounded-2xl flex items-center justify-center mr-4">
+                <i data-lucide="shield-alert" class="w-8 h-8 text-red-400"></i>
+              </div>
+              <div class="flex gap-2 opacity-60">
+                <i data-lucide="bell" class="w-6 h-6"></i>
+                <i data-lucide="ban" class="w-6 h-6"></i>
+                <i data-lucide="timer" class="w-6 h-6 text-orange-400"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Detecção e Resposta Automatizada</h3>
+            <p class="text-slate-300 mb-6">
+              Eventos classificados como alto ou crítico acionam bloqueio automático no firewall, sem intervenção manual.
+            </p>
+            <div class="space-y-3 mt-auto">
+              <div class="flex items-center text-red-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Correlação de eventos entre múltiplos IDS</div>
+              <div class="flex items-center text-red-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Bloqueio automático via pfSense</div>
+             
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Ecossistema -->
-      <div class="mt-16 text-center">
-        <h3 class="text-2xl font-bold text-white mb-8">Ecossistema IoT Suportado</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-          <div class="flex flex-col items-center">
-            <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
-              <i data-lucide="thermometer" class="w-8 h-8 text-blue-400"></i>
+      <!-- Abaixo: Fluxo à esquerda + Orquestração à direita -->
+      <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+        <div class="bg-gradient-to-r from-slate-900/80 to-slate-700/30 border border-slate-600/50 rounded-2xl p-8 md:p-12 h-full flex flex-col lg:min-h-[32rem]">
+          <h3 class="text-2xl md:text-3xl font-bold text-white text-center mb-6">Fluxo de Detecção e Resposta</h3>
+
+          <ol class="mt-3 flex-1 space-y-2">
+            <li class="relative pl-20 pb-8">
+              <div class="absolute left-0 top-0 w-12 h-12 bg-blue-600/20 rounded-2xl flex items-center justify-center">
+                <i data-lucide="wifi" class="w-7 h-7 text-blue-400"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-base text-slate-200 font-semibold">Tráfego IoT</div>
+                <div class="text-sm text-slate-400">Monitorado</div>
+              </div>
+              <div class="absolute left-6 top-14 bottom-0 w-px bg-slate-600/50"></div>
+            </li>
+
+            <li class="relative pl-20 pb-8">
+              <div class="absolute left-0 top-0 w-12 h-12 bg-purple-600/20 rounded-2xl flex items-center justify-center">
+                <i data-lucide="scan-search" class="w-7 h-7 text-purple-400"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-base text-slate-200 font-semibold">IDS</div>
+                <div class="text-sm text-slate-400">Suricata · Snort · Zeek</div>
+              </div>
+              <div class="absolute left-6 top-14 bottom-0 w-px bg-slate-600/50"></div>
+            </li>
+
+            <li class="relative pl-20 pb-8">
+              <div class="absolute left-0 top-0 w-12 h-12 bg-yellow-600/20 rounded-2xl flex items-center justify-center">
+                <i data-lucide="cpu" class="w-7 h-7 text-yellow-400"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-base text-slate-200 font-semibold">API IoT-Edu</div>
+                <div class="text-sm text-slate-400">Correlação &amp; classificação</div>
+              </div>
+              <div class="absolute left-6 top-14 bottom-0 w-px bg-slate-600/50"></div>
+            </li>
+
+            <li class="relative pl-20 pb-8">
+              <div class="absolute left-0 top-0 w-12 h-12 bg-red-600/20 rounded-2xl flex items-center justify-center">
+                <i data-lucide="shield-x" class="w-7 h-7 text-red-400"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-base text-slate-200 font-semibold">pfSense</div>
+                <div class="text-sm text-slate-400">Bloqueio automático</div>
+              </div>
+              <div class="absolute left-6 top-14 bottom-0 w-px bg-slate-600/50"></div>
+            </li>
+
+            <li class="relative pl-20">
+              <div class="absolute left-0 top-0 w-12 h-12 bg-green-600/20 rounded-2xl flex items-center justify-center">
+                <i data-lucide="layout-dashboard" class="w-7 h-7 text-green-400"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-base text-slate-200 font-semibold">Dashboard</div>
+                <div class="text-sm text-slate-400">Alertas</div>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl h-full lg:min-h-[28rem]">
+          <div class="p-6 md:p-8 h-full flex flex-col">
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 bg-purple-600/20 rounded-2xl flex items-center justify-center mr-4">
+                <i data-lucide="layers" class="w-7 h-7 text-purple-400"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">Orquestração Multi-IDS</h3>
+                <p class="text-sm text-slate-400">Um pipeline unificado para monitorar, correlacionar e mitigar.</p>
+              </div>
             </div>
-            <span class="text-sm text-slate-400">Sensores</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
-              <i data-lucide="camera" class="w-8 h-8 text-green-400"></i>
+
+            <div class="grid grid-cols-3 gap-3 opacity-80 mb-6">
+              <div class="flex items-center justify-center rounded-xl border border-slate-700/60 bg-slate-900/40 py-3">
+                <span class="text-xs text-slate-300 font-semibold">Suricata</span>
+              </div>
+              <div class="flex items-center justify-center rounded-xl border border-slate-700/60 bg-slate-900/40 py-3">
+                <span class="text-xs text-slate-300 font-semibold">Snort</span>
+              </div>
+              <div class="flex items-center justify-center rounded-xl border border-slate-700/60 bg-slate-900/40 py-3">
+                <span class="text-xs text-slate-300 font-semibold">Zeek</span>
+              </div>
             </div>
-            <span class="text-sm text-slate-400">Câmeras</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
-              <i data-lucide="lightbulb" class="w-8 h-8 text-purple-400"></i>
+
+            <p class="text-slate-300 mb-6">
+              Consolida sinais de diferentes mecanismos de detecção para reduzir falsos positivos e acelerar a tomada de decisão.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div class="rounded-2xl border border-slate-700/60 bg-slate-900/40 p-4">
+                <div class="flex items-center gap-3 text-slate-200 font-semibold">
+                  <i data-lucide="sliders-horizontal" class="w-5 h-5 text-purple-400"></i>
+                  <span class="text-sm">Normalização</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">Padroniza e organiza sinais entre diferentes mecanismos de detecção.</p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-700/60 bg-slate-900/40 p-4">
+                <div class="flex items-center gap-3 text-slate-200 font-semibold">
+                  <i data-lucide="shuffle" class="w-5 h-5 text-purple-400"></i>
+                  <span class="text-sm">Correlação</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">Agrupa eventos por contexto, tempo e severidade para reduzir ruído.</p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-700/60 bg-slate-900/40 p-4">
+                <div class="flex items-center gap-3 text-slate-200 font-semibold">
+                  <i data-lucide="zap" class="w-5 h-5 text-purple-400"></i>
+                  <span class="text-sm">Mitigação</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">Gatilhos automatizados para ações (ex.: regras e bloqueios) quando necessário.</p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-700/60 bg-slate-900/40 p-4">
+                <div class="flex items-center gap-3 text-slate-200 font-semibold">
+                  <i data-lucide="file-text" class="w-5 h-5 text-purple-400"></i>
+                  <span class="text-sm">Rastreabilidade</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">Registra evidências para melhoria contínua do pipeline.</p>
+              </div>
             </div>
-            <span class="text-sm text-slate-400">Iluminação</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="w-16 h-16 bg-orange-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
-              <i data-lucide="monitor" class="w-8 h-8 text-orange-400"></i>
-            </div>
-            <span class="text-sm text-slate-400">Áudio/Vídeo</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="w-16 h-16 bg-teal-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
-              <i data-lucide="gauge" class="w-8 h-8 text-teal-400"></i>
-            </div>
-            <span class="text-sm text-slate-400">Medidores</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="w-16 h-16 bg-red-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
-              <i data-lucide="home" class="w-8 h-8 text-red-400"></i>
-            </div>
-            <span class="text-sm text-slate-400">Automação</span>
+
+
           </div>
         </div>
       </div>
     </div>
-  </section>
+ 
+    <!-- Ecossistema (mantido) -->
+    <div class="mt-16 text-center">
+      <h3 class="text-2xl font-bold text-white mb-8">Ecossistema IoT Suportado</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
+            <i data-lucide="thermometer" class="w-8 h-8 text-blue-400"></i>
+          </div>
+          <span class="text-sm text-slate-400">Sensores</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
+            <i data-lucide="camera" class="w-8 h-8 text-green-400"></i>
+          </div>
+          <span class="text-sm text-slate-400">Câmeras</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
+            <i data-lucide="lightbulb" class="w-8 h-8 text-purple-400"></i>
+          </div>
+          <span class="text-sm text-slate-400">Iluminação</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 bg-orange-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
+            <i data-lucide="monitor" class="w-8 h-8 text-orange-400"></i>
+          </div>
+          <span class="text-sm text-slate-400">Áudio/Vídeo</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 bg-teal-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
+            <i data-lucide="gauge" class="w-8 h-8 text-teal-400"></i>
+          </div>
+          <span class="text-sm text-slate-400">Medidores</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 bg-red-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
+            <i data-lucide="home" class="w-8 h-8 text-red-400"></i>
+          </div>
+          <span class="text-sm text-slate-400">Automação</span>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+</section>
 
 <!--  
   <section id="tecnologias" class="py-16 px-6 bg-slate-800 scroll-mt-24">
@@ -406,21 +560,24 @@
   <section id="parceria" class="py-16 px-6 bg-slate-900 scroll-mt-24">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12">
-        <span class="inline-flex items-center mb-6 bg-blue-600/20 text-blue-300 border border-blue-500/30 px-4 py-2 rounded-lg">
+        <!-- <span class="inline-flex items-center mb-6 bg-blue-600/20 text-blue-300 border border-blue-500/30 px-4 py-2 rounded-lg">
           <i data-lucide="network" class="w-4 h-4 mr-2"></i>
           Parceria Estratégica
-        </span>
+        </span> -->
         <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Rede Parceira</h2>
       </div>
 
       <div class="max-w-4xl mx-auto">
         <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 relative overflow-hidden rounded-2xl">
-          <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-200/10 to-transparent"></div>
           <div class="p-12 text-center relative z-10">
+
             <div class="w-64 h-40 mx-auto mb-8 relative">
+              <a href="https://www.rnp.br/" target="_blank" rel="noopener noreferrer">
               <img src="images/rnp.png" alt="RNP Logo" class="w-full h-full object-contain drop-shadow-lg" />
+            </a>
             </div>
-            <h3 class="text-3xl font-bold text-white mb-4">RNP</h3>
+            <!-- <h3 class="text-3xl font-bold text-white mb-4">RNP</h3> -->
             <p class="text-xl text-blue-300 font-semibold mb-6">Rede Nacional de Ensino e Pesquisa</p>
             <p class="text-slate-300 mb-8 text-lg leading-relaxed">
               Parceria estratégica com a RNP para desenvolvimento e implementação da plataforma GT IoT EDU, aproveitando a
@@ -466,10 +623,10 @@
   <section id="apoio" class="py-16 px-6 bg-slate-800 scroll-mt-24">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12">
-        <span class="inline-flex items-center mb-6 bg-green-600/20 text-green-300 border border-green-500/30 px-4 py-2 rounded-lg">
+        <!-- <span class="inline-flex items-center mb-6 bg-green-600/20 text-green-300 border border-green-500/30 px-4 py-2 rounded-lg">
           <i data-lucide="star" class="w-4 h-4 mr-2"></i>
           Apoiadores
-        </span>
+        </span> -->
         <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Apoio Institucional</h2>
         <p class="text-xl text-slate-300 max-w-4xl mx-auto">
           Projeto desenvolvido com o apoio de importantes instituições de ensino superior do Brasil.
@@ -482,7 +639,9 @@
           <div class="absolute inset-0 bg-gradient-to-r from-green-600/10 to-transparent"></div>
           <div class="p-8 text-center relative z-10">
             <div class="w-64 h-44 mx-auto mb-6 relative">
-              <img src="images/unipampa.png" alt="UNIPAMPA Logo" class="w-full h-full object-contain drop-shadow-lg" />
+              <a href="https://unipampa.edu.br/portal/" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+                <img src="images/unipampa_branca.svg" alt="UNIPAMPA Logo" class="w-full h-full object-contain drop-shadow-lg" />
+              </a>
             </div>
             <h3 class="text-2xl font-bold text-white mb-2">UNIPAMPA</h3>
             <p class="text-green-300 font-semibold mb-4">Universidade Federal do Pampa</p>
@@ -493,8 +652,10 @@
         <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 relative overflow-hidden rounded-2xl">
           <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-transparent"></div>
           <div class="p-8 text-center relative z-10">
-            <div class="w-64 h-44 mx-auto mb-6 relative">
-              <img src="images/ufrgs.png" alt="UFRGS Logo" class="w-full h-full object-contain drop-shadow-lg" />
+            <div class="w-50 h-40 mx-auto mb-6 relative">
+              <a href="https://www.ufrgs.br/" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+                <img src="images/ufrgs_branca.svg" alt="UFRGS Logo" class="w-full h-full object-contain drop-shadow-lg" />
+              </a>
             </div>
             <h3 class="text-2xl font-bold text-white mb-2">UFRGS</h3>
             <p class="text-blue-300 font-semibold mb-4">Universidade Federal do Rio Grande do Sul</p>
@@ -506,7 +667,9 @@
           <div class="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-transparent"></div>
           <div class="p-8 text-center relative z-10">
             <div class="w-64 h-44 mx-auto mb-6 relative">
-              <img src="images/ufu.png" alt="UFU Logo" class="w-full h-full object-contain drop-shadow-lg" />
+              <a href="https://www.ufu.br/" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+                <img src="images/ufu_cinza.svg" alt="UFU Logo" class="w-full h-full object-contain drop-shadow-lg" />
+              </a>
             </div>
             <h3 class="text-2xl font-bold text-white mb-2">UFU</h3>
             <p class="text-purple-300 font-semibold mb-4">Universidade Federal de Uberlândia</p>
@@ -520,225 +683,243 @@
 <section id="equipe" class="py-16 px-6 bg-slate-900 scroll-mt-24">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-12">
-      <span class="inline-flex items-center mb-6 bg-purple-600/20 text-purple-300 border border-purple-500/30 px-4 py-2 rounded-lg">
+      <!-- <span class="inline-flex items-center mb-6 bg-purple-600/20 text-purple-300 border border-purple-500/30 px-4 py-2 rounded-lg">
         <i data-lucide="users" class="w-4 h-4 mr-2"></i>
         Equipe
-      </span>
+      </span> -->
       <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Equipe</h2>
       <p class="text-xl text-slate-300 max-w-4xl mx-auto">Conheça os pesquisadores e desenvolvedores por trás do projeto.</p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Coordenação & Liderança -->
+    <div class="mb-12 text-center">
+      <h3 class="text-2xl font-bold text-white mb-2">Coordenação &amp; Liderança</h3>
+      <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Coordenador acadêmico e líder de inovação do GT.</p>
 
-      <!-- Diego Kreutz -->
-      <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-blue-400/30 mx-auto mb-4">
-            <img src="images/diego.png" alt="Foto de Diego Kreutz" class="w-full h-full object-cover" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 justify-items-center max-w-3xl mx-auto">
+        <!-- Diego Kreutz -->
+        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl w-full max-w-md min-h-72">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-blue-400/30 mx-auto mb-4">
+              <img src="images/diego.png" alt="Foto de Diego Kreutz" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Diego Kreutz</h4>
+            <p class="text-blue-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Coordenador acadêmico<br/>diegokreutz@unipampa.edu.br</p>
           </div>
-          <h4 class="text-lg font-bold text-white mb-2">Diego Kreutz</h4>
-          <p class="text-blue-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
-          <p class="text-slate-400 text-xs">Coordenador acadêmico<br/>diegokreutz@unipampa.edu.br</p>
+        </div>
+
+        <!-- Leandro M. Bertholdo -->
+        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl w-full max-w-md min-h-72">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-purple-400/30 mx-auto mb-4">
+              <img src="images/bertholdo.png" alt="Foto de Leandro M. Bertholdo" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Leandro M. Bertholdo</h4>
+            <p class="text-purple-300 text-sm font-semibold mb-3">Professor - UFRGS</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Líder de Inovação<br/>berthold@penta.ufrgs.br</p>
+          </div>
         </div>
       </div>
-
-      <!-- Leandro M. Bertholdo -->
-      <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-purple-400/30 mx-auto mb-4">
-            <img src="images/bertholdo.png" alt="Foto de Leandro M. Bertholdo" class="w-full h-full object-cover" />
-          </div>
-          <h4 class="text-lg font-bold text-white mb-2">Leandro M. Bertholdo</h4>
-          <p class="text-purple-300 text-sm font-semibold mb-3">Professor - UFRGS</p>
-          <p class="text-slate-400 text-xs">Líder de Inovação<br/>berthold@penta.ufrgs.br</p>
-        </div>
-      </div>
-
-      <!-- Angelo Gaspar Diniz Nogueira -->
-      <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
-            <img src="images/angelo.jpg" alt="Foto de Angelo Gaspar Diniz Nogueira" class="w-full h-full object-cover" />
-          </div>
-          <h4 class="text-lg font-bold text-white mb-2">Angelo Gaspar Diniz Nogueira</h4>
-          <p class="text-green-300 text-sm font-semibold mb-3">Mestrando - Unipampa</p>
-          <p class="text-slate-400 text-xs">Assistente de Inovação<br/>angelonogueira.aluno@unipampa.edu.br</p>
-        </div>
-      </div>
-
-      <!-- Vagner Quincozes -->
-      <div class="bg-gradient-to-br from-orange-900/50 to-orange-800/30 border border-orange-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-orange-400/30 mx-auto mb-4">
-            <img src="images/vagner.png" alt="Foto de Vagner Quincozes" class="w-full h-full object-cover" />
-          </div>
-          <h4 class="text-lg font-bold text-white mb-2">Vagner Quincozes</h4>
-          <p class="text-orange-300 text-sm font-semibold mb-3">Doutorando - UFF</p>
-          <p class="text-slate-400 text-xs">Assistente de Inovação<br/>vequincozes@gmail.com</p>
-        </div>
-      </div>
-
-      <!-- Rodrigo Mansilha -->
-      <div class="bg-gradient-to-br from-teal-900/50 to-teal-800/30 border border-teal-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-teal-400/30 mx-auto mb-4">
-            <img src="images/mansilha.png" alt="Foto de Rodrigo Mansilha" class="w-full h-full object-cover" />
-          </div>
-          <h4 class="text-lg font-bold text-white mb-2">Rodrigo Mansilha</h4>
-          <p class="text-teal-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
-          <p class="text-slate-400 text-xs">Pesquisador<br/>mansilha@unipampa.edu.br</p>
-        </div>
-      </div>
-
-      <!-- Silvio Quincozes -->
-      <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
-            <img src="images/silvio.jpg" alt="Foto de Silvio Quincozes" class="w-full h-full object-cover" />
-          </div>
-          <h4 class="text-lg font-bold text-white mb-2">Silvio Quincozes</h4>
-          <p class="text-red-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
-          <p class="text-slate-400 text-xs">Pesquisador<br/>silvioquincozes@unipampa.edu.br</p>
-        </div>
-      </div>
-
-      <!-- Rodrigo Miani -->
-      <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-blue-400/30 mx-auto mb-4">
-            <img src="images/miani.jpg" alt="Foto de Rodrigo Miani" class="w-full h-full object-cover" />
-          </div>
-          <h4 class="text-lg font-bold text-white mb-2">Rodrigo Miani</h4>
-          <p class="text-blue-300 text-sm font-semibold mb-3">Professor</p>
-          <p class="text-slate-400 text-xs">Pesquisador<br/>miani@ufu.br</p>
-        </div>
-      </div>
-
-      <!-- Anna Letycia Reis -->
-      <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-purple-400/30 mx-auto mb-4">
-            <img src="images/anna-letycia.jpg" alt="Foto de Anna Letycia Reis" class="w-full h-full object-cover" />
-          </div>
-          <h4 class="text-lg font-bold text-white mb-2">Anna Letycia Reis</h4>
-          <p class="text-purple-300 text-sm font-semibold mb-3">Mestranda - UFU</p>
-          <p class="text-slate-400 text-xs">&nbsp;</p>
-        </div>
-      </div>
-
-      <!-- Rafael Barboza Torres -->
-      <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
-            <img src="images/douglas.jpeg" alt="Foto de Douglas Fideles" class="w-full h-full object-cover" />
-          </div>
-          <h4 class="text-lg font-bold text-white mb-2">Douglas Rodrigues Fideles</h4>
-          <p class="text-green-300 text-sm font-semibold mb-3">Mestrando - Unipampa</p>
-          <p class="text-slate-400 text-xs">&nbsp;</p>
-        </div>
-      </div>
-
-      <!-- Emanuel Carricio -->
-      <div class="bg-gradient-to-br from-orange-900/50 to-orange-800/30 border border-orange-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-orange-400/30 mx-auto mb-4">
-            <img src="images/emanuel.png" alt="Foto de Emanuel Carricio" class="w-full h-full object-cover" />
-          </div>
-          <h4 class="text-lg font-bold text-white mb-2">Emanuel Carricio</h4>
-          <p class="text-orange-300 text-sm font-semibold mb-3">Graduando - Unipampa</p>
-          <p class="text-slate-400 text-xs">&nbsp;</p>
-        </div>
-      </div>
-
-      <!-- Joner de Mello Assolin -->
-      <div class="bg-gradient-to-br from-teal-900/50 to-teal-800/30 border border-teal-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-teal-400/30 mx-auto mb-4">
-            <img src="images/joner.jpg" alt="Foto de Joner de Mello Assolin" class="w-full h-full object-cover" />
-          </div>
-          <h4 class="text-lg font-bold text-white mb-2">Joner de Mello Assolin</h4>
-          <p class="text-teal-300 text-sm font-semibold mb-3">Mestrando - UFAM</p>
-          <p class="text-slate-400 text-xs">&nbsp;</p>
-        </div>
-      </div>
-
-      <!-- Matheus Ciocca -->
-      <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
-            <img src="images/matheus.jpg" alt="Foto de Matheus Ciocca" class="w-full h-full object-cover" />
-          </div>
-          <h4 class="text-lg font-bold text-white mb-2">Matheus Ciocca</h4>
-          <p class="text-red-300 text-sm font-semibold mb-3">Graduando - Unipampa</p>
-          <p class="text-slate-400 text-xs">&nbsp;</p>
-        </div>
-      </div>
-
-      <!-- Leonardo Bitzki -->
-      <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
-            <img src="images/leonardo.png" alt="Foto de Leonardo Bitzki" class="w-full h-full object-cover" />
-          </div>
-          <h4 class="text-lg font-bold text-white mb-2">Leonardo Bitzki</h4>
-          <p class="text-red-300 text-sm font-semibold mb-3">Mestrando - Unipampa</p>
-          <p class="text-slate-400 text-xs">&nbsp;</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-  <!-- COLABORADORES -->
-<section id="colaboradores" class="py-16 px-6 bg-slate-800 scroll-mt-24">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-12">
-      <span class="inline-flex items-center mb-6 bg-purple-600/20 text-purple-300 border border-purple-500/30 px-4 py-2 rounded-lg">
-        <i data-lucide="users" class="w-4 h-4 mr-2"></i>
-        Voluntários
-      </span>
-      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Colaboradores Voluntários</h2>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Assistentes de Inovação -->
+    <div class="mb-12 text-center">
+      <h3 class="text-2xl font-bold text-white mb-2">Assistentes de Inovação</h3>
+      <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Apoio direto às atividades de inovação do projeto.</p>
 
-      <!-- João Pedro Ramires -->
-      <div class="bg-gradient-to-br from-teal-900/50 to-teal-800/30 border border-teal-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-teal-400/30 mx-auto mb-4">
-            <img src="images/joao_pedro.jpeg" alt="Foto de João Pedro Ramires" class="w-full h-full object-cover" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 justify-items-center max-w-3xl mx-auto">
+        <!-- Angelo Gaspar Diniz Nogueira -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl w-full max-w-md min-h-72">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+              <img src="images/angelo.jpg" alt="Foto de Angelo Gaspar Diniz Nogueira" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Angelo Gaspar Diniz Nogueira</h4>
+            <p class="text-green-300 text-sm font-semibold mb-3">Mestrando - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Assistente de Inovação<br/>angelonogueira.aluno@unipampa.edu.br</p>
           </div>
-          <h4 class="text-lg font-bold text-white mb-2">João Pedro Ramies</h4>
-          <p class="text-teal-300 text-sm font-semibold mb-3">Mestrando - UFU</p>
-          <p class="text-slate-400 text-xs">&nbsp;</p>
+        </div>
+
+        <!-- Vagner Quincozes -->
+        <div class="bg-gradient-to-br from-orange-900/50 to-orange-800/30 border border-orange-700/50 rounded-2xl w-full max-w-md min-h-72">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-orange-400/30 mx-auto mb-4">
+              <img src="images/vagner.png" alt="Foto de Vagner Quincozes" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Vagner Quincozes</h4>
+            <p class="text-orange-300 text-sm font-semibold mb-3">Doutorando - UFF</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Assistente de Inovação<br/>vequincozes@gmail.com</p>
+          </div>
         </div>
       </div>
+    </div>
 
-      <!-- Cauã Pereina Neres -->
-      <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
-            <img src="images/caua.jpeg" alt="Foto Caua Pereira" class="w-full h-full object-cover" />
+    <!-- Pesquisadores -->
+    <div class="mb-12 text-center">
+      <h3 class="text-2xl font-bold text-white mb-2">Pesquisadores</h3>
+      <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Pesquisadores responsáveis por atividades acadêmicas e técnicas do GT.</p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        <!-- Rodrigo Mansilha -->
+        <div class="bg-gradient-to-br from-teal-900/50 to-teal-800/30 border border-teal-700/50 rounded-2xl w-full max-w-md min-h-72">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-teal-400/30 mx-auto mb-4">
+              <img src="images/mansilha.png" alt="Foto de Rodrigo Mansilha" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Rodrigo Mansilha</h4>
+            <p class="text-teal-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Pesquisador<br/>mansilha@unipampa.edu.br</p>
           </div>
-          <h4 class="text-lg font-bold text-white mb-2">Cauã Pereira</h4>
-          <p class="text-red-300 text-sm font-semibold mb-3">Graduando - UFU</p>
-          <p class="text-slate-400 text-xs">&nbsp;</p>
+        </div>
+
+        <!-- Silvio Quincozes -->
+        <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl w-full max-w-md min-h-72">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
+              <img src="images/silvio.jpg" alt="Foto de Silvio Quincozes" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Silvio Quincozes</h4>
+            <p class="text-red-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Pesquisador<br/>silvioquincozes@unipampa.edu.br</p>
+          </div>
+        </div>
+
+        <!-- Rodrigo Miani -->
+        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl w-full max-w-md min-h-72">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-blue-400/30 mx-auto mb-4">
+              <img src="images/miani.jpg" alt="Foto de Rodrigo Miani" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Rodrigo Miani</h4>
+            <p class="text-blue-300 text-sm font-semibold mb-3">Professor</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Pesquisador<br/>miani@ufu.br</p>
+          </div>
         </div>
       </div>
+    </div>
 
-      <!-- Rafael Barboza Torres -->
-      <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl">
-        <div class="p-6 text-center">
-          <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
-            <img src="images/rafael.png" alt="Foto de Rafael Barboza" class="w-full h-full object-cover" />
+    <!-- Bolsistas Pesquisadores -->
+    <div class="text-center">
+      <h3 class="text-2xl font-bold text-white mb-2">Bolsistas Pesquisadores</h3>
+      <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Mestrandos e graduandos que atuam no projeto.</p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        <!-- Anna Letycia Reis -->
+        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl w-full max-w-md min-h-[16rem]">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-purple-400/30 mx-auto mb-4">
+              <img src="images/anna-letycia.jpg" alt="Foto de Anna Letycia Reis" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Anna Letycia Reis</h4>
+            <p class="text-purple-300 text-sm font-semibold mb-3">Mestranda - UFU</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">&nbsp;</p>
           </div>
-          <h4 class="text-lg font-bold text-white mb-2">Rafael Barboza Torres</h4>
-          <p class="text-red-300 text-sm font-semibold mb-3">Mestrando - Unipampa</p>
-          <p class="text-slate-400 text-xs">&nbsp;</p>
+        </div>
+
+        <!-- Douglas Rodrigues Fideles -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl w-full max-w-md min-h-[16rem]">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+              <img src="images/douglas.jpeg" alt="Foto de Douglas Fideles" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Douglas Rodrigues Fideles</h4>
+            <p class="text-green-300 text-sm font-semibold mb-3">Mestrando - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">&nbsp;</p>
+          </div>
+        </div>
+
+        <!-- Emanuel Carricio -->
+        <div class="bg-gradient-to-br from-orange-900/50 to-orange-800/30 border border-orange-700/50 rounded-2xl w-full max-w-md min-h-[16rem]">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-orange-400/30 mx-auto mb-4">
+              <img src="images/emanuel.png" alt="Foto de Emanuel Carricio" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Emanuel Carricio</h4>
+            <p class="text-orange-300 text-sm font-semibold mb-3">Graduando - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">&nbsp;</p>
+          </div>
+        </div>
+
+        <!-- Joner de Mello Assolin -->
+        <div class="bg-gradient-to-br from-teal-900/50 to-teal-800/30 border border-teal-700/50 rounded-2xl w-full max-w-md min-h-[16rem]">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-teal-400/30 mx-auto mb-4">
+              <img src="images/joner.jpg" alt="Foto de Joner de Mello Assolin" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Joner de Mello Assolin</h4>
+            <p class="text-teal-300 text-sm font-semibold mb-3">Mestrando - UFAM</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">&nbsp;</p>
+          </div>
+        </div>
+
+        <!-- Matheus Ciocca -->
+        <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl w-full max-w-md min-h-[16rem]">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
+              <img src="images/matheus.jpg" alt="Foto de Matheus Ciocca" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Matheus Ciocca</h4>
+            <p class="text-red-300 text-sm font-semibold mb-3">Graduando - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">&nbsp;</p>
+          </div>
+        </div>
+
+        <!-- Leonardo Bitzki -->
+        <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl w-full max-w-md min-h-[16rem]">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
+              <img src="images/leonardo.png" alt="Foto de Leonardo Bitzki" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Leonardo Bitzki</h4>
+            <p class="text-red-300 text-sm font-semibold mb-3">Mestrando - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">&nbsp;</p>
+          </div>
         </div>
       </div>
+    </div>
 
+    <!-- Colaboradores Voluntários -->
+    <div id="colaboradores" class="mt-12 text-center">
+      <h3 class="text-2xl font-bold mb-6 text-white">Colaboradores Voluntários</h3>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        <!-- João Pedro Ramires -->
+        <div class="bg-gradient-to-br from-teal-900/50 to-teal-800/30 border border-teal-700/50 rounded-2xl w-full max-w-md min-h-[16rem]">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-teal-400/30 mx-auto mb-4">
+              <img src="images/joao_pedro.jpeg" alt="Foto de João Pedro Ramires" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">João Pedro Ramies</h4>
+            <p class="text-teal-300 text-sm font-semibold mb-3">Mestrando - UFU</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">&nbsp;</p>
+          </div>
+        </div>
+
+        <!-- Cauã Pereina Neres -->
+        <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl w-full max-w-md min-h-[16rem]">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
+              <img src="images/caua.jpeg" alt="Foto Caua Pereira" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Cauã Pereira</h4>
+            <p class="text-red-300 text-sm font-semibold mb-3">Graduando - UFU</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">&nbsp;</p>
+          </div>
+        </div>
+
+        <!-- Rafael Barboza Torres -->
+        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl w-full max-w-md min-h-[16rem]">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-red-400/30 mx-auto mb-4">
+              <img src="images/rafael.png" alt="Foto de Rafael Barboza" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Rafael Barboza Torres</h4>
+            <p class="text-red-300 text-sm font-semibold mb-3">Mestrando - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">&nbsp;</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
