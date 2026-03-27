@@ -16,18 +16,20 @@
   <!-- Lucide (ícones SVG) -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Seus ajustes extras -->
+  <!-- Seus ajustes extras -->  
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="bg-slate-900 text-white font-[Inter]">
   <!-- NAV -->
-  <nav class="flex items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+  <nav class="flex items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-bEssa distinção torna-se evidente nos diferentes tipos de ataque. Em \textit{SQL Injection}, Snort e Suricata detectam sequências diretamente no \textit{payload} HTTP, enquanto o Zeek analisa eventos como \texttt{http\_request}, realiza normalização do URI e pode exigir múltiplas ocorrências dentro de uma janela temporal. Em ataques de força bruta SSH, Snort e Suricata utilizam mecanismos como \texttt{detection\_filter} e \texttt{threshold}, ao passo que o Zeek mantém contadores em estruturas de estado a partir de eventos como \texttt{ssh\_capabilities} e \texttt{ssh\_auth\_attempted}. De forma análoga, em \textit{HTTP Flood}, \textit{ICMP Flood} e \textit{DNS Tunneling}, Snort e Suricata operam com limiares e assinaturas diretas, enquanto o Zeek depende de análise agregada e eventos como \texttt{dns\_request} e registros em \texttt{conn.log}.
+
+Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutural, enquanto o Zeek mantém equivalência predominantemente funcional. Esse contraste explica tanto as diferenças observadas nos tempos de detecção quanto o maior nível de contextualização fornecido pelos alertas do Zeek, evidenciando um \textit{trade-off} entre rapidez de resposta e profundidade analítica.lur-sm fixed w-full top-0 z-50 border-b border-slate-800">
     <div class="flex items-center space-x-2">
       <div class="relative">
         <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
         <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
       </div>
-      <a href="index.html" class="text-xl font-bold">GT IoTEDU</a>
+      <a href="index.html" class="text-xl font-bold">GT IoTEdu</a>
     </div>
 
     <div class="hidden md:flex items-center space-x-8">
