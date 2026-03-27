@@ -31,9 +31,11 @@
 
     /* ── HERO ── */
     .hero {
-      padding: calc(var(--header-h) + 5rem) 2rem 4rem;
+      padding: calc(var(--header-h) + 2rem) 2rem 3rem;
       max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: end;
+      align-items: start;
+      min-height: auto;
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: .5rem;
@@ -347,6 +349,41 @@
     .delay-4  { animation-delay: 320ms; }
     .delay-5  { animation-delay: 400ms; }
     .delay-6  { animation-delay: 480ms; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero {
+        padding: calc(var(--header-h) + 2rem) 1.25rem 2.25rem;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        align-items: start;
+        min-height: auto;
+      }
+      .hero-meta { text-align: left; }
+      .hero-count { font-size: 2.5rem; }
+
+      .news-section { padding: 2.25rem 1.25rem 5rem; }
+      .divider { padding: 0 1.25rem; }
+
+      .skeleton-grid { grid-template-columns: 1fr; }
+
+      /* Force featured card to stack nicely on mobile */
+      .featured-article {
+        display: flex;
+        flex-direction: column;
+        min-height: auto;
+      }
+      .featured-visual { min-height: 180px; }
+      .featured-visual .icon-center { width: 64px; height: 64px; border-radius: 18px; }
+      .featured-visual .icon-center i { width: 32px !important; height: 32px !important; }
+      .featured-circle { display: none; }
+
+      .featured-body { padding: 1.5rem; }
+    }
+
+    @media (max-width: 520px) {
+      .articles-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body class="bg-slate-900 text-white font-[Inter]">
@@ -694,8 +731,8 @@
           <i data-lucide="${article.icon}" style="width:40px;height:40px" class="icon-color"></i>
         </div>
         <!-- decorative circles -->
-        <div style="position:absolute;bottom:-40px;right:-40px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(255,255,255,.05)"></div>
-        <div style="position:absolute;bottom:-70px;right:-70px;width:300px;height:300px;border-radius:50%;border:1px solid rgba(255,255,255,.03)"></div>
+        <div class="featured-circle" style="position:absolute;bottom:-40px;right:-40px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(255,255,255,.05)"></div>
+        <div class="featured-circle" style="position:absolute;bottom:-70px;right:-70px;width:300px;height:300px;border-radius:50%;border:1px solid rgba(255,255,255,.03)"></div>
         <div style="position:absolute;top:1.5rem;left:1.5rem">
           <span class="featured-label">
             <i data-lucide="star" style="width:10px;height:10px"></i>
