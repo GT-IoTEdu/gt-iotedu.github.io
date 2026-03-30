@@ -6,6 +6,9 @@
   <title>GT IoT EDU - Plataforma de Internet das Coisas para Educação</title>
   <meta name="description" content="Uma plataforma educacional para Internet das Coisas em parceria com a RNP" />
 
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
+
   <!-- Inter font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -21,9 +24,7 @@
 </head>
 <body class="bg-slate-900 text-white font-[Inter]">
   <!-- NAV -->
-  <nav class="flex items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-bEssa distinção torna-se evidente nos diferentes tipos de ataque. Em \textit{SQL Injection}, Snort e Suricata detectam sequências diretamente no \textit{payload} HTTP, enquanto o Zeek analisa eventos como \texttt{http\_request}, realiza normalização do URI e pode exigir múltiplas ocorrências dentro de uma janela temporal. Em ataques de força bruta SSH, Snort e Suricata utilizam mecanismos como \texttt{detection\_filter} e \texttt{threshold}, ao passo que o Zeek mantém contadores em estruturas de estado a partir de eventos como \texttt{ssh\_capabilities} e \texttt{ssh\_auth\_attempted}. De forma análoga, em \textit{HTTP Flood}, \textit{ICMP Flood} e \textit{DNS Tunneling}, Snort e Suricata operam com limiares e assinaturas diretas, enquanto o Zeek depende de análise agregada e eventos como \texttt{dns\_request} e registros em \texttt{conn.log}.
-
-Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutural, enquanto o Zeek mantém equivalência predominantemente funcional. Esse contraste explica tanto as diferenças observadas nos tempos de detecção quanto o maior nível de contextualização fornecido pelos alertas do Zeek, evidenciando um \textit{trade-off} entre rapidez de resposta e profundidade analítica.lur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+  <nav class="flex items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
     <div class="flex items-center space-x-2">
       <div class="relative">
         <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
@@ -88,7 +89,7 @@ Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutur
 
       <p class="text-lg sm:text-xl md:text-2xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
         Plataforma inovadora para <span class="text-blue-400 font-semibold">simplificar e proteger</span> o uso de dispositivos IoT em
-        <span class="text-green-400 font-semibold"> instituições acadêmicas</span>, oferecendo
+        <span class="text-green-400 font-semibold"> instituições</span>, oferecendo
         <span class="text-blue-400 font-semibold"> cadastro fácil e redes otimizadas</span>.
       </p>
 
@@ -132,8 +133,12 @@ Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutur
         </span> -->
         <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Sobre o Projeto</h2>
         <p class="text-xl text-slate-300 max-w-4xl mx-auto">
-          O crescimento exponencial de dispositivos IoT em ambientes acadêmicos trouxe novos desafios de gestão, segurança e
+          O crescimento exponencial de dispositivos IoT em instituições trouxe novos desafios de gestão, segurança e
           usabilidade. Nossa solução visa democratizar o acesso à tecnologia IoT de forma segura e eficiente.
+        </p>
+        <p class="text-lg text-slate-300 max-w-4xl mx-auto mt-4">
+          <span class="font-semibold text-white">Público-alvo:</span> equipes de TI e redes de universidades e institutos, docentes e pesquisadores que operam laboratórios com IoT,
+          e estudantes que prototipam soluções conectadas para ensino, pesquisa e inovação.
         </p>
       </div>
 
@@ -157,7 +162,7 @@ Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutur
               </div>
               <div>
                 <h4 class="text-lg font-semibold text-white mb-1">Segurança Inadequada</h4>
-                <p class="text-slate-400">Falta de protocolos padronizados para dispositivos IoT em redes acadêmicas</p>
+                <p class="text-slate-400">Falta de protocolos padronizados para dispositivos IoT em redes de instituições</p>
               </div>
             </div>
 
@@ -223,7 +228,7 @@ Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutur
     <div class="text-center mb-12">
       <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Nossa Proposta</h2>
       <p class="text-2xl text-blue-400 font-semibold max-w-4xl mx-auto">
-        Simplificar e proteger o uso de dispositivos IoT em instituições acadêmicas.
+        Simplificar e proteger o uso de dispositivos IoT em instituições.
       </p>
     </div>
 
@@ -428,56 +433,37 @@ Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutur
         </div>
       </div>
     </div>
- 
-    <!-- Ecossistema (mantido) -->
-    <!-- <div class="mt-16 text-center">
-      <h3 class="text-2xl font-bold text-white mb-8">Ecossistema IoT Suportado</h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-        <div class="flex flex-col items-center">
-          <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
-            <i data-lucide="thermometer" class="w-8 h-8 text-blue-400"></i>
-          </div>
-          <span class="text-sm text-slate-400">Sensores</span>
-        </div>
-        <div class="flex flex-col items-center">
-          <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
-            <i data-lucide="camera" class="w-8 h-8 text-green-400"></i>
-          </div>
-          <span class="text-sm text-slate-400">Câmeras</span>
-        </div>
-        <div class="flex flex-col items-center">
-          <div class="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
-            <i data-lucide="lightbulb" class="w-8 h-8 text-purple-400"></i>
-          </div>
-          <span class="text-sm text-slate-400">Iluminação</span>
-        </div>
-        <div class="flex flex-col items-center">
-          <div class="w-16 h-16 bg-orange-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
-            <i data-lucide="monitor" class="w-8 h-8 text-orange-400"></i>
-          </div>
-          <span class="text-sm text-slate-400">Áudio/Vídeo</span>
-        </div>
-        <div class="flex flex-col items-center">
-          <div class="w-16 h-16 bg-teal-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
-            <i data-lucide="gauge" class="w-8 h-8 text-teal-400"></i>
-          </div>
-          <span class="text-sm text-slate-400">Medidores</span>
-        </div>
-        <div class="flex flex-col items-center">
-          <div class="w-16 h-16 bg-red-600/20 rounded-2xl flex items-center justify-center mb-3 hover:scale-110 transition-transform">
-            <i data-lucide="home" class="w-8 h-8 text-red-400"></i>
-          </div>
-          <span class="text-sm text-slate-400">Automação</span>
-        </div>
-      </div>
-    </div> -->
- 
+  
   </div>
 </section>
 
-<div id="resultados" class="scroll-mt-24"></div>
+  <!-- VÍDEO PITCH -->
+  <section id="pitch" class="py-16 px-6 bg-slate-900 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Vídeo Pitch</h2>
+          <p class="text-xl text-slate-300 leading-relaxed">
+            Um resumo rápido do GT IoTEdu: o problema, a proposta e como os resultados do projeto convergem para o produto final.
+          </p>
+         
+        </div>
 
-<section id="produtos" class="min-h-screen py-16 px-6 bg-slate-800 scroll-mt-24">
+        <div class="bg-slate-900/40 border border-slate-700/50 rounded-2xl p-3">
+          <iframe
+            class="w-full aspect-video rounded-xl"
+            src="https://www.youtube.com/embed/M7lc1UVf-VE"
+            title="Vídeo pitch do projeto"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="resultados" class="min-h-screen py-16 px-6 bg-slate-800 scroll-mt-24">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12">
         <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Resultados do Projeto</h2>
@@ -486,184 +472,177 @@ Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutur
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-8 items-stretch">
-
-        <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-          <div class="flex items-center mb-6">
-            <div class="w-14 h-14 bg-red-600/20 rounded-xl flex items-center justify-center mr-4">
-              <i data-lucide="swords" class="w-7 h-7 text-red-400"></i>
-            </div>
-            <div>
-              <span class="text-xs font-bold text-red-400 uppercase tracking-wider">Testbed</span>
-              <h3 class="text-xl font-bold text-white mt-1">AttackZoo</h3>
-            </div>
-          </div>
-          <p class="text-slate-300 flex-1">
-            Um ambiente reprodutível que integra um repositório em contêineres com 42 ataques mapeados pelo framework MITRE ATT&CK. Permite a geração sistemática e rastreável de <em>datasets</em> de tráfego de rede para pesquisas em cibersegurança.
-          </p>
-          <div class="mt-6">
-            <a href="https://github.com/GT-IoTEdu/sbcup2026-ataques" target="_blank" class="inline-flex items-center text-sm font-semibold text-red-400 hover:text-red-300 transition-colors">
-              <i data-lucide="github" class="w-4 h-4 mr-2"></i>
-              Repositório AttackZoo
-            </a>
-          </div>
-        </div>
-
-        <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-green-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-          <div class="flex items-center mb-6">
-            <div class="w-14 h-14 bg-green-600/20 rounded-xl flex items-center justify-center mr-4">
-              <i data-lucide="boxes" class="w-7 h-7 text-green-400"></i>
-            </div>
-            <div>
-              <span class="text-xs font-bold text-green-400 uppercase tracking-wider">Testbed</span>
-              <h3 class="text-xl font-bold text-white mt-1">IoT-Zoo</h3>
-            </div>
-          </div>
-          <p class="text-slate-300 flex-1">
-            Framework baseado em contêineres para simulação de dispositivos IoT heterogêneos. Automatiza a implantação de cenários multidomínio e a captura de tráfego real (PCAP) para avaliação de soluções de rede.
-          </p>
-          <div class="mt-6">
-            <a href="https://github.com/GT-IoTEdu/sbrc2026-IoT-Zoo" target="_blank" class="inline-flex items-center text-sm font-semibold text-green-400 hover:text-green-300 transition-colors">
-              <i data-lucide="github" class="w-4 h-4 mr-2"></i>
-              Repositório IoT-Zoo
-            </a>
-          </div>
-        </div>
-
-        <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-          <div class="flex items-center mb-6">
-            <div class="w-14 h-14 bg-purple-600/20 rounded-xl flex items-center justify-center mr-4">
-              <i data-lucide="fingerprint" class="w-7 h-7 text-purple-400"></i>
-            </div>
-            <div>
-              <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Ferramenta</span>
-              <h3 class="text-xl font-bold text-white mt-1">IoT-ID Fingerprinting</h3>
-            </div>
-          </div>
-          <p class="text-slate-300 flex-1">
-            Sistema determinístico de identificação de dispositivos IoT. Utiliza técnicas híbridas de análise de tráfego para gerar identidades estáveis sem depender de modelos probabilísticos ou treinamento de IA.
-          </p>
-          <div class="mt-6">
-            <a href="https://github.com/GT-IoTEdu/fingerprint" target="_blank" class="inline-flex items-center text-sm font-semibold text-purple-400 hover:text-purple-300 transition-colors">
-              <i data-lucide="github" class="w-4 h-4 mr-2"></i>
-              Repositório IoT-ID
-            </a>
-          </div>
-        </div>
-
-        <div class="bg-gradient-to-br from-blue-900/40 to-purple-900/20 border border-blue-500/50 rounded-2xl h-full flex flex-col p-8 relative overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-blue-400/60">
-          <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="relative z-10 flex flex-col h-full">
-            <div class="flex items-center mb-6">
-              <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4 shadow-lg shadow-blue-500/20">
-                <i data-lucide="shield-check" class="w-7 h-7 text-white"></i>
+      <div class="space-y-12">
+        <div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+            <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-green-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div class="flex items-center mb-6">
+                <div class="w-14 h-14 bg-green-600/20 rounded-xl flex items-center justify-center mr-4">
+                  <i data-lucide="boxes" class="w-7 h-7 text-green-400"></i>
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-green-400 uppercase tracking-wider">Testbed</span>
+                  <h4 class="text-xl font-bold text-white mt-1">IoT-Zoo</h4>
+                </div>
               </div>
-              <div>
-                <span class="text-xs font-bold text-blue-300 uppercase tracking-wider">Produto Final</span>
-                <h3 class="text-xl font-bold text-white mt-1">API IoTEdu</h3>
+              <p class="text-slate-300 flex-1">
+                Framework baseado em contêineres para simulação de dispositivos IoT heterogêneos. Automatiza a implantação de cenários multidomínio e a captura de tráfego real (PCAP) para avaliação de soluções de rede.
+              </p>
+              <div class="mt-6">
+                <a href="https://github.com/GT-IoTEdu/sbrc2026-IoT-Zoo" target="_blank" class="inline-flex items-center text-sm font-semibold text-green-400 hover:text-green-300 transition-colors">
+                  <i data-lucide="github" class="w-4 h-4 mr-2"></i>
+                  Repositório IoT-Zoo
+                </a>
               </div>
             </div>
-            <p class="text-slate-300 flex-1">
-              O núcleo de orquestração da plataforma. Realiza a correlação de eventos de múltiplos IDS (Suricata, Snort, Zeek) e executa o bloqueio automatizado de ameaças via firewall em tempo real.
-            </p>
-            <div class="mt-6 pt-6 border-t border-slate-600/50 flex justify-between items-center">
-              <a href="https://github.com/GT-IoTEdu/API_SBRC26_SF" target="_blank" class="inline-flex items-center text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
-                <i data-lucide="github" class="w-4 h-4 mr-2"></i>
-                Repositório API
-              </a>
-              <a href="#proposta" class="text-slate-400 hover:text-white transition-colors">
-                <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
-              </a>
+
+            <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div class="flex items-center mb-6">
+                <div class="w-14 h-14 bg-red-600/20 rounded-xl flex items-center justify-center mr-4">
+                  <i data-lucide="swords" class="w-7 h-7 text-red-400"></i>
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-red-400 uppercase tracking-wider">Testbed</span>
+                  <h4 class="text-xl font-bold text-white mt-1">AttackZoo</h4>
+                </div>
+              </div>
+              <p class="text-slate-300 flex-1">
+                Um ambiente reprodutível que integra um repositório em contêineres com 42 ataques mapeados pelo framework MITRE ATT&amp;CK. Permite a geração sistemática e rastreável de <em>datasets</em> de tráfego de rede para pesquisas em cibersegurança.
+              </p>
+              <div class="mt-6">
+                <a href="https://github.com/GT-IoTEdu/sbcup2026-ataques" target="_blank" class="inline-flex items-center text-sm font-semibold text-red-400 hover:text-red-300 transition-colors">
+                  <i data-lucide="github" class="w-4 h-4 mr-2"></i>
+                  Repositório AttackZoo
+                </a>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div class="flex items-center mb-6">
+                <div class="w-14 h-14 bg-yellow-600/20 rounded-xl flex items-center justify-center mr-4">
+                  <i data-lucide="flask-conical" class="w-7 h-7 text-yellow-400"></i>
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Testbed</span>
+                  <h4 class="text-xl font-bold text-white mt-1">Testbed Virtual</h4>
+                </div>
+              </div>
+              <p class="text-slate-300 flex-1">
+               Ambiente virtualizado em Docker para gerenciamento seguro de dispositivos IoT em ambientes acadêmicos. Integra autenticação federada via CAFe, gerenciamento automatizado de regras de firewall no pfSense e monitoramento inteligente de tráfego com IA.
+              </p>
+              <div class="mt-6">
+                <a href="https://github.com/GT-IoTEdu/Testbed-Virtual" target="_blank" class="inline-flex items-center text-sm font-semibold text-yellow-400 hover:text-yellow-300 transition-colors">
+                  <i data-lucide="github" class="w-4 h-4 mr-2"></i>
+                  Repositório do Testbed Virtual
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
+        <div>
+        
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+            
+
+            <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div class="flex items-center mb-6">
+                <div class="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center mr-4">
+                  <i data-lucide="user-plus" class="w-7 h-7 text-blue-400"></i>
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">Prova de Conceito</span>
+                  <h4 class="text-xl font-bold text-white mt-1">Prova de Conceito I</h4>
+                </div>
+              </div>
+              <p class="text-slate-300 flex-1">
+                Fluxo inicial para cadastro e validação de dispositivos IoT, reduzindo burocracia e preparando o terreno para automações de rede e controles de segurança.
+              </p>
+              <div class="mt-6">
+                <a href="#produto-final" class="inline-flex items-center text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+                  <i data-lucide="arrow-down-right" class="w-4 h-4 mr-2"></i>
+                  Ver evolução no produto final
+                </a>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-teal-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div class="flex items-center mb-6">
+                <div class="w-14 h-14 bg-teal-600/20 rounded-xl flex items-center justify-center mr-4">
+                  <i data-lucide="shield" class="w-7 h-7 text-teal-400"></i>
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-teal-400 uppercase tracking-wider">Prova de Conceito</span>
+                  <h4 class="text-xl font-bold text-white mt-1">Prova de Conceito II</h4>
+                </div>
+              </div>
+              <p class="text-slate-300 flex-1">
+                Integração detecção de ameaças com acionamento de respostas automatizadas e segurança de instituições multi campi.
+              </p>
+              <div class="mt-6">
+                <a href="#produto-final" class="inline-flex items-center text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors">
+                  <i data-lucide="arrow-down-right" class="w-4 h-4 mr-2"></i>
+                  Ver evolução no produto final
+                </a>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div class="flex items-center mb-6">
+                <div class="w-14 h-14 bg-purple-600/20 rounded-xl flex items-center justify-center mr-4">
+                  <i data-lucide="fingerprint" class="w-7 h-7 text-purple-400"></i>
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Ferramenta</span>
+                  <h4 class="text-xl font-bold text-white mt-1">IoT-ID Fingerprinting</h4>
+                </div>
+              </div>
+              <p class="text-slate-300 flex-1">
+                Sistema determinístico de identificação de dispositivos IoT. Utiliza técnicas híbridas de análise de tráfego para gerar identidades estáveis sem depender de modelos probabilísticos ou treinamento de IA.
+              </p>
+              <div class="mt-6">
+                <a href="https://github.com/GT-IoTEdu/fingerprint" target="_blank" class="inline-flex items-center text-sm font-semibold text-purple-400 hover:text-purple-300 transition-colors">
+                  <i data-lucide="github" class="w-4 h-4 mr-2"></i>
+                  Repositório IoT-ID
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="produto-final">
+          <div class="grid grid-cols-1">
+            <div class="bg-gradient-to-br from-blue-900/40 to-purple-900/20 border border-blue-500/50 rounded-2xl h-full flex flex-col p-8 relative overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-blue-400/60">
+              <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div class="relative z-10 flex flex-col h-full">
+                <div class="flex items-center mb-6">
+                  <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4 shadow-lg shadow-blue-500/20">
+                    <i data-lucide="shield-check" class="w-7 h-7 text-white"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-blue-300 uppercase tracking-wider">Produto Final</span>
+                    <h4 class="text-xl font-bold text-white mt-1">API IoTEdu</h4>
+                  </div>
+                </div>
+                <p class="text-slate-300 flex-1">
+                  O núcleo de orquestração da plataforma. Realiza a correlação de eventos de múltiplos IDS (Suricata, Snort, Zeek) e executa o bloqueio automatizado de ameaças via firewall em tempo real.
+                </p>
+                <div class="mt-6 pt-6 border-t border-slate-600/50 flex justify-between items-center">
+                  <a href="https://github.com/GT-IoTEdu/API_SBRC26_SF" target="_blank" class="inline-flex items-center text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+                    <i data-lucide="github" class="w-4 h-4 mr-2"></i>
+                    Repositório API
+                  </a>
+                  <a href="#proposta" class="text-slate-400 hover:text-white transition-colors">
+                    <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
-<!--  
-  <section id="tecnologias" class="py-16 px-6 bg-slate-800 scroll-mt-24">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <span class="inline-flex items-center mb-6 bg-slate-600/20 text-slate-300 border border-slate-500/30 px-4 py-2 rounded-lg">
-          <i data-lucide="cpu" class="w-4 h-4 mr-2"></i>
-          Stack Tecnológico
-        </span>
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Tecnologias Utilizadas</h2>
-        <p class="text-xl text-slate-300 max-w-4xl mx-auto">
-          Tecnologias modernas e robustas para garantir performance, segurança e escalabilidade em ambientes IoT.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        
-        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
-          <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-            <i data-lucide="code" class="w-6 h-6 text-blue-400"></i>
-          </div>
-          <h4 class="text-sm font-bold text-white mb-1">React</h4>
-          <p class="text-xs text-slate-400">Frontend Framework</p>
-        </div>
-    
-        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
-          <div class="w-12 h-12 bg-green-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-            <i data-lucide="server" class="w-6 h-6 text-green-400"></i>
-          </div>
-          <h4 class="text-sm font-bold text-white mb-1">Node.js</h4>
-          <p class="text-xs text-slate-400">Backend Runtime</p>
-        </div>
-     
-        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
-          <div class="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-            <i data-lucide="database" class="w-6 h-6 text-purple-400"></i>
-          </div>
-          <h4 class="text-sm font-bold text-white mb-1">PostgreSQL</h4>
-          <p class="text-xs text-slate-400">Database</p>
-        </div>
-       
-        <div class="bg-gradient-to-br from-orange-900/50 to-orange-800/30 border border-orange-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
-          <div class="w-12 h-12 bg-orange-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-            <i data-lucide="radio" class="w-6 h-6 text-orange-400"></i>
-          </div>
-          <h4 class="text-sm font-bold text-white mb-1">MQTT</h4>
-          <p class="text-xs text-slate-400">IoT Protocol</p>
-        </div>
-        
-        <div class="bg-gradient-to-br from-teal-900/50 to-teal-800/30 border border-teal-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
-          <div class="w-12 h-12 bg-teal-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-            <i data-lucide="layers" class="w-6 h-6 text-teal-400"></i>
-          </div>
-          <h4 class="text-sm font-bold text-white mb-1">Docker</h4>
-          <p class="text-xs text-slate-400">Containerization</p>
-        </div>
-      
-        <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
-          <div class="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-            <i data-lucide="network" class="w-6 h-6 text-red-400"></i>
-          </div>
-          <h4 class="text-sm font-bold text-white mb-1">Redis</h4>
-          <p class="text-xs text-slate-400">Cache & Queue</p>
-        </div>
-   
-        <div class="bg-gradient-to-br from-yellow-900/50 to-yellow-800/30 border border-yellow-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
-          <div class="w-12 h-12 bg-yellow-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-            <i data-lucide="activity" class="w-6 h-6 text-yellow-400"></i>
-          </div>
-          <h4 class="text-sm font-bold text-white mb-1">InfluxDB</h4>
-          <p class="text-xs text-slate-400">Time Series DB</p>
-        </div>
-      
-        <div class="bg-gradient-to-br from-indigo-900/50 to-indigo-800/30 border border-indigo-700/50 text-center p-6 rounded-2xl hover:scale-105 transition-transform">
-          <div class="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-            <i data-lucide="cloud-upload" class="w-6 h-6 text-indigo-400"></i>
-          </div>
-          <h4 class="text-sm font-bold text-white mb-1">Kubernetes</h4>
-          <p class="text-xs text-slate-400">Orchestration</p>
-        </div>
-      </div>
-    </div>
-  </section> -->
 
   <!-- PARCERIA RNP -->
   <section id="parceria" class="min-h-screen py-16 px-6 bg-slate-900 scroll-mt-24">
@@ -690,7 +669,7 @@ Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutur
             <p class="text-xl text-blue-300 font-semibold mb-6">Rede Nacional de Ensino e Pesquisa</p>
             <p class="text-slate-300 mb-8 text-lg leading-relaxed">
               Parceria estratégica com a RNP para desenvolvimento e implementação da plataforma GT IoTEDU, aproveitando a
-              infraestrutura nacional de rede acadêmica para conectar dispositivos IoT de forma segura e eficiente em
+              infraestrutura nacional de rede da RNP para conectar dispositivos IoT de forma segura e eficiente em
               instituições de ensino.
             </p>
 
@@ -700,20 +679,20 @@ Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutur
                   <i data-lucide="globe" class="w-8 h-8 text-blue-400"></i>
                 </div>
                 <h4 class="text-lg font-bold text-white mb-2">Infraestrutura Nacional</h4>
-                <p class="text-slate-400 text-sm">Rede de alta velocidade conectando universidades</p>
+                <p class="text-slate-400 text-sm">Rede de alta velocidade conectando instituições</p>
               </div>
               <div class="text-center">
                 <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
                   <i data-lucide="shield" class="w-8 h-8 text-green-400"></i>
                 </div>
                 <h4 class="text-lg font-bold text-white mb-2">Segurança Avançada</h4>
-                <p class="text-slate-400 text-sm">Protocolos de segurança para ambiente acadêmico</p>
+                <p class="text-slate-400 text-sm">Protocolos de segurança para ambiente institucional</p>
               </div>
               <div class="text-center">
                 <div class="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
                   <i data-lucide="users" class="w-8 h-8 text-purple-400"></i>
                 </div>
-                <h4 class="text-lg font-bold text-white mb-2">Comunidade Acadêmica</h4>
+                <h4 class="text-lg font-bold text-white mb-2">Comunidade</h4>
                 <p class="text-slate-400 text-sm">Suporte especializado para instituições</p>
               </div>
             </div>
@@ -803,7 +782,7 @@ Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutur
     <!-- Coordenação & Liderança -->
     <div class="mb-12 text-center">
       <h3 class="text-2xl font-bold text-white mb-2">Coordenação &amp; Liderança</h3>
-      <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Coordenador acadêmico e líder de inovação do GT.</p>
+      <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Coordenação e liderança de inovação do GT.</p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 justify-items-center max-w-3xl mx-auto">
         <!-- Diego Kreutz -->
@@ -814,7 +793,7 @@ Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutur
             </div>
             <h4 class="text-lg font-bold text-white mb-2">Diego Kreutz</h4>
             <p class="text-green-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
-            <p class="text-slate-400 text-xs mt-auto min-h-10">Coordenador acadêmico<br/>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Coordenador<br/>
               <a href="mailto:diegokreutz@unipampa.edu.br" class="hover:text-slate-200 transition-colors">diegokreutz@unipampa.edu.br</a>
             </p>
           </div>
@@ -875,7 +854,7 @@ Essas diferenças indicam que Snort e Suricata apresentam equivalência estrutur
     <!-- Pesquisadores -->
     <div class="mb-12 text-center">
       <h3 class="text-2xl font-bold text-white mb-2">Pesquisadores</h3>
-      <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Pesquisadores responsáveis por atividades acadêmicas e técnicas do GT.</p>
+      <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Pesquisadores responsáveis por atividades técnicas do GT.</p>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
         <!-- Rodrigo Mansilha -->
