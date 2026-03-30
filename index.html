@@ -136,10 +136,10 @@
           O crescimento exponencial de dispositivos IoT em instituições trouxe novos desafios de gestão, segurança e
           usabilidade. Nossa solução visa democratizar o acesso à tecnologia IoT de forma segura e eficiente.
         </p>
-        <p class="text-lg text-slate-300 max-w-4xl mx-auto mt-4">
+        <!-- <p class="text-lg text-slate-300 max-w-4xl mx-auto mt-4">
           <span class="font-semibold text-white">Público-alvo:</span> equipes de TI e redes de universidades e institutos, docentes e pesquisadores que operam laboratórios com IoT,
           e estudantes que prototipam soluções conectadas para ensino, pesquisa e inovação.
-        </p>
+        </p> -->
       </div>
 
       <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -450,14 +450,16 @@
         </div>
 
         <div class="bg-slate-900/40 border border-slate-700/50 rounded-2xl p-3">
-          <iframe
-            class="w-full aspect-video rounded-xl"
-            src="https://www.youtube.com/embed/M7lc1UVf-VE"
-            title="Vídeo pitch do projeto"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
+          <div class="w-full rounded-xl overflow-hidden" style="position: relative; overflow: hidden; aspect-ratio: 1920/1080">
+            <iframe
+              src="https://share.synthesia.io/embeds/videos/fdea37e6-3661-494f-a1db-81e8bfefeb08"
+              loading="lazy"
+              title="Synthesia video player - Io T Edu Pitch"
+              allowfullscreen
+              allow="encrypted-media; fullscreen; microphone; screen-wake-lock;"
+              style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0; overflow:hidden;"
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>
@@ -524,16 +526,16 @@
                 </div>
                 <div>
                   <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Testbed</span>
-                  <h4 class="text-xl font-bold text-white mt-1">Testbed Virtual</h4>
+                  <h4 class="text-xl font-bold text-white mt-1">Testbed Virtualizado</h4>
                 </div>
               </div>
               <p class="text-slate-300 flex-1">
-               Ambiente virtualizado em Docker para gerenciamento seguro de dispositivos IoT em ambientes acadêmicos. Integra autenticação federada via CAFe, gerenciamento automatizado de regras de firewall no pfSense e monitoramento inteligente de tráfego com IA.
+               Ambiente virtualizado (Docker) para registro e gestão segura de dispositivos IoT em instituições, integrando autenticação federada via CAFe e automação de regras no pfSense, com suporte a monitoramento de tráfego e painel administrativo.
               </p>
               <div class="mt-6">
                 <a href="https://github.com/GT-IoTEdu/Testbed-Virtual" target="_blank" class="inline-flex items-center text-sm font-semibold text-yellow-400 hover:text-yellow-300 transition-colors">
                   <i data-lucide="github" class="w-4 h-4 mr-2"></i>
-                  Repositório do Testbed Virtual
+                  Repositório do Testbed Virtualizado
                 </a>
               </div>
             </div>
