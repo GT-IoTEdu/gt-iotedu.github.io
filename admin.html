@@ -160,9 +160,10 @@
               <label class="block text-sm font-semibold mb-2">
                 Link Externo <span class="text-red-400">*</span>
               </label>
-              <input type="url" id="article-link"
-                placeholder="https://exemplo.com"
+              <input type="text" id="article-link"
+                placeholder="https://exemplo.com ou # para nenhum link"
                 class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white">
+              <p class="text-xs text-slate-400 mt-1">Aceita URLs (https://...) ou '#' para nenhum link externo</p>
             </div>
 
             <!-- Ícone e Cor -->
@@ -436,10 +437,10 @@
         teal: 'bg-teal-400'
       }[article.colorScheme] || 'bg-blue-400';
 
-      // Renderizar HTML com truncagem de 150 caracteres
+      // Renderizar HTML com truncagem visual
       let descriptionPreview = article.description || '';
       if (descriptionPreview.includes('<')) {
-        // Se for HTML, aplicar estilos e truncar
+        // Se for HTML, aplicar estilos e limitar altura
         let styledHtml = descriptionPreview
           .replace(/<h1/gi, '<h1 class="text-xs font-bold"')
           .replace(/<h2/gi, '<h2 class="text-xs font-bold"')
@@ -449,12 +450,8 @@
           .replace(/<ul/gi, '<ul class="text-xs list-disc list-inside"')
           .replace(/<ol/gi, '<ol class="text-xs list-decimal list-inside"');
         
-        // Truncar em 150 caracteres ou primeiro break de bloco
-        const temp = document.createElement('div');
-        temp.innerHTML = styledHtml;
-        let text = (temp.textContent || '').substring(0, 150);
-        if (text.length === 150) text += '...';
-        descriptionPreview = `<div class="text-xs text-slate-400">${styledHtml}</div>`;
+        // Limitar altura visual com gradient fade-out
+        descriptionPreview = `<div class="text-xs text-slate-400 max-h-20 overflow-hidden relative" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 70%, rgba(15,23,42,1) 100%);"> ${styledHtml}</div>`;
       } else {
         descriptionPreview = `<p class="text-sm text-slate-400 line-clamp-2">${descriptionPreview}</p>`;
       }

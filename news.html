@@ -750,7 +750,7 @@
       contentEl.innerHTML = renderDescriptionHTML(article.description || '');
     }
 
-    if (article.link) {
+    if (article.link && article.link !== '#') {
       externalLinkEl.href = article.link;
       externalLinkEl.classList.remove('hidden');
     } else {
@@ -778,33 +778,65 @@
     });
   }
 
+  // Extrair primeira imagem da descrição HTML
+  function getFirstImageFromHTML(html) {
+    if (!html) return null;
+    const match = html.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
+    return match ? match[1] : null;
+  }
+
   // FEATURED card (large)
   function buildFeatured(article, delay) {
     const s = article.colorScheme || 'blue';
+    const firstImage = getFirstImageFromHTML(article.description);
+    
+    let visualContent = '';
+    let destaqueLabel = '';
+    let labelForBody = '';
+    
+    if (firstImage) {
+      // Se tem imagem, mostrar ela
+      visualContent = `<img src="${escapeHTML(firstImage)}" alt="${escapeHTML(article.title)}" style="width:100%;height:100%;border-radius:16px">`;
+      // Label para o body (lado direito)
+      labelForBody = `<div style="position:absolute;top:2.5rem;right:1.5rem">
+          <span class="featured-label">
+            <i data-lucide="star" style="width:10px;height:10px"></i>
+            Destaque
+          </span>
+        </div>`;
+    } else {
+      // Senão, mostrar o ícone
+      visualContent = `
+        <div class="icon-center" style="background:${SCHEMES[s]?.iconBg}">
+          <i data-lucide="${article.icon}" style="width:40px;height:40px" class="icon-color"></i>
+        </div>`;
+      // Label no lado esquerdo do visual
+      destaqueLabel = `<div style="position:absolute;top:2.5rem;left:1.5rem">
+          <span class="featured-label">
+            <i data-lucide="star" style="width:10px;height:10px"></i>
+            Destaque
+          </span>
+        </div>`;
+    }
+
     return `
     <button type="button"
        class="featured-article scheme-${s} delay-${delay} js-open-article"
        data-article-id="${escapeHTML(article.id)}"
        style="animation:fadeUp .5s ease ${delay*80}ms both">
       <div class="featured-visual">
-        <div class="icon-center" style="background:${SCHEMES[s]?.iconBg}">
-          <i data-lucide="${article.icon}" style="width:40px;height:40px" class="icon-color"></i>
-        </div>
+        ${visualContent}
         <!-- decorative circles -->
         <div class="featured-circle" style="position:absolute;bottom:-40px;right:-40px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(255,255,255,.05)"></div>
         <div class="featured-circle" style="position:absolute;bottom:-70px;right:-70px;width:300px;height:300px;border-radius:50%;border:1px solid rgba(255,255,255,.03)"></div>
-        <div style="position:absolute;top:1.5rem;left:1.5rem">
-          <span class="featured-label">
-            <i data-lucide="star" style="width:10px;height:10px"></i>
-            Destaque
-          </span>
+        ${destaqueLabel}
         </div>
-      </div>
-      <div class="featured-body">
-        <div>
-          <div class="featured-label">
-            <i data-lucide="calendar" style="width:10px;height:10px"></i>
-            ${article.dateDisplay}
+        <div class="featured-body" style="position:relative">
+          ${labelForBody}
+          <div>
+            <div class="featured-label">
+              <i data-lucide="calendar" style="width:10px;height:10px"></i>
+              ${article.dateDisplay}
           </div>
           <h2 class="featured-title">${article.title}</h2>
           <div class="featured-desc">${(article.description || '').split('\n')[0]}</div>
