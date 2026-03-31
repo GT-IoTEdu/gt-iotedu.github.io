@@ -1,0 +1,17 @@
+{
+  "id": "2026-03-poc2",
+  "date": "2026-03",
+  "dateDisplay": "Março 2026",
+  "title": "IoTEdu em ação: PoC 2 demonstra monitoramento distribuído e resposta automatizada",
+  "description": "No dia 03 de março de 2026, o GTIoTEdu alcançou mais um marco importante com a apresentação da Prova de Conceito 02 (PoC 2). Nesta nova demonstração, a plataforma passa a operar em um cenário distribuído, permitindo o monitoramento simultâneo de múltiplos ambientes (i.e., domínios ou unidades) institucionais e a resposta automatizada a incidentes de segurança.\nPela primeira vez, diferentes ambientes utilizam a mesma infraestrutura de forma integrada, mantendo isolamento de dispositivos, usuários, políticas e eventos, ao mesmo tempo em que compartilham inteligência para detecção e mitigação de ameaças.\n\nFuncionamento da demonstração\nA PoC 2 apresenta um cenário em que diferentes ambientes institucionais são monitorados simultaneamente.\n1. Gerenciamento de múltiplos ambientes\nCada ambiente possui sua própria visão de dispositivos conectados, usuários responsáveis, alertas e políticas de segurança, garantindo autonomia operacional e gestão centralizada.\n2. Monitoramento contínuo\nSondas de segurança distribuídas realizam a análise do tráfego em tempo real, enviando eventos e alertas para o núcleo da plataforma, que consolida e correlaciona as informações.\n3. Resposta automática\nAlém da detecção utilizando múltiplas sondas simultaneamente (Zeek, Suricata, Snort), a plataforma executa ações automáticas, como:\ngeração de alertas;\nbloqueio de tráfego suspeito;\nisolamento de dispositivos;\nregistro para auditoria.\nUm novo marco para o projeto\nA PoC 2 consolida a evolução do IoTEdu como uma plataforma robusta de gestão e segurança para dispositivos IoT em ambientes institucionais.\nA demonstração valida a capacidade do sistema de operar de forma distribuída e executar respostas automatizadas a alertas de segurança geradas pelas diferentes sondas, ampliando significativamente a segurança e a visibilidade operacional da rede.",
+  "link": "https://234234.com",
+  "icon": "book-open",
+  "colorScheme": "blue",
+  "tags": [
+    {
+      "label": "Notícia",
+      "icon": "newspaper",
+      "color": "blue"
+    }
+  ]
+}
