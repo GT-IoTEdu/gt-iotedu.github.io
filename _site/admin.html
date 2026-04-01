@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin - Gerenciar Notícias | GT IoTEDU</title>
+  
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide (ícones SVG) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Quill Editor -->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-slate-900 text-white font-[Inter]">
+  
+  <!-- NAV -->
+  <nav class="flex items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+    <a href="index.html" class="flex items-center space-x-2">
+      <div class="relative">
+        <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
+        <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+      </div>
+      <span class="text-xl font-bold">GT IoTEDU</span>
+    </a>
+    
+    <div class="flex items-center space-x-4">
+      <span class="text-sm text-slate-400">Admin Panel</span>
+      <a href="news.html" class="px-4 py-2 rounded-lg border border-slate-600 text-white hover:bg-slate-800 bg-transparent">Ver Notícias</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="pt-24 pb-16 px-6 min-h-screen">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- HEADER -->
+      <div class="mb-8">
+        <h1 class="text-4xl font-bold mb-2 flex items-center gap-3">
+          <i data-lucide="settings" class="w-10 h-10 text-blue-400"></i>
+          Gerenciar Notícias
+        </h1>
+        <p class="text-slate-400">Adicione, edite ou remova notícias da landing page</p>
+      </div>
+
+      <!-- TABS -->
+      <div class="flex gap-2 mb-6 border-b border-slate-700">
+        <button id="tab-list" class="px-6 py-3 font-semibold border-b-2 border-blue-400 text-blue-400">
+          📚 Listar Notícias
+        </button>
+        <button id="tab-create" class="px-6 py-3 font-semibold border-b-2 border-transparent hover:border-slate-600 text-slate-400 hover:text-white">
+          ➕ Nova Notícia
+        </button>
+      </div>
+
+      <!-- TAB: LISTAR NOTÍCIAS -->
+      <div id="content-list" class="tab-content">
+        <div class="bg-slate-800 rounded-lg border border-slate-700 p-6">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold flex items-center gap-2">
+              <i data-lucide="newspaper" class="w-6 h-6 text-blue-400"></i>
+              Notícias Cadastradas
+            </h2>
+            <button onclick="loadNews()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center gap-2">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+              Atualizar
+            </button>
+          </div>
+
+          <!-- Loading State -->
+          <div id="news-loading" class="text-center py-12 hidden">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400"></div>
+            <p class="text-slate-400 mt-4">Carregando notícias...</p>
+          </div>
+
+          <!-- News List -->
+          <div id="news-list" class="space-y-4"></div>
+
+          <!-- Empty State -->
+          <div id="news-empty" class="text-center py-12 hidden">
+            <i data-lucide="inbox" class="w-16 h-16 text-slate-600 mx-auto mb-4"></i>
+            <p class="text-slate-400">Nenhuma notícia cadastrada</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: CRIAR/EDITAR NOTÍCIA -->
+      <div id="content-create" class="tab-content hidden">
+        <div class="bg-slate-800 rounded-lg border border-slate-700 p-6">
+          <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+            <i data-lucide="edit" class="w-6 h-6 text-green-400"></i>
+            <span id="form-title">Nova Notícia</span>
+          </h2>
+
+          <form id="news-form" class="space-y-6">
+            <!-- ID -->
+            <div>
+              <label class="block text-sm font-semibold mb-2">
+                ID da Notícia <span class="text-red-400">*</span>
+              </label>
+              <input type="text" id="article-id" required
+                placeholder="Ex: 2025-02-workshop-iot"
+                class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white">
+              <p class="text-xs text-slate-400 mt-1">Formato: YYYY-MM-nome-curto (será usado como nome do arquivo)</p>
+            </div>
+
+            <!-- Data -->
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold mb-2">
+                  Data (YYYY-MM) <span class="text-red-400">*</span>
+                </label>
+                <input type="text" id="article-date" required
+                  placeholder="Ex: 2025-02"
+                  class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold mb-2">
+                  Data para Exibição <span class="text-red-400">*</span>
+                </label>
+                <input type="text" id="article-date-display" required
+                  placeholder="Ex: Fevereiro 2025"
+                  class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white">
+              </div>
+            </div>
+
+            <!-- Título -->
+            <div>
+              <label class="block text-sm font-semibold mb-2">
+                Título <span class="text-red-400">*</span>
+              </label>
+              <input type="text" id="article-title" required
+                placeholder="Ex: Workshop de IoT na Unipampa"
+                class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white">
+            </div>
+
+            <!-- Descrição -->
+            <div>
+              <label class="block text-sm font-semibold mb-2">
+                Descrição <span class="text-red-400">*</span>
+              </label>
+              <p class="text-xs text-slate-400 mb-2">Cole o conteúdo do Google Docs (com imagens, listas, negrito, títulos, etc) — será renderizado automaticamente. Use a toolbar para adicionar headings (h1, h2, h3), mudar cores de texto ou editar o conteúdo. Cores pretas serão automaticamente convertidas para branco.</p>
+              <div id="article-description" class="bg-slate-700 border border-slate-600 rounded-lg focus-within:border-blue-400 focus-within:outline-none text-white" style="min-height: 200px;"></div>
+              <input type="hidden" id="article-description-content">
+            </div>
+
+
+
+            <!-- Link -->
+            <div>
+              <label class="block text-sm font-semibold mb-2">
+                Link Externo <span class="text-red-400">*</span>
+              </label>
+              <input type="text" id="article-link"
+                placeholder="https://exemplo.com ou # para nenhum link"
+                class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white">
+              <p class="text-xs text-slate-400 mt-1">Aceita URLs (https://...) ou '#' para nenhum link externo</p>
+            </div>
+
+            <!-- Ícone e Cor -->
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold mb-2">
+                  Ícone <span class="text-red-400">*</span>
+                </label>
+                <select id="article-icon" required
+                  class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white">
+                  <option value="book-open">📖 Livro Aberto (book-open)</option>
+                  <option value="graduation-cap">🎓 Chapéu de Formatura (graduation-cap)</option>
+                  <option value="handshake">🤝 Aperto de Mãos (handshake)</option>
+                  <option value="flask-conical">🧪 Frasco (flask-conical)</option>
+                  <option value="code-2">💻 Código (code-2)</option>
+                  <option value="award">🏆 Prêmio (award)</option>
+                  <option value="presentation">📊 Apresentação (presentation)</option>
+                  <option value="rocket">🚀 Foguete (rocket)</option>
+                  <option value="beaker">⚗️ Béquer (beaker)</option>
+                  <option value="git-branch">🌿 Branch Git (git-branch)</option>
+                  <option value="newspaper">📰 Jornal (newspaper)</option>
+                  <option value="users">👥 Usuários (users)</option>
+                  <option value="calendar">📅 Calendário (calendar)</option>
+                  <option value="trophy">🏆 Troféu (trophy)</option>
+                  <option value="star">⭐ Estrela (star)</option>
+                  <option value="zap">⚡ Raio (zap)</option>
+                  <option value="lightbulb">💡 Lâmpada (lightbulb)</option>
+                  <option value="wifi">📡 WiFi (wifi)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold mb-2">
+                  Esquema de Cores <span class="text-red-400">*</span>
+                </label>
+                <select id="article-color" required
+                  class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white">
+                  <option value="blue">🔵 Azul</option>
+                  <option value="green">🟢 Verde</option>
+                  <option value="purple">🟣 Roxo</option>
+                  <option value="orange">🟠 Laranja</option>
+                  <option value="teal">🔷 Azul-petróleo</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Tags -->
+            <div>
+              <label class="block text-sm font-semibold mb-2">
+                Tags
+              </label>
+              <div id="tags-container" class="space-y-3 mb-3"></div>
+              <button type="button" onclick="addTag()" 
+                class="px-4 py-2 bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-lg flex items-center gap-2">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                Adicionar Tag
+              </button>
+            </div>
+
+            <!-- Botões -->
+            <div class="flex gap-4 pt-4 border-t border-slate-700">
+              <button type="submit"
+                class="flex-1 px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg font-semibold flex items-center justify-center gap-2">
+                <i data-lucide="save" class="w-5 h-5"></i>
+                <span id="btn-save-text">Salvar Notícia</span>
+              </button>
+              <button type="button" onclick="resetForm()"
+                class="px-6 py-3 bg-slate-700 hover:bg-slate-600 rounded-lg font-semibold flex items-center gap-2">
+                <i data-lucide="x" class="w-5 h-5"></i>
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-slate-800 rounded-lg border border-slate-700 p-6 mt-6">
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <i data-lucide="eye" class="w-5 h-5 text-purple-400"></i>
+            Código JSON Gerado
+          </h3>
+          <div class="relative">
+            <pre id="json-preview" class="bg-slate-950 rounded-lg p-4 text-sm text-green-400 overflow-x-auto font-mono max-h-96 overflow-y-auto"></pre>
+            <button onclick="copyJSON()" 
+              class="absolute top-2 right-2 px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-xs flex items-center gap-1">
+              <i data-lucide="copy" class="w-3 h-3"></i>
+              Copiar
+            </button>
+          </div>
+          <div class="mt-4 flex gap-3">
+            <button onclick="downloadArticle()"
+              class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center gap-2">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              Baixar JSON
+            </button>
+            <button onclick="downloadIndex()"
+              class="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg flex items-center gap-2">
+              <i data-lucide="list" class="w-4 h-4"></i>
+              Baixar index.json Atualizado
+            </button>
+          </div>
+          <div class="mt-4 p-4 bg-blue-900/20 border border-blue-700/50 rounded-lg">
+            <p class="text-sm text-blue-300 flex items-start gap-2">
+              <i data-lucide="info" class="w-4 h-4 mt-0.5 flex-shrink-0"></i>
+              <span><strong>Como publicar:</strong> Baixe os arquivos JSON e faça commit na pasta <code class="bg-slate-800 px-1 rounded">news/articles/</code> do repositório GitHub. Não esqueça de atualizar o <code class="bg-slate-800 px-1 rounded">news/index.json</code> também!</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Toast Notifications -->
+  <div id="toast-container" class="fixed bottom-4 right-4 z-50 space-y-2"></div>
+
+  <script>
+    let currentEditingFilename = null;
+    let allArticles = [];
+    let indexData = { articles: [] };
+    let quill;
+
+    // Inicializar
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inicializar Quill Editor
+      quill = new Quill('#article-description', {
+        theme: 'snow',
+        modules: {
+          toolbar: [
+            [{ 'header': [1, 2, 3, false] }],
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'color': ['white', 'red', 'blue', 'green', 'yellow', 'orange', 'purple'] }],
+            ['image', 'link']
+          ]
+        },
+        placeholder: 'Cole ou digite a descrição aqui...'
+      });
+      
+      // Atualizar preview quando o conteúdo do Quill mudar
+      quill.on('text-change', updatePreview);
+      
+      // Converter texto preto para branco (para compatibilidade com tema escuro)
+      quill.root.addEventListener('paste', function() {
+        setTimeout(function() {
+          const html = quill.root.innerHTML;
+          const processedHtml = html
+            .replace(/color:\s*black/gi, 'color: white')
+            .replace(/color:\s*#000000/gi, 'color: #ffffff')
+            .replace(/color:\s*rgb\(\s*0\s*,\s*0\s*,\s*0\s*\)/gi, 'color: rgb(255, 255, 255)');
+          
+          if (html !== processedHtml) {
+            quill.root.innerHTML = processedHtml;
+            quill.update();
+            updatePreview();
+          }
+        }, 50);
+      });
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+      
+      // Adicionar uma tag padrão
+      addTag();
+      
+      // Atualizar preview quando o formulário mudar (exceto Quill, que já tem listener)
+      const form = document.getElementById('news-form');
+      form.addEventListener('input', (e) => {
+        // Não processar eventos do Quill aqui, ele já tem seu próprio listener
+        updatePreview();
+      });
+
+      
+      // Carregar notícias
+      loadNews();
+      
+      // Tabs
+      document.getElementById('tab-list').addEventListener('click', () => switchTab('list'));
+      document.getElementById('tab-create').addEventListener('click', () => switchTab('create'));
+    });
+
+    // Switch entre tabs
+    function switchTab(tab) {
+      const tabs = {
+        'list': { button: 'tab-list', content: 'content-list' },
+        'create': { button: 'tab-create', content: 'content-create' }
+      };
+
+      Object.keys(tabs).forEach(t => {
+        const btn = document.getElementById(tabs[t].button);
+        const content = document.getElementById(tabs[t].content);
+        
+        if (t === tab) {
+          btn.classList.add('border-blue-400', 'text-blue-400');
+          btn.classList.remove('border-transparent', 'text-slate-400');
+          content.classList.remove('hidden');
+        } else {
+          btn.classList.remove('border-blue-400', 'text-blue-400');
+          btn.classList.add('border-transparent', 'text-slate-400');
+          content.classList.add('hidden');
+        }
+      });
+    }
+
+    // Carregar notícias
+    async function loadNews() {
+      const loading = document.getElementById('news-loading');
+      const list = document.getElementById('news-list');
+      const empty = document.getElementById('news-empty');
+
+      loading.classList.remove('hidden');
+      list.innerHTML = '';
+      empty.classList.add('hidden');
+
+      try {
+        // Carregar índice
+        const indexResponse = await fetch('news/index.json');
+        indexData = await indexResponse.json();
+        
+        if (!indexData.articles || indexData.articles.length === 0) {
+          loading.classList.add('hidden');
+          empty.classList.remove('hidden');
+          return;
+        }
+
+        // Carregar todas as notícias
+        allArticles = await Promise.all(
+          indexData.articles.map(async (filename) => {
+            try {
+              const response = await fetch(`news/articles/${filename}`);
+              const article = await response.json();
+              return { filename, article };
+            } catch (error) {
+              console.error(`Erro ao carregar ${filename}:`, error);
+              return null;
+            }
+          })
+        );
+
+        allArticles = allArticles.filter(a => a !== null).reverse();
+
+        // Renderizar lista
+        allArticles.forEach(({ filename, article }) => {
+          const card = createArticleCard(filename, article);
+          list.appendChild(card);
+        });
+
+        loading.classList.add('hidden');
+        
+        // Reinicializar ícones
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+
+      } catch (error) {
+        console.error('Erro ao carregar notícias:', error);
+        loading.classList.add('hidden');
+        showToast('Erro ao carregar notícias', 'error');
+      }
+    }
+
+    // Criar card de artigo
+    function createArticleCard(filename, article) {
+      const card = document.createElement('div');
+      card.className = 'bg-slate-700 rounded-lg p-4 border border-slate-600 hover:border-slate-500 transition-colors';
+      
+      const colorDot = {
+        blue: 'bg-blue-400',
+        green: 'bg-green-400',
+        purple: 'bg-purple-400',
+        orange: 'bg-orange-400',
+        teal: 'bg-teal-400'
+      }[article.colorScheme] || 'bg-blue-400';
+
+      // Renderizar HTML com truncagem visual
+      let descriptionPreview = article.description || '';
+      if (descriptionPreview.includes('<')) {
+        // Se for HTML, aplicar estilos e limitar altura
+        let styledHtml = descriptionPreview
+          .replace(/<h1/gi, '<h1 class="text-xs font-bold"')
+          .replace(/<h2/gi, '<h2 class="text-xs font-bold"')
+          .replace(/<h3/gi, '<h3 class="text-xs font-bold"')
+          .replace(/<p/gi, '<p class="text-xs"')
+          .replace(/<li/gi, '<li class="text-xs list-inside"')
+          .replace(/<ul/gi, '<ul class="text-xs list-disc list-inside"')
+          .replace(/<ol/gi, '<ol class="text-xs list-decimal list-inside"');
+        
+        // Limitar altura visual com gradient fade-out
+        descriptionPreview = `<div class="text-xs text-slate-400 max-h-20 overflow-hidden relative" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 70%, rgba(15,23,42,1) 100%);"> ${styledHtml}</div>`;
+      } else {
+        descriptionPreview = `<p class="text-sm text-slate-400 line-clamp-2">${descriptionPreview}</p>`;
+      }
+
+      card.innerHTML = `
+        <div class="flex items-start justify-between">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-2">
+              <div class="w-2 h-2 ${colorDot} rounded-full"></div>
+              <span class="text-xs text-slate-400">${article.dateDisplay}</span>
+              <span class="text-xs text-slate-500">•</span>
+              <span class="text-xs text-slate-400">${filename}</span>
+            </div>
+            <h3 class="font-bold text-lg mb-1">${article.title}</h3>
+            ${descriptionPreview}
+            <div class="flex gap-2 mt-3">
+              ${article.tags.map(tag => `
+                <span class="text-xs px-2 py-1 bg-slate-600 rounded">${tag.label}</span>
+              `).join('')}
+            </div>
+          </div>
+          <div class="flex gap-2 ml-4">
+            <button onclick="editArticle('${filename}')" 
+              class="p-2 bg-blue-600 hover:bg-blue-700 rounded" title="Editar">
+              <i data-lucide="edit-2" class="w-4 h-4"></i>
+            </button>
+            <button onclick="deleteArticle('${filename}')" 
+              class="p-2 bg-red-600 hover:bg-red-700 rounded" title="Remover">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      
+      return card;
+    }
+
+    // Editar artigo
+    function editArticle(filename) {
+      const item = allArticles.find(a => a.filename === filename);
+      if (!item) return;
+
+      const article = item.article;
+      currentEditingFilename = filename;
+
+      // Preencher formulário
+      document.getElementById('article-id').value = article.id || '';
+      document.getElementById('article-date').value = article.date || '';
+      document.getElementById('article-date-display').value = article.dateDisplay || '';
+      document.getElementById('article-title').value = article.title || '';
+      quill.root.innerHTML = article.description || '';
+      document.getElementById('article-link').value = article.link || '';
+      document.getElementById('article-icon').value = article.icon || 'book-open';
+      document.getElementById('article-color').value = article.colorScheme || 'blue';
+
+      // Limpar e adicionar tags
+      document.getElementById('tags-container').innerHTML = '';
+      if (article.tags && article.tags.length > 0) {
+        article.tags.forEach(tag => {
+          addTag(tag.label, tag.icon, tag.color);
+        });
+      } else {
+        addTag();
+      }
+
+      // Atualizar título do formulário
+      document.getElementById('form-title').textContent = `Editar: ${filename}`;
+      document.getElementById('btn-save-text').textContent = 'Atualizar Notícia';
+
+      // Mudar para aba de criar/editar
+      switchTab('create');
+      
+      // Atualizar preview
+      updatePreview();
+
+      showToast('Artigo carregado para edição', 'info');
+    }
+
+    // Deletar artigo
+    function deleteArticle(filename) {
+      if (!confirm(`Tem certeza que deseja remover "${filename}"?\n\nIsso NÃO remove o arquivo do GitHub automaticamente. Você precisará fazer o commit da remoção manualmente.`)) {
+        return;
+      }
+
+      // Remover do índice
+      indexData.articles = indexData.articles.filter(f => f !== filename);
+      
+      // Mostrar novo índice
+      const indexJSON = JSON.stringify(indexData, null, 2);
+      
+      // Download automático do novo index
+      const blob = new Blob([indexJSON], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'index.json';
+      a.click();
+      URL.revokeObjectURL(url);
+
+      showToast(`Arquivo removido do índice. Baixe o novo index.json e delete o arquivo ${filename} do repositório.`, 'success');
+      
+      // Recarregar lista
+      loadNews();
+    }
+
+    // Adicionar tag
+    function addTag(label = '', icon = 'award', color = 'green') {
+      const container = document.getElementById('tags-container');
+      const tagId = Date.now();
+      
+      const tagDiv = document.createElement('div');
+      tagDiv.className = 'flex gap-2 items-center p-3 bg-slate-700 rounded-lg border border-slate-600';
+      tagDiv.id = `tag-${tagId}`;
+      
+      tagDiv.innerHTML = `
+        <input type="text" placeholder="Label da tag" value="${label}"
+          class="flex-1 px-3 py-2 bg-slate-800 border border-slate-600 rounded focus:outline-none focus:border-blue-400 text-white text-sm tag-label">
+        <select class="px-3 py-2 bg-slate-800 border border-slate-600 rounded focus:outline-none focus:border-blue-400 text-white text-sm tag-icon">
+          <option value="award" ${icon === 'award' ? 'selected' : ''}>🏆 award</option>
+          <option value="presentation" ${icon === 'presentation' ? 'selected' : ''}>📊 presentation</option>
+          <option value="users" ${icon === 'users' ? 'selected' : ''}>👥 users</option>
+          <option value="calendar" ${icon === 'calendar' ? 'selected' : ''}>📅 calendar</option>
+          <option value="star" ${icon === 'star' ? 'selected' : ''}>⭐ star</option>
+          <option value="zap" ${icon === 'zap' ? 'selected' : ''}>⚡ zap</option>
+          <option value="trophy" ${icon === 'trophy' ? 'selected' : ''}>🏆 trophy</option>
+          <option value="newspaper" ${icon === 'newspaper' ? 'selected' : ''}>📰 newspaper</option>
+        </select>
+        <select class="px-3 py-2 bg-slate-800 border border-slate-600 rounded focus:outline-none focus:border-blue-400 text-white text-sm tag-color">
+          <option value="green" ${color === 'green' ? 'selected' : ''}>🟢 verde</option>
+          <option value="purple" ${color === 'purple' ? 'selected' : ''}>🟣 roxo</option>
+          <option value="blue" ${color === 'blue' ? 'selected' : ''}>🔵 azul</option>
+          <option value="teal" ${color === 'teal' ? 'selected' : ''}>🔷 teal</option>
+          <option value="slate" ${color === 'slate' ? 'selected' : ''}>⚫ cinza</option>
+        </select>
+        <button type="button" onclick="removeTag(${tagId})" 
+          class="p-2 bg-red-600 hover:bg-red-700 rounded">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      `;
+      
+      container.appendChild(tagDiv);
+      
+      // Atualizar ícones e preview
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+      updatePreview();
+      
+      // Adicionar listener para atualizar preview
+      tagDiv.querySelectorAll('input, select').forEach(el => {
+        el.addEventListener('input', updatePreview);
+      });
+    }
+
+    // Remover tag
+    function removeTag(tagId) {
+      const tag = document.getElementById(`tag-${tagId}`);
+      if (tag) {
+        tag.remove();
+        updatePreview();
+      }
+    }
+
+    // Coletar dados do formulário
+    function collectFormData() {
+      const tags = [];
+      document.querySelectorAll('#tags-container > div').forEach(tagDiv => {
+        const label = tagDiv.querySelector('.tag-label').value.trim();
+        const icon = tagDiv.querySelector('.tag-icon').value;
+        const color = tagDiv.querySelector('.tag-color').value;
+        
+        if (label) {
+          tags.push({ label, icon, color });
+        }
+      });
+
+      // Se não houver tags, adicionar uma padrão
+      if (tags.length === 0) {
+        tags.push({
+          label: "Notícia",
+          icon: "newspaper",
+          color: "blue"
+        });
+      }
+
+      const description = quill.root.innerHTML;
+
+      return {
+        id: document.getElementById('article-id').value.trim(),
+        date: document.getElementById('article-date').value.trim(),
+        dateDisplay: document.getElementById('article-date-display').value.trim(),
+        title: document.getElementById('article-title').value.trim(),
+        description: description,
+        link: document.getElementById('article-link').value.trim(),
+        icon: document.getElementById('article-icon').value,
+        colorScheme: document.getElementById('article-color').value,
+        tags
+      };
+    }
+
+    // Atualizar preview JSON
+    function updatePreview() {
+      const data = collectFormData();
+      const preview = document.getElementById('json-preview');
+      preview.textContent = JSON.stringify(data, null, 2);
+    }
+
+    // Salvar notícia (submit form)
+    document.getElementById('news-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const data = collectFormData();
+      
+      // Validar dados obrigatórios
+      if (!data.id || !data.date || !data.dateDisplay || !data.title || !data.description || !data.link) {
+        showToast('Preencha todos os campos obrigatórios!', 'error');
+        return;
+      }
+
+      // Definir filename
+      const filename = `${data.id}.json`;
+      
+      // Atualizar índice (adicionar no início se for novo)
+      if (!indexData.articles.includes(filename)) {
+        indexData.articles.unshift(filename);
+      }
+
+      showToast('JSON gerado! Baixe os arquivos e faça commit no GitHub.', 'success');
+      
+      // Scroll para a área de download
+      document.getElementById('json-preview').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    // Copiar JSON
+    function copyJSON() {
+      const preview = document.getElementById('json-preview');
+      navigator.clipboard.writeText(preview.textContent).then(() => {
+        showToast('JSON copiado para a área de transferência!', 'success');
+      });
+    }
+
+    // Download do artigo
+    function downloadArticle() {
+      const data = collectFormData();
+      const filename = `${data.id}.json`;
+      
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+      
+      showToast(`Arquivo ${filename} baixado!`, 'success');
+    }
+
+    // Download do index
+    function downloadIndex() {
+      const indexJSON = JSON.stringify(indexData, null, 2);
+      const blob = new Blob([indexJSON], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'index.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      
+      showToast('Arquivo index.json baixado!', 'success');
+    }
+
+    // Reset form
+    function resetForm() {
+      document.getElementById('news-form').reset();
+      quill.setContents([]);
+      document.getElementById('tags-container').innerHTML = '';
+      addTag();
+      currentEditingFilename = null;
+      document.getElementById('form-title').textContent = 'Nova Notícia';
+      document.getElementById('btn-save-text').textContent = 'Salvar Notícia';
+      updatePreview();
+      switchTab('list');
+    }
+
+    // Toast notifications
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      const colors = {
+        success: 'bg-green-600',
+        error: 'bg-red-600',
+        info: 'bg-blue-600',
+        warning: 'bg-orange-600'
+      };
+      
+      const icons = {
+        success: 'check-circle',
+        error: 'x-circle',
+        info: 'info',
+        warning: 'alert-triangle'
+      };
+      
+      toast.className = `${colors[type]} text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 min-w-[300px] animate-slide-in`;
+      toast.innerHTML = `
+        <i data-lucide="${icons[type]}" class="w-5 h-5"></i>
+        <span>${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+      
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(400px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 5000);
+    }
+  </script>
+
+  <style>
+    @keyframes slide-in {
+      from {
+        opacity: 0;
+        transform: translateX(400px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .animate-slide-in {
+      animation: slide-in 0.3s ease-out;
+      transition: all 0.3s ease-out;
+    }
+    
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Toolbar do Quill - Estilo mais evidente */
+    .ql-toolbar {
+      background-color: #ffffff !important;
+      border: 1px solid #ffffff !important;
+      border-bottom: none !important;
+      border-radius: 8px 8px 0 0 !important;
+    }
+
+    .ql-toolbar.ql-snow .ql-formats button,
+    .ql-toolbar.ql-snow .ql-formats select {
+      color: #ffffff !important;
+    }
+
+    .ql-toolbar.ql-snow .ql-formats button svg,
+    .ql-toolbar.ql-snow .ql-formats select svg {
+      stroke: #ffffff !important;
+      fill: #ffffff !important;
+    }
+
+    .ql-toolbar.ql-snow button:hover,
+    .ql-toolbar.ql-snow button.ql-active,
+    .ql-toolbar.ql-snow select:hover,
+    .ql-toolbar.ql-snow select.ql-active {
+      color: #0ea5e9 !important;
+    }
+
+    .ql-toolbar.ql-snow button:hover svg,
+    .ql-toolbar.ql-snow button.ql-active svg,
+    .ql-toolbar.ql-snow select:hover svg,
+    .ql-toolbar.ql-snow select.ql-active svg {
+      stroke: #0ea5e9 !important;
+      fill: #0ea5e9 !important;
+    }
+
+    .ql-toolbar.ql-snow button.ql-active {
+      background-color: rgba(14, 165, 233, 0.1) !important;
+    }
+
+    .ql-snow.ql-toolbar button:hover,
+    .ql-snow.ql-toolbar button:focus,
+    .ql-snow.ql-toolbar button.ql-active,
+    .ql-snow.ql-toolbar select:hover,
+    .ql-snow.ql-toolbar select:focus,
+    .ql-snow.ql-toolbar select.ql-active {
+      color: #0ea5e9 !important;
+    }
+
+    .ql-snow.ql-toolbar svg {
+      stroke: #ffffff !important;
+      fill: #ffffff !important;
+    }
+
+    .ql-snow.ql-toolbar button:hover svg,
+    .ql-snow.ql-toolbar button.ql-active svg,
+    .ql-snow.ql-toolbar select:hover svg,
+    .ql-snow.ql-toolbar select.ql-active svg {
+      stroke: #0ea5e9 !important;
+      fill: #0ea5e9 !important;
+    }
+
+    /* Editor - Estilo normal */
+    .ql-container {
+      background-color: #1e293b !important;
+      border: 1px solid #ffffff !important;
+      border-radius: 0 0 8px 8px !important;
+    }
+
+    .ql-editor {
+      color: #ffffff !important;
+      min-height: 200px;
+    }
+
+    .ql-editor.ql-blank::before {
+      color: #ffffff !important;
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,23 @@
+  <script>
+    // Inicializa ícones Lucide
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.lucide) { window.lucide.createIcons(); }
+    });
+
+    // Rolagem suave para âncoras (suporta #secao e index.html#secao)
+    document.querySelectorAll('a[href^="#"], a[href^="index.html#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href && href.includes('#')) {
+          const hash = href.slice(href.indexOf('#'));
+          if (!hash || hash.length <= 1) return;
+
+          const el = document.querySelector(hash);
+          if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  </script>
