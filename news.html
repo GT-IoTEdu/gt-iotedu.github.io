@@ -433,7 +433,7 @@
 <body class="bg-slate-900 text-white font-[Inter]">
 
 <!-- NAV -->
-<nav class="flex items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+<nav class="relative flex items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
   <div class="flex items-center space-x-2">
     <div class="relative">
       <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
@@ -453,8 +453,40 @@
     <a href="news.html" class="hover:text-blue-400 transition-colors">Notícias</a>
   </div>
 
-  <div class="flex items-center space-x-4">
+  <div class="flex items-center space-x-2 md:space-x-4">
     <a href="index.html" class="px-4 py-2 rounded-lg border border-slate-700 text-white hover:bg-slate-800 bg-transparent">Início</a>
+
+    <button
+      id="mobile-menu-button"
+      type="button"
+      class="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-slate-700 hover:bg-slate-800"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Abrir menu"
+    >
+      <svg id="mobile-menu-icon-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <svg id="mobile-menu-icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 hidden">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu (dropdown) -->
+  <div id="mobile-menu" class="md:hidden hidden absolute left-0 right-0 top-full bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+    <div class="px-6 py-4 flex flex-col gap-3">
+      <a href="index.html#contexto" class="py-2 hover:text-blue-400 transition-colors">Contexto</a>
+      <a href="index.html#proposta" class="py-2 hover:text-blue-400 transition-colors">Proposta</a>
+      <a href="index.html#resultados" class="py-2 hover:text-blue-400 transition-colors">Resultados</a>
+      <a href="index.html#parceria" class="py-2 hover:text-blue-400 transition-colors">Parceria RNP</a>
+      <a href="index.html#apoio" class="py-2 hover:text-blue-400 transition-colors">Apoio</a>
+      <a href="index.html#equipe" class="py-2 hover:text-blue-400 transition-colors">Equipe</a>
+      <a href="news.html" class="py-2 hover:text-blue-400 transition-colors">Notícias</a>
+    </div>
   </div>
 </nav>
 
@@ -944,8 +976,42 @@
     }
   }
 
+  function wireMobileMenu() {
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('mobile-menu-icon-open');
+    const iconClose = document.getElementById('mobile-menu-icon-close');
+
+    if (!button || !menu || !iconOpen || !iconClose) return;
+
+    const setOpen = (open) => {
+      menu.classList.toggle('hidden', !open);
+      iconOpen.classList.toggle('hidden', open);
+      iconClose.classList.toggle('hidden', !open);
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    };
+
+    const isOpen = () => button.getAttribute('aria-expanded') === 'true';
+
+    button.addEventListener('click', () => setOpen(!isOpen()));
+    menu.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target && target.tagName === 'A') setOpen(false);
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    window.addEventListener('resize', () => {
+      if (window.matchMedia('(min-width: 768px)').matches) setOpen(false);
+    });
+
+    setOpen(false);
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) window.lucide.createIcons();
+    wireMobileMenu();
     wireModalControls();
     loadNews();
   });
