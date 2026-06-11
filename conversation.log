@@ -1,0 +1,50 @@
+[2026-06-07 23:32:43] USER:
+Preciso de uma versão curta desse post:
+
+ O IoTEdu marcou presença no WRNP 2026 e no SBRC 2026!
+
+Na semana passada levamos o projeto IoTEdu para o WRNP 2026 (https://lnkd.in/dAwGVfDR), na Praia do Forte, Bahia. No local, o time foi representado por Joner De Mello Assolin, Diego Kreutz e Rodrigo Miani. .
+
+Foi uma semana intensa de demonstrações ao vivo, conversas de corredor e feedback realmente útil da comunidade. Foram quatro apresentações no total: duas no WRNP 2026 (no nosso stand e no palco principal) e outras duas no Salão de Ferramentas do SBRC 2026 (https://lnkd.in/d7w6H7ud).
+
+Dois dos nossos subprojetos chamaram mais atenção:
+
+🔎 IoT-ID — fingerprinting determinístico de dispositivos. Logo o pessoal viu onde ele se encaixa: identificar e agrupar dispositivos na rede, além de vários cenários de monitoramento e segurança.
+
+🧪 IoT-Zoo — um testbed com mais de 40 dispositivos distintos, que torna os experimentos reproduzíveis e permite validar em larga escala em ambientes realistas.
+
+Também saímos de lá com contribuições afiadas e multidisciplinares de profissionais de redes e segurança cibernética (e com algumas conversas que foram além do Brasil), sinalizando colaborações que queremos muito tirar do papel.
+
+Obrigado a todo mundo que passou pelo nosso espaço e deixou as discussões tão ricas.
+
+Quer conhecer o projeto? https://lnkd.in/d4mZs3eb
+
+#WRNP2026 #SBRC2026 #IoT #Cybersecurity #Innovation #Technology #IoTEdu
+
+
++ Um carrosel de 7 imagens para a landing page
+
+Deve haver um link apontando para o post no linkedin: https://www.linkedin.com/posts/wrnp2026-sbrc2026-iot-ugcPost-7467387298255503360-XZji/
+
+As imagens vão estar na pasta imagens/wrnp -> nomeadas de 1, 2, 3... ate 7 .jpeg
+
+[2026-06-07 23:44:11] ASSISTANT:
+Voy a explorar la estructura del proyecto para entender cómo está construida la landing page y dónde agregar el carrusel.
+Ahora entiendo el sistema de noticias. Veamos cómo está estructurado `index.html` (la landing) para saber dónde insertar el carrusel.
+No hay carrusel existente; lo construiré con JS vanilla. Veamos la sección de Pitch (vídeo) y Datasets para imitar el estilo y decidir dónde insertar.
+Veamos el final del archivo (footer y scripts) para saber dónde colocar el JS del carrusel.
+Tengo todo lo necesario. Voy a (1) agregar el enlace "Eventos" al nav (desktop y mobile), (2) insertar la sección con el carrusel después del Pitch, y (3) agregar el JS del carrusel.
+Ahora inserto la sección del carrusel entre el Pitch y Resultados:
+Ahora agrego el JavaScript del carrusel al bloque de scripts del final:
+Verifico que el HTML quedó bien formado y que las imágenes existen:
+
+[2026-06-07 23:47:45] USER:
+Preciso que as imagens tenham uma resolução fixa pra nao ficar partes pretas nas bordas (tanto pra cima quanto pra baixo) de modo geral, as imagens podem ficar todas menores. nao ficou bom essa formatação de texto abaixo as imagens. Preciso que seja -> texto e botao abaixo e ao lado a imagens
+
+[2026-06-07 23:49:03] ASSISTANT:
+Veo que você removeu a imagem 4 (agora são 6: 1,2,3,5,6,7) — vou manter isso. Reescrevo a seção com layout lado a lado (texto/botão à esquerda, carrossel à direita) e `object-cover` com proporção fixa (sem barras pretas, imagens menores):
+Agora ajusto o JS para preencher o total dinamicamente (já que são 6 imagens):
+
+[2026-06-07 23:50:39] USER:
+acima do post do wrnp tem o video pitch, preciso que eles sejam inversos um ao outro. no caso, as fotos do wrnp devem estar a esquerda com o texto a direita -> centralize o texto de dentro do botao "ver post no linkedin" ele esta para a direita (retire icones se houver)
+

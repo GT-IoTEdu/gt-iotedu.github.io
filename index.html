@@ -37,6 +37,7 @@
       <a href="index.html#contexto" class="hover:text-blue-400 transition-colors">Contexto</a>
       <a href="index.html#proposta" class="hover:text-blue-400 transition-colors">Proposta</a>
       <a href="index.html#resultados" class="hover:text-blue-400 transition-colors">Resultados</a>
+      <a href="index.html#eventos" class="hover:text-blue-400 transition-colors">Eventos</a>
       <!-- <a href="index.html#tecnologias" class="hover:text-blue-400 transition-colors">Tecnologias</a> -->
       <a href="index.html#parceria" class="hover:text-blue-400 transition-colors">Parceria RNP</a>
       <a href="index.html#apoio" class="hover:text-blue-400 transition-colors">Apoio</a>
@@ -73,6 +74,7 @@
         <a href="index.html#contexto" class="py-2 hover:text-blue-400 transition-colors">Contexto</a>
         <a href="index.html#proposta" class="py-2 hover:text-blue-400 transition-colors">Proposta</a>
         <a href="index.html#resultados" class="py-2 hover:text-blue-400 transition-colors">Resultados</a>
+        <a href="index.html#eventos" class="py-2 hover:text-blue-400 transition-colors">Eventos</a>
         <a href="index.html#parceria" class="py-2 hover:text-blue-400 transition-colors">Parceria RNP</a>
         <a href="index.html#apoio" class="py-2 hover:text-blue-400 transition-colors">Apoio</a>
         <a href="index.html#equipe" class="py-2 hover:text-blue-400 transition-colors">Equipe</a>
@@ -529,6 +531,77 @@
               allow="fullscreen"
               style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: auto; margin: auto; overflow:hidden;"
             ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTOS: WRNP 2026 & SBRC 2026 -->
+  <section id="eventos" class="py-16 px-6 bg-slate-900 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <!-- Carrossel (esquerda) -->
+        <div id="wrnp-carousel" class="relative">
+          <div class="overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-950">
+            <div id="wrnp-track" class="flex transition-transform duration-500 ease-out">
+              <div class="min-w-full aspect-[4/3]">
+                <img src="images/wrnp/1.jpeg" alt="IoTEdu no WRNP/SBRC 2026 — foto 1" loading="lazy" class="w-full h-full object-cover" />
+              </div>
+              <div class="min-w-full aspect-[4/3]">
+                <img src="images/wrnp/2.jpeg" alt="IoTEdu no WRNP/SBRC 2026 — foto 2" loading="lazy" class="w-full h-full object-cover" />
+              </div>
+              <div class="min-w-full aspect-[4/3]">
+                <img src="images/wrnp/3.jpeg" alt="IoTEdu no WRNP/SBRC 2026 — foto 3" loading="lazy" class="w-full h-full object-cover" />
+              </div>
+              <div class="min-w-full aspect-[4/3]">
+                <img src="images/wrnp/5.jpeg" alt="IoTEdu no WRNP/SBRC 2026 — foto 5" loading="lazy" class="w-full h-full object-cover" />
+              </div>
+              <div class="min-w-full aspect-[4/3]">
+                <img src="images/wrnp/6.jpeg" alt="IoTEdu no WRNP/SBRC 2026 — foto 6" loading="lazy" class="w-full h-full object-cover" />
+              </div>
+              <div class="min-w-full aspect-[4/3]">
+                <img src="images/wrnp/7.jpeg" alt="IoTEdu no WRNP/SBRC 2026 — foto 7" loading="lazy" class="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Controles -->
+          <button id="wrnp-prev" type="button" aria-label="Imagem anterior"
+            class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-slate-900/70 hover:bg-slate-900 border border-slate-700 text-white transition-colors">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <button id="wrnp-next" type="button" aria-label="Próxima imagem"
+            class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-slate-900/70 hover:bg-slate-900 border border-slate-700 text-white transition-colors">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+
+          <!-- Contador -->
+          <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-slate-900/70 border border-slate-700 text-xs text-slate-200">
+            <span id="wrnp-counter">1</span> / <span id="wrnp-total">6</span>
+          </div>
+
+          <!-- Indicadores -->
+          <div id="wrnp-dots" class="flex justify-center gap-2 mt-5"></div>
+        </div>
+
+        <!-- Texto + botão (direita) -->
+        <div>
+          
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">IoTEdu marcou presença no WRNP e SBRC 2026</h2>
+          <p class="text-lg text-slate-300 leading-relaxed">
+            Levamos o projeto à Praia do Forte (BA), representado por Joner De Mello Assolin, Diego Kreutz e Rodrigo Miani.
+            Foram quatro apresentações — duas no WRNP 2026 (stand e palco principal) e duas no Salão de Ferramentas do SBRC 2026.
+            Os destaques ficaram com o <strong class="text-white">IoT-ID</strong> (fingerprinting determinístico de dispositivos)
+            e o <strong class="text-white">IoT-Zoo</strong> (testbed com mais de 40 dispositivos para experimentos reproduzíveis em larga escala).
+            Saímos de lá com feedbacks valiosos e novas colaborações — algumas para além do Brasil.
+          </p>
+          <div class="mt-6">
+            <a href="https://www.linkedin.com/posts/wrnp2026-sbrc2026-iot-ugcPost-7467387298255503360-XZji/"
+               target="_blank" rel="noopener"
+               class="flex justify-center px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-colors">
+              Ver post no LinkedIn
+            </a>
           </div>
         </div>
       </div>
@@ -1239,6 +1312,70 @@
         }
       });
     });
+
+    // Carrossel WRNP/SBRC 2026
+    (function () {
+      const track = document.getElementById('wrnp-track');
+      if (!track) return;
+      const slides = Array.from(track.children);
+      const dotsWrap = document.getElementById('wrnp-dots');
+      const counter = document.getElementById('wrnp-counter');
+      const total = document.getElementById('wrnp-total');
+      if (total) total.textContent = String(slides.length);
+      let index = 0;
+      let timer = null;
+
+      function update() {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        if (counter) counter.textContent = String(index + 1);
+        Array.from(dotsWrap.children).forEach((d, i) => {
+          d.classList.toggle('bg-blue-400', i === index);
+          d.classList.toggle('w-5', i === index);
+          d.classList.toggle('bg-slate-600', i !== index);
+        });
+      }
+
+      function go(i) {
+        index = (i + slides.length) % slides.length;
+        update();
+      }
+
+      function start() {
+        stop();
+        timer = setInterval(() => go(index + 1), 5000);
+      }
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'h-2.5 w-2.5 rounded-full bg-slate-600 transition-all duration-300';
+        b.setAttribute('aria-label', `Ir para imagem ${i + 1}`);
+        b.addEventListener('click', () => { go(i); start(); });
+        dotsWrap.appendChild(b);
+      });
+
+      document.getElementById('wrnp-prev').addEventListener('click', () => { go(index - 1); start(); });
+      document.getElementById('wrnp-next').addEventListener('click', () => { go(index + 1); start(); });
+
+      const carousel = document.getElementById('wrnp-carousel');
+      carousel.addEventListener('mouseenter', stop);
+      carousel.addEventListener('mouseleave', start);
+
+      // Suporte a toque (swipe)
+      let startX = 0;
+      track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; stop(); }, { passive: true });
+      track.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) go(dx < 0 ? index + 1 : index - 1);
+        start();
+      }, { passive: true });
+
+      update();
+      start();
+    })();
   </script>
 </body>
 </html>
