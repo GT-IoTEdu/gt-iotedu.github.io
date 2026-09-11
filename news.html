@@ -928,7 +928,7 @@
     const countEl  = document.getElementById('hero-count');
 
     try {
-      const idxRes = await fetch('news/index.json');
+      const idxRes = await fetch('news/index.json', { cache: 'no-cache' });
       if (!idxRes.ok) throw new Error('index');
       const { articles: files } = await idxRes.json();
 
@@ -940,7 +940,7 @@
       }
 
       const articles = (await Promise.all(
-        files.map(f => fetch(`news/articles/${f}`).then(r => r.ok ? r.json() : null))
+        files.map(f => fetch(`news/articles/${f}`, { cache: 'no-cache' }).then(r => r.ok ? r.json() : null))
       )).filter(Boolean);
 
       articles.reverse();
