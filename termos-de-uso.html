@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Termos de Uso — GT IoTEdu</title>
+  <meta name="description" content="Termos de Uso da plataforma IoTEdu: quem pode usar, quais são as suas responsabilidades ao cadastrar um dispositivo e o que a plataforma faz com ele." />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Play CDN (para usar as util classes sem build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide (ícones SVG) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="legal.css" />
+</head>
+<body class="bg-slate-900 text-white font-[Inter]">
+
+  <!-- NAV -->
+  <nav class="relative flex md:grid md:grid-cols-[1fr,auto,1fr] md:gap-4 items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+    <div class="flex items-center space-x-2 md:justify-self-start">
+      <div class="relative">
+        <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
+        <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+      </div>
+      <a href="index.html" class="text-xl font-bold">GT IoTEdu</a>
+    </div>
+
+    <div class="hidden md:flex items-center justify-center space-x-8 md:justify-self-center">
+      <a href="index.html#contexto" class="hover:text-blue-400 transition-colors">Contexto</a>
+      <a href="index.html#proposta" class="hover:text-blue-400 transition-colors">Proposta</a>
+      <a href="index.html#equipe" class="hover:text-blue-400 transition-colors">Equipe</a>
+      <a href="news.html" class="hover:text-blue-400 transition-colors">Notícias</a>
+      <a href="videos.html" class="hover:text-blue-400 transition-colors">Vídeos</a>
+    </div>
+
+    <div class="flex items-center space-x-2 md:space-x-4 md:justify-self-end">
+      <a href="index.html" class="px-4 py-2 rounded-lg border border-slate-700 text-white hover:bg-slate-800 bg-transparent">Início</a>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 px-4 sm:px-6">
+
+    <!-- Trilha -->
+    <nav class="legal-breadcrumb" aria-label="Você está em">
+      <a href="index.html">Início</a>
+      <span aria-hidden="true">/</span>
+      <span>Documentos</span>
+      <span aria-hidden="true">/</span>
+      <span class="current">Termos de Uso</span>
+    </nav>
+
+    <!-- FOLHA DO DOCUMENTO -->
+    <article class="legal-sheet">
+
+      <!-- ================================================================
+           RASCUNHO: remover este bloco quando o documento for aprovado.
+           ================================================================ -->
+      <div class="legal-draft" role="note">
+        <i data-lucide="alert-triangle" aria-hidden="true"></i>
+        <div>
+          <strong>Documento em revisão.</strong>
+          Os trechos destacados <span class="pendente">em vermelho</span> ainda
+          dependem de confirmação e serão preenchidos antes da versão definitiva.
+        </div>
+      </div>
+      <!-- ============================ fim do bloco de rascunho ========= -->
+
+      <header class="legal-head">
+        <p class="legal-eyebrow">
+          <i data-lucide="file-text" aria-hidden="true"></i>
+          GT-IoTEdu · Documento oficial
+        </p>
+        <h1>Termos de Uso</h1>
+        <p class="legal-lede">
+          As condições de uso da plataforma IoTEdu: quem pode acessá-la, o que você
+          assume ao cadastrar um dispositivo, o que a plataforma faz com ele e o que
+          garantimos.
+        </p>
+
+        <dl class="legal-meta">
+          <div>
+            <dt>Documento</dt>
+            <dd>Termos de Uso</dd>
+          </div>
+          <div>
+            <dt>Versão</dt>
+            <dd>1.0</dd>
+          </div>
+          <div>
+            <dt>Vigente desde</dt>
+            <dd><span class="pendente">[data de publicação]</span></dd>
+          </div>
+          <div>
+            <dt>Operadora</dt>
+            <dd>UNIPAMPA</dd>
+          </div>
+          <div>
+            <dt>Âmbito</dt>
+            <dd>Instância de referência do GT-IoTEdu<br>
+                <code>app-unipampa.iotedu.org</code></dd>
+          </div>
+          <div>
+            <dt>Legislação</dt>
+            <dd>Lei nº 13.709/2018 (LGPD)<br>Lei nº 12.965/2014 (Marco Civil)</dd>
+          </div>
+        </dl>
+      </header>
+
+      <nav class="legal-toc" aria-label="Sumário">
+        <h2>Sumário</h2>
+        <ol>
+          <li><a href="#servico">O que é este serviço</a></li>
+          <li><a href="#quem-pode">Quem pode usar</a></li>
+          <li><a href="#responsabilidade">Sua responsabilidade</a></li>
+          <li><a href="#dispositivos">O que a plataforma faz com seus dispositivos</a></li>
+          <li><a href="#garantias">O que oferecemos, e o que não garantimos</a></li>
+          <li><a href="#suspensao">Suspensão de acesso</a></li>
+          <li><a href="#custos">Custos</a></li>
+          <li><a href="#software">Software e propriedade intelectual</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#alteracoes">Alterações e foro</a></li>
+        </ol>
+      </nav>
+
+      <div class="legal-body">
+
+        <section id="servico">
+          <h2><span class="num">1</span> O que é este serviço</h2>
+          <p>
+            O IoTEdu é uma plataforma para cadastro, inventário, monitoramento e
+            proteção de dispositivos de Internet das Coisas em redes acadêmicas.
+            Estes termos regem o uso da instância de referência em
+            <a href="https://app-unipampa.iotedu.org">app-unipampa.iotedu.org</a>,
+            operada pela Universidade Federal do Pampa (UNIPAMPA) no âmbito da
+            Fase 2 do GT-IoTEdu.
+          </p>
+          <p class="legal-callout">
+            Ao acessar a plataforma com sua identidade institucional, você concorda
+            com estes termos e com a
+            <a href="politica-de-privacidade.html">Política de Privacidade</a>.
+          </p>
+        </section>
+
+        <section id="quem-pode">
+          <h2><span class="num">2</span> Quem pode usar</h2>
+          <p>
+            O acesso é feito exclusivamente pela federação CAFe, com a identidade da
+            sua instituição de origem.
+          </p>
+          <p>
+            O uso efetivo da plataforma pressupõe que a sua instituição tenha aderido
+            ao programa de implantação do IoTEdu — a plataforma opera sobre a rede da
+            própria instituição, e sem implantação não há ambiente a ser gerido.
+            Autenticar-se não equivale, por si só, a ter o serviço disponível.
+          </p>
+          <p>
+            Instituições interessadas em aderir devem procurar a coordenação do
+            GT-IoTEdu pelo contato da seção 9.
+          </p>
+        </section>
+
+        <section id="responsabilidade">
+          <h2><span class="num">3</span> Sua responsabilidade</h2>
+          <p>
+            Ao cadastrar um dispositivo, você declara-se
+            <strong>responsável por ele</strong> perante a instituição. Isso
+            significa:
+          </p>
+          <ul>
+            <li>informar dados verdadeiros sobre o equipamento e sua finalidade;</li>
+            <li>cadastrar apenas dispositivos que você efetivamente utilize ou administre;</li>
+            <li>manter o equipamento em condições razoáveis de segurança, aplicando
+                atualizações de firmware quando disponíveis e alterando senhas padrão
+                de fábrica;</li>
+            <li>manter o cadastro atualizado e remover dispositivos que deixem de ser
+                usados;</li>
+            <li>responder pelas ações originadas do dispositivo na rede.</li>
+          </ul>
+          <p>
+            Você não deve usar a plataforma ou os dispositivos nela cadastrados para:
+            violar a lei ou as políticas da sua instituição; obter acesso não
+            autorizado a sistemas ou dados; realizar varreduras, ataques ou
+            interferência no funcionamento da rede; contornar os controles de
+            segurança da própria plataforma; ou cadastrar dispositivos em nome de
+            terceiros sem autorização.
+          </p>
+        </section>
+
+        <section id="dispositivos">
+          <h2><span class="num">4</span> O que a plataforma faz com seus dispositivos</h2>
+          <p>
+            Ao cadastrar um dispositivo, você concorda que ele será: incluído no
+            inventário da instituição, com seu nome como responsável; direcionado ao
+            segmento de rede correspondente à sua classificação de risco; e
+            <strong>monitorado continuamente</strong> quanto ao comportamento de rede.
+          </p>
+          <p class="legal-callout">
+            Você concorda ainda que o dispositivo poderá ter o acesso à rede
+            <strong>bloqueado automaticamente</strong> diante de evento de segurança
+            de alta severidade, ou bloqueado por decisão do administrador da unidade.
+            Em ambos os casos você será notificado e poderá solicitar revisão,
+            conforme a seção 6 da
+            <a href="politica-de-privacidade.html#automatizadas">Política de Privacidade</a>.
+          </p>
+        </section>
+
+        <section id="garantias">
+          <h2><span class="num">5</span> O que oferecemos, e o que não garantimos</h2>
+          <p>
+            Esta é a instância de referência de um piloto de pesquisa, oferecida
+            <strong>gratuitamente e no estado em que se encontra</strong>. Não há
+            garantia de disponibilidade ininterrupta, de ausência de falhas ou de
+            preservação integral dos dados diante de incidentes, e não há acordo de
+            nível de serviço (SLA).
+          </p>
+          <p>
+            O monitoramento de segurança é uma camada adicional de proteção — não
+            substitui os controles de segurança da instituição nem elimina o risco de
+            incidentes. A responsabilidade pela segurança do dispositivo continua
+            sendo de quem o opera.
+          </p>
+          <p>
+            Poderemos suspender o serviço para manutenção, alterar funcionalidades ou
+            encerrar a instância de referência ao término do GT, com aviso prévio
+            razoável aos usuários e às instituições participantes.
+          </p>
+        </section>
+
+        <section id="suspensao">
+          <h2><span class="num">6</span> Suspensão de acesso</h2>
+          <p>
+            O acesso de um usuário pode ser suspenso em caso de descumprimento destes
+            termos, uso que comprometa a segurança ou a disponibilidade da rede, ou
+            por determinação da instituição de origem. Sempre que possível, a
+            suspensão será precedida de comunicação ao usuário.
+          </p>
+        </section>
+
+        <section id="custos">
+          <h2><span class="num">7</span> Custos</h2>
+          <p>
+            O serviço é gratuito no âmbito da Fase 2 do GT-IoTEdu. Não há assinatura,
+            mensalidade, licenciamento por dispositivo ou área de acesso condicionada
+            a pagamento.
+          </p>
+          <p>
+            O modelo de sustentação da plataforma após o encerramento do GT está em
+            definição; qualquer alteração será comunicada previamente aos usuários,
+            às instituições participantes e à CAFe.
+          </p>
+        </section>
+
+        <section id="software">
+          <h2><span class="num">8</span> Software e propriedade intelectual</h2>
+          <p>
+            O IoTEdu é software livre. O código desenvolvido pelo GT tem Apache-2.0
+            como licença prevista, sujeita à ratificação no fluxo de propriedade
+            intelectual e governança da RNP, e os componentes de terceiros seguem
+            suas respectivas licenças. Os repositórios públicos estão em
+            <a href="https://github.com/GT-IoTEdu">github.com/GT-IoTEdu</a>.
+          </p>
+          <p>
+            Estes termos não transferem a você qualquer direito sobre as marcas, o
+            nome ou a identidade visual do projeto.
+          </p>
+        </section>
+
+        <section id="contato">
+          <h2><span class="num">9</span> Contato</h2>
+          <table class="legal-table">
+            <tbody>
+              <tr>
+                <th scope="row">Projeto</th>
+                <td><a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Coordenação do GT-IoTEdu</th>
+                <td><a href="mailto:diegokreutz@unipampa.edu.br">diegokreutz@unipampa.edu.br</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Site</th>
+                <td><a href="https://iotedu.org">iotedu.org</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="alteracoes">
+          <h2><span class="num">10</span> Alterações e foro</h2>
+          <p>
+            Estes termos podem ser alterados, com publicação nesta página e
+            atualização da versão e da data. Mudanças relevantes serão comunicadas
+            aos usuários.
+          </p>
+          <p>
+            Aplica-se a legislação brasileira, em especial a Lei nº 13.709/2018
+            (LGPD) e a Lei nº 12.965/2014 (Marco Civil da Internet). Fica eleito o
+            foro da
+            <span class="pendente">Justiça Federal, Seção Judiciária do Rio Grande do Sul</span>
+            para dirimir controvérsias.
+          </p>
+          <p class="pendente-bloco">
+            O foro indicado é o padrão para autarquia federal, mas precisa ser
+            confirmado com a procuradoria da UNIPAMPA antes da versão definitiva.
+          </p>
+        </section>
+
+      </div>
+
+      <footer class="legal-foot">
+        <p>
+          <strong>GT-IoTEdu</strong> ·
+          <a href="https://iotedu.org">iotedu.org</a> ·
+          <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a>
+        </p>
+        <p class="legal-foot-sub">
+          Apoio: RNP (GT-IoTEdu) e CNPq, processo 409743/2025-9 ·
+          Documento relacionado: <a href="politica-de-privacidade.html">Política de Privacidade</a>
+        </p>
+      </footer>
+
+    </article>
+  </main>
+
+  <!-- FOOTER DO SITE -->
+  <footer class="py-8 px-6 bg-slate-900 border-t border-slate-700">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex items-center justify-center space-x-2 mb-4">
+        <div class="relative">
+          <i data-lucide="wifi" class="h-6 w-6 text-blue-400"></i>
+          <div class="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        </div>
+        <span class="text-lg font-bold">GT IoTEdu</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-4 text-sm">
+        <a href="politica-de-privacidade.html" class="text-slate-300 hover:text-blue-400 transition-colors">Política de Privacidade</a>
+        <span class="text-slate-600" aria-hidden="true">·</span>
+        <a href="termos-de-uso.html" class="text-slate-300 hover:text-blue-400 transition-colors">Termos de Uso</a>
+      </div>
+      <p class="text-slate-400 text-sm">
+        © 2025 GT-IoTEdu — Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) { window.lucide.createIcons(); }
+    });
+  </script>
+</body>
+</html>
