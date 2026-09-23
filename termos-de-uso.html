@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Termos de Uso — GT IoTEdu</title>
+  <meta name="description" content="Termos de Uso do serviço IoTEdu: quem pode acessar, como as instituições aderem, responsabilidades de cada parte e regras de uso aceitável." />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Play CDN (para usar as util classes sem build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide (ícones SVG) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="legal.css" />
+</head>
+<body class="bg-slate-900 text-white font-[Inter]">
+
+  <!-- NAV -->
+  <nav class="relative flex md:grid md:grid-cols-[1fr,auto,1fr] md:gap-4 items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+    <div class="flex items-center space-x-2 md:justify-self-start">
+      <div class="relative">
+        <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
+        <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+      </div>
+      <a href="index.html" class="text-xl font-bold">GT IoTEdu</a>
+    </div>
+
+    <div class="hidden md:flex items-center justify-center space-x-8 md:justify-self-center">
+      <a href="index.html#contexto" class="hover:text-blue-400 transition-colors">Contexto</a>
+      <a href="index.html#proposta" class="hover:text-blue-400 transition-colors">Proposta</a>
+      <a href="index.html#equipe" class="hover:text-blue-400 transition-colors">Equipe</a>
+      <a href="news.html" class="hover:text-blue-400 transition-colors">Notícias</a>
+      <a href="videos.html" class="hover:text-blue-400 transition-colors">Vídeos</a>
+    </div>
+
+    <div class="flex items-center space-x-2 md:space-x-4 md:justify-self-end">
+      <a href="index.html" class="px-4 py-2 rounded-lg border border-slate-700 text-white hover:bg-slate-800 bg-transparent">Início</a>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 px-4 sm:px-6">
+
+    <nav class="legal-breadcrumb" aria-label="Você está em">
+      <a href="index.html">Início</a>
+      <span aria-hidden="true">/</span>
+      <span>Documentos</span>
+      <span aria-hidden="true">/</span>
+      <span class="current">Termos de Uso</span>
+    </nav>
+
+    <article class="legal-sheet">
+
+
+      <header class="legal-head">
+        <p class="legal-eyebrow">
+          <i data-lucide="file-text" aria-hidden="true"></i>
+          GT-IoTEdu · Documento oficial
+        </p>
+        <h1>Termos de Uso</h1>
+        <p class="legal-lede">
+          Este documento estabelece as condições de uso do serviço IoTEdu: quem pode
+          acessá-lo, como as instituições aderem, quais são as responsabilidades de
+          cada parte e quais condutas são vedadas.
+        </p>
+
+        <dl class="legal-meta">
+          <div>
+            <dt>Documento</dt>
+            <dd>Termos de Uso</dd>
+          </div>
+          <div>
+            <dt>Versão</dt>
+            <dd>1.0</dd>
+          </div>
+          <div>
+            <dt>Vigente desde</dt>
+            <dd>23 de setembro de 2026</dd>
+          </div>
+          <div>
+            <dt>Provimento</dt>
+            <dd>UNIPAMPA / GT-IoTEdu<br>
+                <code>09.341.233/0001-22</code></dd>
+          </div>
+          <div>
+            <dt>Âmbito</dt>
+            <dd>Instância de referência do GT-IoTEdu<br>
+                <code>app-unipampa.iotedu.org</code></dd>
+          </div>
+          <div>
+            <dt>Legislação</dt>
+            <dd>Lei nº 13.709/2018 (LGPD)<br>Lei nº 12.965/2014 (Marco Civil)</dd>
+          </div>
+        </dl>
+      </header>
+
+      <nav class="legal-toc" aria-label="Sumário">
+        <h2>Sumário</h2>
+        <ol>
+          <li><a href="#apresentacao">Apresentação</a></li>
+          <li><a href="#definicoes">Termos e definições</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#quem-acessa">Quem pode acessar o IoTEdu</a></li>
+          <li><a href="#adesao">Adesão das instituições</a></li>
+          <li><a href="#cadastro">Cadastro de dispositivos</a></li>
+          <li><a href="#monitoramento">Monitoramento e bloqueio</a></li>
+          <li><a href="#resp-instituicoes">Responsabilidades das instituições</a></li>
+          <li><a href="#resp-administradores">Responsabilidades dos administradores</a></li>
+          <li><a href="#resp-usuarios">Responsabilidades dos usuários</a></li>
+          <li><a href="#resp-gt">Responsabilidades do GT-IoTEdu</a></li>
+          <li><a href="#uso-aceitavel">Uso aceitável do serviço</a></li>
+          <li><a href="#custos">Custos</a></li>
+          <li><a href="#propriedade">Propriedade intelectual</a></li>
+          <li><a href="#disponibilidade">Disponibilidade do serviço</a></li>
+          <li><a href="#alteracoes">Histórico de alterações</a></li>
+        </ol>
+      </nav>
+
+      <div class="legal-body">
+
+        <section id="apresentacao">
+          <h2><span class="num">1</span> Apresentação</h2>
+          <p>
+            O IoTEdu é um serviço que permite o cadastro, o inventário, o
+            monitoramento e a proteção de dispositivos de Internet das Coisas em
+            redes acadêmicas. Por meio dele, membros da comunidade acadêmica
+            registram os equipamentos que utilizam na rede da instituição, e a equipe
+            de tecnologia da informação mantém inventário desses equipamentos,
+            identifica o responsável por cada um e acompanha os eventos de segurança
+            associados.
+          </p>
+          <p>
+            Estes Termos de Uso regem o uso da instância de referência do serviço,
+            disponível em
+            <a href="https://app-unipampa.iotedu.org">app-unipampa.iotedu.org</a>.
+            O provimento dessa instância é de responsabilidade da Fundação
+            Universidade Federal do Pampa (UNIPAMPA), inscrita no CNPJ/MF sob o nº
+            09.341.233/0001-22, no âmbito do GT-IoTEdu, Grupo de Trabalho apoiado
+            pela Rede Nacional de Ensino e Pesquisa (RNP).
+          </p>
+          <p class="legal-callout">
+            Ao acessar o serviço com sua identidade institucional, você declara que
+            leu e concorda com estes Termos de Uso e com a
+            <a href="politica-de-privacidade.html">Política de Privacidade</a>.
+          </p>
+          <p>
+            O IoTEdu é um software instalado na infraestrutura de cada instituição
+            adotante. Quando outra instituição passa a operar a sua própria
+            instância, ela responde pelo provimento daquele serviço e por seus
+            próprios termos de uso.
+          </p>
+        </section>
+
+        <section id="definicoes">
+          <h2><span class="num">2</span> Termos e definições</h2>
+          <table class="legal-table">
+            <tbody>
+              <tr>
+                <th scope="row">CAFe</th>
+                <td>Comunidade Acadêmica Federada, serviço de gestão de identidade da RNP que reúne as instituições de ensino, pesquisa e inovação no Brasil.</td>
+              </tr>
+              <tr>
+                <th scope="row">Instituição participante</th>
+                <td>Instituição que aderiu ao programa de implantação do IoTEdu e cuja rede é gerida pelo serviço.</td>
+              </tr>
+              <tr>
+                <th scope="row">Unidade</th>
+                <td>Campus, departamento, laboratório ou outra subdivisão institucional à qual dispositivos e administradores são associados.</td>
+              </tr>
+              <tr>
+                <th scope="row">Superusuário institucional</th>
+                <td>Conta com privilégios de administração sobre toda a instituição, incluindo a definição de parâmetros globais, unidades e políticas.</td>
+              </tr>
+              <tr>
+                <th scope="row">Administrador de unidade</th>
+                <td>Conta com privilégios de administração restritos a uma unidade, responsável pelos dispositivos e pelos eventos de segurança dela.</td>
+              </tr>
+              <tr>
+                <th scope="row">Usuário</th>
+                <td>Membro da comunidade acadêmica que acessa o serviço para cadastrar e acompanhar os próprios dispositivos.</td>
+              </tr>
+              <tr>
+                <th scope="row">Dispositivo</th>
+                <td>Equipamento de Internet das Coisas cadastrado na plataforma, como sensor, câmera, controladora ou equipamento de laboratório.</td>
+              </tr>
+              <tr>
+                <th scope="row">Responsável pelo dispositivo</th>
+                <td>Usuário que cadastra o dispositivo e ao qual ele fica vinculado no inventário da instituição.</td>
+              </tr>
+              <tr>
+                <th scope="row">Sondas de detecção</th>
+                <td>Componentes de monitoramento de tráfego utilizados pela plataforma (Suricata, Snort e Zeek).</td>
+              </tr>
+              <tr>
+                <th scope="row">Incidente de segurança</th>
+                <td>Evento adverso, confirmado ou sob suspeita, relacionado à segurança de sistemas ou de redes de computadores.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="contato">
+          <h2><span class="num">3</span> Contato</h2>
+          <table class="legal-table">
+            <tbody>
+              <tr>
+                <th scope="row">Serviço IoTEdu</th>
+                <td><a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Responsável pelo serviço</th>
+                <td>
+                  Diego Kreutz, coordenador do GT-IoTEdu<br>
+                  <a href="mailto:diegokreutz@unipampa.edu.br">diegokreutz@unipampa.edu.br</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Proteção de dados pessoais</th>
+                <td>
+                  Encarregado pelo Tratamento de Dados Pessoais da UNIPAMPA:
+                  <a href="mailto:encarregado.lgpd@unipampa.edu.br">encarregado.lgpd@unipampa.edu.br</a><br>
+                  <a href="https://sites.unipampa.edu.br/lgpd/contato-encarregado/">sites.unipampa.edu.br/lgpd/contato-encarregado</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Site do projeto</th>
+                <td><a href="https://iotedu.org">iotedu.org</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="quem-acessa">
+          <h2><span class="num">4</span> Quem pode acessar o IoTEdu</h2>
+          <p>
+            O acesso ao serviço é feito pela federação CAFe, com a identidade da
+            instituição de origem do usuário. O serviço não cria senhas próprias para
+            usuários federados e não realiza a autenticação: quem autentica é a
+            instituição de origem.
+          </p>
+          <p>
+            O uso efetivo do serviço pressupõe que a instituição do usuário seja
+            instituição participante. A plataforma opera sobre a rede da própria
+            instituição, de modo que, sem implantação, não há ambiente a ser gerido.
+            Autenticar-se, por si só, não equivale a ter o serviço disponível.
+          </p>
+          <p>
+            As credenciais institucionais são de uso pessoal e intransferível, sendo
+            vedada a sua divulgação a terceiros.
+          </p>
+          <p>
+            O IoTEdu não é direcionado a crianças, conforme a definição do Estatuto
+            da Criança e do Adolescente (Lei nº 8.069/1990).
+          </p>
+        </section>
+
+        <section id="adesao">
+          <h2><span class="num">5</span> Adesão das instituições</h2>
+          <p>
+            A instituição interessada em utilizar o IoTEdu deve manifestar interesse
+            pelos canais indicados na seção 3. A adesão compreende as seguintes
+            etapas:
+          </p>
+          <ol>
+            <li>manifestação de interesse à coordenação do GT-IoTEdu;</li>
+            <li>aprovação interna e provisionamento, pela instituição, dos
+                pré-requisitos de rede: VLAN e SSID dedicados, servidor com duas
+                interfaces de rede e faixa de endereços IP;</li>
+            <li>implantação da plataforma, conduzida pela equipe local da instituição
+                com apoio remoto do GT;</li>
+            <li>operação assistida com um grupo reduzido de usuários e de
+                dispositivos de baixa criticidade;</li>
+            <li>migração progressiva dos demais dispositivos, capacitação da equipe e
+                assunção da operação cotidiana pela instituição.</li>
+          </ol>
+          <p>
+            A instituição indica, no momento da adesão, o superusuário institucional
+            responsável pela configuração do serviço e pela designação dos
+            administradores de unidade.
+          </p>
+          <p>
+            A instituição que optar por operar a sua própria instância do IoTEdu deve
+            registrar o provedor de serviço correspondente junto à CAFe, com domínio
+            e certificado próprios.
+          </p>
+        </section>
+
+        <section id="cadastro">
+          <h2><span class="num">6</span> Cadastro de dispositivos</h2>
+          <p>
+            O usuário autenticado pode cadastrar dispositivos informando sua
+            identificação e sua finalidade. O cadastro vincula o dispositivo ao
+            usuário, que passa a constar como responsável por ele no inventário da
+            instituição.
+          </p>
+          <p>
+            Conforme a configuração adotada pela instituição, o dispositivo pode
+            entrar em operação imediatamente ou permanecer aguardando aprovação do
+            administrador da unidade.
+          </p>
+          <p>
+            O usuário pode consultar, corrigir as informações e remover do próprio
+            cadastro os dispositivos sob sua responsabilidade.
+          </p>
+        </section>
+
+        <section id="monitoramento">
+          <h2><span class="num">7</span> Monitoramento e bloqueio</h2>
+          <p>
+            Ao cadastrar um dispositivo, o usuário reconhece que ele será incluído no
+            inventário da instituição, direcionado ao segmento de rede correspondente
+            à sua classificação e monitorado de forma contínua quanto ao
+            comportamento de rede.
+          </p>
+          <p class="legal-callout">
+            O acesso do dispositivo à rede poderá ser <strong>bloqueado
+            automaticamente</strong> pela plataforma diante de evento de segurança de
+            alta severidade, ou bloqueado por decisão do administrador da unidade. Em
+            ambos os casos, o responsável é notificado e pode solicitar revisão,
+            conforme a seção 9 da
+            <a href="politica-de-privacidade.html#automatizadas">Política de Privacidade</a>.
+          </p>
+          <p>
+            O monitoramento alcança o segmento de rede dedicado aos dispositivos de
+            Internet das Coisas. Os registros produzidos descrevem o comportamento de
+            rede dos equipamentos, e o seu tratamento está descrito na Política de
+            Privacidade.
+          </p>
+        </section>
+
+        <section id="resp-instituicoes">
+          <h2><span class="num">8</span> Responsabilidades das instituições</h2>
+          <p>Para uso do IoTEdu, a instituição participante é responsável por:</p>
+          <ul>
+            <li>prover e manter os pré-requisitos de rede e a infraestrutura em que a
+                plataforma é executada;</li>
+            <li>fornecer informações exatas e verdadeiras sobre os administradores
+                indicados, assumindo responsabilidade pelo conteúdo dessas
+                informações;</li>
+            <li>definir a política institucional aplicável à entrada de dispositivos
+                na rede e as regras de aprovação e de bloqueio;</li>
+            <li>manter atualizadas as designações de superusuário institucional e de
+                administradores de unidade;</li>
+            <li>comunicar ao GT-IoTEdu eventuais vulnerabilidades ou eventos de
+                segurança que envolvam o serviço;</li>
+            <li>observar a legislação aplicável ao tratamento dos dados pessoais sob
+                sua responsabilidade.</li>
+          </ul>
+        </section>
+
+        <section id="resp-administradores">
+          <h2><span class="num">9</span> Responsabilidades dos administradores</h2>
+          <p>
+            Na administração do serviço, os superusuários institucionais e os
+            administradores de unidade são responsáveis por:
+          </p>
+          <ul>
+            <li>configurar unidades, faixas de endereços e parâmetros do serviço no
+                escopo que lhes cabe;</li>
+            <li>aprovar, bloquear e desbloquear dispositivos, registrando o motivo da
+                decisão;</li>
+            <li>tratar os eventos de segurança encaminhados para triagem humana;</li>
+            <li>analisar os pedidos de revisão de bloqueio apresentados pelos
+                responsáveis;</li>
+            <li>habilitar e desabilitar contas de usuário no escopo que lhes cabe;</li>
+            <li>utilizar as informações a que têm acesso exclusivamente para a gestão
+                e a segurança da rede.</li>
+          </ul>
+        </section>
+
+        <section id="resp-usuarios">
+          <h2><span class="num">10</span> Responsabilidades dos usuários</h2>
+          <p>
+            Ao cadastrar um dispositivo, o usuário declara-se responsável por ele
+            perante a instituição, o que compreende:
+          </p>
+          <ul>
+            <li>informar dados verdadeiros sobre o equipamento e sua finalidade;</li>
+            <li>cadastrar apenas dispositivos que efetivamente utilize ou administre,
+                e não cadastrar dispositivos em nome de terceiros sem autorização;</li>
+            <li>manter o equipamento em condições razoáveis de segurança, aplicando
+                atualizações de firmware quando disponíveis e substituindo senhas
+                padrão de fábrica;</li>
+            <li>manter o cadastro atualizado e remover os dispositivos que deixem de
+                ser utilizados;</li>
+            <li>responder pelas ações originadas do dispositivo na rede.</li>
+          </ul>
+        </section>
+
+        <section id="resp-gt">
+          <h2><span class="num">11</span> Responsabilidades do GT-IoTEdu</h2>
+          <p>
+            O GT-IoTEdu é responsável pelo desenvolvimento e pela manutenção do
+            software, pelo apoio remoto à implantação e à operação nas instituições
+            participantes e pela operação da instância de referência.
+          </p>
+          <p>
+            A definição da política institucional de entrada de dispositivos, a
+            decisão sobre aprovações e bloqueios e a operação cotidiana da rede são
+            atribuições da instituição participante. O GT-IoTEdu não responde pelas
+            condutas praticadas por instituições, administradores ou usuários no uso
+            do serviço, nem pelo conteúdo por eles registrado na plataforma.
+          </p>
+          <p>
+            O monitoramento de segurança oferecido pela plataforma é uma camada
+            adicional de proteção. Ele não substitui os controles de segurança da
+            instituição e não elimina o risco de incidentes. A responsabilidade pela
+            segurança de cada dispositivo permanece com quem o opera.
+          </p>
+        </section>
+
+        <section id="uso-aceitavel">
+          <h2><span class="num">12</span> Uso aceitável do serviço</h2>
+          <p>São condutas vedadas na utilização do IoTEdu:</p>
+          <ul>
+            <li>utilizar o serviço para finalidade estranha ao ensino, à pesquisa, à
+                inovação e à gestão da rede institucional;</li>
+            <li>cadastrar informações falsas sobre dispositivos ou sobre a sua
+                finalidade;</li>
+            <li>obter ou tentar obter acesso não autorizado a sistemas, dados ou
+                contas de outros usuários;</li>
+            <li>realizar varreduras, ataques ou qualquer interferência no
+                funcionamento da rede ou da plataforma;</li>
+            <li>contornar os controles de segurança do serviço, incluindo a tentativa
+                de reconectar à rede dispositivo que tenha sido bloqueado;</li>
+            <li>coletar informações de outros usuários ou realizar qualquer
+                tratamento dessas informações em desconformidade com a LGPD;</li>
+            <li>produzir ou transmitir dados em desconformidade com a legislação
+                brasileira;</li>
+            <li>fazer uso comercial do serviço ou de qualquer conteúdo nele contido.</li>
+          </ul>
+          <p>
+            O acesso de um usuário ou de um dispositivo pode ser suspenso a qualquer
+            momento em caso de descumprimento destes termos, de uso que comprometa a
+            segurança ou a disponibilidade da rede, ou por determinação da
+            instituição de origem. Sempre que possível, a suspensão será precedida de
+            comunicação ao usuário.
+          </p>
+        </section>
+
+        <section id="custos">
+          <h2><span class="num">13</span> Custos</h2>
+          <p>
+            O serviço é gratuito no âmbito da Fase 2 do GT-IoTEdu. Não há assinatura,
+            mensalidade, licenciamento por dispositivo ou por usuário, nem área de
+            acesso condicionada a pagamento.
+          </p>
+          <p>
+            O modelo de sustentação do serviço após o encerramento do GT está em
+            definição. Qualquer alteração nas condições acima será comunicada
+            previamente aos usuários, às instituições participantes e à CAFe.
+          </p>
+        </section>
+
+        <section id="propriedade">
+          <h2><span class="num">14</span> Propriedade intelectual</h2>
+          <p>
+            O IoTEdu é software livre. O código desenvolvido pelo GT tem Apache-2.0
+            como licença prevista, sujeita à ratificação no fluxo de propriedade
+            intelectual e governança da RNP, e os componentes de terceiros seguem
+            suas respectivas licenças. Os repositórios públicos do projeto estão em
+            <a href="https://github.com/GT-IoTEdu">github.com/GT-IoTEdu</a>.
+          </p>
+          <p>
+            O nome, a marca, o domínio e a identidade visual do projeto não são
+            transferidos pelo presente documento, e o seu uso depende de autorização
+            prévia da coordenação do GT-IoTEdu.
+          </p>
+        </section>
+
+        <section id="disponibilidade">
+          <h2><span class="num">15</span> Disponibilidade do serviço</h2>
+          <p>
+            A instância de referência é oferecida no estado em que se encontra, no
+            contexto de um piloto de pesquisa. Não há garantia de disponibilidade
+            ininterrupta, de ausência de falhas ou de preservação integral dos dados
+            diante de incidentes, e não há acordo de nível de serviço.
+          </p>
+          <p>
+            O serviço pode ser suspenso para manutenção, ter funcionalidades
+            alteradas ou ser encerrado ao término do GT. Nessas hipóteses, será dado
+            aviso prévio razoável aos usuários e às instituições participantes.
+          </p>
+        </section>
+
+        <section id="alteracoes">
+          <h2><span class="num">16</span> Histórico de alterações</h2>
+          <p>
+            Estes Termos de Uso podem ser modificados ou atualizados a qualquer
+            momento, com publicação nesta mesma página e atualização da versão e da
+            data. Alterações relevantes serão comunicadas aos usuários e às
+            instituições participantes.
+          </p>
+          <p>
+            Este documento foi atualizado pela última vez em 23 de setembro de
+            2026, entrando em vigor imediatamente após a sua publicação.
+          </p>
+          <p>
+            Aplica-se a legislação brasileira, em especial a Lei nº 13.709/2018
+            (LGPD) e a Lei nº 12.965/2014 (Marco Civil da Internet).
+          </p>
+        </section>
+
+      </div>
+
+      <footer class="legal-foot">
+        <p>
+          <strong>GT-IoTEdu</strong> ·
+          <a href="https://iotedu.org">iotedu.org</a> ·
+          <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a>
+        </p>
+        <p class="legal-foot-sub">
+          Documento relacionado: <a href="politica-de-privacidade.html">Política de Privacidade</a>
+        </p>
+      </footer>
+
+    </article>
+  </main>
+
+  <!-- FOOTER DO SITE -->
+  <footer class="py-8 px-6 bg-slate-900 border-t border-slate-700">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex items-center justify-center space-x-2 mb-4">
+        <div class="relative">
+          <i data-lucide="wifi" class="h-6 w-6 text-blue-400"></i>
+          <div class="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        </div>
+        <span class="text-lg font-bold">GT IoTEdu</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-4 text-sm">
+        <a href="politica-de-privacidade.html" class="text-slate-300 hover:text-blue-400 transition-colors">Política de Privacidade</a>
+        <span class="text-slate-600" aria-hidden="true">·</span>
+        <a href="termos-de-uso.html" class="text-slate-300 hover:text-blue-400 transition-colors">Termos de Uso</a>
+      </div>
+      <p class="text-slate-400 text-sm">
+        © 2025 GT-IoTEdu — Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) { window.lucide.createIcons(); }
+    });
+  </script>
+</body>
+</html>
