@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Termos de Uso — IoTEdu</title>
+<title>Termos de Uso · IoTEdu</title>
 <style>
   :root { color-scheme: light; }
   body {
@@ -14,9 +14,20 @@
   h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 4px; color: #0f172a; }
   h2 { font-size: 1.15rem; margin: 2.4em 0 .6em; color: #0f172a;
        border-bottom: 1px solid #e2e8f0; padding-bottom: .3em; }
+  h3 { font-size: 1rem; margin: 1.6em 0 .4em; color: #334155; }
   .sub { color: #64748b; font-size: .9rem; margin: 0 0 2em; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: .92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f8fafc; font-weight: 600; }
   code { background: #f1f5f9; padding: 1px 5px; border-radius: 3px; font-size: .88em; }
   a { color: #2563eb; }
+  dt { font-weight: 600; margin-top: .7em; }
+  dd { margin: .1em 0 0 1.2em; }
+  .resumo { border-left: 3px solid #2563eb; padding: 4px 0 4px 18px; margin: 0 0 2em; }
+  .resumo ul { margin: .4em 0 0; padding-left: 1.2em; }
+  .indice { font-size: .92rem; columns: 2; column-gap: 32px; padding-left: 1.4em; margin: 0 0 1em; }
+  .indice li { break-inside: avoid; }
+  @media (max-width: 560px) { .indice { columns: 1; } }
   .falta { color: #dc2626; font-weight: 700; background: #fef2f2;
            padding: 1px 5px; border-radius: 3px; border: 1px dashed #fca5a5; }
   .aviso { background: #fffbeb; border: 1px solid #fde68a; border-left: 4px solid #f59e0b;
@@ -29,161 +40,294 @@
 <body>
 
 <div class="aviso">
-  <strong>RASCUNHO PARA REVISÃO — não publicar ainda.</strong><br>
-  Tudo que aparece <span class="falta">em vermelho</span> ainda precisa ser
-  confirmado antes da publicação. O restante do texto foi levantado diretamente do
-  comportamento real da plataforma e pode ser considerado correto.
+  <strong>RASCUNHO PARA REVISÃO: não publicar ainda.</strong><br>
+  Tudo que aparece <span class="falta">em vermelho</span> ainda precisa ser confirmado antes da publicação. A estrutura segue o Guia de Elaboração de Termo de Uso e Política de Privacidade da SGD/gov.br e os termos de serviços da RNP (ConferênciaWeb, CAFe, eduroam) e de outras instituições (UFBA, PUC-Rio, UFMG, Unicamp). O conteúdo técnico foi conferido com o White Paper do MVP (Fase 1, E7) e com o Plano de Desenvolvimento da Modelagem do Produto (Fase 2, E2, versão 2.0).
   <br><br>
-  Publicar em <code>https://iotedu.org/termos.html</code> e linkar no rodapé do
-  site. Remover esta caixa antes de publicar.
+  Publicar em <code>https://iotedu.org/termos.html</code>, linkar no rodapé de <code>iotedu.org</code> e nas telas de login de <code>app-unipampa.iotedu.org</code> e <code>mvp.iotedu.org</code>. Remover esta caixa antes de publicar.
 </div>
 
 <h1>Termos de Uso</h1>
 <p class="sub">
-  IoTEdu — Instância de referência do GT-IoTEdu<br>
-  Versão 1.0 · Vigente a partir de <span class="falta">[data de publicação]</span>
+  IoTEdu: plataforma aberta de gestão e segurança de dispositivos IoT em redes acadêmicas<br>
+  Versão 2.0 · Vigente a partir de <span class="falta">[data de publicação]</span>
 </p>
 
-<h2>1. O que é este serviço</h2>
-<p>
-  O IoTEdu é uma plataforma para cadastro, inventário, monitoramento e proteção de
-  dispositivos de Internet das Coisas em redes acadêmicas. Estes termos regem o uso
-  da instância de referência em
-  <a href="https://app-unipampa.iotedu.org">app-unipampa.iotedu.org</a>, operada
-  pela Universidade Federal do Pampa (UNIPAMPA) no âmbito da Fase 2 do GT-IoTEdu.
-</p>
-<p>
-  Ao acessar a plataforma com sua identidade institucional, você concorda com estes
-  termos e com a
-  <a href="https://iotedu.org/privacidade.html">Política de Privacidade</a>.
-</p>
+<div class="resumo">
+  <strong>Em poucas palavras</strong>
+  <ul>
+    <li>O acesso à plataforma é feito com a sua conta institucional, pela CAFe. A conta é pessoal e intransferível.</li>
+    <li>Quem cadastra um dispositivo se torna o responsável por ele e pelas ações que ele realiza na rede.</li>
+    <li>Os dispositivos cadastrados são identificados, classificados e monitorados. Diante de evento grave de segurança, podem ser bloqueados automaticamente em segundos. Você é avisado e pode pedir revisão humana.</li>
+    <li>Não cadastre equipamentos críticos sem antes combinar com o administrador da sua unidade como tratar um eventual bloqueio.</li>
+    <li>O serviço é gratuito, experimental e oferecido no estado em que se encontra, sem garantia de disponibilidade.</li>
+    <li>Estes termos não substituem a <a href="https://iotedu.org/privacidade.html">Política de Privacidade</a>, que explica como seus dados são tratados.</li>
+  </ul>
+  <p>Este resumo não substitui o texto completo abaixo.</p>
+</div>
 
-<h2>2. Quem pode usar</h2>
-<p>
-  O acesso é feito exclusivamente pela federação CAFe, com a identidade da sua
-  instituição de origem.
-</p>
-<p>
-  O uso efetivo da plataforma pressupõe que a sua instituição tenha aderido ao
-  programa de implantação do IoTEdu — a plataforma opera sobre a rede da própria
-  instituição, e sem implantação não há ambiente a ser gerido. Autenticar-se não
-  equivale, por si só, a ter o serviço disponível.
-</p>
-<p>
-  Instituições interessadas em aderir devem procurar a coordenação do GT-IoTEdu
-  pelo contato da seção 9.
-</p>
+<ol class="indice">
+  <li><a href="#aceitacao">Aceitação destes termos</a></li>
+  <li><a href="#definicoes">Definições</a></li>
+  <li><a href="#servico">O que é o serviço</a></li>
+  <li><a href="#acesso">Quem pode usar e como acessar</a></li>
+  <li><a href="#deveres">Deveres do usuário</a></li>
+  <li><a href="#vedacoes">Usos proibidos</a></li>
+  <li><a href="#dispositivos">O que a plataforma faz com os dispositivos</a></li>
+  <li><a href="#criticidade">Equipamentos críticos</a></li>
+  <li><a href="#perfis">Perfis administrativos e instituições</a></li>
+  <li><a href="#operadora">Responsabilidades do GT-IoTEdu</a></li>
+  <li><a href="#garantias">Disponibilidade e limites de responsabilidade</a></li>
+  <li><a href="#incidentes">Incidentes e vulnerabilidades</a></li>
+  <li><a href="#sancoes">Violações e sanções</a></li>
+  <li><a href="#privacidade">Privacidade, registros e pesquisa</a></li>
+  <li><a href="#custos">Custos</a></li>
+  <li><a href="#propriedade">Software livre e propriedade intelectual</a></li>
+  <li><a href="#encerramento">Encerramento da conta e do serviço</a></li>
+  <li><a href="#alteracoes">Alterações destes termos</a></li>
+  <li><a href="#contato">Canais de atendimento</a></li>
+  <li><a href="#legislacao">Legislação aplicável e foro</a></li>
+  <li><a href="#versoes">Histórico de versões</a></li>
+</ol>
 
-<h2>3. Sua responsabilidade</h2>
-<p>
-  Ao cadastrar um dispositivo, você declara-se <strong>responsável por ele</strong>
-  perante a instituição. Isso significa:
-</p>
+<h2 id="aceitacao">1. Aceitação destes termos</h2>
+<p>Estes Termos de Uso estabelecem as regras e as condições de uso do site <a href="https://iotedu.org">iotedu.org</a>, da plataforma IoTEdu em <a href="https://app-unipampa.iotedu.org">app-unipampa.iotedu.org</a> e da demonstração em <a href="https://mvp.iotedu.org">mvp.iotedu.org</a>. Ao acessar a plataforma ou a demonstração, você declara ter lido e compreendido estes termos e concorda em cumpri-los. Se não concordar, não utilize a plataforma.</p>
+<p>Concordar com estes termos não se confunde com dar consentimento para o tratamento de dados pessoais nos termos da LGPD. As bases legais do tratamento estão descritas na <a href="https://iotedu.org/privacidade.html">Política de Privacidade</a>, que é parte integrante destes termos.</p>
+<p>Estes termos se somam, e não substituem, as normas de uso de recursos de tecnologia da informação da sua instituição de origem e as políticas da federação CAFe, em especial a <a href="https://plataforma.rnp.br/arquivos/documents/nova-politica-idps-cafe-final.pdf">Política da Comunidade Acadêmica Federada (CAFE.N.001)</a>. Em caso de conflito, prevalece a regra mais protetiva para a segurança da rede e para os dados pessoais.</p>
+
+<h2 id="definicoes">2. Definições</h2>
+<dl>
+  <dt>IoTEdu</dt>
+  <dd>Plataforma de software livre, instalada na infraestrutura da própria instituição (<em>on-premises</em>), para cadastro, inventário, identificação, monitoramento e resposta a incidentes de segurança de dispositivos IoT.</dd>
+  <dt>Plataforma</dt>
+  <dd>A instância de referência do IoTEdu em <a href="https://app-unipampa.iotedu.org">app-unipampa.iotedu.org</a>, implantada na rede da UNIPAMPA e usada com dispositivos reais.</dd>
+  <dt>Demonstração</dt>
+  <dd>A instância de demonstração do MVP em <a href="https://mvp.iotedu.org">mvp.iotedu.org</a>, destinada a apresentar e testar as funcionalidades, sem gestão de dispositivos reais da rede.</dd>
+  <dt>Instância institucional</dt>
+  <dd>Instalação do IoTEdu operada por outra instituição na sua própria rede, como as implantações piloto da Fase 2.</dd>
+  <dt>Site</dt>
+  <dd>O site do projeto em <a href="https://iotedu.org">iotedu.org</a>, de acesso público e caráter informativo.</dd>
+  <dt>GT-IoTEdu</dt>
+  <dd>Grupo de Trabalho coordenado pela Universidade Federal do Pampa (UNIPAMPA), com apoio da Rede Nacional de Ensino e Pesquisa (RNP) e do CNPq, responsável pelo desenvolvimento do IoTEdu e pela operação da plataforma e da demonstração.</dd>
+  <dt>CAFe</dt>
+  <dd>Comunidade Acadêmica Federada, serviço de gestão de identidade da RNP que permite acessar serviços com a conta da instituição de origem.</dd>
+  <dt>Instituição participante</dt>
+  <dd>Instituição que aderiu ao programa de pilotos do IoTEdu e cuja rede é gerida por uma instância da plataforma.</dd>
+  <dt>Dispositivo IoT</dt>
+  <dd>Equipamento conectado à rede que não é um computador de uso geral, como sensores, câmeras, lousas digitais, catracas, medidores, controladoras de climatização, impressoras em rede e equipamentos de laboratório. Não se incluem computadores pessoais, notebooks, celulares, servidores nem equipamentos ativos de rede.</dd>
+  <dt>Usuário</dt>
+  <dd>Pessoa (estudante, docente, pesquisador ou técnico-administrativo) que acessa a plataforma com sua conta institucional.</dd>
+  <dt>Responsável pelo dispositivo</dt>
+  <dd>Usuário que cadastrou um dispositivo, ou a quem ele foi atribuído, e que responde por ele perante a instituição.</dd>
+  <dt>Administrador de unidade</dt>
+  <dd>Usuário designado pela instituição para gerenciar os dispositivos, as aprovações, os eventos e os bloqueios de um campus, departamento ou laboratório.</dd>
+  <dt>Superusuário institucional</dt>
+  <dd>Usuário designado pela instituição para definir parâmetros globais, unidades e políticas, com visão do conjunto da instituição.</dd>
+  <dt>Fingerprinting (IoT-ID)</dt>
+  <dd>Técnica de identificação de um dispositivo a partir de características do seu tráfego de rede, usada para manter o inventário consistente mesmo quando o endereço MAC muda ou é randomizado.</dd>
+  <dt>Classificação de risco</dt>
+  <dd>Categoria atribuída pela plataforma a cada dispositivo, que define a rede sem fio (SSID) e o segmento (VLAN) a que ele é direcionado.</dd>
+  <dt>Criticidade</dt>
+  <dd>Grau de impacto de uma indisponibilidade temporária do dispositivo: baixa, média ou alta.</dd>
+  <dt>Evento de segurança</dt>
+  <dd>Registro gerado pelas sondas de monitoramento (Suricata, Snort e Zeek) quando o tráfego de um dispositivo corresponde a uma regra de detecção, classificado por severidade.</dd>
+  <dt>Bloqueio</dt>
+  <dd>Interrupção do acesso de um dispositivo à rede, por meio de regra aplicada no firewall, de forma automática pela plataforma ou manual por um administrador.</dd>
+</dl>
+
+<h2 id="servico">3. O que é o serviço</h2>
+<p>O IoTEdu é uma plataforma aberta para simplificar e proteger o uso de dispositivos IoT em instituições de ensino e pesquisa. Ela permite que o próprio usuário cadastre um dispositivo, sem abrir chamado; registra o equipamento no inventário, associado a um responsável; direciona-o ao segmento de rede adequado; monitora continuamente o seu tráfego; e, quando necessário, bloqueia ou isola o equipamento.</p>
+<p>A plataforma em <a href="https://app-unipampa.iotedu.org">app-unipampa.iotedu.org</a> é a <strong>instância de referência</strong> do IoTEdu, implantada em ambiente de produção na rede da UNIPAMPA e operada pelo GT-IoTEdu no âmbito da Fase 2, com finalidade de validação em ambiente real. Ela gere dispositivos reais e é nela que se aplicam o monitoramento e o bloqueio descritos nestes termos. Por se tratar de piloto de pesquisa, funcionalidades podem mudar, ser incluídas ou removidas ao longo da fase.</p>
+<p>A demonstração em <a href="https://mvp.iotedu.org">mvp.iotedu.org</a> serve para apresentar e experimentar as funcionalidades do MVP. Ela não gere dispositivos reais da rede, e os dados nela inseridos podem ser apagados a qualquer momento. Não insira na demonstração dados pessoais de terceiros nem informações sensíveis sobre equipamentos reais. <span class="falta">[Confirmar se a demonstração tem reinicialização periódica e com que frequência.]</span></p>
+<p>O IoTEdu é instalado na infraestrutura de cada instituição. As instâncias institucionais de outras instituições, inclusive as dos pilotos da Fase 2, são operadas pela própria instituição, que define suas regras locais e é a controladora dos dados ali tratados. Estes termos se aplicam a essas instâncias apenas quando a instituição os adotar expressamente, no todo ou em parte.</p>
+<p>O recorte atual da plataforma contempla dispositivos que se conectam por Wi-Fi ou Ethernet. Tecnologias como LoRaWAN e NB-IoT não são suportadas nesta fase.</p>
+<p>O site <a href="https://iotedu.org">iotedu.org</a> reúne informações sobre o projeto, notícias, publicações e materiais de divulgação. Ele não exige autenticação e não usa ferramentas de analytics, mas é hospedado no GitHub Pages e carrega recursos de terceiros (fontes, bibliotecas e vídeos do YouTube), conforme descrito na Política de Privacidade.</p>
+
+<h2 id="acesso">4. Quem pode usar e como acessar</h2>
+<p>O acesso à plataforma é feito exclusivamente com a identidade da sua instituição de origem, pela federação CAFe. O acesso à demonstração pode usar outros meios de autenticação ou contas de demonstração. <span class="falta">[Confirmar como é o login em mvp.iotedu.org (CAFe, Google ou conta de demonstração) e, se houver login por Google, descrevê-lo também na Política de Privacidade.]</span> A plataforma não recebe nem armazena a sua senha institucional: a autenticação acontece inteiramente no provedor de identidade da sua instituição.</p>
+<p>As credenciais são de <strong>uso pessoal e intransferível</strong>. Todas as ações realizadas com a sua conta são atribuídas a você. Não é permitido usar contas genéricas, compartilhadas ou vinculadas a cargos em vez de pessoas.</p>
+<p>O uso da plataforma com dispositivos reais pressupõe que a sua instituição seja participante. A plataforma opera sobre a rede da própria instituição, e sem implantação não há ambiente a ser gerido: autenticar-se não equivale, por si só, a ter o serviço disponível. Instituições interessadas em participar devem procurar o GT-IoTEdu pelos canais da <a href="#contato">seção 19</a>.</p>
+<p>O acesso depende da manutenção do seu vínculo ativo com a instituição de origem. Encerrado o vínculo (conclusão de curso, desligamento, aposentadoria ou fim de contrato), a instituição deixa de autenticar a sua conta e o acesso cessa, aplicando-se o disposto na <a href="#encerramento">seção 17</a> quanto aos dispositivos sob sua responsabilidade.</p>
+
+<h2 id="deveres">5. Deveres do usuário</h2>
+<p>Ao usar a plataforma, você se compromete a:</p>
 <ul>
-  <li>informar dados verdadeiros sobre o equipamento e sua finalidade;</li>
-  <li>cadastrar apenas dispositivos que você efetivamente utilize ou administre;</li>
-  <li>manter o equipamento em condições razoáveis de segurança, aplicando
-      atualizações de firmware quando disponíveis e alterando senhas padrão de
-      fábrica;</li>
-  <li>manter o cadastro atualizado e remover dispositivos que deixem de ser usados;</li>
-  <li>responder pelas ações originadas do dispositivo na rede.</li>
-</ul>
-<p>
-  Você não deve usar a plataforma ou os dispositivos nela cadastrados para: violar
-  a lei ou as políticas da sua instituição; obter acesso não autorizado a sistemas
-  ou dados; realizar varreduras, ataques ou interferência no funcionamento da rede;
-  contornar os controles de segurança da própria plataforma; ou cadastrar
-  dispositivos em nome de terceiros sem autorização.
-</p>
-
-<h2>4. O que a plataforma faz com seus dispositivos</h2>
-<p>
-  Ao cadastrar um dispositivo, você concorda que ele será: incluído no inventário
-  da instituição, com seu nome como responsável; direcionado ao segmento de rede
-  correspondente à sua classificação de risco; e <strong>monitorado
-  continuamente</strong> quanto ao comportamento de rede.
-</p>
-<p>
-  Você concorda ainda que o dispositivo poderá ter o acesso à rede
-  <strong>bloqueado automaticamente</strong> diante de evento de segurança de alta
-  severidade, ou bloqueado por decisão do administrador da unidade. Em ambos os
-  casos você será notificado e poderá solicitar revisão, conforme a seção 6 da
-  Política de Privacidade.
-</p>
-
-<h2>5. O que oferecemos, e o que não garantimos</h2>
-<p>
-  Esta é a instância de referência de um piloto de pesquisa, oferecida
-  <strong>gratuitamente e no estado em que se encontra</strong>. Não há garantia de
-  disponibilidade ininterrupta, de ausência de falhas ou de preservação integral
-  dos dados diante de incidentes, e não há acordo de nível de serviço (SLA).
-</p>
-<p>
-  O monitoramento de segurança é uma camada adicional de proteção — não substitui
-  os controles de segurança da instituição nem elimina o risco de incidentes. A
-  responsabilidade pela segurança do dispositivo continua sendo de quem o opera.
-</p>
-<p>
-  Poderemos suspender o serviço para manutenção, alterar funcionalidades ou
-  encerrar a instância de referência ao término do GT, com aviso prévio razoável
-  aos usuários e às instituições participantes.
-</p>
-
-<h2>6. Suspensão de acesso</h2>
-<p>
-  O acesso de um usuário pode ser suspenso em caso de descumprimento destes termos,
-  uso que comprometa a segurança ou a disponibilidade da rede, ou por determinação
-  da instituição de origem. Sempre que possível, a suspensão será precedida de
-  comunicação ao usuário.
-</p>
-
-<h2>7. Custos</h2>
-<p>
-  O serviço é gratuito no âmbito da Fase 2 do GT-IoTEdu. Não há assinatura,
-  mensalidade, licenciamento por dispositivo ou área de acesso condicionada a
-  pagamento. O modelo de sustentação da plataforma após o encerramento do GT está
-  em definição; qualquer alteração será comunicada previamente aos usuários, às
-  instituições participantes e à CAFe.
-</p>
-
-<h2>8. Software e propriedade intelectual</h2>
-<p>
-  O IoTEdu é software livre. O código desenvolvido pelo GT tem Apache-2.0 como
-  licença prevista, sujeita à ratificação no fluxo de propriedade intelectual e
-  governança da RNP, e os componentes de terceiros seguem suas respectivas
-  licenças. Os repositórios estão em
-  <a href="https://github.com/GT-IoTEdu">github.com/GT-IoTEdu</a>.
-</p>
-<p>
-  Estes termos não transferem a você qualquer direito sobre as marcas, o nome ou a
-  identidade visual do projeto.
-</p>
-
-<h2>9. Contato</h2>
-<ul>
-  <li>Projeto: <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a></li>
-  <li>Coordenação do GT-IoTEdu:
-      <a href="mailto:diegokreutz@unipampa.edu.br">diegokreutz@unipampa.edu.br</a></li>
-  <li>Site: <a href="https://iotedu.org">iotedu.org</a></li>
+  <li>ler estes termos e a Política de Privacidade, e acompanhar suas atualizações;</li>
+  <li>zelar pela guarda das suas credenciais e encerrar a sessão ao usar equipamentos compartilhados;</li>
+  <li>cadastrar apenas dispositivos IoT, conforme a definição da <a href="#definicoes">seção 2</a>, que você efetivamente utilize ou administre, com autorização da sua unidade quando exigida;</li>
+  <li>informar dados verdadeiros, completos e atualizados sobre cada equipamento, sua finalidade e sua localização;</li>
+  <li>informar corretamente a criticidade do equipamento e observar o disposto na <a href="#criticidade">seção 8</a>;</li>
+  <li>manter o equipamento em condições razoáveis de segurança, alterando senhas padrão de fábrica, desativando serviços desnecessários e aplicando atualizações de firmware quando disponíveis;</li>
+  <li>manter o cadastro atualizado e remover dispositivos que deixem de ser usados, sejam descartados ou transferidos a outra pessoa;</li>
+  <li>acompanhar as notificações enviadas ao seu e-mail institucional sobre os seus dispositivos e atender, em prazo razoável, às solicitações de correção feitas pelo GT-IoTEdu ou pelo administrador da unidade;</li>
+  <li>comunicar imediatamente qualquer suspeita de uso indevido da sua conta ou de comprometimento de um dispositivo sob sua responsabilidade;</li>
+  <li>responder pelas ações originadas dos dispositivos sob sua responsabilidade na rede.</li>
 </ul>
 
-<h2>10. Alterações e foro</h2>
-<p>
-  Estes termos podem ser alterados, com publicação nesta página e atualização da
-  versão e da data. Mudanças relevantes serão comunicadas aos usuários.
-</p>
-<p>
-  Aplica-se a legislação brasileira, em especial a Lei nº 13.709/2018 (LGPD) e a
-  Lei nº 12.965/2014 (Marco Civil da Internet). Fica eleito o foro da
-  <span class="falta">Justiça Federal, Seção Judiciária do Rio Grande do Sul</span>
-  para dirimir controvérsias.
-  <span class="falta">[É o foro padrão para autarquia federal, mas confirmar com a
-  procuradoria da UNIPAMPA.]</span>
-</p>
+<h2 id="vedacoes">6. Usos proibidos</h2>
+<p>A plataforma e a rede por ela gerida destinam-se a atividades de ensino, pesquisa, extensão e gestão institucional. É vedado usar a plataforma, ou os dispositivos nela cadastrados, para:</p>
+<ul>
+  <li>violar a legislação vigente, as normas da sua instituição ou direitos de terceiros, inclusive direitos autorais e de propriedade intelectual;</li>
+  <li>acessar sistemas, dados ou recursos, em redes locais ou externas, sem a devida autorização, ou permitir que outros o façam;</li>
+  <li>realizar varreduras, captura de tráfego, ataques, testes de intrusão ou qualquer ação que viole a segurança computacional, salvo em atividade de pesquisa formalmente autorizada pela instituição e comunicada previamente ao GT-IoTEdu;</li>
+  <li>causar ou tentar causar indisponibilidade de serviços, degradar o desempenho da rede ou prejudicar as atividades de outros usuários;</li>
+  <li>contornar, desativar ou burlar os controles da própria plataforma, como a segmentação de rede, o monitoramento, a identificação por fingerprinting ou um bloqueio aplicado;</li>
+  <li>falsificar ou alterar a identificação de um dispositivo (por exemplo, clonar endereço MAC) para se passar por outro equipamento;</li>
+  <li>conectar ao segmento IoT roteadores, pontos de acesso ou compartilhamentos de conexão que deem acesso à rede a equipamentos não cadastrados;</li>
+  <li>cadastrar dispositivos em nome de terceiros sem autorização, ou compartilhar suas credenciais com qualquer pessoa;</li>
+  <li>explorar falhas da plataforma em vez de comunicá-las conforme a <a href="#incidentes">seção 12</a>;</li>
+  <li>usar a plataforma ou a rede para fins comerciais ou lucrativos alheios às atividades institucionais;</li>
+  <li>tratar dados pessoais obtidos por meio da plataforma em desacordo com a Lei nº 13.709/2018 (LGPD), inclusive divulgar informações de outros usuários ou de seus dispositivos;</li>
+  <li>realizar engenharia reversa da instância em operação com o objetivo de comprometer sua segurança (o código-fonte é aberto e pode ser estudado livremente no repositório público).</li>
+</ul>
+
+<h2 id="dispositivos">7. O que a plataforma faz com os dispositivos</h2>
+<p>O ciclo de vida de um dispositivo na plataforma tem cinco etapas. Ao cadastrar um dispositivo, você concorda com cada uma delas.</p>
+<table>
+  <tr><th>Etapa</th><th>O que acontece</th><th>Quem age</th></tr>
+  <tr><td>1. Cadastro</td><td>O dispositivo é registrado no inventário da instituição, com o seu nome como responsável, e pode depender de aprovação do administrador da unidade.</td><td>Você</td></tr>
+  <tr><td>2. Classificação</td><td>A plataforma atribui uma categoria de risco e direciona o dispositivo ao SSID e à VLAN correspondentes.</td><td>A plataforma</td></tr>
+  <tr><td>3. Monitoramento</td><td>Três motores de detecção (Suricata, Snort e Zeek) observam continuamente o tráfego do dispositivo e registram eventos de segurança.</td><td>A plataforma</td></tr>
+  <tr><td>4. Resposta</td><td>Evento de severidade alta gera regra de bloqueio no firewall, e o responsável é notificado.</td><td>A plataforma</td></tr>
+  <tr><td>5. Revisão</td><td>Evento de severidade menor segue para análise do administrador da unidade, que decide se age.</td><td>O administrador</td></tr>
+</table>
+<p>Para manter o inventário consistente, a plataforma identifica os dispositivos também por <strong>fingerprinting</strong> (módulo IoT-ID), a partir de características do tráfego de rede, e pode realizar varreduras de identificação no segmento IoT. Essa identificação diz respeito ao equipamento e não ao conteúdo das comunicações.</p>
+<p>O monitoramento se restringe ao segmento de rede dedicado aos dispositivos IoT e descreve o comportamento dos equipamentos, não a navegação pessoal dos usuários. Os detalhes estão na Política de Privacidade.</p>
+<p>O bloqueio automático pode ocorrer em poucos segundos após a detecção, sem intervenção humana prévia. Ele também pode ser aplicado por decisão do administrador da unidade. Em ambos os casos:</p>
+<ul>
+  <li>você será notificado pelo e-mail institucional, com a indicação do motivo;</li>
+  <li>poderá solicitar a <strong>revisão humana</strong> da decisão, nos termos do art. 20 da LGPD, pela própria plataforma ou pelos canais da <a href="#contato">seção 19</a>;</li>
+  <li>o desbloqueio poderá depender da correção do problema no equipamento.</li>
+</ul>
+<p>Os mecanismos de detecção evoluem ao longo do projeto e poderão incluir modelos de aprendizado de máquina. Qualquer mecanismo novo que passe a decidir bloqueios automaticamente será informado nesta página e continuará sujeito à revisão humana.</p>
+
+<h2 id="criticidade">8. Equipamentos críticos</h2>
+<p>Como a plataforma pode bloquear um dispositivo automaticamente, a indisponibilidade de um equipamento é uma consequência prevista do seu funcionamento, e não uma falha. Por isso:</p>
+<ul>
+  <li>durante os pilotos, a migração começa por dispositivos de <strong>baixa criticidade</strong>, cuja interrupção não afeta atividade relevante;</li>
+  <li>dispositivos de <strong>média ou alta criticidade</strong>, como os que sustentam experimento de longa duração, controle de acesso físico, segurança patrimonial ou serviço essencial, só devem ser cadastrados depois que o responsável e o administrador da unidade definirem como tratar um eventual bloqueio (por exemplo, triagem humana antes do bloqueio, janela de manutenção ou alternativa de contingência);</li>
+  <li>equipamentos cuja interrupção possa causar risco à vida, à saúde ou à integridade física, como equipamentos médicos ou de suporte a pacientes, <strong>não devem ser cadastrados</strong> na plataforma experimental <span class="falta">[validar esta vedação com a coordenação, sobretudo diante dos contatos com hospitais previstos na Fase 2]</span>.</li>
+</ul>
+<p>O GT-IoTEdu não responde por perdas decorrentes do bloqueio de dispositivo cuja criticidade tenha sido omitida ou informada incorretamente.</p>
+
+<h2 id="perfis">9. Perfis administrativos e instituições</h2>
+<p>Os perfis de administrador de unidade e de superusuário institucional são atribuídos por indicação da instituição participante. Quem exerce esses perfis, além dos deveres da <a href="#deveres">seção 5</a>, compromete-se a:</p>
+<ul>
+  <li>usar o acesso ampliado apenas para a gestão e a segurança da rede da sua unidade ou instituição;</li>
+  <li>tratar com sigilo as informações de outros usuários e de seus dispositivos;</li>
+  <li>analisar em prazo razoável os pedidos de aprovação de cadastro, os eventos encaminhados para triagem e os pedidos de revisão de bloqueio;</li>
+  <li>registrar o motivo de cada bloqueio ou desbloqueio manual;</li>
+  <li>comunicar ao GT-IoTEdu quando deixar a função, para que o perfil seja revogado.</li>
+</ul>
+<p>A participação de uma instituição no programa de pilotos da Fase 2 não envolve licença de software nem contrato de fornecimento. Cabe à instituição participante:</p>
+<ul>
+  <li>providenciar uma VLAN e um SSID dedicados, um servidor com duas interfaces de rede e uma faixa de endereços IP;</li>
+  <li>indicar um ponto de contato na equipe de TIC e manter atualizados os seus administradores;</li>
+  <li>manter o seu provedor de identidade na CAFe com informações corretas;</li>
+  <li>definir as regras locais de uso, inclusive a política de bloqueio automático e a classificação de criticidade;</li>
+  <li>apurar, conforme suas normas internas, as violações cometidas por seus usuários.</li>
+</ul>
+<p>Em contrapartida, o GT-IoTEdu oferece a plataforma completa e aberta e apoio direto à implantação, sem custo durante a Fase 2. Os termos específicos de cada piloto podem ser formalizados em instrumento próprio entre a instituição e a UNIPAMPA. <span class="falta">[Confirmar se há termo de adesão ou acordo de cooperação padrão para as instituições piloto e citá-lo aqui.]</span></p>
+
+<h2 id="operadora">10. Responsabilidades do GT-IoTEdu</h2>
+<p>Cabe ao GT-IoTEdu, como operador da plataforma:</p>
+<ul>
+  <li>manter a plataforma em funcionamento, zelando por sua qualidade e segurança dentro dos recursos de um projeto de pesquisa;</li>
+  <li>tratar os dados pessoais conforme a LGPD e a Política de Privacidade;</li>
+  <li>comunicar aos usuários, com antecedência mínima de <span class="falta">72 horas</span>, manutenções programadas e mudanças relevantes no serviço; manutenções emergenciais para correção de falhas graves poderão ocorrer sem aviso prévio;</li>
+  <li>notificar os responsáveis sobre eventos de segurança e bloqueios que envolvam seus dispositivos;</li>
+  <li>atender aos pedidos de revisão e às solicitações dos titulares de dados;</li>
+  <li>manter atualizada a relação de componentes de terceiros e suas licenças;</li>
+  <li>publicar estes termos e suas atualizações de forma acessível.</li>
+</ul>
+
+<h2 id="garantias">11. Disponibilidade e limites de responsabilidade</h2>
+<p>A plataforma e a demonstração são versões experimentais de um projeto de pesquisa, oferecida <strong>gratuitamente e no estado em que se encontra</strong>. Não há garantia de disponibilidade ininterrupta, de ausência de falhas ou de preservação integral dos dados diante de incidentes, e não há acordo de nível de serviço (SLA). Metas de disponibilidade definidas para os pilotos são critérios de avaliação do projeto, e não garantias ao usuário.</p>
+<p>O monitoramento de segurança é uma camada adicional de proteção. Ele não substitui os controles de segurança da instituição, não detecta todas as ameaças e pode gerar falsos positivos, isto é, bloquear um dispositivo que não estava comprometido. A responsabilidade pela segurança do dispositivo continua sendo de quem o opera.</p>
+<p>O GT-IoTEdu, a UNIPAMPA, a RNP e o CNPq não se responsabilizam por:</p>
+<ul>
+  <li>danos causados por dispositivos cadastrados ou por condutas dos usuários;</li>
+  <li>indisponibilidade de um dispositivo decorrente de bloqueio aplicado nos termos das seções <a href="#dispositivos">7</a> e <a href="#criticidade">8</a>;</li>
+  <li>falhas de conectividade, de equipamentos ou de serviços de terceiros, inclusive do provedor de identidade da instituição de origem e do firewall corporativo da instituição, quando for ele que aplica as regras;</li>
+  <li>informações incorretas fornecidas pelos usuários no cadastro;</li>
+  <li>perda de dados da demonstração decorrente de sua reinicialização.</li>
+</ul>
+<p>Essas limitações não afastam responsabilidades que a lei não permita excluir.</p>
+
+<h2 id="incidentes">12. Incidentes e vulnerabilidades</h2>
+<p>Se você identificar um incidente de segurança envolvendo a plataforma ou um dispositivo sob sua responsabilidade, comunique-o imediatamente ao GT-IoTEdu e ao administrador da sua unidade.</p>
+<p>Se encontrar uma vulnerabilidade na plataforma ou no código-fonte, comunique-a de forma privada pelo e-mail <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a>, com a descrição necessária para reproduzi-la, e não a divulgue publicamente antes de receber retorno da equipe. Pesquisadores que agirem de boa-fé, sem acessar dados de terceiros além do mínimo necessário para demonstrar a falha e sem prejudicar o serviço, não serão tratados como violadores destes termos.</p>
+
+<h2 id="sancoes">13. Violações e sanções</h2>
+<p>O descumprimento destes termos pode levar, conforme a gravidade e de forma proporcional:</p>
+<ul>
+  <li>a advertência ao usuário;</li>
+  <li>ao bloqueio, temporário ou definitivo, de um ou mais dispositivos;</li>
+  <li>à suspensão ou ao cancelamento do acesso à plataforma;</li>
+  <li>à comunicação do fato à instituição de origem, para apuração conforme suas normas internas;</li>
+  <li>à comunicação às autoridades competentes, quando houver indício de infração penal.</li>
+</ul>
+<p>O usuário responde pelas violações nas esferas administrativa, civil e penal, conforme a legislação e as normas da sua instituição. Sempre que possível, a medida será precedida de comunicação ao usuário. Em situações que ponham em risco imediato a segurança ou a disponibilidade da rede, a medida poderá ser aplicada de imediato, com comunicação posterior. Em qualquer caso, o usuário poderá apresentar esclarecimentos e pedir revisão.</p>
+
+<h2 id="privacidade">14. Privacidade, registros e pesquisa</h2>
+<p>O tratamento dos dados pessoais, inclusive os atributos recebidos da CAFe, os dados dos dispositivos e os registros de monitoramento, está descrito na <a href="https://iotedu.org/privacidade.html">Política de Privacidade</a>. Os dados da plataforma residem na infraestrutura da UNIPAMPA; nas instâncias institucionais de outras instituições, permanecem na infraestrutura de cada uma.</p>
+<p>Em cumprimento ao art. 15 do Marco Civil da Internet, a plataforma mantém registros de acesso à aplicação, sob sigilo e em ambiente controlado, pelo prazo de 6 meses. Esses registros, assim como os demais dados, só serão fornecidos a terceiros mediante requisição de autoridade competente, nos termos da lei.</p>
+<p>O IoTEdu é também um projeto de pesquisa. Por isso:</p>
+<ul>
+  <li>indicadores produzidos a partir do uso da plataforma (tempo de cadastro, número de dispositivos, eventos tratados, tempo de contenção) são usados em relatórios do GT e em publicações científicas apenas de forma <strong>agregada e anônima</strong>, sem identificar pessoas nem dispositivos individuais, e, nos pilotos, na forma autorizada pela instituição participante;</li>
+  <li>os datasets públicos do projeto são gerados em ambientes controlados de teste (IoT-Zoo e AttackZoo) e não contêm tráfego de usuários ou de dispositivos reais das instituições;</li>
+  <li>a participação em questionários, entrevistas ou testes de usabilidade é voluntária e não é condição para usar a plataforma.</li>
+</ul>
+<p>Atualmente, a plataforma não compartilha dados entre instituições. O roteiro do projeto prevê, no futuro, o compartilhamento controlado de indicadores técnicos de ameaça entre instituições participantes, como listas de dispositivos comprometidos e padrões de ataque. Se essa funcionalidade for adotada, estes termos e a Política de Privacidade serão atualizados antes, com descrição do que será compartilhado, e os usuários serão avisados.</p>
+
+<h2 id="custos">15. Custos</h2>
+<p>O uso da plataforma é gratuito no âmbito da Fase 2 do GT-IoTEdu. Não há assinatura, mensalidade, licenciamento por dispositivo ou funcionalidade condicionada a pagamento, e a pilha de software é integralmente livre. O modelo de sustentação após o encerramento do GT está em definição e pode incluir a oferta como serviço no ecossistema RNP+. Qualquer alteração será comunicada previamente aos usuários, às instituições participantes e à CAFe, e nenhuma cobrança será aplicada retroativamente.</p>
+
+<h2 id="propriedade">16. Software livre e propriedade intelectual</h2>
+<p>O IoTEdu é software livre. O código desenvolvido pelo GT, inclusive o IoTEdu Core, o IoT-ID e as integrações, tem Apache-2.0 como licença prevista, sujeita à ratificação no fluxo de propriedade intelectual e governança da RNP. Os componentes de terceiros (como Suricata, Snort, Zeek, pfSense, MySQL e Grafana) seguem suas respectivas licenças, e nenhum deles exige pagamento. Os repositórios estão em <a href="https://github.com/GT-IoTEdu">github.com/GT-IoTEdu</a>.</p>
+<p>Os textos, imagens e materiais publicados em <a href="https://iotedu.org">iotedu.org</a> podem ser citados e reproduzidos para fins não comerciais, com indicação da fonte. <span class="falta">[Definir se o conteúdo do site e os datasets terão licença explícita, por exemplo CC BY 4.0.]</span> Artigos e apresentações publicados por membros do GT seguem os direitos dos respectivos autores e editoras.</p>
+<p>Estes termos não transferem a você qualquer direito sobre as marcas, o nome ou a identidade visual do IoTEdu, da UNIPAMPA, da RNP ou do CNPq.</p>
+
+<h2 id="encerramento">17. Encerramento da conta e do serviço</h2>
+<p>Você pode deixar de usar a plataforma a qualquer momento. Antes disso, remova os dispositivos cadastrados ou solicite a transferência da responsabilidade por eles a outro usuário, por meio do administrador da sua unidade.</p>
+<p>Quando o vínculo institucional se encerrar, os dispositivos que permanecerem sob sua responsabilidade poderão ser transferidos pelo administrador da unidade a outro responsável ou removidos do inventário, com possível perda de acesso à rede. Os dados pessoais associados à conta seguem os prazos da Política de Privacidade.</p>
+<p>O GT-IoTEdu poderá alterar funcionalidades ou encerrar a plataforma ou a demonstração ao término do projeto, com aviso prévio de pelo menos <span class="falta">30 dias</span> aos usuários e às instituições participantes, indicando o destino dos dados. Como o IoTEdu é software livre e instalado na infraestrutura da instituição, cada instituição participante pode manter a sua instância em operação por conta própria após o encerramento do projeto.</p>
+
+<h2 id="alteracoes">18. Alterações destes termos</h2>
+<p>Estes termos podem ser alterados para refletir mudanças no serviço, na legislação ou nas políticas da RNP e das instituições participantes. Cada alteração será publicada nesta página, com atualização da versão, da data e do histórico da <a href="#versoes">seção 21</a>. Mudanças relevantes serão comunicadas aos usuários pelo e-mail institucional antes de entrarem em vigor. O uso da plataforma após a vigência da nova versão indica a sua concordância com ela.</p>
+
+<h2 id="contato">19. Canais de atendimento</h2>
+<ul>
+  <li>Dúvidas, revisão de bloqueios, incidentes e vulnerabilidades: <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a></li>
+  <li>Coordenação do GT-IoTEdu e participação de instituições: <a href="mailto:diegokreutz@unipampa.edu.br">diegokreutz@unipampa.edu.br</a></li>
+  <li>Laboratório IoTEdu no RNP+: <a href="https://rnpmais.rnp.br/lab/iotedu">rnpmais.rnp.br/lab/iotedu</a></li>
+  <li>Encarregado de dados (LGPD) da UNIPAMPA: <span class="falta">[nome e e-mail do encarregado]</span></li>
+  <li>Ouvidoria da UNIPAMPA, para reclamações, sugestões e denúncias, nos termos da Lei nº 13.460/2017: <span class="falta">[link da Ouvidoria / Fala.BR]</span></li>
+  <li>Site do projeto: <a href="https://iotedu.org">iotedu.org</a></li>
+</ul>
+<p>Buscaremos responder em até <span class="falta">15 dias</span>. Solicitações urgentes de segurança terão prioridade. Nas instâncias institucionais, o primeiro atendimento é feito pela equipe de TIC da própria instituição.</p>
+
+<h2 id="legislacao">20. Legislação aplicável e foro</h2>
+<p>Estes termos são regidos pela legislação brasileira, em especial:</p>
+<ul>
+  <li>Lei nº 13.709/2018, Lei Geral de Proteção de Dados Pessoais (LGPD);</li>
+  <li>Lei nº 12.965/2014, Marco Civil da Internet, e o Decreto nº 8.771/2016;</li>
+  <li>Lei nº 13.460/2017, que dispõe sobre a participação, a proteção e a defesa dos direitos do usuário dos serviços públicos;</li>
+  <li>Lei nº 14.129/2021, Lei do Governo Digital;</li>
+  <li>Lei nº 12.737/2012, que tipifica delitos informáticos;</li>
+  <li>as normas de segurança da informação e de uso de recursos de TI da UNIPAMPA e da instituição de origem do usuário. <span class="falta">[Citar a resolução ou política de segurança da informação da UNIPAMPA aplicável.]</span></li>
+</ul>
+<p>Casos não previstos nestes termos serão resolvidos pela coordenação do GT-IoTEdu, em conjunto com a instituição de origem do usuário quando necessário.</p>
+<p>Fica eleito o foro da <span class="falta">Justiça Federal, Seção Judiciária do Rio Grande do Sul</span> para dirimir controvérsias. <span class="falta">[É o foro usual para autarquia federal, mas confirmar com a procuradoria da UNIPAMPA, inclusive a subseção.]</span></p>
+
+<h2 id="versoes">21. Histórico de versões</h2>
+<table>
+  <tr><th>Versão</th><th>Data</th><th>Descrição</th></tr>
+  <tr><td>1.0</td><td><span class="falta">[data]</span></td><td>Versão inicial, restrita à instância de referência.</td></tr>
+  <tr><td>2.0</td><td><span class="falta">[data de publicação]</span></td><td>Inclusão de <code>iotedu.org</code> e <code>mvp.iotedu.org</code> ao lado de <code>app-unipampa.iotedu.org</code>, com distinção entre plataforma, demonstração e instâncias institucionais; definições; ciclo de vida do dispositivo e fingerprinting; equipamentos críticos; usos proibidos detalhados; perfis administrativos e participação de instituições piloto; responsabilidades do GT; vulnerabilidades; sanções graduais; uso em pesquisa; encerramento; canais de atendimento e legislação aplicável.</td></tr>
+</table>
 
 <footer>
-  GT-IoTEdu · <a href="https://iotedu.org">iotedu.org</a> ·
-  <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a><br>
+  GT-IoTEdu · <a href="https://iotedu.org">iotedu.org</a> · <a href="https://app-unipampa.iotedu.org">app-unipampa.iotedu.org</a> · <a href="https://mvp.iotedu.org">mvp.iotedu.org</a> · <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a><br>
   Apoio: RNP (GT-IoTEdu) e CNPq, processo 409743/2025-9
 </footer>
 

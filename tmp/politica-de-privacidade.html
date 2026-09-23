@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Política de Privacidade — IoTEdu</title>
+<title>Política de Privacidade · IoTEdu</title>
 <style>
   :root { color-scheme: light; }
   body {
@@ -21,6 +21,13 @@
   th { background: #f8fafc; font-weight: 600; }
   code { background: #f1f5f9; padding: 1px 5px; border-radius: 3px; font-size: .88em; }
   a { color: #2563eb; }
+  dt { font-weight: 600; margin-top: .7em; }
+  dd { margin: .1em 0 0 1.2em; }
+  .resumo { border-left: 3px solid #2563eb; padding: 4px 0 4px 18px; margin: 0 0 2em; }
+  .resumo ul { margin: .4em 0 0; padding-left: 1.2em; }
+  .indice { font-size: .92rem; columns: 2; column-gap: 32px; padding-left: 1.4em; margin: 0 0 1em; }
+  .indice li { break-inside: avoid; }
+  @media (max-width: 560px) { .indice { columns: 1; } }
   .falta { color: #dc2626; font-weight: 700; background: #fef2f2;
            padding: 1px 5px; border-radius: 3px; border: 1px dashed #fca5a5; }
   .aviso { background: #fffbeb; border: 1px solid #fde68a; border-left: 4px solid #f59e0b;
@@ -33,254 +40,214 @@
 <body>
 
 <div class="aviso">
-  <strong>RASCUNHO PARA REVISÃO — não publicar ainda.</strong><br>
-  Tudo que aparece <span class="falta">em vermelho</span> ainda precisa ser
-  confirmado antes da publicação. O restante do texto foi levantado diretamente do
-  código da plataforma e pode ser considerado correto.
+  <strong>RASCUNHO PARA REVISÃO: não publicar ainda.</strong><br>
+  Tudo que aparece <span class="falta">em vermelho</span> ainda precisa ser confirmado antes da publicação. Esta versão foi alinhada aos <a href="https://iotedu.org/termos.html">Termos de Uso</a> 2.0, à Política da Comunidade Acadêmica Federada (CAFE.N.001), ao White Paper do MVP (Fase 1, E7) e ao Plano de Desenvolvimento da Modelagem do Produto (Fase 2, E2, versão 2.0).
   <br><br>
-  Publicar em <code>https://iotedu.org/privacidade.html</code>, linkar no rodapé do
-  site e apontar o <code>mdui:PrivacyStatementURL</code> do metadado do SP para
-  este endereço. Remover esta caixa antes de publicar.
+  Publicar em <code>https://iotedu.org/privacidade.html</code>, linkar no rodapé do site e nas telas de login de <code>app-unipampa.iotedu.org</code> e <code>mvp.iotedu.org</code>, e apontar o <code>mdui:PrivacyStatementURL</code> do metadado do SP na CAFe para este endereço. Remover esta caixa antes de publicar.
 </div>
 
 <h1>Política de Privacidade</h1>
 <p class="sub">
-  IoTEdu — Instância de referência do GT-IoTEdu<br>
-  Versão 1.0 · Vigente a partir de <span class="falta">[data de publicação]</span>
+  IoTEdu: plataforma aberta de gestão e segurança de dispositivos IoT em redes acadêmicas<br>
+  Versão 2.0 · Vigente a partir de <span class="falta">[data de publicação]</span>
 </p>
 
-<h2>1. Quem somos</h2>
-<p>
-  O IoTEdu é uma plataforma de gestão e segurança de dispositivos de Internet das
-  Coisas em redes acadêmicas, desenvolvida pelo GT-IoTEdu, Grupo de Trabalho
-  apoiado pela Rede Nacional de Ensino e Pesquisa (RNP) e pelo CNPq (processo
-  409743/2025-9).
-</p>
-<p>
-  Esta política se aplica à <strong>instância de referência</strong> da plataforma,
-  disponível em <a href="https://app-unipampa.iotedu.org">app-unipampa.iotedu.org</a>,
-  operada pela Universidade Federal do Pampa (UNIPAMPA) no âmbito da Fase 2 do GT.
-</p>
-<p>
-  O IoTEdu é um software instalado na infraestrutura de cada instituição adotante.
-  Quando outra instituição opera a sua própria instância, <strong>ela</strong> é a
-  controladora dos dados ali tratados e responde por sua própria política de
-  privacidade. Esta política não alcança essas instalações.
-</p>
+<div class="resumo">
+  <strong>Em poucas palavras</strong>
+  <ul>
+    <li>Recebemos da sua instituição, pela CAFe, apenas quatro dados: identificador, e-mail, nome e vínculo. Nunca vemos a sua senha.</li>
+    <li>Registramos os dispositivos que você cadastra e os identificamos pelo tráfego de rede (fingerprinting), para manter o inventário correto.</li>
+    <li>Monitoramos o segmento de rede dos dispositivos IoT, e não a sua navegação pessoal. Como cada dispositivo está ligado a você, tratamos esses registros como dados pessoais.</li>
+    <li>Os dados da plataforma ficam em servidor da UNIPAMPA. Não vendemos, não cedemos e não compartilhamos dados com terceiros.</li>
+    <li>O bloqueio automático de um dispositivo é uma decisão automatizada: você é avisado e pode pedir revisão humana.</li>
+    <li>O que usamos em pesquisa e publicações é agregado e anônimo.</li>
+  </ul>
+  <p>Este resumo não substitui o texto completo abaixo.</p>
+</div>
+
+<ol class="indice">
+  <li><a href="#quem">Quem somos e a que se aplica</a></li>
+  <li><a href="#dados">Que dados tratamos</a></li>
+  <li><a href="#bases">Bases legais</a></li>
+  <li><a href="#finalidades">Para que usamos, e para que não usamos</a></li>
+  <li><a href="#pesquisa">Uso em pesquisa</a></li>
+  <li><a href="#compartilhamento">Com quem compartilhamos</a></li>
+  <li><a href="#automatizadas">Decisões automatizadas</a></li>
+  <li><a href="#retencao">Por quanto tempo guardamos</a></li>
+  <li><a href="#seguranca">Como protegemos</a></li>
+  <li><a href="#direitos">Seus direitos</a></li>
+  <li><a href="#encerramento">Encerramento do projeto</a></li>
+  <li><a href="#mudancas">Mudanças nesta política</a></li>
+  <li><a href="#glossario">Glossário</a></li>
+</ol>
+
+<h2 id="quem">1. Quem somos e a que se aplica</h2>
+<p>O IoTEdu é uma plataforma aberta de gestão e segurança de dispositivos de Internet das Coisas em redes acadêmicas, desenvolvida pelo GT-IoTEdu, Grupo de Trabalho coordenado pela Universidade Federal do Pampa (UNIPAMPA), com apoio da Rede Nacional de Ensino e Pesquisa (RNP) e do CNPq (processo 409743/2025-9).</p>
+<p>Esta política se aplica a três ambientes, todos sob responsabilidade da UNIPAMPA:</p>
+<table>
+  <tr><th>Ambiente</th><th>O que é</th><th>Dados tratados</th></tr>
+  <tr><td><a href="https://app-unipampa.iotedu.org">app-unipampa.iotedu.org</a></td><td>A <strong>plataforma</strong>: instância de referência implantada em produção na rede da UNIPAMPA, com dispositivos reais.</td><td>Seções 2.1 a 2.6</td></tr>
+  <tr><td><a href="https://mvp.iotedu.org">mvp.iotedu.org</a></td><td>A <strong>demonstração</strong> do MVP, para apresentar e experimentar funcionalidades, sem gestão de dispositivos reais.</td><td>Seção 2.7</td></tr>
+  <tr><td><a href="https://iotedu.org">iotedu.org</a></td><td>O <strong>site</strong> do projeto, informativo e sem login.</td><td>Seção 2.8</td></tr>
+</table>
+<p>O IoTEdu é um software instalado na infraestrutura de cada instituição adotante. Quando outra instituição opera a sua própria instância, inclusive nos pilotos da Fase 2, <strong>ela</strong> é a controladora dos dados ali tratados e responde por sua própria política de privacidade. Esta política não alcança essas instalações, embora possa ser adotada por elas como modelo.</p>
 <ul>
   <li><strong>Controladora:</strong> Universidade Federal do Pampa (UNIPAMPA)</li>
-  <li><strong>Encarregado de dados (DPO):</strong>
-      <span class="falta">[nome e e-mail do encarregado de dados da UNIPAMPA]</span></li>
-  <li><strong>Contato do projeto:</strong>
-      <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a></li>
+  <li><strong>Encarregado de dados (DPO):</strong> <span class="falta">[nome e e-mail do encarregado de dados da UNIPAMPA]</span></li>
+  <li><strong>Contato do projeto:</strong> <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a></li>
 </ul>
+<p>As regras de uso estão nos <a href="https://iotedu.org/termos.html">Termos de Uso</a>, que devem ser lidos em conjunto com esta política.</p>
 
-<h2>2. Que dados tratamos</h2>
+<h3>Modelo federado: quem controla o quê</h3>
+<p>O acesso à plataforma usa a <strong>Comunidade Acadêmica Federada (CAFe)</strong>, mantida pela RNP. Nesse modelo, a sua instituição de origem atua como <strong>Provedor de Identidade (IdP)</strong>: ela mantém a sua conta, garante a exatidão dos atributos que libera e responde pela política de privacidade que rege esse cadastro. O IoTEdu atua como <strong>Provedor de Serviço (SP)</strong>: a partir do momento em que recebemos os seus atributos, respondemos pelo que fazemos com eles, nos termos desta política.</p>
+<p>Como SP da federação, seguimos a <a href="https://plataforma.rnp.br/arquivos/documents/nova-politica-idps-cafe-final.pdf">Política da Comunidade Acadêmica Federada (RNP, CAFE.N.001)</a>: respeitamos a privacidade dos atributos recebidos do seu IdP e não os compartilhamos, divulgamos ou armazenamos de forma permanente além do necessário para as finalidades descritas na <a href="#finalidades">seção 4</a>.</p>
+<p>Se você não concordar com esta política, a alternativa é não se autenticar na plataforma. Não existe modo de uso anônimo ou fora da federação: a autenticação pela CAFe é a única forma de acesso à plataforma, e o compartilhamento mínimo de atributos descrito na seção 2.1 é condição necessária para isso. A demonstração segue regras próprias, descritas na seção 2.7.</p>
+
+<h2 id="dados">2. Que dados tratamos</h2>
 
 <h3>2.1 Dados recebidos da federação CAFe</h3>
-<p>
-  Quando você entra na plataforma usando a identidade da sua instituição, o
-  provedor de identidade dela nos envia:
-</p>
+<p>Quando você entra na plataforma usando a identidade da sua instituição, o provedor de identidade dela nos envia:</p>
 <table>
   <tr><th>Atributo</th><th>O que é</th><th>Para que usamos</th></tr>
-  <tr>
-    <td><code>eduPersonPrincipalName</code></td>
-    <td>Identificador único da sua conta na instituição</td>
-    <td>Identificar sua conta na plataforma de forma estável</td>
-  </tr>
-  <tr>
-    <td><code>mail</code></td>
-    <td>E-mail institucional</td>
-    <td>Identificar a conta e notificar você sobre eventos que envolvam seus dispositivos</td>
-  </tr>
-  <tr>
-    <td><code>givenName</code> e <code>sn</code></td>
-    <td>Nome e sobrenome</td>
-    <td>Exibir o nome do responsável nas telas de inventário</td>
-  </tr>
-  <tr>
-    <td><code>eduPersonAffiliation</code></td>
-    <td>Seu vínculo com a instituição (aluno, docente, técnico)</td>
-    <td>Definir seu perfil de acesso na plataforma</td>
-  </tr>
+  <tr><td><code>eduPersonPrincipalName</code></td><td>Identificador único da sua conta na instituição</td><td>Identificar sua conta na plataforma de forma estável</td></tr>
+  <tr><td><code>mail</code></td><td>E-mail institucional</td><td>Identificar a conta e notificar você sobre eventos que envolvam seus dispositivos</td></tr>
+  <tr><td><code>givenName</code> e <code>sn</code></td><td>Nome e sobrenome</td><td>Exibir o nome do responsável nas telas de inventário</td></tr>
+  <tr><td><code>eduPersonAffiliation</code></td><td>Seu vínculo com a instituição (aluno, docente, técnico)</td><td>Definir seu perfil de acesso na plataforma</td></tr>
 </table>
-<p>
-  Não recebemos e não solicitamos CPF, matrícula, documento de identidade, data de
-  nascimento, endereço, telefone ou qualquer outro dado além dos quatro acima.
-  <strong>Nunca temos acesso à sua senha</strong> — a autenticação acontece
-  inteiramente na sua instituição de origem.
-</p>
+<p>Não recebemos e não solicitamos CPF, matrícula, documento de identidade, data de nascimento, endereço, telefone ou qualquer outro dado além dos quatro acima. <strong>Nunca temos acesso à sua senha</strong>: a autenticação acontece inteiramente na sua instituição de origem.</p>
 
 <h3>2.2 Dados dos dispositivos que você cadastra</h3>
-<p>
-  Ao cadastrar um dispositivo, registramos: endereço MAC, endereço IP atribuído,
-  nome do equipamento (hostname), descrição informada por você, unidade
-  institucional e o vínculo entre o dispositivo e você como responsável, com data e
-  hora.
-</p>
-<p>
-  Registramos também o estado do dispositivo (liberado, aguardando aprovação,
-  bloqueado) e, quando houver bloqueio, o motivo e quem o aplicou.
-</p>
+<p>Ao cadastrar um dispositivo, registramos: endereço MAC, endereço IP atribuído, nome do equipamento (hostname), tipo, finalidade e localização informados por você, criticidade, unidade institucional e o vínculo entre o dispositivo e você como responsável, com data e hora.</p>
+<p>Registramos também a classificação de risco atribuída pela plataforma, o segmento de rede (SSID e VLAN) a que o dispositivo foi direcionado, o seu estado (liberado, aguardando aprovação, bloqueado) e, quando houver bloqueio ou desbloqueio, o motivo, a data e quem o aplicou.</p>
 
-<h3>2.3 Dados gerados pelo monitoramento de segurança</h3>
-<p>
-  A plataforma monitora o tráfego do segmento de rede dedicado aos dispositivos
-  IoT. Desse monitoramento resultam registros de eventos de segurança contendo:
-  endereços IP de origem e destino, portas, protocolo, assinatura da regra
-  acionada, severidade, data e hora e os dados brutos do alerta produzido pelas
-  sondas (Suricata, Snort e Zeek).
-</p>
-<p>
-  <strong>O que isso significa na prática:</strong> os registros descrevem o
-  comportamento de rede dos <em>dispositivos</em>, não a sua navegação pessoal. A
-  plataforma monitora o segmento dedicado a equipamentos IoT, não a rede de uso
-  pessoal da instituição. Ainda assim, como o dispositivo está vinculado a você,
-  esses registros podem ser associados à sua pessoa — e por isso os tratamos como
-  dados pessoais.
-</p>
+<h3>2.3 Dados de identificação do dispositivo (fingerprinting)</h3>
+<p>O endereço MAC não é um identificador confiável: muitos sistemas e firmwares o alteram periodicamente. Por isso, o módulo IoT-ID identifica cada dispositivo também pelas características técnicas do seu tráfego, como parâmetros das camadas de rede e de transporte, portas e serviços expostos e metadados de protocolos de aplicação. Essas características são combinadas em um identificador criptográfico (SHA-256) que permite reconhecer o mesmo equipamento ao longo do tempo.</p>
+<p>Guardamos o identificador, as características que o compõem e o histórico de mudanças, como as decorrentes de atualização de firmware. Para isso, a plataforma pode realizar varreduras de identificação no segmento de rede dedicado aos dispositivos IoT, o que inclui detectar equipamentos ainda não cadastrados.</p>
+<p>O fingerprinting descreve o <em>equipamento</em>, não o conteúdo das comunicações nem a pessoa. Como o dispositivo está vinculado a você, porém, também tratamos esses dados como dados pessoais.</p>
 
-<h3>2.4 Dados de acesso à aplicação</h3>
-<p>
-  Registros de acesso à aplicação (data, hora e identificação da conta), na forma
-  exigida pelo art. 15 do Marco Civil da Internet, e cookies estritamente
-  necessários para manter sua sessão autenticada.
-  <strong>Não utilizamos cookies de publicidade, rastreamento ou análise de
-  comportamento, e não há qualquer ferramenta de terceiros de analytics na
-  aplicação.</strong>
-</p>
+<h3>2.4 Dados gerados pelo monitoramento de segurança</h3>
+<p>A plataforma monitora o tráfego do segmento de rede dedicado aos dispositivos IoT, com três motores de detecção (Suricata, Snort e Zeek). Para comparar o tráfego com as regras de detecção, os motores inspecionam os pacotes, inclusive o seu conteúdo, no momento em que eles passam.</p>
+<p>Do monitoramento resultam registros de eventos de segurança contendo: endereços IP de origem e destino, portas, protocolo, regra acionada, severidade, data e hora e os dados do alerta produzido pela sonda, que podem incluir um trecho do pacote que acionou a regra. <span class="falta">[Confirmar se há captura completa de pacotes (PCAP) em produção e, se houver, por quanto tempo é guardada. Se não houver, afirmar aqui que o tráfego não é armazenado na íntegra.]</span></p>
+<p><strong>O que isso significa na prática:</strong> os registros descrevem o comportamento de rede dos <em>dispositivos</em>, não a sua navegação pessoal. A plataforma monitora o segmento dedicado a equipamentos IoT, não a rede de uso pessoal da instituição (como a eduroam). Ainda assim, como o dispositivo está vinculado a você, esses registros podem ser associados à sua pessoa, e por isso os tratamos como dados pessoais.</p>
 
-<h2>3. Com que base legal tratamos esses dados</h2>
-<p class="falta">
-  [Enquadramento proposto abaixo — precisa da validação do encarregado de dados da
-  UNIPAMPA antes da publicação.]
-</p>
+<h3>2.5 Registros de auditoria e notificações</h3>
+<p>Registramos as ações realizadas na plataforma, como cadastros, aprovações, alterações, bloqueios, desbloqueios e pedidos de revisão, com a conta que as realizou, data e hora. Registramos também as notificações enviadas ao seu e-mail institucional.</p>
+
+<h3>2.6 Dados de acesso e dados operacionais da infraestrutura</h3>
+<p>Registros de acesso à aplicação (data, hora, endereço IP e identificação da conta), na forma exigida pelo art. 15 do Marco Civil da Internet, e cookies estritamente necessários para manter sua sessão autenticada.</p>
+<p>A operação da plataforma é acompanhada por uma pilha de observabilidade (Grafana, Prometheus, cAdvisor e Dozzle) que registra métricas de uso de recursos computacionais, saúde dos serviços e logs técnicos dos componentes do sistema. Esses registros servem para diagnosticar e dimensionar a plataforma. Os logs técnicos podem conter endereços IP e identificação de conta, os mesmos dados já descritos nesta seção, e não são usados para nenhuma outra finalidade.</p>
+<p><strong>Não utilizamos cookies de publicidade, rastreamento ou análise de comportamento, e não há qualquer ferramenta de terceiros de analytics na plataforma.</strong></p>
+
+<h3>2.7 Demonstração (mvp.iotedu.org)</h3>
+<p>A demonstração trata apenas os dados necessários para o login e os dados que você inserir ao experimentar as funcionalidades. Ela não monitora a rede de nenhuma instituição e pode ser reinicializada a qualquer momento, com a exclusão dos dados inseridos. Não insira na demonstração dados pessoais de terceiros nem informações sensíveis sobre equipamentos reais. <span class="falta">[Descrever o meio de login da demonstração (CAFe, Google ou conta de demonstração) e os dados recebidos. Se houver login por Google, informar os atributos recebidos e que o Google é um terceiro com sede no exterior.]</span></p>
+
+<h3>2.8 Site (iotedu.org)</h3>
+<p>O site não tem login nem formulários e não usa ferramentas de analytics. Ele é hospedado no GitHub Pages e carrega recursos de terceiros: fontes do Google Fonts, bibliotecas servidas por CDNs (Tailwind CSS e unpkg) e vídeos incorporados do YouTube. Ao abrir o site, o seu navegador se conecta a esses serviços, que recebem dados técnicos como endereço IP e informações do navegador, e o YouTube pode gravar cookies ao exibir um vídeo. Esses serviços são mantidos por empresas com sede no exterior e seguem as próprias políticas de privacidade. Nenhum dado da plataforma passa por eles.</p>
+
+<h2 id="bases">3. Bases legais</h2>
+<p class="falta">[Enquadramento proposto abaixo: precisa da validação do encarregado de dados da UNIPAMPA antes da publicação.]</p>
 <ul>
-  <li>
-    <strong>Execução de políticas públicas</strong> (LGPD, art. 7º, III): a gestão
-    e a proteção da rede institucional são atividades próprias de uma universidade
-    federal, e o inventário de dispositivos conectados é condição para exercê-las.
-  </li>
-  <li>
-    <strong>Cumprimento de obrigação legal</strong> (LGPD, art. 7º, II): guarda dos
-    registros de acesso à aplicação, conforme o Marco Civil da Internet.
-  </li>
+  <li><strong>Execução de políticas públicas</strong> (LGPD, art. 7º, III, e art. 23): a gestão e a proteção da rede institucional são atividades próprias de uma universidade federal, e o inventário e o monitoramento dos dispositivos conectados são condição para exercê-las.</li>
+  <li><strong>Cumprimento de obrigação legal</strong> (LGPD, art. 7º, II): guarda dos registros de acesso à aplicação, conforme o Marco Civil da Internet.</li>
+  <li><strong>Realização de estudos por órgão de pesquisa</strong> (LGPD, art. 7º, IV): produção de indicadores e resultados científicos, sempre que possível a partir de dados anonimizados.</li>
+  <li><strong>Consentimento</strong> (LGPD, art. 7º, I): participação voluntária em questionários, entrevistas e testes de usabilidade. <span class="falta">[Confirmar se essas atividades passam por Comitê de Ética em Pesquisa e se há termo de consentimento livre e esclarecido.]</span></li>
 </ul>
-<p>O tratamento se limita ao mínimo necessário para essas finalidades.</p>
+<p>Concordar com os Termos de Uso não equivale a consentir com o tratamento de dados. Fora das atividades voluntárias de pesquisa, o tratamento não depende do seu consentimento e se limita ao mínimo necessário para as finalidades descritas na seção 4.</p>
 
-<h2>4. Para que usamos, e para que não usamos</h2>
-<p>
-  <strong>Usamos para:</strong> autenticar você; atribuir seu perfil de acesso;
-  manter o vínculo entre cada dispositivo e seu responsável; detectar e responder a
-  incidentes de segurança na rede; notificar você sobre eventos que envolvam seus
-  dispositivos; e produzir indicadores agregados de uso da plataforma.
-</p>
-<p>
-  <strong>Não usamos para:</strong> qualquer finalidade comercial; publicidade;
-  perfilamento de comportamento pessoal; avaliação de desempenho acadêmico ou
-  funcional; nem qualquer finalidade alheia à gestão e à segurança da rede.
-</p>
-<p>
-  Os indicadores produzidos para o relatório do GT e para publicações científicas
-  são <strong>agregados e anônimos</strong> — contagens, médias e tempos de
-  resposta. Não publicamos dados que identifiquem pessoas ou dispositivos
-  individuais.
-</p>
+<h2 id="finalidades">4. Para que usamos, e para que não usamos</h2>
+<p><strong>Usamos para:</strong> autenticar você; atribuir seu perfil de acesso; manter o vínculo entre cada dispositivo e seu responsável; identificar e classificar os dispositivos; direcioná-los ao segmento de rede adequado; detectar e responder a incidentes de segurança na rede; notificar você sobre eventos que envolvam seus dispositivos; manter a trilha de auditoria; operar e diagnosticar a plataforma; e produzir indicadores agregados de uso.</p>
+<p><strong>Não usamos para:</strong> qualquer finalidade comercial; publicidade; perfilamento de comportamento pessoal; avaliação de desempenho acadêmico ou funcional; monitoramento da sua navegação pessoal; nem qualquer finalidade alheia à gestão e à segurança da rede e à pesquisa descrita na <a href="#pesquisa">seção 5</a>.</p>
 
-<h2>5. Com quem compartilhamos</h2>
-<p><strong>Com ninguém fora da instituição.</strong> Não vendemos, não cedemos e
-  não compartilhamos dados pessoais com terceiros, empresas ou outras instituições.</p>
-<p>
-  Os dados residem na infraestrutura da UNIPAMPA, em servidor local
-  (<em>on-premises</em>). Não há serviço de nuvem de terceiros, não há
-  transferência internacional de dados e nenhum dado pessoal sai da instituição.
-</p>
-<p>
-  Internamente, o acesso é segmentado por perfil: o usuário final vê apenas os
-  próprios dispositivos; o administrador de unidade vê os dispositivos e eventos da
-  sua unidade; o superusuário institucional tem visão do conjunto da instituição.
-</p>
-<p>
-  Dados só serão fornecidos a terceiros mediante requisição de autoridade
-  competente, nos termos da lei.
-</p>
+<h2 id="pesquisa">5. Uso em pesquisa</h2>
+<p>O IoTEdu é também um projeto de pesquisa. Por isso:</p>
+<ul>
+  <li>indicadores como tempo de cadastro, número de dispositivos, eventos tratados, tempo de contenção e esforço de operação são usados em relatórios do GT e em publicações científicas apenas de forma <strong>agregada e anônima</strong>: contagens, médias e tempos de resposta. Não publicamos dados que identifiquem pessoas ou dispositivos individuais;</li>
+  <li>nos pilotos em outras instituições, os resultados agregados só são usados na forma autorizada pela instituição participante;</li>
+  <li>os <strong>datasets públicos</strong> do projeto são gerados em ambientes controlados de teste (IoT-Zoo e AttackZoo) e não contêm tráfego de usuários nem de dispositivos reais da UNIPAMPA ou de outras instituições;</li>
+  <li>a participação em questionários, entrevistas e testes de usabilidade é voluntária, não é condição para usar a plataforma e pode ser interrompida a qualquer momento.</li>
+</ul>
 
-<h2>6. Decisões automatizadas</h2>
-<p>
-  A plataforma pode <strong>bloquear automaticamente o acesso de um dispositivo à
-  rede</strong> quando as sondas de segurança detectam um evento de alta
-  severidade. A decisão é tomada pelo sistema, sem intervenção humana prévia, e o
-  responsável pelo dispositivo é notificado.
-</p>
-<p>
-  Nos termos do art. 20 da LGPD, você pode solicitar a revisão humana dessa
-  decisão. Basta acionar o administrador da sua unidade pela própria plataforma ou
-  escrever para o contato da seção 9. Eventos de severidade menor não geram
-  bloqueio automático — seguem para triagem humana.
-</p>
+<h2 id="compartilhamento">6. Com quem compartilhamos</h2>
+<p><strong>Com ninguém fora da instituição.</strong> Não vendemos, não cedemos e não compartilhamos dados pessoais da plataforma com terceiros, empresas ou outras instituições.</p>
+<p>Os dados da plataforma residem na infraestrutura da UNIPAMPA, em servidor local (<em>on-premises</em>). Não há serviço de nuvem de terceiros e nenhum dado pessoal da plataforma sai da instituição. As únicas conexões com serviços estrangeiros são as do site e, se for o caso, do login da demonstração, descritas nas seções 2.7 e 2.8.</p>
+<p>Internamente, o acesso é segmentado por perfil:</p>
+<ul>
+  <li>o <strong>usuário final</strong> vê apenas os próprios dispositivos;</li>
+  <li>o <strong>administrador de unidade</strong> vê os dispositivos, eventos e responsáveis da sua unidade;</li>
+  <li>o <strong>superusuário institucional</strong> tem visão do conjunto da instituição;</li>
+  <li>a <strong>equipe técnica do GT-IoTEdu</strong> acessa os dados na medida necessária para operar, manter e corrigir a plataforma, sob dever de sigilo. <span class="falta">[Confirmar se membros do GT vinculados a outras instituições parceiras (UFRGS, UFU, UFF, UFAM) têm acesso à instância de produção. Se tiverem, dizer aqui em que condições.]</span></li>
+</ul>
+<p>Atualmente, a plataforma não compartilha dados entre instituições. O roteiro do projeto prevê, no futuro, o compartilhamento controlado de indicadores técnicos de ameaça entre instituições participantes, como listas de dispositivos comprometidos e padrões de ataque. Se essa funcionalidade for adotada, esta política será atualizada antes, com a descrição do que será compartilhado, e os usuários serão avisados.</p>
+<p>Dados só serão fornecidos a terceiros mediante requisição de autoridade competente, nos termos da lei.</p>
 
-<h2>7. Por quanto tempo guardamos</h2>
-<p class="falta">
-  [Prazos propostos abaixo — precisam do aval do encarregado de dados antes da
-  publicação.]
-</p>
+<h2 id="automatizadas">7. Decisões automatizadas</h2>
+<p>A plataforma toma duas decisões automatizadas que afetam os seus dispositivos:</p>
+<ul>
+  <li><strong>Classificação de risco:</strong> a categoria atribuída ao dispositivo define o segmento de rede (SSID e VLAN) a que ele é direcionado;</li>
+  <li><strong>Bloqueio automático:</strong> quando as sondas detectam um evento de alta severidade, a plataforma aplica uma regra de bloqueio no firewall, em geral em poucos segundos, sem intervenção humana prévia, e o responsável é notificado.</li>
+</ul>
+<p>Eventos de severidade menor não geram bloqueio automático: seguem para análise humana do administrador da unidade.</p>
+<p>Nos termos do art. 20 da LGPD, você pode solicitar a revisão humana de qualquer dessas decisões e pedir informações sobre os critérios usados. Basta acionar o administrador da sua unidade pela própria plataforma ou escrever para o contato da <a href="#direitos">seção 10</a>. Os mecanismos de detecção poderão incluir, no futuro, modelos de aprendizado de máquina. Se isso ocorrer, esta política será atualizada e as decisões continuarão sujeitas à revisão humana.</p>
+
+<h2 id="retencao">8. Por quanto tempo guardamos</h2>
+<p class="falta">[Prazos propostos abaixo: precisam do aval do encarregado de dados antes da publicação.]</p>
 <table>
   <tr><th>Dado</th><th>Prazo</th></tr>
   <tr><td>Conta e atributos recebidos da CAFe</td><td>Enquanto a conta existir</td></tr>
   <tr><td>Cadastro de dispositivos e vínculo com o responsável</td><td>Enquanto o dispositivo estiver cadastrado</td></tr>
+  <tr><td>Identificação por fingerprinting e seu histórico</td><td>Enquanto o dispositivo estiver cadastrado; para dispositivos não cadastrados detectados em varredura, <span class="falta">90 dias</span></td></tr>
   <tr><td>Eventos de segurança e incidentes</td><td>12 meses, após o que são anonimizados ou descartados</td></tr>
+  <tr><td>Registros de auditoria</td><td><span class="falta">5 anos</span></td></tr>
   <tr><td>Registros de acesso à aplicação</td><td>6 meses, conforme o art. 15 do Marco Civil da Internet</td></tr>
+  <tr><td>Logs técnicos de operação</td><td><span class="falta">30 dias</span></td></tr>
+  <tr><td>Dados inseridos na demonstração</td><td>Até a próxima reinicialização do ambiente</td></tr>
 </table>
-<p>
-  Encerrado o vínculo do usuário com a instituição, ou mediante solicitação de
-  exclusão, os dados pessoais associados à conta são removidos em até 30 dias,
-  ressalvados os registros cuja guarda seja exigida por lei.
-</p>
+<p>Encerrado o vínculo do usuário com a instituição, ou mediante solicitação de exclusão, os dados pessoais associados à conta são removidos em até 30 dias, ressalvados os registros cuja guarda seja exigida por lei. Dispositivos que permaneçam em uso podem ser transferidos pelo administrador da unidade a outro responsável.</p>
 
-<h2>8. Como protegemos</h2>
-<p>
-  Comunicação exclusivamente por HTTPS com certificado válido; autenticação
-  federada, sem armazenamento de senhas; segmentação de rede dedicada para os
-  dispositivos monitorados; controle de acesso por perfil; registro de auditoria
-  das ações administrativas; e infraestrutura mantida na instituição, sob sua
-  política de segurança.
-</p>
-<p>
-  A instância de referência opera no contexto de um piloto de pesquisa. Isso não
-  reduz o cuidado com os dados, mas é informação relevante para você avaliar o uso.
-</p>
+<h2 id="seguranca">9. Como protegemos</h2>
+<p>Comunicação exclusivamente por HTTPS com certificado válido; autenticação federada, sem armazenamento de senhas; segmentação de rede dedicada para os dispositivos monitorados; controle de acesso por perfil; registro de auditoria das ações administrativas; infraestrutura mantida na instituição, sob sua política de segurança; e código-fonte aberto, que permite a revisão independente da plataforma.</p>
+<p>A plataforma opera no contexto de um piloto de pesquisa. Isso não reduz o cuidado com os dados, mas é informação relevante para você avaliar o uso.</p>
+<p>Em caso de incidente de segurança que possa acarretar risco ou dano relevante aos titulares, a UNIPAMPA comunicará a Autoridade Nacional de Proteção de Dados (ANPD) e os titulares afetados, nos termos do art. 48 da LGPD. Como Provedor de Serviço da federação CAFe, mantemos também um contato de segurança registrado junto à RNP, responsável por cooperar na resolução de incidentes que possam afetar a federação ou qualquer de seus membros, conforme a Política da Comunidade Acadêmica Federada.</p>
 
-<h2>9. Seus direitos</h2>
-<p>
-  A LGPD garante a você os direitos de confirmação da existência de tratamento,
-  acesso, correção, anonimização, portabilidade, eliminação, informação sobre
-  compartilhamento e revisão de decisões automatizadas.
-</p>
-<p>
-  Para exercê-los, escreva para
-  <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a> ou para o
-  encarregado de dados da UNIPAMPA
-  (<span class="falta">[contato do encarregado]</span>). Responderemos em até
-  <span class="falta">15</span> dias.
-</p>
-<p>
-  Boa parte desses direitos você exerce diretamente na plataforma: seus dados de
-  conta e seus dispositivos estão visíveis no seu painel, e você pode corrigir as
-  informações do dispositivo ou removê-lo do seu cadastro.
-</p>
+<h2 id="direitos">10. Seus direitos</h2>
+<p>A LGPD garante a você os direitos de confirmação da existência de tratamento, acesso, correção, anonimização, bloqueio ou eliminação de dados desnecessários, portabilidade, informação sobre compartilhamento, revogação do consentimento, quando for o caso, e revisão de decisões automatizadas.</p>
+<p>Para exercê-los, escreva para <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a> ou para o encarregado de dados da UNIPAMPA (<span class="falta">[contato do encarregado]</span>). Responderemos em até <span class="falta">15</span> dias. Você também pode apresentar reclamação à Ouvidoria da UNIPAMPA (<span class="falta">[link]</span>) ou à <a href="https://www.gov.br/anpd">ANPD</a>.</p>
+<p>Boa parte desses direitos você exerce diretamente na plataforma: seus dados de conta e seus dispositivos estão visíveis no seu painel, e você pode corrigir as informações do dispositivo ou removê-lo do seu cadastro. A correção dos atributos recebidos da CAFe (nome, e-mail, vínculo) deve ser pedida à sua instituição de origem, que é quem os mantém.</p>
 
-<h2>10. Mudanças nesta política</h2>
-<p>
-  Alterações serão publicadas nesta mesma página, com atualização da versão e da
-  data. Mudanças relevantes serão comunicadas aos usuários e, quando afetarem o
-  tratamento de dados recebidos da federação, também à CAFe.
-</p>
+<h2 id="encerramento">11. Encerramento do projeto</h2>
+<p>Se a plataforma ou a demonstração forem encerradas ao término do GT-IoTEdu, os usuários serão avisados com antecedência mínima de <span class="falta">30 dias</span>. Os dados pessoais serão eliminados ou, se a UNIPAMPA mantiver o serviço, continuarão sob sua responsabilidade e sob esta política. Nenhum dado será transferido a outro operador sem atualização prévia desta política.</p>
+
+<h2 id="mudancas">12. Mudanças nesta política</h2>
+<p>Alterações serão publicadas nesta mesma página, com atualização da versão e da data. Mudanças relevantes serão comunicadas aos usuários pelo e-mail institucional e, quando afetarem o tratamento de dados recebidos da federação, também à CAFe.</p>
+<table>
+  <tr><th>Versão</th><th>Data</th><th>Descrição</th></tr>
+  <tr><td>1.0</td><td><span class="falta">[data]</span></td><td>Versão inicial, restrita à instância de referência.</td></tr>
+  <tr><td>2.0</td><td><span class="falta">[data de publicação]</span></td><td>Inclusão da demonstração e do site; modelo federado e Política CAFE.N.001; fingerprinting e varreduras de identificação; inspeção de conteúdo pelas sondas; auditoria e observabilidade; bases legais de pesquisa e consentimento; uso em pesquisa e datasets; acesso da equipe do GT; compartilhamento futuro entre instituições; classificação de risco como decisão automatizada; novos prazos de retenção; comunicação de incidentes; encerramento do projeto; glossário.</td></tr>
+</table>
+
+<h2 id="glossario">13. Glossário</h2>
+<dl>
+  <dt>CAFe</dt>
+  <dd>Comunidade Acadêmica Federada, a federação de identidade da RNP que permite acessar serviços como o IoTEdu com a conta da sua própria instituição.</dd>
+  <dt>Provedor de Identidade (IdP)</dt>
+  <dd>O sistema da sua instituição que autentica você e libera seus atributos para os serviços em que você entra.</dd>
+  <dt>Provedor de Serviço (SP)</dt>
+  <dd>O serviço que recebe esses atributos e controla o acesso com base neles. O IoTEdu é um SP da federação CAFe.</dd>
+  <dt>Atributo</dt>
+  <dd>Um dado seu liberado pelo seu IdP no momento da autenticação, como o e-mail ou o vínculo institucional (veja a seção 2.1).</dd>
+  <dt>Dispositivo IoT</dt>
+  <dd>Equipamento conectado à rede que não é um computador de uso geral, como sensores, câmeras, catracas, medidores, impressoras em rede e equipamentos de laboratório.</dd>
+  <dt>Fingerprinting</dt>
+  <dd>Identificação de um dispositivo a partir de características do seu tráfego de rede, usada quando o endereço MAC não é estável. No IoTEdu, é feita pelo módulo IoT-ID.</dd>
+  <dt>SSID e VLAN</dt>
+  <dd>O nome da rede sem fio e o segmento lógico da rede a que um dispositivo é conectado. A plataforma direciona cada dispositivo ao SSID e à VLAN da sua classe de risco.</dd>
+  <dt>Sonda de segurança (IDS)</dt>
+  <dd>Software que observa o tráfego de rede e gera alertas quando encontra padrões de ataque. O IoTEdu usa três: Suricata, Snort e Zeek.</dd>
+</dl>
 
 <footer>
-  GT-IoTEdu · <a href="https://iotedu.org">iotedu.org</a> ·
-  <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a><br>
-  Apoio: RNP (GT-IoTEdu) e CNPq, processo 409743/2025-9
+  GT-IoTEdu · <a href="https://iotedu.org">iotedu.org</a> · <a href="https://app-unipampa.iotedu.org">app-unipampa.iotedu.org</a> · <a href="https://mvp.iotedu.org">mvp.iotedu.org</a> · <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a><br>
+  <a href="https://iotedu.org/termos.html">Termos de Uso</a> · Apoio: RNP (GT-IoTEdu) e CNPq, processo 409743/2025-9
 </footer>
 
 </body>
