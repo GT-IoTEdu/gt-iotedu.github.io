@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de Privacidade — IoTEdu</title>
+<style>
+  :root { color-scheme: light; }
+  body {
+    margin: 0 auto; max-width: 780px; padding: 40px 24px 80px;
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
+    color: #1e293b; background: #fff;
+  }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 4px; color: #0f172a; }
+  h2 { font-size: 1.15rem; margin: 2.4em 0 .6em; color: #0f172a;
+       border-bottom: 1px solid #e2e8f0; padding-bottom: .3em; }
+  h3 { font-size: 1rem; margin: 1.6em 0 .4em; color: #334155; }
+  .sub { color: #64748b; font-size: .9rem; margin: 0 0 2em; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: .92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f8fafc; font-weight: 600; }
+  code { background: #f1f5f9; padding: 1px 5px; border-radius: 3px; font-size: .88em; }
+  a { color: #2563eb; }
+  .falta { color: #dc2626; font-weight: 700; background: #fef2f2;
+           padding: 1px 5px; border-radius: 3px; border: 1px dashed #fca5a5; }
+  .aviso { background: #fffbeb; border: 1px solid #fde68a; border-left: 4px solid #f59e0b;
+           padding: 14px 18px; margin: 0 0 2.5em; border-radius: 4px; font-size: .92rem; }
+  .aviso strong { color: #92400e; }
+  footer { margin-top: 3.5em; padding-top: 1.2em; border-top: 1px solid #e2e8f0;
+           color: #64748b; font-size: .85rem; }
+</style>
+</head>
+<body>
+
+<div class="aviso">
+  <strong>RASCUNHO PARA REVISÃO — não publicar ainda.</strong><br>
+  Tudo que aparece <span class="falta">em vermelho</span> ainda precisa ser
+  confirmado antes da publicação. O restante do texto foi levantado diretamente do
+  código da plataforma e pode ser considerado correto.
+  <br><br>
+  Publicar em <code>https://iotedu.org/privacidade.html</code>, linkar no rodapé do
+  site e apontar o <code>mdui:PrivacyStatementURL</code> do metadado do SP para
+  este endereço. Remover esta caixa antes de publicar.
+</div>
+
+<h1>Política de Privacidade</h1>
+<p class="sub">
+  IoTEdu — Instância de referência do GT-IoTEdu<br>
+  Versão 1.0 · Vigente a partir de <span class="falta">[data de publicação]</span>
+</p>
+
+<h2>1. Quem somos</h2>
+<p>
+  O IoTEdu é uma plataforma de gestão e segurança de dispositivos de Internet das
+  Coisas em redes acadêmicas, desenvolvida pelo GT-IoTEdu, Grupo de Trabalho
+  apoiado pela Rede Nacional de Ensino e Pesquisa (RNP) e pelo CNPq (processo
+  409743/2025-9).
+</p>
+<p>
+  Esta política se aplica à <strong>instância de referência</strong> da plataforma,
+  disponível em <a href="https://app-unipampa.iotedu.org">app-unipampa.iotedu.org</a>,
+  operada pela Universidade Federal do Pampa (UNIPAMPA) no âmbito da Fase 2 do GT.
+</p>
+<p>
+  O IoTEdu é um software instalado na infraestrutura de cada instituição adotante.
+  Quando outra instituição opera a sua própria instância, <strong>ela</strong> é a
+  controladora dos dados ali tratados e responde por sua própria política de
+  privacidade. Esta política não alcança essas instalações.
+</p>
+<ul>
+  <li><strong>Controladora:</strong> Universidade Federal do Pampa (UNIPAMPA)</li>
+  <li><strong>Encarregado de dados (DPO):</strong>
+      <span class="falta">[nome e e-mail do encarregado de dados da UNIPAMPA]</span></li>
+  <li><strong>Contato do projeto:</strong>
+      <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a></li>
+</ul>
+
+<h2>2. Que dados tratamos</h2>
+
+<h3>2.1 Dados recebidos da federação CAFe</h3>
+<p>
+  Quando você entra na plataforma usando a identidade da sua instituição, o
+  provedor de identidade dela nos envia:
+</p>
+<table>
+  <tr><th>Atributo</th><th>O que é</th><th>Para que usamos</th></tr>
+  <tr>
+    <td><code>eduPersonPrincipalName</code></td>
+    <td>Identificador único da sua conta na instituição</td>
+    <td>Identificar sua conta na plataforma de forma estável</td>
+  </tr>
+  <tr>
+    <td><code>mail</code></td>
+    <td>E-mail institucional</td>
+    <td>Identificar a conta e notificar você sobre eventos que envolvam seus dispositivos</td>
+  </tr>
+  <tr>
+    <td><code>givenName</code> e <code>sn</code></td>
+    <td>Nome e sobrenome</td>
+    <td>Exibir o nome do responsável nas telas de inventário</td>
+  </tr>
+  <tr>
+    <td><code>eduPersonAffiliation</code></td>
+    <td>Seu vínculo com a instituição (aluno, docente, técnico)</td>
+    <td>Definir seu perfil de acesso na plataforma</td>
+  </tr>
+</table>
+<p>
+  Não recebemos e não solicitamos CPF, matrícula, documento de identidade, data de
+  nascimento, endereço, telefone ou qualquer outro dado além dos quatro acima.
+  <strong>Nunca temos acesso à sua senha</strong> — a autenticação acontece
+  inteiramente na sua instituição de origem.
+</p>
+
+<h3>2.2 Dados dos dispositivos que você cadastra</h3>
+<p>
+  Ao cadastrar um dispositivo, registramos: endereço MAC, endereço IP atribuído,
+  nome do equipamento (hostname), descrição informada por você, unidade
+  institucional e o vínculo entre o dispositivo e você como responsável, com data e
+  hora.
+</p>
+<p>
+  Registramos também o estado do dispositivo (liberado, aguardando aprovação,
+  bloqueado) e, quando houver bloqueio, o motivo e quem o aplicou.
+</p>
+
+<h3>2.3 Dados gerados pelo monitoramento de segurança</h3>
+<p>
+  A plataforma monitora o tráfego do segmento de rede dedicado aos dispositivos
+  IoT. Desse monitoramento resultam registros de eventos de segurança contendo:
+  endereços IP de origem e destino, portas, protocolo, assinatura da regra
+  acionada, severidade, data e hora e os dados brutos do alerta produzido pelas
+  sondas (Suricata, Snort e Zeek).
+</p>
+<p>
+  <strong>O que isso significa na prática:</strong> os registros descrevem o
+  comportamento de rede dos <em>dispositivos</em>, não a sua navegação pessoal. A
+  plataforma monitora o segmento dedicado a equipamentos IoT, não a rede de uso
+  pessoal da instituição. Ainda assim, como o dispositivo está vinculado a você,
+  esses registros podem ser associados à sua pessoa — e por isso os tratamos como
+  dados pessoais.
+</p>
+
+<h3>2.4 Dados de acesso à aplicação</h3>
+<p>
+  Registros de acesso à aplicação (data, hora e identificação da conta), na forma
+  exigida pelo art. 15 do Marco Civil da Internet, e cookies estritamente
+  necessários para manter sua sessão autenticada.
+  <strong>Não utilizamos cookies de publicidade, rastreamento ou análise de
+  comportamento, e não há qualquer ferramenta de terceiros de analytics na
+  aplicação.</strong>
+</p>
+
+<h2>3. Com que base legal tratamos esses dados</h2>
+<p class="falta">
+  [Enquadramento proposto abaixo — precisa da validação do encarregado de dados da
+  UNIPAMPA antes da publicação.]
+</p>
+<ul>
+  <li>
+    <strong>Execução de políticas públicas</strong> (LGPD, art. 7º, III): a gestão
+    e a proteção da rede institucional são atividades próprias de uma universidade
+    federal, e o inventário de dispositivos conectados é condição para exercê-las.
+  </li>
+  <li>
+    <strong>Cumprimento de obrigação legal</strong> (LGPD, art. 7º, II): guarda dos
+    registros de acesso à aplicação, conforme o Marco Civil da Internet.
+  </li>
+</ul>
+<p>O tratamento se limita ao mínimo necessário para essas finalidades.</p>
+
+<h2>4. Para que usamos, e para que não usamos</h2>
+<p>
+  <strong>Usamos para:</strong> autenticar você; atribuir seu perfil de acesso;
+  manter o vínculo entre cada dispositivo e seu responsável; detectar e responder a
+  incidentes de segurança na rede; notificar você sobre eventos que envolvam seus
+  dispositivos; e produzir indicadores agregados de uso da plataforma.
+</p>
+<p>
+  <strong>Não usamos para:</strong> qualquer finalidade comercial; publicidade;
+  perfilamento de comportamento pessoal; avaliação de desempenho acadêmico ou
+  funcional; nem qualquer finalidade alheia à gestão e à segurança da rede.
+</p>
+<p>
+  Os indicadores produzidos para o relatório do GT e para publicações científicas
+  são <strong>agregados e anônimos</strong> — contagens, médias e tempos de
+  resposta. Não publicamos dados que identifiquem pessoas ou dispositivos
+  individuais.
+</p>
+
+<h2>5. Com quem compartilhamos</h2>
+<p><strong>Com ninguém fora da instituição.</strong> Não vendemos, não cedemos e
+  não compartilhamos dados pessoais com terceiros, empresas ou outras instituições.</p>
+<p>
+  Os dados residem na infraestrutura da UNIPAMPA, em servidor local
+  (<em>on-premises</em>). Não há serviço de nuvem de terceiros, não há
+  transferência internacional de dados e nenhum dado pessoal sai da instituição.
+</p>
+<p>
+  Internamente, o acesso é segmentado por perfil: o usuário final vê apenas os
+  próprios dispositivos; o administrador de unidade vê os dispositivos e eventos da
+  sua unidade; o superusuário institucional tem visão do conjunto da instituição.
+</p>
+<p>
+  Dados só serão fornecidos a terceiros mediante requisição de autoridade
+  competente, nos termos da lei.
+</p>
+
+<h2>6. Decisões automatizadas</h2>
+<p>
+  A plataforma pode <strong>bloquear automaticamente o acesso de um dispositivo à
+  rede</strong> quando as sondas de segurança detectam um evento de alta
+  severidade. A decisão é tomada pelo sistema, sem intervenção humana prévia, e o
+  responsável pelo dispositivo é notificado.
+</p>
+<p>
+  Nos termos do art. 20 da LGPD, você pode solicitar a revisão humana dessa
+  decisão. Basta acionar o administrador da sua unidade pela própria plataforma ou
+  escrever para o contato da seção 9. Eventos de severidade menor não geram
+  bloqueio automático — seguem para triagem humana.
+</p>
+
+<h2>7. Por quanto tempo guardamos</h2>
+<p class="falta">
+  [Prazos propostos abaixo — precisam do aval do encarregado de dados antes da
+  publicação.]
+</p>
+<table>
+  <tr><th>Dado</th><th>Prazo</th></tr>
+  <tr><td>Conta e atributos recebidos da CAFe</td><td>Enquanto a conta existir</td></tr>
+  <tr><td>Cadastro de dispositivos e vínculo com o responsável</td><td>Enquanto o dispositivo estiver cadastrado</td></tr>
+  <tr><td>Eventos de segurança e incidentes</td><td>12 meses, após o que são anonimizados ou descartados</td></tr>
+  <tr><td>Registros de acesso à aplicação</td><td>6 meses, conforme o art. 15 do Marco Civil da Internet</td></tr>
+</table>
+<p>
+  Encerrado o vínculo do usuário com a instituição, ou mediante solicitação de
+  exclusão, os dados pessoais associados à conta são removidos em até 30 dias,
+  ressalvados os registros cuja guarda seja exigida por lei.
+</p>
+
+<h2>8. Como protegemos</h2>
+<p>
+  Comunicação exclusivamente por HTTPS com certificado válido; autenticação
+  federada, sem armazenamento de senhas; segmentação de rede dedicada para os
+  dispositivos monitorados; controle de acesso por perfil; registro de auditoria
+  das ações administrativas; e infraestrutura mantida na instituição, sob sua
+  política de segurança.
+</p>
+<p>
+  A instância de referência opera no contexto de um piloto de pesquisa. Isso não
+  reduz o cuidado com os dados, mas é informação relevante para você avaliar o uso.
+</p>
+
+<h2>9. Seus direitos</h2>
+<p>
+  A LGPD garante a você os direitos de confirmação da existência de tratamento,
+  acesso, correção, anonimização, portabilidade, eliminação, informação sobre
+  compartilhamento e revisão de decisões automatizadas.
+</p>
+<p>
+  Para exercê-los, escreva para
+  <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a> ou para o
+  encarregado de dados da UNIPAMPA
+  (<span class="falta">[contato do encarregado]</span>). Responderemos em até
+  <span class="falta">15</span> dias.
+</p>
+<p>
+  Boa parte desses direitos você exerce diretamente na plataforma: seus dados de
+  conta e seus dispositivos estão visíveis no seu painel, e você pode corrigir as
+  informações do dispositivo ou removê-lo do seu cadastro.
+</p>
+
+<h2>10. Mudanças nesta política</h2>
+<p>
+  Alterações serão publicadas nesta mesma página, com atualização da versão e da
+  data. Mudanças relevantes serão comunicadas aos usuários e, quando afetarem o
+  tratamento de dados recebidos da federação, também à CAFe.
+</p>
+
+<footer>
+  GT-IoTEdu · <a href="https://iotedu.org">iotedu.org</a> ·
+  <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a><br>
+  Apoio: RNP (GT-IoTEdu) e CNPq, processo 409743/2025-9
+</footer>
+
+</body>
+</html>
