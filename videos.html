@@ -209,9 +209,27 @@
       font-weight: 700;
       margin: 0;
     }
+    .video-card-meta {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .72rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--ghost);
+    }
     .video-card-desc {
-      font-size: .83rem; color: var(--fog); line-height: 1.65;
+      font-size: .88rem; color: var(--fog); line-height: 1.65;
       margin: 0;
+    }
+    .video-card-points {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; flex-direction: column; gap: .45rem;
+    }
+    .video-card-points li {
+      position: relative; padding-left: 1.1rem;
+      font-size: .82rem; color: var(--fog); line-height: 1.5;
+    }
+    .video-card-points li::before {
+      content: ""; position: absolute; left: 0; top: .55em;
+      width: .4rem; height: .4rem; border-radius: 50%;
+      background: var(--accent2);
     }
     .video-card-footer {
       padding: 1rem 1.5rem 1.5rem;
@@ -315,14 +333,14 @@
   </div>
 
   <div class="hidden md:flex items-center justify-center space-x-8 md:justify-self-center">
-    <a href="index.html#contexto" class="hover:text-blue-400 transition-colors">Contexto</a>
     <a href="index.html#proposta" class="hover:text-blue-400 transition-colors">Proposta</a>
     <a href="index.html#resultados" class="hover:text-blue-400 transition-colors">Resultados</a>
     <a href="index.html#parceria" class="hover:text-blue-400 transition-colors">Parceria e Apoio</a>
     <a href="index.html#equipe" class="hover:text-blue-400 transition-colors">Equipe</a>
-    <a href="news.html" class="hover:text-blue-400 transition-colors">Notícias</a>
-    <a href="videos.html" class="hover:text-blue-400 transition-colors">Vídeos</a>
+    <a href="index.html#early-adopters" class="hover:text-blue-400 transition-colors">Early Adopters</a>
     <a href="publicacoes.html" class="hover:text-blue-400 transition-colors">Publicações</a>
+    <a href="videos.html" class="text-blue-400" aria-current="page">Vídeos</a>
+    <a href="news.html" class="hover:text-blue-400 transition-colors">Notícias</a>
   </div>
 
   <div class="flex items-center space-x-2 md:space-x-4 md:justify-self-end">
@@ -351,14 +369,14 @@
   <!-- Mobile menu (dropdown) -->
   <div id="mobile-menu" class="md:hidden hidden absolute left-0 right-0 top-full bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
     <div class="px-6 py-4 flex flex-col gap-3">
-      <a href="index.html#contexto" class="py-2 hover:text-blue-400 transition-colors">Contexto</a>
       <a href="index.html#proposta" class="py-2 hover:text-blue-400 transition-colors">Proposta</a>
       <a href="index.html#resultados" class="py-2 hover:text-blue-400 transition-colors">Resultados</a>
       <a href="index.html#parceria" class="py-2 hover:text-blue-400 transition-colors">Parceria e Apoio</a>
       <a href="index.html#equipe" class="py-2 hover:text-blue-400 transition-colors">Equipe</a>
-      <a href="news.html" class="py-2 hover:text-blue-400 transition-colors">Notícias</a>
-      <a href="videos.html" class="py-2 hover:text-blue-400 transition-colors">Vídeos</a>
+      <a href="index.html#early-adopters" class="py-2 hover:text-blue-400 transition-colors">Early Adopters</a>
       <a href="publicacoes.html" class="py-2 hover:text-blue-400 transition-colors">Publicações</a>
+      <a href="videos.html" class="py-2 text-blue-400" aria-current="page">Vídeos</a>
+      <a href="news.html" class="py-2 hover:text-blue-400 transition-colors">Notícias</a>
     </div>
   </div>
 </nav>
@@ -405,10 +423,16 @@
           </iframe>
         </div>
         <div class="video-card-body">
+          <span class="video-card-meta"><i data-lucide="clock" style="width:12px;height:12px"></i>5 min</span>
           <h3 class="video-card-title">Bloqueio automático</h3>
           <p class="video-card-desc">
-            Demonstração do mecanismo de bloqueio automático em ação, exibindo a resposta do sistema a eventos detectados.
+            Primeira demonstração do MVP do IoTEdu Core, passando pelos três perfis de acesso da plataforma. O superusuário cadastra uma unidade (no exemplo, Unipampa Alegrete) e a integra ao firewall pfSense e aos sistemas de detecção de intrusão. Em seguida, uma máquina virtual liberada na rede dispara um ataque de força bruta, que é detectado e resulta no bloqueio automático do dispositivo até o administrador liberá-lo novamente.
           </p>
+          <ul class="video-card-points">
+            <li>Cadastro da unidade e atribuição de perfis pelo superusuário</li>
+            <li>Painel do administrador com dispositivos, incidentes e os IDS Zeek, Suricata e Snort</li>
+            <li>Ataque, bloqueio automático e liberação do dispositivo</li>
+          </ul>
         </div>
         <div class="video-card-footer">
           <span class="video-tag tag-green">
@@ -436,10 +460,16 @@
           </iframe>
         </div>
         <div class="video-card-body">
+          <span class="video-card-meta"><i data-lucide="clock" style="width:12px;height:12px"></i>14 min</span>
           <h3 class="video-card-title">Setup completo</h3>
           <p class="video-card-desc">
-            Guia detalhado mostrando o processo completo de configuração do ambiente, desde a instalação até o funcionamento da solução IoT educacional.
+            Tutorial passo a passo para montar um ambiente IoTEdu do zero. O vídeo apresenta a arquitetura em três camadas (autenticação via Federação CAFe ou Google, o orquestrador central e a camada de rede com firewall e sondas de detecção de intrusão) e percorre toda a instalação até o cadastro da primeira instituição. No final, executa o ciclo completo de cadastro, aprovação, ataque e bloqueio, com tempo médio de bloqueio de 5,56 segundos em 75 execuções.
           </p>
+          <ul class="video-card-points">
+            <li>Arquitetura da solução e os três perfis de acesso</li>
+            <li>Configuração do banco de dados, da API do pfSense e dos IDS</li>
+            <li>Bloqueio automático na prática e desempenho de cada IDS</li>
+          </ul>
         </div>
         <div class="video-card-footer">
           <span class="video-tag tag-blue">
@@ -467,10 +497,16 @@
           </iframe>
         </div>
         <div class="video-card-body">
+          <span class="video-card-meta"><i data-lucide="clock" style="width:12px;height:12px"></i>5 min</span>
           <h3 class="video-card-title">Demo MVP IoTEDU</h3>
           <p class="video-card-desc">
-            Demonstração do MVP IoTEDU, destacando o funcionamento geral da solução.
+            Tour pela versão beta da plataforma, populada com dados de exemplo para mostrar todos os estados possíveis. O vídeo passa pela página inicial, pelo login redundante (Google e dois provedores de identidade próprios, para que a falha de um não impeça o acesso) e pelas telas de cada perfil: o superusuário gerencia usuários e unidades, o administrador bloqueia e libera dispositivos, e os usuários acompanham os próprios dispositivos.
           </p>
+          <ul class="video-card-points">
+            <li>Login com Google e provedores de identidade redundantes</li>
+            <li>Painéis do superusuário e do administrador de rede</li>
+            <li>Os três estados de um dispositivo: liberado, bloqueado e aguardando liberação</li>
+          </ul>
         </div>
         <div class="video-card-footer">
           <span class="video-tag tag-green">
@@ -502,10 +538,15 @@
           </iframe>
         </div>
         <div class="video-card-body">
+          <span class="video-card-meta"><i data-lucide="clock" style="width:12px;height:12px"></i>3 min</span>
           <h3 class="video-card-title">Demonstração breve</h3>
           <p class="video-card-desc">
-            Visão rápida em formato vertical (YouTube Shorts), apresentando a solução em poucos segundos.
+            Gravação em bancada com equipamentos reais: um notebook com a API, um notebook de suporte no papel de dispositivo atacante e dois Raspberry Pi conectados ao Wi-Fi. O dispositivo é cadastrado, liberado pelo administrador e, ao atacar a rede, perde o acesso em instantes. Depois, o administrador o libera e a conexão volta.
           </p>
+          <ul class="video-card-points">
+            <li>Ciclo do bloqueio automático do começo ao fim</li>
+            <li>Formato vertical (YouTube Shorts)</li>
+          </ul>
         </div>
         <div class="video-card-footer">
           <span class="video-tag tag-orange">
