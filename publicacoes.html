@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Publicações | GT IoTEDU</title>
-  <meta name="description" content="Artigos científicos publicados pelo GT IoTEDU, com links para os eventos, PDFs e slides das apresentações" />
+  <meta name="description" content="Artigos científicos publicados e apresentações em eventos do GT IoTEDU, com links para os eventos, PDFs e slides" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -190,6 +190,17 @@
     .badges-legend img { width: 32px; height: 32px; }
     .badges-legend .legend-title { color: #fff; font-weight: 700; margin-right: .25rem; }
 
+    /* ── NAVEGAÇÃO INTERNA E SEÇÕES ── */
+    .page-jump { display: flex; flex-wrap: wrap; gap: .6rem; margin: 0 0 2rem; }
+    .section-title {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: clamp(1.6rem, 3vw, 2.25rem); font-weight: 800; color: #fff;
+      margin: 0 0 2rem; scroll-margin-top: calc(var(--header-h) + 1.5rem);
+    }
+    .section-title + .section-sub { margin: -1.4rem 0 2rem; color: var(--fog); font-size: .95rem; }
+    .talks-block { margin-top: 5rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,.08); }
+    .tag-teal { color: #2dd4bf; border-color: rgba(45,212,191,.3); background: rgba(45,212,191,.08); }
+
     /* ── FOOTER ── */
     .site-footer {
       border-top: 1px solid rgba(255,255,255,.07);
@@ -304,6 +315,8 @@
     <div class="hero-meta">
       <div class="hero-count">12</div>
       <div>artigos em<br>5 eventos</div>
+      <div class="hero-count" style="margin-top:1rem">3</div>
+      <div>apresentações<br>em eventos</div>
     </div>
   </div>
 </header>
@@ -311,6 +324,13 @@
 <div class="divider"><hr style="border:none;border-top:1px solid rgba(255,255,255,.08)"></div>
 
 <main class="papers-section">
+
+  <nav class="page-jump" aria-label="Seções da página">
+    <a class="paper-btn primary" href="#artigos"><i data-lucide="file-text" style="width:14px;height:14px"></i>Artigos publicados</a>
+    <a class="paper-btn" href="#apresentacoes"><i data-lucide="presentation" style="width:14px;height:14px"></i>Apresentações em eventos</a>
+  </nav>
+
+  <h2 class="section-title" id="artigos"><i data-lucide="file-text" style="width:28px;height:28px;color:var(--accent)"></i>Artigos publicados</h2>
 
   <aside class="badges-legend" aria-label="Selos de artefato">
     <span class="legend-title"><i data-lucide="award" style="width:16px;height:16px;display:inline;vertical-align:-3px;color:#fbbf24"></i> 5 trabalhos com os 4 selos de artefato</span>
@@ -598,6 +618,84 @@
 
     </div>
   </section>
+
+  <!-- ═════════════════ APRESENTAÇÕES EM EVENTOS ═════════════════ -->
+  <div class="talks-block">
+    <h2 class="section-title" id="apresentacoes"><i data-lucide="presentation" style="width:28px;height:28px;color:#2dd4bf"></i>Apresentações em eventos</h2>
+    <p class="section-sub">Palestras sobre o GT IoTEDU em eventos da RNP e da comunidade, com os slides em PDF.</p>
+
+    <!-- ═════════ RNP+ Lab ═════════ -->
+    <section class="event-group" aria-labelledby="ev-rnpmaislab">
+      <div class="event-head">
+        <div>
+          <h2 class="event-name" id="ev-rnpmaislab"><a href="https://rnpmais.rnp.br/lab/iotedu" target="_blank" rel="noopener noreferrer">RNP+ Lab</a></h2>
+          <p class="event-info">Laboratório RNP+ · Programa de P&amp;D em Serviços Avançados da RNP</p>
+        </div>
+        <span class="event-when">Setembro de 2026</span>
+      </div>
+
+      <div class="paper-list">
+        <article class="paper-card">
+          <div class="paper-tags"><span class="paper-tag tag-teal">Apresentação</span></div>
+          <h3 class="paper-title">GT-IoTEdu: Segurança Avançada e Gestão de Dispositivos IoT (balanço da Fase 1)</h3>
+          <p class="paper-authors">Diego Kreutz, Coordenador Acadêmico do GT-IoTEdu, UNIPAMPA</p>
+          <p class="paper-ref">Resultados do MVPv1, sub-produtos abertos, publicações do período e o caminho para a Fase 2</p>
+          <div class="paper-links">
+            <a class="paper-btn primary" href="apresentacoes/2026-rnpmais-lab-iotedu.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides (PDF)</a>
+            <a class="paper-btn" href="https://rnpmais.rnp.br/lab/iotedu" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Site do evento</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═════════ Fórum RNP 2026 ═════════ -->
+    <section class="event-group" aria-labelledby="ev-forumrnp2026">
+      <div class="event-head">
+        <div>
+          <h2 class="event-name" id="ev-forumrnp2026"><a href="https://lets.4.events/forum-rnp-2026-C21350E48" target="_blank" rel="noopener noreferrer">Fórum RNP 2026</a></h2>
+          <p class="event-info">Fórum da Rede Nacional de Ensino e Pesquisa · Royal Tulip Alvorada</p>
+        </div>
+        <span class="event-when">24 a 27 de agosto de 2026 · Brasília, DF</span>
+      </div>
+
+      <div class="paper-list">
+        <article class="paper-card">
+          <div class="paper-tags"><span class="paper-tag tag-teal">Palestra</span></div>
+          <h3 class="paper-title">Shadow IoT: o fantasma invisível na sua rede acadêmica</h3>
+          <p class="paper-authors">Diego Kreutz, Coordenador do GT-IoTEdu, UNIPAMPA</p>
+          <p class="paper-ref">Diagnóstico validado em 61 entrevistas em 14 instituições, a plataforma IoTEdu e o convite às primeiras implantações em produção</p>
+          <div class="paper-links">
+            <a class="paper-btn primary" href="apresentacoes/2026-forum-rnp-shadow-iot.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides (PDF)</a>
+            <a class="paper-btn" href="https://lets.4.events/forum-rnp-2026-C21350E48" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Site do evento</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═════════ WRNP 2026 ═════════ -->
+    <section class="event-group" aria-labelledby="ev-wrnp2026">
+      <div class="event-head">
+        <div>
+          <h2 class="event-name" id="ev-wrnp2026"><a href="https://indico.rnp.br/event/155/" target="_blank" rel="noopener noreferrer">WRNP 2026</a></h2>
+          <p class="event-info">Workshop da RNP, em edição conjunta com o SBRC 2026 · Palco principal</p>
+        </div>
+        <span class="event-when">25 a 29 de maio de 2026 · Praia do Forte, BA</span>
+      </div>
+
+      <div class="paper-list">
+        <article class="paper-card">
+          <div class="paper-tags"><span class="paper-tag tag-teal">Palestra</span></div>
+          <h3 class="paper-title">GT-IoTEDU: Segurança e Gestão Avançada de Dispositivos IoT</h3>
+          <p class="paper-authors">Diego Kreutz, UNIPAMPA</p>
+          <p class="paper-ref">Apresentação dos resultados do Grupo de Trabalho no palco principal do WRNP</p>
+          <div class="paper-links">
+            <a class="paper-btn primary" href="apresentacoes/2026-wrnp-iotedu.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides (PDF)</a>
+            <a class="paper-btn" href="https://indico.rnp.br/event/155/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Site do evento</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
 
 </main>
 
