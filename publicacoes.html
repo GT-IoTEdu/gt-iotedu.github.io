@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Publicações | GT IoTEDU</title>
+  <meta name="description" content="Artigos científicos publicados pelo GT IoTEDU, com links para os eventos, PDFs e slides das apresentações" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    :root {
+      --ink:       #0f172a;
+      --paper:     #1e293b;
+      --mist:      #334155;
+      --ghost:     #64748b;
+      --fog:       #94a3b8;
+      --accent:    #38bdf8;
+      --accent2:   #34d399;
+      --warn:      #fb923c;
+      --header-h:  72px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { overflow-x: hidden; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: calc(var(--header-h) + 2rem) 2rem 3rem;
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto; gap: 2rem;
+      align-items: start;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.2rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 28px; height: 2px;
+      background: var(--accent);
+    }
+    .hero h1 { margin: 0; }
+    .hero-meta {
+      text-align: right; color: var(--ghost);
+      font-size: .8rem; line-height: 1.8;
+    }
+    .hero-count {
+      font-size: 3rem; font-weight: 800;
+      color: #fff; line-height: 1;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── PAPERS ── */
+    .papers-section {
+      max-width: 1200px; margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+
+    .event-group + .event-group { margin-top: 3.5rem; }
+
+    .event-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      flex-wrap: wrap; gap: .5rem 1.5rem;
+      padding-bottom: 1rem; margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .event-name {
+      font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+      font-weight: 800; color: #fff; margin: 0;
+    }
+    .event-name a { color: inherit; text-decoration: none; }
+    .event-name a:hover { color: var(--accent); }
+    .event-info {
+      font-size: .85rem; color: var(--fog); margin: .35rem 0 0;
+    }
+    .event-when {
+      font-size: .8rem; color: var(--ghost); white-space: nowrap;
+    }
+
+    .paper-list { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .paper-card {
+      background: var(--paper);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 16px;
+      padding: 1.5rem 1.75rem;
+      transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s, border-color .3s;
+      animation: fadeUp .5s ease both;
+    }
+    .paper-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56,189,248,.25);
+      box-shadow: 0 24px 48px -12px rgba(0,0,0,.5);
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .paper-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .9rem; }
+    .paper-tag {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-size: .67rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+      padding: .25rem .65rem; border-radius: 999px;
+      border: 1px solid;
+    }
+    .tag-blue   { color: var(--accent);  border-color: rgba(56,189,248,.3); background: rgba(56,189,248,.08); }
+    .tag-green  { color: var(--accent2); border-color: rgba(52,211,153,.3); background: rgba(52,211,153,.08); }
+    .tag-orange { color: var(--warn);    border-color: rgba(251,146,60,.3); background: rgba(251,146,60,.08); }
+
+    .paper-title {
+      font-size: 1.15rem; line-height: 1.35; font-weight: 700;
+      color: #fff; margin: 0 0 .5rem;
+    }
+    .paper-authors {
+      font-size: .9rem; color: #cbd5e1; line-height: 1.6; margin: 0;
+    }
+    .paper-ref {
+      font-size: .8rem; color: var(--ghost); line-height: 1.6; margin: .35rem 0 0;
+    }
+    .paper-ref a { color: var(--fog); text-decoration: none; }
+    .paper-ref a:hover { color: var(--accent); text-decoration: underline; }
+
+    .paper-links {
+      display: flex; flex-wrap: wrap; gap: .6rem;
+      margin-top: 1.2rem; padding-top: 1.1rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .paper-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .8rem; font-weight: 600;
+      padding: .45rem 1rem; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.15);
+      color: #e2e8f0; text-decoration: none;
+      transition: all .2s;
+    }
+    .paper-btn:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(56,189,248,.4);
+      color: var(--accent);
+    }
+    .paper-btn.primary {
+      color: var(--accent);
+      border-color: rgba(56,189,248,.35);
+      background: rgba(56,189,248,.08);
+    }
+    .paper-btn.disabled {
+      color: var(--ghost);
+      border-style: dashed;
+      border-color: rgba(255,255,255,.1);
+      cursor: default;
+    }
+    .paper-btn.disabled:hover { background: none; color: var(--ghost); border-color: rgba(255,255,255,.1); }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .site-footer .logo-row {
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      margin-bottom: .5rem;
+    }
+    .site-footer p { font-size: .78rem; color: var(--ghost); }
+    .site-footer .legal-links {
+      margin-bottom: .6rem;
+      display: flex; align-items: center; justify-content: center;
+      gap: .75rem; flex-wrap: wrap;
+      font-size: .8rem;
+    }
+    .site-footer .legal-links a { color: #cbd5e1; text-decoration: none; }
+    .site-footer .legal-links a:hover { color: var(--accent); text-decoration: underline; }
+    .site-footer .legal-links span { color: #475569; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero {
+        padding: calc(var(--header-h) + 2rem) 1rem 2.25rem;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .hero-meta { text-align: left; }
+      .hero-count { font-size: 2.5rem; }
+      .papers-section { padding: 2.25rem 1rem 5rem; }
+      .divider { padding: 0 1rem; }
+      .paper-card { padding: 1.25rem; }
+      .event-when { white-space: normal; }
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-white font-[Inter]">
+
+<!-- NAV -->
+<nav class="relative flex md:grid md:grid-cols-[auto,1fr,auto] md:gap-4 items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+  <div class="flex items-center space-x-2 md:justify-self-start">
+    <div class="relative">
+      <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
+      <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+    </div>
+    <a href="index.html" class="text-xl font-bold">GT IoTEDU</a>
+  </div>
+
+  <div class="hidden md:flex items-center justify-center space-x-8 md:justify-self-center">
+    <a href="index.html#contexto" class="hover:text-blue-400 transition-colors">Contexto</a>
+    <a href="index.html#proposta" class="hover:text-blue-400 transition-colors">Proposta</a>
+    <a href="index.html#resultados" class="hover:text-blue-400 transition-colors">Resultados</a>
+    <a href="index.html#parceria" class="hover:text-blue-400 transition-colors">Parceria RNP</a>
+    <a href="index.html#apoio" class="hover:text-blue-400 transition-colors">Apoio</a>
+    <a href="index.html#equipe" class="hover:text-blue-400 transition-colors">Equipe</a>
+    <a href="news.html" class="hover:text-blue-400 transition-colors">Notícias</a>
+    <a href="videos.html" class="hover:text-blue-400 transition-colors">Vídeos</a>
+    <a href="publicacoes.html" class="text-blue-400" aria-current="page">Publicações</a>
+  </div>
+
+  <div class="flex items-center space-x-2 md:space-x-4 md:justify-self-end">
+    <a href="index.html" class="px-4 py-2 rounded-lg border border-slate-700 text-white hover:bg-slate-800 bg-transparent">Início</a>
+
+    <button
+      id="mobile-menu-button"
+      type="button"
+      class="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-slate-700 hover:bg-slate-800"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Abrir menu"
+    >
+      <svg id="mobile-menu-icon-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <svg id="mobile-menu-icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 hidden">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu (dropdown) -->
+  <div id="mobile-menu" class="md:hidden hidden absolute left-0 right-0 top-full bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+    <div class="px-6 py-4 flex flex-col gap-3">
+      <a href="index.html#contexto" class="py-2 hover:text-blue-400 transition-colors">Contexto</a>
+      <a href="index.html#proposta" class="py-2 hover:text-blue-400 transition-colors">Proposta</a>
+      <a href="index.html#resultados" class="py-2 hover:text-blue-400 transition-colors">Resultados</a>
+      <a href="index.html#parceria" class="py-2 hover:text-blue-400 transition-colors">Parceria RNP</a>
+      <a href="index.html#apoio" class="py-2 hover:text-blue-400 transition-colors">Apoio</a>
+      <a href="index.html#equipe" class="py-2 hover:text-blue-400 transition-colors">Equipe</a>
+      <a href="news.html" class="py-2 hover:text-blue-400 transition-colors">Notícias</a>
+      <a href="videos.html" class="py-2 hover:text-blue-400 transition-colors">Vídeos</a>
+      <a href="publicacoes.html" class="py-2 text-blue-400" aria-current="page">Publicações</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow">
+        <i data-lucide="book-open" style="width:14px;height:14px"></i>
+        Produção científica
+      </div>
+      <h1 class="text-5xl md:text-7xl font-extrabold leading-[0.95]">
+        <span class="text-white">Artigos</span><br>
+        <span class="bg-gradient-to-r from-blue-400 via-green-400 to-blue-600 bg-clip-text text-transparent">Publicados</span>
+      </h1>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-count">10</div>
+      <div>artigos em<br>4 eventos</div>
+    </div>
+  </div>
+</header>
+
+<div class="divider"><hr style="border:none;border-top:1px solid rgba(255,255,255,.08)"></div>
+
+<main class="papers-section">
+
+  <!-- ═════════ SBSeg 2026 ═════════ -->
+  <section class="event-group" aria-labelledby="ev-sbseg2026">
+    <div class="event-head">
+      <div>
+        <h2 class="event-name" id="ev-sbseg2026"><a href="https://www.sbseg2026.uff.br/" target="_blank" rel="noopener noreferrer">SBSeg 2026</a></h2>
+        <p class="event-info">XXVI Simpósio Brasileiro de Cibersegurança · Salão de Ferramentas · Anais Estendidos</p>
+      </div>
+      <span class="event-when">1 a 4 de setembro de 2026 · Armação dos Búzios, RJ</span>
+    </div>
+
+    <div class="paper-list">
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-blue">Salão de Ferramentas</span></div>
+        <h3 class="paper-title">IoTEdu Core: Multi-IDS Correlation and Automated Containment of Attacks in Institutional IoT Networks</h3>
+        <p class="paper-authors">Emanuel Ferreira, Matheus Ciocca, Douglas Fideles, Tuigg Barcelos, Silvio Quincozes, Diego Kreutz</p>
+        <p class="paper-ref">Anais Estendidos do SBSeg 2026, p. 156-165 · DOI <a href="https://doi.org/10.5753/sbseg_estendido.2026.33721" target="_blank" rel="noopener noreferrer">10.5753/sbseg_estendido.2026.33721</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/download/44462/44225" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/SF_Emanuel_IoTEduCore_SBSeg2026.pptx.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides</a>
+          <a class="paper-btn" href="https://www.sbseg2026.uff.br/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/view/44462" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página nos anais</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-blue">Salão de Ferramentas</span></div>
+        <h3 class="paper-title">Toward Agentic Intrusion Detection in the Internet of Things: Rule Generation and Live Validation for XRCE-DDS Attacks</h3>
+        <p class="paper-authors">Matheus M. Ciocca, Emanuel C. Ferreira, Tuigg R. Barcelos, Silvio E. Quincozes, Diego Kreutz, Paulo Silas Severo de Souza</p>
+        <p class="paper-ref">Anais Estendidos do SBSeg 2026, p. 242-250 · DOI <a href="https://doi.org/10.5753/sbseg_estendido.2026.33720" target="_blank" rel="noopener noreferrer">10.5753/sbseg_estendido.2026.33720</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/download/44471/44234" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/SF_Ciocca_RulesFarmer_SBSeg2026_Slides.pptx.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides</a>
+          <a class="paper-btn" href="https://www.sbseg2026.uff.br/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/view/44471" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página nos anais</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-blue">Salão de Ferramentas</span></div>
+        <h3 class="paper-title">AttackZoo: A Reproducible Testbed for Attack Execution and Network Traffic Dataset Generation</h3>
+        <p class="paper-authors">Leonardo Bitzki, Diego Kreutz, Leandro Bertholdo, Cristhian Kapelinski</p>
+        <p class="paper-ref">Anais Estendidos do SBSeg 2026, p. 109-118 · DOI <a href="https://doi.org/10.5753/sbseg_estendido.2026.33492" target="_blank" rel="noopener noreferrer">10.5753/sbseg_estendido.2026.33492</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/download/44457/44220" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/SF_Leonardo_AttackZoo_SBSeg2026_Slides.pptx%20%281%29.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides</a>
+          <a class="paper-btn" href="https://www.sbseg2026.uff.br/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/view/44457" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página nos anais</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════ WTICIFES 2026 ═════════ -->
+  <section class="event-group" aria-labelledby="ev-wticifes2026">
+    <div class="event-head">
+      <div>
+        <h2 class="event-name" id="ev-wticifes2026"><a href="https://wticifes.com.br/2026/" target="_blank" rel="noopener noreferrer">WTICIFES 2026</a></h2>
+        <p class="event-info">18º Workshop de Tecnologia da Informação e Comunicação das Instituições Federais de Ensino Superior</p>
+      </div>
+      <span class="event-when">4 a 6 de agosto de 2026 · Vale dos Vinhedos, Bento Gonçalves, RS</span>
+    </div>
+
+    <div class="paper-list">
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-green">Artigo aprovado e apresentado</span></div>
+        <h3 class="paper-title">IoTEdu: Plataforma Integrada para Gestão, Monitoramento e Resposta a Incidentes em Redes WiFi IoT nas IFES</h3>
+        <p class="paper-authors">Joner Assolin, Matheus Ciocca, Emanuel Carricio, Diego Kreutz, Silvio E. Quincozes, Angelo Diniz, Canofre Santos, Roberto Rosa dos Santos, Rui de Quadros Ribeiro</p>
+        <p class="paper-ref">WTICIFES 2026 · PDF disponibilizado pelo GT IoTEDU</p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="papers/_2026__WTICIFES___IoTEdu___Joner_Diego_Canofre_Roberto_Rui.pdf" target="_blank" rel="noopener"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/IoTEdu%20-%20WTIC%20IFES%202026%20-%20FINAL%20_%20OFICIAL.pptx.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides</a>
+          <a class="paper-btn" href="https://wticifes.com.br/2026/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-green">Artigo aprovado e apresentado</span></div>
+        <h3 class="paper-title">IoT-ID: Fingerprinting Determinístico para Gestão e Segurança de Dispositivos IoT nas IFES</h3>
+        <p class="paper-authors">Joner Assolin, Diego Kreutz, Anna Letycia, Rodrigo Miani, Leonardo Bitzki, Marcio Pohlmann, Jerônimo Menezes</p>
+        <p class="paper-ref">WTICIFES 2026 · PDF disponibilizado pelo GT IoTEDU</p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="papers/_2026__WTICIFES___Fingerprint___Anna_Joner_Diego_Miani.pdf" target="_blank" rel="noopener"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <span class="paper-btn disabled" aria-disabled="true"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides indisponíveis</span>
+          <a class="paper-btn" href="https://wticifes.com.br/2026/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════ SBCUP 2026 ═════════ -->
+  <section class="event-group" aria-labelledby="ev-sbcup2026">
+    <div class="event-head">
+      <div>
+        <h2 class="event-name" id="ev-sbcup2026"><a href="https://csbc.sbc.org.br/2026/sbcup/" target="_blank" rel="noopener noreferrer">SBCUP 2026</a></h2>
+        <p class="event-info">XVIII Simpósio Brasileiro de Computação Ubíqua e Pervasiva · CSBC 2026 · Artigos Completos</p>
+      </div>
+      <span class="event-when">19 a 23 de julho de 2026 · Gramado, RS</span>
+    </div>
+
+    <div class="paper-list">
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-orange">Artigo completo</span></div>
+        <h3 class="paper-title">NetSecBed: A Container-Native Testbed for Reproducible Cybersecurity Experimentation</h3>
+        <p class="paper-authors">Leonardo Bitzki, Diego Kreutz, Tiago Heinrich, Leandro Bertholdo, Silvio Quincozes, Douglas Fideles, Angelo Nogueira</p>
+        <p class="paper-ref">Anais do SBCUP 2026, p. 290-302 · DOI <a href="https://doi.org/10.5753/sbcup.2026.23835" target="_blank" rel="noopener noreferrer">10.5753/sbcup.2026.23835</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/sbcup/article/download/43307/43073" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/5_NetSecBed_A_ContainerNative_Testbed_for_Reproducible_Cybersecurity_Experimentation.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides</a>
+          <a class="paper-btn" href="https://csbc.sbc.org.br/2026/sbcup/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/sbcup/article/view/43307" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página nos anais</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════ ERRC 2025 ═════════ -->
+  <section class="event-group" aria-labelledby="ev-errc2025">
+    <div class="event-head">
+      <div>
+        <h2 class="event-name" id="ev-errc2025"><a href="https://crrc-rs.github.io/errc2025/" target="_blank" rel="noopener noreferrer">ERRC 2025</a></h2>
+        <p class="event-info">XXII Escola Regional de Redes de Computadores, em conjunto com o WRSeg 2025 · Artigos Completos</p>
+      </div>
+      <span class="event-when">8 a 10 de dezembro de 2025 · Porto Alegre, RS</span>
+    </div>
+
+    <div class="paper-list">
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-orange">Artigo completo</span></div>
+        <h3 class="paper-title">IoTEdu: Access Control, Detection, and Automatic Incident Response in Academic IoT Networks</h3>
+        <p class="paper-authors">Joner Assolin, Diego Kreutz, Leandro Bertholdo</p>
+        <p class="paper-ref">Anais da ERRC 2025, p. 40-46 · DOI <a href="https://doi.org/10.5753/errc.2025.17841" target="_blank" rel="noopener noreferrer">10.5753/errc.2025.17841</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/errc/article/download/39179/38951" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <span class="paper-btn disabled" aria-disabled="true"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides indisponíveis</span>
+          <a class="paper-btn" href="https://crrc-rs.github.io/errc2025/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/errc/article/view/39179" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página nos anais</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-orange">Artigo completo</span></div>
+        <h3 class="paper-title">IoTEdu: Network Services for the Automated Management of Campus Internet-of-Things Networks</h3>
+        <p class="paper-authors">Leonardo Bitzki, Diego Kreutz, Leandro Bertholdo</p>
+        <p class="paper-ref">Anais da ERRC 2025, p. 47-53 · DOI <a href="https://doi.org/10.5753/errc.2025.17739" target="_blank" rel="noopener noreferrer">10.5753/errc.2025.17739</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/errc/article/download/39180/38952" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/ERRC2025%20-%20LeonardoBitzki.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides</a>
+          <a class="paper-btn" href="https://crrc-rs.github.io/errc2025/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/errc/article/view/39180" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página nos anais</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-orange">Artigo completo</span></div>
+        <h3 class="paper-title">Análise de Desempenho e Eficácia da Sonda Zeek: Um Estudo Comparativo de Perfis de Execução sob Restrições de Recursos</h3>
+        <p class="paper-authors">Rafael B. Torres, Rodrigo Brandão Mansilha, Diego Kreutz</p>
+        <p class="paper-ref">Anais da ERRC 2025, p. 1-7 · DOI <a href="https://doi.org/10.5753/errc.2025.17791" target="_blank" rel="noopener noreferrer">10.5753/errc.2025.17791</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/errc/article/download/39173/38945" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/ERRC%20e%20WRSeg%202025%20-%20Rafael%20Torres.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides</a>
+          <a class="paper-btn" href="https://crrc-rs.github.io/errc2025/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/errc/article/view/39173" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página nos anais</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-orange">Artigo completo</span></div>
+        <h3 class="paper-title">Avaliação de uma Arquitetura Híbrida Borda-Nuvem para Monitoramento de Motores Elétricos em Tempo Real</h3>
+        <p class="paper-authors">Guilherme Siqueira, Diego Kreutz</p>
+        <p class="paper-ref">Anais da ERRC 2025, p. 14-20 · DOI <a href="https://doi.org/10.5753/errc.2025.17834" target="_blank" rel="noopener noreferrer">10.5753/errc.2025.17834</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/errc/article/download/39175/38947" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/ERRC%202025%20-%20Guilherme.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Slides</a>
+          <a class="paper-btn" href="https://crrc-rs.github.io/errc2025/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/errc/article/view/39175" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página nos anais</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="logo-row">
+    <i data-lucide="wifi" style="width:20px;height:20px;color:var(--accent)"></i>
+    <span style="font-weight:700">GT IoTEDU</span>
+  </div>
+  <p class="legal-links">
+    <a href="politica-de-privacidade.html">Política de Privacidade</a>
+    <span aria-hidden="true">·</span>
+    <a href="termos-de-uso.html">Termos de Uso</a>
+  </p>
+  <p>© 2025 GT-IoTEDU. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  function wireMobileMenu() {
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('mobile-menu-icon-open');
+    const iconClose = document.getElementById('mobile-menu-icon-close');
+
+    if (!button || !menu || !iconOpen || !iconClose) return;
+
+    const setOpen = (open) => {
+      menu.classList.toggle('hidden', !open);
+      iconOpen.classList.toggle('hidden', open);
+      iconClose.classList.toggle('hidden', !open);
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    };
+
+    const isOpen = () => button.getAttribute('aria-expanded') === 'true';
+
+    button.addEventListener('click', () => setOpen(!isOpen()));
+    menu.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target && target.tagName === 'A') setOpen(false);
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    window.addEventListener('resize', () => {
+      if (window.matchMedia('(min-width: 768px)').matches) setOpen(false);
+    });
+
+    setOpen(false);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide) window.lucide.createIcons();
+    wireMobileMenu();
+  });
+</script>
+</body>
+</html>
