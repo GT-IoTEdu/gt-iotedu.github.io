@@ -1,0 +1,546 @@
+<meta charset="utf-8">
+<title>Arquitetura IoTEdu multi-tenant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: documento técnico em coluna única de leitura, com um diagrama largo e tabelas de decisão; o motivo visual é o nome do schema (tn_…) em monoespaçada. */
+:root {
+  --bg: #fbfcfc;
+  --surface: #f1f5f4;
+  --fg: #16201f;
+  --muted: #53615e;
+  --rule: #d5dedb;
+  --accent: #0b6e69;
+  --accent-soft: #e2f0ee;
+  --deny: #b3261e;
+  --font-display: "Bricolage Grotesque", "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --measure: 68ch;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1514; --surface: #152020; --fg: #e3ebe9; --muted: #9aaaa6; --rule: #273431;
+    --accent: #52b9ae; --accent-soft: #163129; --deny: #f08a80; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1514; --surface: #152020; --fg: #e3ebe9; --muted: #9aaaa6; --rule: #273431;
+  --accent: #52b9ae; --accent-soft: #163129; --deny: #f08a80; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.6;
+  padding-inline: clamp(16px, 4vw, 48px); padding-block: 0 4rem;
+}
+.page { max-width: 1040px; margin-inline: auto; display: grid; gap: 3.5rem; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.1rem, 5vw, 3.3rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+p { margin: 0; max-width: var(--measure); }
+code, .mono { font-family: var(--font-mono); font-size: 0.92em; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eyebrow { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+.muted { color: var(--muted); }
+section { display: grid; gap: 1.25rem; }
+.section-head { display: grid; gap: 0.5rem; }
+
+/* Cabeçalho */
+header.hero { padding-top: 3.5rem; display: grid; gap: 1.25rem; border-bottom: 1px solid var(--rule); padding-bottom: 2.5rem; }
+.hero .lead { font-size: 1.2rem; color: var(--fg); max-width: 60ch; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.5rem; margin-top: 0.75rem; }
+.fact { display: grid; gap: 0.2rem; padding-top: 0.75rem; border-top: 2px solid var(--accent); }
+.fact b { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; }
+.fact span { color: var(--muted); font-size: 0.95rem; }
+
+/* Diagrama */
+.diagram-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); padding: 0.75rem; }
+.diagram-wrap svg { display: block; min-width: 780px; width: 100%; height: auto; }
+svg .frame { fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 6 5; }
+svg .box { fill: var(--bg); stroke: var(--rule); stroke-width: 1.2; }
+svg .box-accent { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.4; }
+svg .t { fill: var(--fg); font-family: var(--font-body); font-size: 14px; }
+svg .tb { fill: var(--fg); font-family: var(--font-body); font-size: 15px; font-weight: 600; }
+svg .tm { fill: var(--muted); font-family: var(--font-body); font-size: 12.5px; }
+svg .tc { fill: var(--fg); font-family: var(--font-mono); font-size: 13px; }
+svg .ta { fill: var(--accent); font-family: var(--font-body); font-size: 13px; font-weight: 600; }
+svg .ln { stroke: var(--accent); stroke-width: 1.8; fill: none; }
+svg .ln-muted { stroke: var(--muted); stroke-width: 1.4; fill: none; stroke-dasharray: 4 4; }
+svg .head { fill: var(--accent); }
+.caption { font-size: 0.92rem; color: var(--muted); }
+
+/* Sequência de resolução do tenant */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: passo; }
+.steps li { counter-increment: passo; display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem; padding-block: 0.9rem; border-top: 1px solid var(--rule); }
+.steps li::before { content: counter(passo); font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: var(--accent); line-height: 1.2; }
+.steps li > div { min-width: 0; display: grid; gap: 0.2rem; }
+.deny { color: var(--deny); font-weight: 600; }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; align-items: start; }
+.two > * { min-width: 0; }
+pre.code {
+  margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.1rem;
+  overflow-x: auto; font-family: var(--font-mono); font-size: 0.86rem; line-height: 1.55; color: var(--fg);
+}
+pre.code .c { color: var(--muted); }
+pre.code .e { color: var(--deny); }
+
+/* Tabelas */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.97rem; min-width: 620px; }
+th, td { text-align: left; vertical-align: top; padding: 0.65rem 0.9rem 0.65rem 0; border-bottom: 1px solid var(--rule); }
+th { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border-bottom: 1.5px solid var(--fg); }
+td:first-child { font-weight: 600; }
+td .mono, td code { white-space: nowrap; }
+tr.pick td { background: var(--accent-soft); }
+tr.pick td:first-child { padding-left: 0.6rem; }
+.tag { display: inline-block; font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
+
+/* ADRs */
+.filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.filters button {
+  font: inherit; font-size: 0.9rem; padding: 0.35rem 0.85rem; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--rule); background: var(--bg); color: var(--fg);
+}
+.filters button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.adrs { display: grid; gap: 0; }
+.adr { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; padding-block: 1.1rem; border-top: 1px solid var(--rule); }
+.adr > div { min-width: 0; display: grid; gap: 0.45rem; }
+.adr .id { font-family: var(--font-mono); font-weight: 500; color: var(--accent); }
+.adr .area { font-size: 0.8rem; color: var(--muted); display: block; margin-top: 0.2rem; }
+.adr dl { margin: 0; display: grid; grid-template-columns: 9.5rem 1fr; gap: 0.3rem 1rem; font-size: 0.95rem; }
+.adr dt { color: var(--muted); }
+.adr dd { margin: 0; min-width: 0; }
+
+/* Linha do tempo */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.25rem; }
+.timeline li { display: grid; gap: 0.3rem; align-content: start; padding-top: 0.8rem; border-top: 2px solid var(--rule); }
+.timeline li.pilot { border-top-color: var(--accent); }
+.timeline .n { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); }
+.timeline b { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; }
+.timeline span { font-size: 0.93rem; color: var(--muted); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chips span { font-size: 0.9rem; padding: 0.25rem 0.7rem; border: 1px dashed var(--muted); border-radius: 999px; color: var(--muted); }
+
+.proof { display: grid; grid-template-columns: auto 1fr; gap: 1.25rem; align-items: center; padding: 1.25rem; border: 1px solid var(--accent); border-radius: 10px; background: var(--accent-soft); }
+.proof .big { font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; color: var(--accent); line-height: 1; font-variant-numeric: tabular-nums; }
+.proof > div { min-width: 0; display: grid; gap: 0.35rem; }
+
+ol.asks { margin: 0; padding-left: 1.3rem; display: grid; gap: 0.5rem; max-width: var(--measure); }
+footer { border-top: 1px solid var(--rule); padding-top: 1.5rem; font-size: 0.92rem; color: var(--muted); display: grid; gap: 0.5rem; }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+@media (max-width: 560px) {
+  .adr { grid-template-columns: 1fr; gap: 0.4rem; }
+  .adr dl { grid-template-columns: 1fr; gap: 0.1rem; }
+  .adr dd { margin-bottom: 0.4rem; }
+  .proof { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .filters button { transition: background-color 0.15s, color 0.15s; }
+}
+</style>
+
+<div class="page">
+
+<header class="hero">
+  <span class="eyebrow">GT IoTEdu · proposta v0.1 · 30/09/2026</span>
+  <h1>IoTEdu multi-tenant: uma instância PostgreSQL, um schema por instituição</h1>
+  <p class="lead">Uma aplicação atende todas as instituições. Cada uma tem o próprio schema e o próprio papel no banco, e o endereço acessado (<code>unipampa.iotedu.org</code>) decide qual schema responde. Na instituição continuam o gateway e as sondas, que agora só abrem conexões de saída.</p>
+  <p class="muted">Base: análise técnica e comparação de abordagens do GT, apresentação de 30/09 e as sugestões de Gustavo Satheler na conversa gravada no mesmo dia. Pensado para uma equipe de alunos, ainda pouco experiente em sistemas cloud native.</p>
+  <div class="facts">
+    <div class="fact"><b>1 instância</b><span>Amazon RDS for PostgreSQL 17, em São Paulo</span></div>
+    <div class="fact"><b>1 schema e 1 papel</b><span>por instituição; o banco recusa acesso a outro schema</span></div>
+    <div class="fact"><b>Tenant pelo host</b><span>nunca por parâmetro, corpo ou escolha do usuário</span></div>
+    <div class="fact"><b class="num">US$ 200–260/mês</b><span>infraestrutura estimada do piloto, a conferir</span></div>
+  </div>
+</header>
+
+<section id="arquitetura">
+  <div class="section-head">
+    <span class="eyebrow">Visão geral</span>
+    <h2>O que roda na nuvem e o que fica na instituição</h2>
+  </div>
+  <div class="diagram-wrap" role="img" aria-label="Diagrama: na AWS, uma VM com Caddy, frontend, API e worker; um RDS PostgreSQL com o schema plataforma e um schema por instituição; Secrets Manager, S3 e CloudWatch. Abaixo, UNIPAMPA e UFSCar, cada uma com gateway e sondas, abrindo conexões de saída para a nuvem.">
+    <svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="head"/>
+        </marker>
+      </defs>
+      <rect x="16" y="16" width="928" height="360" rx="14" class="frame"/>
+      <text x="36" y="44" class="tb">AWS · São Paulo (sa-east-1)</text>
+      <text x="36" y="63" class="tm">Route 53: *.iotedu.org · login.iotedu.org · borda.iotedu.org</text>
+
+      <rect x="36" y="82" width="410" height="272" rx="10" class="box"/>
+      <text x="52" y="106" class="tb">EC2 · uma VM com Docker Compose</text>
+      <rect x="52" y="120" width="378" height="46" rx="7" class="box-accent"/>
+      <text x="66" y="142" class="tb">Caddy</text>
+      <text x="66" y="158" class="tm">TLS curinga e domínios próprios; roteia /api e /edge</text>
+      <rect x="52" y="178" width="182" height="72" rx="7" class="box"/>
+      <text x="66" y="202" class="tb">frontend</text>
+      <text x="66" y="220" class="tm">Next.js, um build</text>
+      <text x="66" y="236" class="tm">configuração por tenant</text>
+      <rect x="248" y="178" width="182" height="72" rx="7" class="box"/>
+      <text x="262" y="202" class="tb">api</text>
+      <text x="262" y="220" class="tm">FastAPI: painel, login,</text>
+      <text x="262" y="236" class="tm">ingestão, canal do gateway</text>
+      <rect x="52" y="262" width="378" height="76" rx="7" class="box"/>
+      <text x="66" y="286" class="tb">worker</text>
+      <text x="66" y="304" class="tm">lê a fila (SKIP LOCKED), grava o alerta no schema certo,</text>
+      <text x="66" y="320" class="tm">decide o bloqueio e publica a nova versão da lista</text>
+
+      <rect x="470" y="82" width="290" height="272" rx="10" class="box"/>
+      <text x="486" y="106" class="tb">RDS PostgreSQL 17</text>
+      <rect x="486" y="120" width="258" height="50" rx="7" class="box"/>
+      <text x="500" y="141" class="tc">plataforma</text>
+      <text x="500" y="159" class="tm">registro de tenants e fila de eventos</text>
+      <rect x="486" y="180" width="258" height="50" rx="7" class="box-accent"/>
+      <text x="500" y="201" class="tc">tn_unipampa</text>
+      <text x="500" y="219" class="ta">a api entra como tn_unipampa_app</text>
+      <rect x="486" y="240" width="258" height="50" rx="7" class="box"/>
+      <text x="500" y="261" class="tc">tn_ufscar</text>
+      <text x="500" y="279" class="tm">papel tn_ufscar_app</text>
+      <rect x="486" y="300" width="258" height="40" rx="7" class="box"/>
+      <text x="500" y="325" class="tc">tn_… (um por instituição)</text>
+
+      <path d="M430 214 C 455 214, 462 205, 484 205" class="ln" marker-end="url(#seta)"/>
+
+      <rect x="780" y="82" width="148" height="80" rx="10" class="box"/>
+      <text x="794" y="108" class="tb">Secrets Manager</text>
+      <text x="794" y="128" class="tm">senha de cada papel</text>
+      <text x="794" y="146" class="tm">chaves HMAC</text>
+      <rect x="780" y="178" width="148" height="80" rx="10" class="box"/>
+      <text x="794" y="204" class="tb">S3</text>
+      <text x="794" y="224" class="tm">backup por tenant</text>
+      <text x="794" y="242" class="tm">(pg_dump -n)</text>
+      <rect x="780" y="274" width="148" height="80" rx="10" class="box"/>
+      <text x="794" y="300" class="tb">CloudWatch</text>
+      <text x="794" y="320" class="tm">logs com tenant</text>
+      <text x="794" y="338" class="tm">e alarmes</text>
+
+      <path d="M200 440 L200 358" class="ln" marker-end="url(#seta)"/>
+      <path d="M660 440 C 660 405, 330 405, 330 358" class="ln" marker-end="url(#seta)"/>
+      <text x="212" y="428" class="ta">só conexões de saída</text>
+
+      <rect x="36" y="440" width="410" height="140" rx="12" class="box"/>
+      <text x="52" y="466" class="tb">UNIPAMPA</text>
+      <rect x="52" y="480" width="182" height="84" rx="7" class="box"/>
+      <text x="66" y="504" class="tb">gateway</text>
+      <text x="66" y="522" class="tm">Kea DHCP e nftables</text>
+      <text x="66" y="540" class="tm">agente: long-poll da lista</text>
+      <rect x="248" y="480" width="182" height="84" rx="7" class="box"/>
+      <text x="262" y="504" class="tb">sondas</text>
+      <text x="262" y="522" class="tm">Zeek, Suricata, Snort</text>
+      <text x="262" y="540" class="tm">agente de envio (HMAC)</text>
+
+      <rect x="470" y="440" width="458" height="140" rx="12" class="box"/>
+      <text x="486" y="466" class="tb">UFSCar (e as demais instituições)</text>
+      <rect x="486" y="480" width="206" height="84" rx="7" class="box"/>
+      <text x="500" y="504" class="tb">gateway</text>
+      <text x="500" y="522" class="tm">guarda a última lista</text>
+      <text x="500" y="540" class="tm">se a nuvem cair</text>
+      <rect x="706" y="480" width="206" height="84" rx="7" class="box"/>
+      <text x="720" y="504" class="tb">sondas</text>
+      <text x="720" y="522" class="tm">o tráfego bruto não sai</text>
+      <text x="720" y="540" class="tm">da instituição</text>
+    </svg>
+  </div>
+  <p class="caption">As setas mostram as únicas conexões entre campus e nuvem: eventos assinados das sondas e o long-poll do gateway, ambos abertos pela instituição e recebidos pelo Caddy. A nuvem nunca abre conexão para dentro do campus. As pessoas chegam pelo navegador, no mesmo Caddy.</p>
+</section>
+
+<section id="requisicao">
+  <div class="section-head">
+    <span class="eyebrow">O mecanismo</span>
+    <h2>Como uma requisição encontra a instituição certa</h2>
+  </div>
+  <div class="two">
+    <ol class="steps">
+      <li><div><b>O navegador pede</b><span class="muted"><code>https://unipampa.iotedu.org/api/dispositivos</code></span></div></li>
+      <li><div><b>O host vira tenant</b><span class="muted">A API consulta <code>plataforma.tenant</code>. Host desconhecido ou tenant suspenso recebe 404, nunca um tenant padrão.</span></div></li>
+      <li><div><b>A sessão precisa ser deste tenant</b><span class="muted">O cookie vale só neste host. Sessão aberta em outra instituição recebe 403.</span></div></li>
+      <li><div><b>A conexão usa o papel do tenant</b><span class="muted">A API conecta como <code>tn_unipampa_app</code>, cujo <code>search_path</code> já aponta para <code>tn_unipampa</code>. As consultas não citam schema.</span></div></li>
+      <li><div><b>O banco é a última barreira</b><span class="muted">Se algum código tentar ler outro schema, o PostgreSQL responde <span class="deny">permission denied</span>.</span></div></li>
+    </ol>
+    <pre class="code"><span class="c">-- criar-tenant ufscar "UFSCar" ufscar.iotedu.org</span>
+CREATE ROLE tn_ufscar_app LOGIN NOINHERIT PASSWORD '…';
+ALTER ROLE tn_ufscar_app SET search_path = tn_ufscar;
+CREATE SCHEMA tn_ufscar;
+<span class="c">-- alembic upgrade head, dentro de tn_ufscar</span>
+GRANT USAGE ON SCHEMA tn_ufscar TO tn_ufscar_app;
+GRANT SELECT, INSERT, UPDATE, DELETE
+  ON ALL TABLES IN SCHEMA tn_ufscar TO tn_ufscar_app;
+
+<span class="c">-- conectado como tn_ufscar_app:</span>
+SELECT * FROM dispositivo;             <span class="c">-- os da UFSCar</span>
+SELECT * FROM tn_unipampa.dispositivo;
+<span class="e">ERROR:  permission denied for schema tn_unipampa</span></pre>
+  </div>
+</section>
+
+<section id="gustavo">
+  <div class="section-head">
+    <span class="eyebrow">Origem das decisões</span>
+    <h2>O que o Gustavo Satheler sugeriu, e onde entrou</h2>
+    <p class="muted">Conversa gravada em 30/09/2026 (11 minutos), transcrita localmente. A gravação começa no meio da conversa, então os comentários sobre as alternativas 1 e 2 ficaram fora.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Momento</th><th>Sugestão</th><th>Onde entrou</th></tr></thead>
+      <tbody>
+        <tr><td class="num">00:00</td><td>MVP o mais simples possível: fazer, testar e melhorar</td><td>Princípio de todas as escolhas</td></tr>
+        <tr><td class="num">00:22</td><td>Uma só instância PostgreSQL, a mais barata de manter</td><td>ADR-001</td></tr>
+        <tr><td class="num">00:38</td><td>Não misturar no mesmo schema: um schema e um usuário de banco por instituição</td><td>ADR-002</td></tr>
+        <tr><td class="num">01:17</td><td>Credencial no Secret Manager, não em variável de ambiente</td><td>ADR-005</td></tr>
+        <tr><td class="num">01:25</td><td>Escolher o schema pela origem da requisição</td><td>ADR-003</td></tr>
+        <tr><td class="num">01:57</td><td>Instituição nova é uma migration, sem mudar a regra da aplicação</td><td>ADR-004</td></tr>
+        <tr><td class="num">02:27</td><td>Híbrida agora é overengineering; o cliente enterprise ganha dedicado depois</td><td>Fora do MVP</td></tr>
+        <tr><td class="num">03:52</td><td>Na nuvem o fluxo de eventos não muda; a latência a mais é pequena</td><td>ADR-007</td></tr>
+        <tr><td class="num">07:31</td><td>Dá para fazer tudo com o PostgreSQL</td><td>ADR-006</td></tr>
+        <tr><td class="num">08:04</td><td>A aplicação precisa mandar a origem certa</td><td>Suíte de isolamento e guarda-corpos no CI</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="comparacao">
+  <div class="section-head">
+    <span class="eyebrow">Por que este modelo</span>
+    <h2>Schema por tenant, comparado às opções anteriores</h2>
+    <p class="muted">As análises anteriores recomendavam banco compartilhado com <code>tenant_id</code> e RLS, ou começar com uma pilha por cliente. O modelo do Gustavo resolve melhor o problema desta equipe.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Pilha por cliente</th><th>Pool com tenant_id e RLS</th><th>Schema por tenant</th></tr></thead>
+      <tbody>
+        <tr><td>Custo fixo de banco</td><td>um por cliente</td><td>uma instância</td><td><b>uma instância</b></td></tr>
+        <tr><td>Quem isola</td><td>a infraestrutura</td><td>código e RLS</td><td><b>as permissões do banco</b></td></tr>
+        <tr><td>Mudança no código atual</td><td>pouca</td><td>tenant_id em todo o sistema</td><td><b>tabelas continuam como estão</b></td></tr>
+        <tr><td>Erro de iniciante numa consulta</td><td>não vaza</td><td>pode vazar</td><td><b>não vaza</b></td></tr>
+        <tr><td>Backup e exclusão de um cliente</td><td>simples</td><td>difícil</td><td><b>pg_dump -n e DROP SCHEMA</b></td></tr>
+        <tr><td>Onde começa a pesar</td><td>custo e operação</td><td>muito além do horizonte</td><td>centenas de tenants</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="adrs">
+  <div class="section-head">
+    <span class="eyebrow">Decisões arquiteturais</span>
+    <h2>Doze decisões, cada uma com o gatilho para rever</h2>
+  </div>
+  <div class="filters" role="group" aria-label="Filtrar decisões por área">
+    <button type="button" id="f-todas" data-area="todas" aria-pressed="true">Todas</button>
+    <button type="button" id="f-dados" data-area="dados" aria-pressed="false">Dados</button>
+    <button type="button" id="f-identidade" data-area="identidade" aria-pressed="false">Identidade</button>
+    <button type="button" id="f-borda" data-area="borda" aria-pressed="false">Borda e eventos</button>
+    <button type="button" id="f-infra" data-area="infra" aria-pressed="false">Infraestrutura</button>
+  </div>
+  <div class="adrs" id="lista-adrs">
+    <article class="adr" data-area="dados"><div><span class="id">ADR-001</span><span class="area">dados</span></div><div>
+      <h3>Uma instância Amazon RDS for PostgreSQL 17</h3>
+      <dl><dt>Decisão</dt><dd>Single-AZ no piloto; Multi-AZ com o primeiro cliente pagante. Backup e atualização com o provedor.</dd>
+      <dt>Descartadas</dt><dd>MySQL; um banco por cliente; PostgreSQL em contêiner operado pela equipe</dd>
+      <dt>Rever quando</dt><dd>CPU do banco acima de 60% em horário letivo ou mais de ~150 tenants</dd></dl></div></article>
+    <article class="adr" data-area="dados"><div><span class="id">ADR-002</span><span class="area">dados</span></div><div>
+      <h3>Um schema e um papel de banco por tenant</h3>
+      <dl><dt>Decisão</dt><dd><code>search_path</code> fixo no papel; tabelas sem <code>tenant_id</code>; o papel só tem permissão no próprio schema.</dd>
+      <dt>Descartadas</dt><dd>Pool com <code>tenant_id</code> e RLS; banco por cliente</dd>
+      <dt>Rever quando</dt><dd>Centenas de tenants, ou consultas entre tenants se tornarem frequentes</dd></dl></div></article>
+    <article class="adr" data-area="dados"><div><span class="id">ADR-003</span><span class="area">dados</span></div><div>
+      <h3>Tenant resolvido pelo host</h3>
+      <dl><dt>Decisão</dt><dd>Consulta a <code>plataforma.tenant</code>; sessão presa ao host; host desconhecido recebe 404.</dd>
+      <dt>Descartadas</dt><dd>Tenant em parâmetro, cabeçalho, corpo ou escolhido pelo usuário (como o <code>?institution_id=</code> de hoje)</dd>
+      <dt>Rever quando</dt><dd>Não se aplica</dd></dl></div></article>
+    <article class="adr" data-area="dados"><div><span class="id">ADR-004</span><span class="area">dados</span></div><div>
+      <h3>Alembic por schema e entrada de tenant por comando</h3>
+      <dl><dt>Decisão</dt><dd>As mesmas migrações rodam em cada schema; <code>criar-tenant</code> cria papel, schema, tabelas e registro; migrações compatíveis com a versão anterior do código.</dd>
+      <dt>Descartadas</dt><dd>Migração manual (<code>setup_database.py</code>); um repositório de migração por cliente</dd>
+      <dt>Rever quando</dt><dd>Migrar todos os schemas passar de ~10 minutos</dd></dl></div></article>
+    <article class="adr" data-area="infra"><div><span class="id">ADR-005</span><span class="area">infraestrutura</span></div><div>
+      <h3>AWS Secrets Manager para credenciais</h3>
+      <dl><dt>Decisão</dt><dd>Senha de cada papel e chaves HMAC no cofre; arquivo local só em desenvolvimento.</dd>
+      <dt>Descartadas</dt><dd>Variável de ambiente; segredo em texto puro no banco (como hoje)</dd>
+      <dt>Rever quando</dt><dd>Não se aplica</dd></dl></div></article>
+    <article class="adr" data-area="borda"><div><span class="id">ADR-006</span><span class="area">borda e eventos</span></div><div>
+      <h3>Fila no próprio PostgreSQL</h3>
+      <dl><dt>Decisão</dt><dd><code>FOR UPDATE SKIP LOCKED</code> para a fila e <code>LISTEN/NOTIFY</code> para o painel em tempo real; gravação idempotente por <code>id_externo</code>.</dd>
+      <dt>Descartadas</dt><dd>Kafka, RabbitMQ, SQS, MQTT</dd>
+      <dt>Rever quando</dt><dd>Mais de ~500 eventos/s sustentados ou atraso de fila acima de 5 s</dd></dl></div></article>
+    <article class="adr" data-area="borda"><div><span class="id">ADR-007</span><span class="area">borda e eventos</span></div><div>
+      <h3>Backend decide o bloqueio; gateway busca a lista</h3>
+      <dl><dt>Decisão</dt><dd>Long-poll HTTPS com HMAC; lista versionada e assinada com tenant e gateway; <code>gwapi</code> só em localhost.</dd>
+      <dt>Descartadas</dt><dd>Nuvem chamando o gateway (como hoje); MQTT ou IoT Core; decisão na borda</dd>
+      <dt>Rever quando</dt><dd>Latência medida acima da meta, ou exigência de bloqueio sem nuvem</dd></dl></div></article>
+    <article class="adr" data-area="identidade"><div><span class="id">ADR-008</span><span class="area">identidade</span></div><div>
+      <h3>Login central com CAFe e Google</h3>
+      <dl><dt>Decisão</dt><dd>Um SP e um cliente OAuth em <code>login.iotedu.org</code>; código de uso único devolve a pessoa ao host do tenant; pertinência por convite, IdP ou domínio.</dd>
+      <dt>Descartadas</dt><dd>Keycloak broker desde já; Cognito; um SP por tenant</dd>
+      <dt>Rever quando</dt><dd>Primeiro cliente fora da CAFe e do Google</dd></dl></div></article>
+    <article class="adr" data-area="dados"><div><span class="id">ADR-009</span><span class="area">dados</span></div><div>
+      <h3>Um pool de conexões pequeno por tenant</h3>
+      <dl><dt>Decisão</dt><dd>2 a 5 conexões por tenant, criadas sob demanda.</dd>
+      <dt>Descartadas</dt><dd>PgBouncer; <code>SET LOCAL ROLE</code> com pool único</dd>
+      <dt>Rever quando</dt><dd>Conexões totais perto do limite da instância RDS</dd></dl></div></article>
+    <article class="adr" data-area="infra"><div><span class="id">ADR-010</span><span class="area">infraestrutura</span></div><div>
+      <h3>Uma VM EC2 com Docker Compose</h3>
+      <dl><dt>Decisão</dt><dd>Imagens no GHCR, deploy pelo GitHub Actions, infraestrutura descrita em OpenTofu.</dd>
+      <dt>Descartadas</dt><dd>ECS Fargate; Kubernetes; VPS fora da AWS</dd>
+      <dt>Rever quando</dt><dd>Precisar de mais de uma VM ou de deploy sem interrupção</dd></dl></div></article>
+    <article class="adr" data-area="infra"><div><span class="id">ADR-011</span><span class="area">infraestrutura</span></div><div>
+      <h3>Caddy na borda</h3>
+      <dl><dt>Decisão</dt><dd>Certificado curinga por desafio DNS e TLS sob demanda para domínio próprio, autorizado pelo registro de tenants.</dd>
+      <dt>Descartadas</dt><dd>ALB, CloudFront e ACM</dd>
+      <dt>Rever quando</dt><dd>Centenas de domínios próprios ou exigência de WAF gerenciado</dd></dl></div></article>
+    <article class="adr" data-area="infra"><div><span class="id">ADR-012</span><span class="area">infraestrutura</span></div><div>
+      <h3>AWS em São Paulo</h3>
+      <dl><dt>Decisão</dt><dd>Provedor do MVP, com pedido de créditos para startups (AWS Activate); peças portáveis (contêiner, PostgreSQL, API S3).</dd>
+      <dt>Descartadas</dt><dd>Google Cloud, Azure, Kubernetes independente de provedor</dd>
+      <dt>Rever quando</dt><dd>Créditos, contrato da RNP ou custo mudarem a conta</dd></dl></div></article>
+  </div>
+</section>
+
+<section id="tecnologias">
+  <div class="section-head">
+    <span class="eyebrow">Tecnologias</span>
+    <h2>Pouca coisa nova para aprender</h2>
+    <p class="muted">Quase tudo já está no IoTEdu de hoje. O que entra de novo (PostgreSQL, Alembic, Secrets Manager, OpenTofu) substitui algo que a equipe já opera à mão.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Camada</th><th>Escolha</th><th>Por que, para esta equipe</th></tr></thead>
+      <tbody>
+        <tr><td>API</td><td>Python 3.12, FastAPI, SQLAlchemy 2</td><td>Já em uso; muda só o driver do banco</td></tr>
+        <tr><td>Banco</td><td>PostgreSQL 17 (RDS)</td><td>Schemas, papéis e tipos de rede nativos; backup com o provedor</td></tr>
+        <tr><td>Migrações</td><td>Alembic</td><td>Substitui o <code>setup_database.py</code> escrito à mão</td></tr>
+        <tr><td>Frontend</td><td>Next.js (o atual)</td><td>API relativa e configuração por tenant em tempo de execução</td></tr>
+        <tr><td>Borda</td><td>Caddy 2</td><td>Já em uso; TLS automático</td></tr>
+        <tr><td>Execução</td><td>Docker Compose numa VM EC2</td><td>Já em uso; nenhum orquestrador para aprender</td></tr>
+        <tr><td>Segredos</td><td>AWS Secrets Manager</td><td>Sugestão do Gustavo; rotação e auditoria prontas</td></tr>
+        <tr><td>Infraestrutura</td><td>OpenTofu</td><td>O ambiente é recriado do zero a partir do repositório</td></tr>
+        <tr><td>Qualidade</td><td>GitHub Actions, pytest, ruff</td><td>Suíte de isolamento obrigatória em todo PR</td></tr>
+        <tr><td>Observabilidade</td><td>CloudWatch</td><td>Nada para instalar; logs com o tenant em cada linha</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-head">
+    <h3>Fora do MVP, de propósito</h3>
+  </div>
+  <div class="chips"><span>Kubernetes</span><span>Kafka</span><span>MQTT e IoT Core</span><span>Microsserviços</span><span>Keycloak como broker</span><span>Redis/Valkey</span><span>Service mesh</span><span>Multi-região</span></div>
+</section>
+
+<section id="roteiro">
+  <div class="section-head">
+    <span class="eyebrow">Roteiro</span>
+    <h2>Sete sprints de duas semanas até o piloto</h2>
+  </div>
+  <ol class="timeline">
+    <li><span class="n">sprint 1</span><b>Fundação</b><span>Monorepo, CI, PostgreSQL local, Alembic com o esquema atual</span></li>
+    <li><span class="n">sprint 2</span><b>MySQL para PostgreSQL</b><span>Modelos portados e dados da UNIPAMPA migrados</span></li>
+    <li><span class="n">sprint 3</span><b>Núcleo multi-tenant</b><span>Registro, host, papel por tenant; fim do <code>institution_id</code> vindo do cliente</span></li>
+    <li><span class="n">sprint 4</span><b>Identidade</b><span>Login central, pertinência e papéis</span></li>
+    <li><span class="n">sprint 5</span><b>Borda</b><span>Agente do gateway por long-poll; ingestão na fila e worker</span></li>
+    <li><span class="n">sprint 6</span><b>Nuvem</b><span>OpenTofu, TLS, deploy, backup por tenant, alarmes, runbooks</span></li>
+    <li class="pilot"><span class="n">sprint 7</span><b>Piloto</b><span>UNIPAMPA e uma segunda instituição por 30 dias, com latência e custo medidos</span></li>
+  </ol>
+</section>
+
+<section id="custo">
+  <div class="section-head">
+    <span class="eyebrow">Custo</span>
+    <h2>Quanto custa o piloto na AWS</h2>
+    <p class="muted">Estimativa sob demanda em São Paulo, sem créditos. A consulta automática de preços não estava disponível; os valores precisam ser conferidos na calculadora da AWS.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Item</th><th>Dimensionamento</th><th>US$/mês</th></tr></thead>
+      <tbody>
+        <tr><td>EC2</td><td>t4g.large (2 vCPU, 8 GB) e 30 GB de disco</td><td class="num">80–95</td></tr>
+        <tr><td>RDS PostgreSQL</td><td>db.t4g.medium Single-AZ, 100 GB gp3 e backups</td><td class="num">95–120</td></tr>
+        <tr><td>Secrets Manager</td><td>cerca de 2 segredos por tenant</td><td class="num">5–20</td></tr>
+        <tr><td>S3, CloudWatch, Route 53, IP fixo</td><td>uso baixo</td><td class="num">20–30</td></tr>
+        <tr class="pick"><td>Total do piloto</td><td>até algumas dezenas de instituições</td><td class="num"><b>≈ 200–260</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Cada instituição nova custa quase nada em infraestrutura (um schema, um papel, dois segredos). Com o primeiro cliente pagante, o RDS passa a Multi-AZ (cerca de US$ 90–120 a mais). Para comparar: a apresentação de 30/09 estima R$ 1.494 por mês por instituição no modelo de hoje.</p>
+</section>
+
+<section id="riscos">
+  <div class="section-head">
+    <span class="eyebrow">Riscos</span>
+    <h2>O que pode dar errado, e o que segura</h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Risco</th><th>Mitigação</th></tr></thead>
+      <tbody>
+        <tr><td>A aplicação envia a origem errada</td><td>Tenant resolvido num único lugar; sessão presa ao host; papel sem acesso a outros schemas; suíte de vazamento no CI</td></tr>
+        <tr><td>Credencial de um papel vaza</td><td>O dano fica em um tenant; rotação pelo Secrets Manager</td></tr>
+        <tr><td>Muitos pools de conexão</td><td>Pools pequenos; troca por PgBouncer ou <code>SET LOCAL ROLE</code> antes do limite (ADR-009)</td></tr>
+        <tr><td>Migração falha no meio dos schemas</td><td>Migrações compatíveis com a versão anterior; comando idempotente que retoma de onde parou</td></tr>
+        <tr><td>A VM cai</td><td>Recriação por OpenTofu; o gateway mantém a última lista; Multi-AZ no banco com o primeiro pagante</td></tr>
+        <tr><td>Plataforma comprometida envia bloqueio em massa</td><td>Lista assinada com tenant e gateway; o agente recusa o que não for dele e limita mudanças por versão</td></tr>
+        <tr><td>Equipe sem experiência de operação</td><td>Serviços gerenciados, poucas peças, tudo em código, runbooks e revisão sênior nos marcos</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="prova">
+  <div class="section-head">
+    <span class="eyebrow">Projeto de referência</span>
+    <h2>O isolamento já foi testado</h2>
+  </div>
+  <div class="proof">
+    <span class="big">11/11</span>
+    <div>
+      <b>testes da suíte de isolamento passaram contra um PostgreSQL 16 real</b>
+      <span class="muted">Dispositivo de um tenant não aparece no outro; o papel do banco não lê outro schema nem a plataforma; sessão de uma instituição não vale no host da outra; host desconhecido não cai em tenant padrão; evento vai para o tenant da credencial e reentrega não duplica; toda rota de dados usa a sessão do tenant.</span>
+      <span class="muted">Na verificação de mutação, dar de propósito a um papel permissão no schema de outro fez o teste do banco falhar, como deveria. O compose e o CI foram escritos, mas não executados nesta máquina.</span>
+    </div>
+  </div>
+</section>
+
+<section id="decisoes">
+  <div class="section-head">
+    <span class="eyebrow">Para o grupo decidir</span>
+    <h2>Cinco aprovações destravam a sprint 1</h2>
+  </div>
+  <ol class="asks">
+    <li>Schema e papel por tenant numa instância PostgreSQL (ADRs 001 a 004)</li>
+    <li>AWS como provedor do MVP, com pedido de créditos para startups</li>
+    <li>Login central e a regra de pertinência por convite, IdP ou domínio (ADR-008)</li>
+    <li>Roteiro de sete sprints e regras de trabalho (PR com revisão, CI obrigatório, AGENTS.md)</li>
+    <li>Quem faz as revisões sêniores nas sprints 3, 5 e 6</li>
+  </ol>
+</section>
+
+<footer>
+  <span>Documentos: PROPOSTA-PROJETO-MULTITENANT-v0.1.md, ANALISE-TECNICA-MULTITENANT-v0.1.md, COMPARACAO-ABORDAGENS-IMPLANTACAO-v0.1.md e o projeto iotedu-mt-referencia.</span>
+  <span>GT IoTEdu · UNIPAMPA · UFRGS · UFU · proposta para discussão; nada aqui foi implantado em produção.</span>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var botoes = document.querySelectorAll('.filters button');
+  var adrs = document.querySelectorAll('#lista-adrs .adr');
+  function aplicar(area) {
+    botoes.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.area === area)); });
+    adrs.forEach(function (a) { a.hidden = area !== 'todas' && a.dataset.area !== area; });
+    try { localStorage.setItem('iotedu-adr-area', area); } catch (e) {}
+  }
+  botoes.forEach(function (b) { b.addEventListener('click', function () { aplicar(b.dataset.area); }); });
+  var salva = null;
+  try { salva = localStorage.getItem('iotedu-adr-area'); } catch (e) {}
+  if (salva && document.querySelector('.filters button[data-area="' + salva + '"]')) aplicar(salva);
+})();
+</script>
