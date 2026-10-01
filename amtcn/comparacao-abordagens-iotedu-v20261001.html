@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Abordagens IoTEdu para alunos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: relatório comparativo em coluna única; barras em escala para horas e chips de nível para complexidade. */
+:root {
+  --bg: #fbfcfc; --surface: #f1f5f4; --fg: #16201f; --muted: #53615e; --rule: #d5dedb;
+  --accent: #0b6e69; --accent-soft: #e2f0ee;
+  --lvl1: #1f7a4d; --lvl1-bg: #e3f3ea;
+  --lvl2: #8a6a00; --lvl2-bg: #f8efd2;
+  --lvl3: #b4501a; --lvl3-bg: #fbe6da;
+  --lvl4: #b3261e; --lvl4-bg: #f9dedc;
+  --font-display: "Bricolage Grotesque", "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --measure: 70ch;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1514; --surface: #152020; --fg: #e3ebe9; --muted: #9aaaa6; --rule: #273431;
+    --accent: #52b9ae; --accent-soft: #163129;
+    --lvl1: #6fd19c; --lvl1-bg: #143021; --lvl2: #e6c35c; --lvl2-bg: #33290b;
+    --lvl3: #f0a06c; --lvl3-bg: #3a2115; --lvl4: #f08a80; --lvl4-bg: #3d1a17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1514; --surface: #152020; --fg: #e3ebe9; --muted: #9aaaa6; --rule: #273431;
+  --accent: #52b9ae; --accent-soft: #163129;
+  --lvl1: #6fd19c; --lvl1-bg: #143021; --lvl2: #e6c35c; --lvl2-bg: #33290b;
+  --lvl3: #f0a06c; --lvl3-bg: #3a2115; --lvl4: #f08a80; --lvl4-bg: #3d1a17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.6;
+  padding-inline: clamp(16px, 4vw, 48px); padding-block: 0 4rem;
+}
+.page { max-width: 1060px; margin-inline: auto; display: grid; gap: 3.25rem; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 4.6vw, 3.1rem); font-weight: 700; }
+h2 { font-size: clamp(1.45rem, 3vw, 1.95rem); font-weight: 700; }
+h3 { font-size: 1.12rem; font-weight: 600; }
+p { margin: 0; max-width: var(--measure); }
+code { font-family: var(--font-mono); font-size: 0.9em; }
+.eyebrow { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+.muted { color: var(--muted); }
+section { display: grid; gap: 1.2rem; }
+.head { display: grid; gap: 0.5rem; }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+header.hero { padding-top: 3.25rem; padding-bottom: 2.25rem; border-bottom: 1px solid var(--rule); display: grid; gap: 1.1rem; }
+.hero .lead { font-size: 1.18rem; max-width: 62ch; }
+.verdict { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem; margin-top: 0.5rem; }
+.verdict > div { padding-top: 0.75rem; border-top: 2px solid var(--rule); display: grid; gap: 0.25rem; }
+.verdict > div.yes { border-top-color: var(--accent); }
+.verdict b { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; }
+.verdict span { color: var(--muted); font-size: 0.95rem; }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.96rem; min-width: 680px; }
+th, td { text-align: left; vertical-align: top; padding: 0.6rem 0.9rem 0.6rem 0; border-bottom: 1px solid var(--rule); }
+th { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border-bottom: 1.5px solid var(--fg); }
+td:first-child { font-weight: 600; }
+td.r, th.r { text-align: right; }
+tr.total td { font-weight: 700; border-bottom: 1.5px solid var(--fg); }
+col.pick, td.pick { background: var(--accent-soft); }
+th.pick { color: var(--accent); }
+
+.lvl { display: inline-block; padding: 0.1rem 0.55rem; border-radius: 999px; font-size: 0.84rem; font-weight: 600; white-space: nowrap; }
+.l1 { color: var(--lvl1); background: var(--lvl1-bg); }
+.l2 { color: var(--lvl2); background: var(--lvl2-bg); }
+.l3 { color: var(--lvl3); background: var(--lvl3-bg); }
+.l4 { color: var(--lvl4); background: var(--lvl4-bg); }
+.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; font-size: 0.9rem; color: var(--muted); align-items: center; }
+
+/* Barras de horas, em escala */
+.bars { display: grid; gap: 0.85rem; }
+.bar-row { display: grid; grid-template-columns: 11.5rem 1fr 7.5rem; gap: 0.9rem; align-items: center; }
+.bar-row > * { min-width: 0; }
+.bar-label { font-weight: 600; font-size: 0.95rem; }
+.bar-track { position: relative; height: 1.25rem; background: var(--surface); border-radius: 4px; }
+.bar-fill { position: absolute; top: 0; bottom: 0; border-radius: 4px; background: var(--muted); opacity: 0.55; }
+.bar-fill.lo { background: var(--muted); opacity: 0.9; }
+.bar-row.pick .bar-fill, .bar-row.pick .bar-fill.lo { background: var(--accent); }
+.bar-value { font-size: 0.9rem; color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; }
+.axis { display: grid; grid-template-columns: 11.5rem 1fr 7.5rem; gap: 0.9rem; font-size: 0.78rem; color: var(--muted); }
+.axis .ticks { position: relative; height: 1rem; border-top: 1px solid var(--rule); }
+.axis .ticks span { position: absolute; top: 0.15rem; transform: translateX(-50%); font-variant-numeric: tabular-nums; }
+.axis .ticks span:first-child { transform: none; }
+.axis .ticks span:last-child { transform: translateX(-100%); }
+
+.ops { display: grid; gap: 1rem; }
+.ops-row { display: grid; grid-template-columns: 11.5rem 1fr; gap: 0.9rem; align-items: start; }
+.ops-row > * { min-width: 0; }
+.ops-bars { display: grid; gap: 0.25rem; }
+.ops-bar { display: grid; grid-template-columns: 2.6rem 1fr; gap: 0.5rem; align-items: center; font-size: 0.8rem; color: var(--muted); }
+.ops-bar .t { margin-right: 3.5rem; height: 0.8rem; background: var(--surface); border-radius: 3px; position: relative; }
+.ops-bar .f { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--muted); }
+.ops-row.pick .ops-bar .f { background: var(--accent); }
+.ops-bar .f span { position: absolute; left: calc(100% + 0.4rem); top: -0.15rem; white-space: nowrap; color: var(--fg); font-variant-numeric: tabular-nums; }
+
+.principles { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+.principles li { border-top: 2px solid var(--accent); padding-top: 0.75rem; }
+ol.steps { margin: 0; padding-left: 1.3rem; display: grid; gap: 0.55rem; max-width: var(--measure); }
+.note { border-left: 3px solid var(--accent); padding: 0.75rem 1rem; background: var(--accent-soft); border-radius: 0 8px 8px 0; max-width: var(--measure); }
+footer { border-top: 1px solid var(--rule); padding-top: 1.5rem; font-size: 0.9rem; color: var(--muted); display: grid; gap: 0.5rem; }
+
+@media (max-width: 620px) {
+  .bar-row, .axis { grid-template-columns: 1fr; gap: 0.3rem; }
+  .axis > span:first-child, .axis > span:last-child { display: none; }
+  .bar-value { text-align: left; }
+  .ops-row { grid-template-columns: 1fr; gap: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hero">
+  <span class="eyebrow">GT IoTEdu · comparação v0.2 · 01/10/2026</span>
+  <h1>Qual abordagem multi-tenant uma equipe de alunos consegue construir e manter</h1>
+  <p class="lead">Cinco abordagens comparadas em horas de trabalho, complexidade de implantação, manutenção com até 10 e com mais de 10 instituições, segurança, desempenho e equipe necessária, considerando alunos de graduação e mestrado com pouca experiência em sistemas reais em produção.</p>
+  <div class="verdict">
+    <div class="yes"><b>Recomendada: schema por instituição</b><span>Uma instância PostgreSQL, um schema e um papel por instituição. O banco barra o erro de consulta; a manutenção quase não cresce com o número de clientes.</span></div>
+    <div><b>18 a 25 semanas</b><span>para implantar com 4 alunos a 15 h por semana; 12 a 16 com 6 alunos.</span></div>
+    <div><b>4 alunos e um mentor</b><span>mais cerca de 4 h por semana de alguém sênior em PostgreSQL e segurança.</span></div>
+    <div><b>Evitar agora</b><span>banco compartilhado com RLS, híbrida e Kubernetes operado pela equipe: todos exigem seniores na equipe.</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="head"><span class="eyebrow">A equipe</span><h2>Três princípios tirados de quem vai manter o sistema</h2>
+  <p class="muted">Alunos com 10 a 20 h por semana, calendário acadêmico, rotatividade a cada formatura, sem plantão e com assistentes de IA que aceleram a escrita mas não substituem revisão.</p></div>
+  <ul class="principles">
+    <li><b>O erro de um iniciante atinge no máximo uma instituição.</b> <span class="muted">O isolamento não pode depender de cada consulta estar certa.</span></li>
+    <li><b>A manutenção não cresce junto com o número de clientes.</b> <span class="muted">Trabalho repetido por instituição vira gargalo depois de 10.</span></li>
+    <li><b>Nenhuma peça exige um especialista ausente.</b> <span class="muted">Se só uma pessoa sabe operar, a formatura dela vira incidente.</span></li>
+  </ul>
+</section>
+
+<section>
+  <div class="head"><span class="eyebrow">As abordagens</span><h2>Cinco formas de separar as instituições</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>#</th><th>Abordagem</th><th>Como funciona</th><th>Nome técnico</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Pilha por cliente</td><td>Uma pilha completa (aplicação e banco) por instituição</td><td>silo, lift-and-shift</td></tr>
+      <tr><td>2</td><td>Banco por instituição</td><td>Aplicação compartilhada; uma instância de banco por instituição</td><td>database-per-tenant</td></tr>
+      <tr><td class="pick">3</td><td class="pick"><b>Schema por instituição</b></td><td class="pick">Aplicação compartilhada; uma instância PostgreSQL; um schema e um papel por instituição; tenant pelo host</td><td class="pick">schema-per-tenant</td></tr>
+      <tr><td>4</td><td>Banco compartilhado</td><td>Tudo compartilhado; <code>tenant_id</code> em cada linha, filtrado por RLS</td><td>pool, shared schema</td></tr>
+      <tr><td>5</td><td>Híbrida</td><td>Compartilhado para a maioria; dedicado para quem precisar</td><td>tiering</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">Todas rodam em nuvem gerenciada (uma VM com Docker Compose e banco gerenciado). Kubernetes operado pela equipe aparece como acréscimo. Em todas, o gateway e as sondas continuam na instituição e o canal do gateway é refeito.</p>
+</section>
+
+<section id="horas">
+  <div class="head"><span class="eyebrow">(a) Horas de trabalho</span><h2>Quanto trabalho para colocar cada abordagem no ar</h2>
+  <p class="muted">Horas de alunos, com fator de 1,5 a 2,0 sobre as horas de um profissional experiente. A parte escura da barra é o cenário otimista (×1,5); a clara vai até o pessimista (×2,0).</p></div>
+  <div class="bars" role="img" aria-label="Horas de alunos para implantar: pilha por cliente 570 a 760; banco por instituição 1.020 a 1.360; schema por instituição 1.110 a 1.480; banco compartilhado 1.500 a 2.000; híbrida 1.740 a 2.320.">
+    <div class="bar-row"><span class="bar-label">1 · Pilha por cliente</span><div class="bar-track"><div class="bar-fill" style="left:0;width:31.67%"></div><div class="bar-fill lo" style="left:0;width:23.75%"></div></div><span class="bar-value">570–760 h</span></div>
+    <div class="bar-row"><span class="bar-label">2 · Banco por inst.</span><div class="bar-track"><div class="bar-fill" style="left:0;width:56.67%"></div><div class="bar-fill lo" style="left:0;width:42.5%"></div></div><span class="bar-value">1.020–1.360 h</span></div>
+    <div class="bar-row pick"><span class="bar-label">3 · Schema</span><div class="bar-track"><div class="bar-fill" style="left:0;width:61.67%"></div><div class="bar-fill lo" style="left:0;width:46.25%"></div></div><span class="bar-value">1.110–1.480 h</span></div>
+    <div class="bar-row"><span class="bar-label">4 · Compartilhado</span><div class="bar-track"><div class="bar-fill" style="left:0;width:83.33%"></div><div class="bar-fill lo" style="left:0;width:62.5%"></div></div><span class="bar-value">1.500–2.000 h</span></div>
+    <div class="bar-row"><span class="bar-label">5 · Híbrida</span><div class="bar-track"><div class="bar-fill" style="left:0;width:96.67%"></div><div class="bar-fill lo" style="left:0;width:72.5%"></div></div><span class="bar-value">1.740–2.320 h</span></div>
+    <div class="axis"><span></span><div class="ticks"><span style="left:0">0</span><span style="left:25%">600</span><span style="left:50%">1.200</span><span style="left:75%">1.800</span><span style="left:100%">2.400 h</span></div><span></span></div>
+  </div>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Pacote de trabalho (horas de referência)</th><th class="r">1</th><th class="r">2</th><th class="r pick">3</th><th class="r">4</th><th class="r">5</th></tr></thead>
+    <tbody>
+      <tr><td>Canal do gateway (apresentação de 30/09)</td><td class="r num">160</td><td class="r num">160</td><td class="r num pick">160</td><td class="r num">160</td><td class="r num">160</td></tr>
+      <tr><td>Correções de segurança imediatas</td><td class="r num">40</td><td class="r num">40</td><td class="r num pick">40</td><td class="r num">40</td><td class="r num">40</td></tr>
+      <tr><td>CI, testes e build reprodutível</td><td class="r num">40</td><td class="r num">40</td><td class="r num pick">40</td><td class="r num">40</td><td class="r num">40</td></tr>
+      <tr><td>Infraestrutura em código, TLS, backup, alarmes, runbooks</td><td class="r num">80</td><td class="r num">80</td><td class="r num pick">80</td><td class="r num">80</td><td class="r num">80</td></tr>
+      <tr><td>Automação de uma pilha por cliente</td><td class="r num">60</td><td class="r"></td><td class="r pick"></td><td class="r"></td><td class="r"></td></tr>
+      <tr><td>Login central e pertinência por instituição</td><td class="r"></td><td class="r num">80</td><td class="r num pick">80</td><td class="r num">80</td><td class="r num">80</td></tr>
+      <tr><td>Aplicação sem estado (30/09)</td><td class="r"></td><td class="r num">120</td><td class="r num pick">80</td><td class="r num">120</td><td class="r num">120</td></tr>
+      <tr><td>MySQL para PostgreSQL (30/09)</td><td class="r"></td><td class="r"></td><td class="r num pick">160</td><td class="r num">160</td><td class="r num">160</td></tr>
+      <tr><td>Núcleo multi-tenant</td><td class="r"></td><td class="r num">80</td><td class="r num pick">60</td><td class="r num">260</td><td class="r num">380</td></tr>
+      <tr><td>Testes de vazamento entre instituições</td><td class="r"></td><td class="r num">40</td><td class="r num pick">40</td><td class="r num">60</td><td class="r num">80</td></tr>
+      <tr><td>Migrações orquestradas em vários bancos</td><td class="r"></td><td class="r num">40</td><td class="r pick"></td><td class="r"></td><td class="r num">20</td></tr>
+      <tr class="total"><td>Total, horas de referência</td><td class="r num">380</td><td class="r num">680</td><td class="r num pick">740</td><td class="r num">1.000</td><td class="r num">1.160</td></tr>
+      <tr><td>Semanas com 4 alunos a 15 h</td><td class="r num">10–13</td><td class="r num">17–23</td><td class="r num pick">18–25</td><td class="r num">25–33</td><td class="r num">29–39</td></tr>
+      <tr><td>Semanas com 6 alunos a 15 h</td><td class="r num">6–8</td><td class="r num">11–15</td><td class="r num pick">12–16</td><td class="r num">17–22</td><td class="r num">19–26</td></tr>
+      <tr><td>Supervisão sênior</td><td class="r num">≈ 40 h</td><td class="r num">≈ 70 h</td><td class="r num pick">≈ 75 h</td><td class="r num">≈ 100 h</td><td class="r num">≈ 115 h</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">Kubernetes operado pela equipe soma cerca de 240 horas de referência, ou 480 a 720 horas de alunos, e exige uma pessoa experiente em plataforma.</p>
+
+  <div class="head"><h3>Operação mensal, já com o fator ×1,5</h3><p class="muted">Atualizações, backups, entrada de instituições, incidentes e suporte, com 5, 10 e 30 instituições.</p></div>
+  <div class="ops" role="img" aria-label="Horas de operação por mês com 5, 10 e 30 instituições: pilha por cliente 31, 50 e 124; banco por instituição 38, 45 e 75; schema 32, 34 e 44; compartilhado 42, 43 e 44; híbrida 50, 52 e 59.">
+    <div class="ops-row"><span class="bar-label">1 · Pilha por cliente</span><div class="ops-bars">
+      <div class="ops-bar"><span>5</span><div class="t"><div class="f" style="width:19.4%"><span>31 h</span></div></div></div>
+      <div class="ops-bar"><span>10</span><div class="t"><div class="f" style="width:31.2%"><span>50 h</span></div></div></div>
+      <div class="ops-bar"><span>30</span><div class="t"><div class="f" style="width:77.5%"><span>124 h</span></div></div></div></div></div>
+    <div class="ops-row"><span class="bar-label">2 · Banco por inst.</span><div class="ops-bars">
+      <div class="ops-bar"><span>5</span><div class="t"><div class="f" style="width:23.8%"><span>38 h</span></div></div></div>
+      <div class="ops-bar"><span>10</span><div class="t"><div class="f" style="width:28.1%"><span>45 h</span></div></div></div>
+      <div class="ops-bar"><span>30</span><div class="t"><div class="f" style="width:46.9%"><span>75 h</span></div></div></div></div></div>
+    <div class="ops-row pick"><span class="bar-label">3 · Schema</span><div class="ops-bars">
+      <div class="ops-bar"><span>5</span><div class="t"><div class="f" style="width:20.0%"><span>32 h</span></div></div></div>
+      <div class="ops-bar"><span>10</span><div class="t"><div class="f" style="width:21.2%"><span>34 h</span></div></div></div>
+      <div class="ops-bar"><span>30</span><div class="t"><div class="f" style="width:27.5%"><span>44 h</span></div></div></div></div></div>
+    <div class="ops-row"><span class="bar-label">4 · Compartilhado</span><div class="ops-bars">
+      <div class="ops-bar"><span>5</span><div class="t"><div class="f" style="width:26.2%"><span>42 h</span></div></div></div>
+      <div class="ops-bar"><span>10</span><div class="t"><div class="f" style="width:26.9%"><span>43 h</span></div></div></div>
+      <div class="ops-bar"><span>30</span><div class="t"><div class="f" style="width:27.5%"><span>44 h</span></div></div></div></div></div>
+    <div class="ops-row"><span class="bar-label">5 · Híbrida</span><div class="ops-bars">
+      <div class="ops-bar"><span>5</span><div class="t"><div class="f" style="width:31.2%"><span>50 h</span></div></div></div>
+      <div class="ops-bar"><span>10</span><div class="t"><div class="f" style="width:32.5%"><span>52 h</span></div></div></div>
+      <div class="ops-bar"><span>30</span><div class="t"><div class="f" style="width:36.9%"><span>59 h</span></div></div></div></div></div>
+  </div>
+  <p class="muted">Escala de 0 a 160 h por mês. Kubernetes acrescenta 90 a 150 h por mês a qualquer abordagem. 124 h por mês equivalem a quase uma pessoa em tempo integral só mantendo o sistema.</p>
+</section>
+
+<section id="complexidade">
+  <div class="head"><span class="eyebrow">(b), (c) e (d) Complexidade</span><h2>Implantar, manter com várias instituições e manter seguro</h2></div>
+  <div class="legend"><span class="lvl l1">Baixa</span><span class="lvl l2">Média</span><span class="lvl l3">Alta</span><span class="lvl l4">Muito alta</span></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Abordagem</th><th>(b) Implantação</th><th>(c) Manter até 10</th><th>(c) Manter acima de 10</th><th>(d) Segurança</th><th>Erro de consulta vaza dado?</th></tr></thead>
+    <tbody>
+      <tr><td>1 · Pilha por cliente</td><td><span class="lvl l1">Baixa</span></td><td><span class="lvl l1">Baixa a média</span></td><td><span class="lvl l3">Alta</span></td><td><span class="lvl l2">Média</span></td><td>Não</td></tr>
+      <tr><td>2 · Banco por instituição</td><td><span class="lvl l2">Média</span></td><td><span class="lvl l2">Média</span></td><td><span class="lvl l3">Média a alta</span></td><td><span class="lvl l3">Alta</span></td><td>Não</td></tr>
+      <tr><td class="pick">3 · Schema por instituição</td><td class="pick"><span class="lvl l2">Média</span></td><td class="pick"><span class="lvl l1">Baixa</span></td><td class="pick"><span class="lvl l1">Baixa a média</span></td><td class="pick"><span class="lvl l2">Média</span></td><td class="pick"><b>Não</b></td></tr>
+      <tr><td>4 · Banco compartilhado</td><td><span class="lvl l3">Alta</span></td><td><span class="lvl l2">Média</span></td><td><span class="lvl l2">Média</span></td><td><span class="lvl l3">Alta</span></td><td>Sim</td></tr>
+      <tr><td>5 · Híbrida</td><td><span class="lvl l4">Muito alta</span></td><td><span class="lvl l3">Alta</span></td><td><span class="lvl l3">Alta</span></td><td><span class="lvl l4">Muito alta</span></td><td>Sim</td></tr>
+      <tr><td>Kubernetes (acréscimo)</td><td><span class="lvl l4">Muito alta</span></td><td><span class="lvl l4">Muito alta</span></td><td><span class="lvl l4">Muito alta</span></td><td><span class="lvl l4">Alta a muito alta</span></td><td>Como a abordagem</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Abordagem</th><th>Por que a manutenção cresce (ou não)</th><th>O que um iniciante pode errar na segurança</th></tr></thead>
+    <tbody>
+      <tr><td>1 · Pilha por cliente</td><td>N atualizações, backups e certificados; versões diferentes por cliente; um SP na CAFe por instituição, com prazo da RNP</td><td>Esquecer de atualizar uma das N pilhas; deixar segredo ou porta exposta numa delas</td></tr>
+      <tr><td>2 · Banco por instituição</td><td>Uma aplicação, mas N bancos para migrar, monitorar e pagar</td><td>Apontar uma instituição para o banco de outra; vazar uma das N credenciais</td></tr>
+      <tr><td class="pick">3 · Schema por instituição</td><td class="pick">Uma aplicação e um banco; <code>migrar-todos</code> aplica a mesma migração em todos os schemas; instituição nova é um comando de cerca de 30 minutos</td><td class="pick">Errar a resolução de host para tenant (coberto por teste e pela sessão presa ao host); usar o papel dono do banco numa requisição (proibido e verificado no CI)</td></tr>
+      <tr><td>4 · Banco compartilhado</td><td>Uma migração, mas toda mudança de código exige revisão de isolamento; excluir ou restaurar uma instituição só é difícil</td><td>Esquecer o filtro numa consulta; RLS mal configurada; variável de sessão que vaza pelo pool</td></tr>
+      <tr><td>5 · Híbrida</td><td>Dois caminhos para operar e testar; mover instituições entre planos</td><td>Tudo da 4, mais rotear uma instituição para o plano errado</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Em todas as abordagens compartilhadas, invadir a aplicação alcança todas as instituições, porque ela guarda as credenciais de todas. A diferença da 3 para a 4 está no erro comum, e não no ataque: na 3, a consulta errada recebe <code>permission denied</code> do banco; na 4, ela devolve o dado de outra instituição.</p>
+</section>
+
+<section id="desempenho">
+  <div class="head"><span class="eyebrow">(e) Desempenho</span><h2>Onde cada abordagem pode engasgar</h2>
+  <p class="muted">A carga prevista é modesta (cerca de 83 eventos por segundo com 100 instituições). O ponto sensível é o pico de alertas durante um ataque, absorvido pela fila.</p></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Abordagem</th><th>Problemas prováveis</th><th>Mitigação</th></tr></thead>
+    <tbody>
+      <tr><td>1 · Pilha por cliente</td><td>VM pequena por instituição, sem elasticidade; pico de alertas esgota a VM daquela instituição; memória ociosa repetida (≈ 1,5 GB por pilha)</td><td>Dimensionar cada VM pelo maior pico, o que encarece</td></tr>
+      <tr><td>2 · Banco por instituição</td><td>Explosão de conexões; muitas instâncias pequenas e subutilizadas</td><td>Pool por banco e PgBouncer</td></tr>
+      <tr><td class="pick">3 · Schema por instituição</td><td class="pick">Pools por instituição somam conexões: 100 instituições com 2 a 5 cada chegam a 200–500, perto do limite de uma instância pequena (≈ 400 numa de 4 GB); vizinho ruidoso na mesma instância</td><td class="pick"><code>CONNECTION LIMIT</code> e <code>statement_timeout</code> por papel; PgBouncer ou <code>SET LOCAL ROLE</code> antes do limite; instância maior</td></tr>
+      <tr><td>4 · Banco compartilhado</td><td>Tabelas grandes com dados de todos; índice sem <code>tenant_id</code> varre tudo; vizinho ruidoso</td><td>Índices por <code>tenant_id</code>, partição por mês, cotas</td></tr>
+      <tr><td>5 · Híbrida</td><td>Os da 4 no compartilhado</td><td>Mover para dedicado quem pesa demais</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="equipe">
+  <div class="head"><span class="eyebrow">(f) Equipe e perfis</span><h2>Quantas pessoas e quais especialidades</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Abordagem</th><th>Equipe mínima</th><th>Perfis</th><th>Apoio sênior</th><th>Acima de 10 instituições</th></tr></thead>
+    <tbody>
+      <tr><td>1 · Pilha por cliente</td><td class="num">3 alunos</td><td>2 backend, 1 infraestrutura</td><td>Mentor de infraestrutura, ≈ 2 h/semana</td><td>+1 pessoa só para operação a partir de ≈ 20</td></tr>
+      <tr><td>2 · Banco por instituição</td><td class="num">4 alunos</td><td>2 backend, 1 infraestrutura e banco, 1 frontend em meio período</td><td>Mentor de banco e segurança, ≈ 4 h/semana</td><td>+1 em infraestrutura e banco</td></tr>
+      <tr><td class="pick">3 · Schema por instituição</td><td class="pick num">4 alunos</td><td class="pick">2 backend, 1 infraestrutura e banco, 1 frontend em meio período</td><td class="pick">Mentor de PostgreSQL e segurança, ≈ 4 h/semana</td><td class="pick">Mesma equipe até dezenas de instituições</td></tr>
+      <tr><td>4 · Banco compartilhado</td><td class="num">5–6 pessoas</td><td>3 backend (uma experiente em multi-tenancy), 1 infraestrutura, 1 frontend, 1 testes e segurança</td><td><b>Sênior na equipe</b>, ≈ 10 h/semana</td><td>Mesma equipe</td></tr>
+      <tr><td>5 · Híbrida</td><td class="num">6–7 pessoas</td><td>Equipe da 4, mais 1 de banco e plataforma</td><td><b>Sênior na equipe</b></td><td>Mesma equipe</td></tr>
+      <tr><td>Kubernetes (acréscimo)</td><td class="num">+2 pessoas</td><td>1 SRE de plataforma experiente (contratado), 1 aluno aprendiz</td><td>O SRE é o sênior; exige plantão</td><td>Mesma equipe</td></tr>
+    </tbody>
+  </table></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Perfil</th><th>O que faz</th><th>Pode ser aluno?</th></tr></thead>
+    <tbody>
+      <tr><td>Backend</td><td>Python, FastAPI, SQL: regras de negócio, API, ingestão, canal do gateway</td><td>Sim</td></tr>
+      <tr><td>Frontend</td><td>Next.js: painel e configuração por instituição</td><td>Sim</td></tr>
+      <tr><td>Infraestrutura e DevOps</td><td>OpenTofu, AWS, CI/CD, backups, alarmes</td><td>Sim, com mentoria</td></tr>
+      <tr><td>Banco de dados</td><td>PostgreSQL: modelagem, migrações, papéis, desempenho</td><td>Com mentoria; revisão sênior nas abordagens 3, 4 e 5</td></tr>
+      <tr><td>Segurança de aplicação</td><td>Revisão de isolamento, segredos, ameaças, testes de vazamento</td><td>Aluno executa; <b>revisão sênior</b></td></tr>
+      <tr><td>SRE e plataforma</td><td>Kubernetes, operadores, observabilidade, plantão</td><td><b>Não</b></td></tr>
+      <tr><td>Mentor sênior</td><td>Revisa PRs críticos e decisões; desbloqueia a equipe</td><td>Não</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="recomendacao">
+  <div class="head"><span class="eyebrow">Recomendação</span><h2>O que fazer, e em que ordem</h2></div>
+  <ol class="steps">
+    <li><b>Adotar o schema por instituição</b> em nuvem gerenciada, como na proposta de projeto.</li>
+    <li><b>Usar a pilha por cliente só como ponte</b>, se uma instituição precisar entrar antes da migração para PostgreSQL (10 a 13 semanas contra 18 a 25), com a mesma imagem e o mesmo canal do gateway.</li>
+    <li><b>Ajustar o roteiro à capacidade real:</b> as 7 sprints da proposta exigem cerca de 6 alunos a 15 h por semana; com 4, planejar de 9 a 12 sprints ou cortar escopo.</li>
+    <li><b>Garantir o mentor sênior antes da sprint 1</b>, cerca de 4 h por semana em PostgreSQL e segurança.</li>
+    <li><b>Medir a velocidade da equipe nas sprints 1 e 2</b> e recalibrar o fator de 1,5 a 2,0.</li>
+  </ol>
+  <p class="muted">Rever a escolha perto de 80 a 100 instituições (pool de conexões), quando um cliente exigir banco dedicado (mover o schema dele para uma instância própria) ou se entrar uma equipe de operação dedicada.</p>
+</section>
+
+<footer>
+  <span>Fontes: apresentação "Abordagens de Implantação" (30/09/2026), conversa com Gustavo Satheler (30/09/2026), análise técnica v0.1, comparação v0.1, proposta de projeto v0.1 e projeto de referência iotedu-mt-referencia.</span>
+  <span>Horas de canal do gateway, aplicação sem estado, migração para PostgreSQL e fórmulas de operação das abordagens 1, 2, 4 e 5 vêm da apresentação de 30/09. Demais pacotes, fórmula da abordagem 3, fator para alunos e acréscimo do Kubernetes são estimativas a validar.</span>
+  <span>Documento completo: COMPARACAO-ABORDAGENS-IMPLANTACAO-v0.2.md</span>
+</footer>
+
+</div>
+</body>
+</html>
