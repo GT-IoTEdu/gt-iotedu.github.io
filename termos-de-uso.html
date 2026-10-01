@@ -21,6 +21,12 @@
 
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="legal.css" />
+  <!-- i18n:hreflang -->
+  <link rel="alternate" hreflang="pt-BR" href="https://iotedu.org/termos-de-uso.html" />
+  <link rel="alternate" hreflang="en" href="https://iotedu.org/en/termos-de-uso.html" />
+  <link rel="alternate" hreflang="es" href="https://iotedu.org/es/termos-de-uso.html" />
+  <link rel="alternate" hreflang="x-default" href="https://iotedu.org/termos-de-uso.html" />
+  <!-- /i18n:hreflang -->
 </head>
 <body class="bg-slate-900 text-white font-[Inter]">
 
@@ -46,6 +52,15 @@
     </div>
 
     <div class="flex items-center space-x-2 md:space-x-4 md:justify-self-end">
+      <!-- i18n:switch -->
+      <div class="hidden md:flex items-center gap-1 text-sm font-semibold" role="group" aria-label="Idioma">
+        <a href="termos-de-uso.html" hreflang="pt-BR" lang="pt-BR" title="Português" class="px-1.5 py-1 rounded text-blue-400" aria-current="true">PT</a>
+        <span class="text-slate-600" aria-hidden="true">|</span>
+        <a href="en/termos-de-uso.html" hreflang="en" lang="en" title="English" class="px-1.5 py-1 rounded text-slate-400 hover:text-white transition-colors">EN</a>
+        <span class="text-slate-600" aria-hidden="true">|</span>
+        <a href="es/termos-de-uso.html" hreflang="es" lang="es" title="Español" class="px-1.5 py-1 rounded text-slate-400 hover:text-white transition-colors">ES</a>
+      </div>
+      <!-- /i18n:switch -->
       <a href="index.html" class="px-4 py-2 rounded-lg border border-slate-700 text-white hover:bg-slate-800 bg-transparent">Início</a>
 
       <button
@@ -79,6 +94,13 @@
         <a href="publicacoes.html" class="py-2 hover:text-blue-400 transition-colors">Publicações</a>
         <a href="videos.html" class="py-2 hover:text-blue-400 transition-colors">Vídeos</a>
         <a href="news.html" class="py-2 hover:text-blue-400 transition-colors">Notícias</a>
+        <!-- i18n:switch-mobile -->
+        <div class="flex items-center gap-4 pt-3 mt-1 border-t border-slate-800 text-sm font-semibold" role="group" aria-label="Idioma">
+          <a href="termos-de-uso.html" hreflang="pt-BR" lang="pt-BR" title="Português" class="py-1 text-blue-400" aria-current="true">PT</a>
+          <a href="en/termos-de-uso.html" hreflang="en" lang="en" title="English" class="py-1 text-slate-400 hover:text-white transition-colors">EN</a>
+          <a href="es/termos-de-uso.html" hreflang="es" lang="es" title="Español" class="py-1 text-slate-400 hover:text-white transition-colors">ES</a>
+        </div>
+        <!-- /i18n:switch-mobile -->
       </div>
     </div>
   </nav>

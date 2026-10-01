@@ -85,6 +85,26 @@
   color: #fed7aa;
 }
 .legal-draft strong { color: #fdba74; }
+
+/* aviso nas versões traduzidas (EN/ES): o texto em português prevalece */
+.legal-translation-note {
+  display: flex;
+  gap: .85rem;
+  align-items: flex-start;
+  max-width: 56rem;
+  margin: 0 auto 1.5rem;
+  background: rgba(56, 189, 248, .08);
+  border: 1px solid rgba(56, 189, 248, .3);
+  border-left: 4px solid #38bdf8;
+  border-radius: 8px;
+  padding: .9rem 1.1rem;
+  font-size: .9rem;
+  color: #cbd5e1;
+}
+.legal-translation-note p { margin: 0; }
+.legal-translation-note strong { color: #e0f2fe; }
+.legal-translation-note a { color: #7dd3fc; text-decoration: underline; text-underline-offset: 2px; }
+.legal-translation-note svg { width: 20px; height: 20px; flex: none; color: #38bdf8; margin-top: .1rem; }
 .legal-draft svg { width: 20px; height: 20px; flex: none; color: #fb923c; margin-top: .15rem; }
 
 /* ---------- cabeçalho do documento ------------------------------------- */

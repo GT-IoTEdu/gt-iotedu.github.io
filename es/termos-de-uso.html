@@ -6,8 +6,8 @@
   <title>Términos de Uso | GT IoTEdu</title>
   <meta name="description" content="Términos de Uso del servicio IoTEdu: quién puede acceder, cómo se adhieren las instituciones, responsabilidades de cada parte y reglas de uso aceptable." />
 
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml" />
 
   <!-- Inter font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,8 +19,14 @@
   <!-- Lucide (ícones SVG) -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="legal.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../legal.css" />
+  <!-- i18n:hreflang -->
+  <link rel="alternate" hreflang="pt-BR" href="https://iotedu.org/termos-de-uso.html" />
+  <link rel="alternate" hreflang="en" href="https://iotedu.org/en/termos-de-uso.html" />
+  <link rel="alternate" hreflang="es" href="https://iotedu.org/es/termos-de-uso.html" />
+  <link rel="alternate" hreflang="x-default" href="https://iotedu.org/termos-de-uso.html" />
+  <!-- /i18n:hreflang -->
 </head>
 <body class="bg-slate-900 text-white font-[Inter]">
 
@@ -46,6 +52,15 @@
     </div>
 
     <div class="flex items-center space-x-2 md:space-x-4 md:justify-self-end">
+      <!-- i18n:switch -->
+      <div class="hidden md:flex items-center gap-1 text-sm font-semibold" role="group" aria-label="Idioma">
+        <a href="../termos-de-uso.html" hreflang="pt-BR" lang="pt-BR" title="Português" class="px-1.5 py-1 rounded text-slate-400 hover:text-white transition-colors">PT</a>
+        <span class="text-slate-600" aria-hidden="true">|</span>
+        <a href="../en/termos-de-uso.html" hreflang="en" lang="en" title="English" class="px-1.5 py-1 rounded text-slate-400 hover:text-white transition-colors">EN</a>
+        <span class="text-slate-600" aria-hidden="true">|</span>
+        <a href="termos-de-uso.html" hreflang="es" lang="es" title="Español" class="px-1.5 py-1 rounded text-blue-400" aria-current="true">ES</a>
+      </div>
+      <!-- /i18n:switch -->
       <a href="index.html" class="px-4 py-2 rounded-lg border border-slate-700 text-white hover:bg-slate-800 bg-transparent">Inicio</a>
 
       <button
@@ -79,6 +94,13 @@
         <a href="publicacoes.html" class="py-2 hover:text-blue-400 transition-colors">Publicaciones</a>
         <a href="videos.html" class="py-2 hover:text-blue-400 transition-colors">Videos</a>
         <a href="news.html" class="py-2 hover:text-blue-400 transition-colors">Noticias</a>
+        <!-- i18n:switch-mobile -->
+        <div class="flex items-center gap-4 pt-3 mt-1 border-t border-slate-800 text-sm font-semibold" role="group" aria-label="Idioma">
+          <a href="../termos-de-uso.html" hreflang="pt-BR" lang="pt-BR" title="Português" class="py-1 text-slate-400 hover:text-white transition-colors">PT</a>
+          <a href="../en/termos-de-uso.html" hreflang="en" lang="en" title="English" class="py-1 text-slate-400 hover:text-white transition-colors">EN</a>
+          <a href="termos-de-uso.html" hreflang="es" lang="es" title="Español" class="py-1 text-blue-400" aria-current="true">ES</a>
+        </div>
+        <!-- /i18n:switch-mobile -->
       </div>
     </div>
   </nav>
@@ -92,6 +114,12 @@
       <span aria-hidden="true">/</span>
       <span class="current">Términos de Uso</span>
     </nav>
+    <!-- i18n:legal-notice -->
+    <aside class="legal-translation-note" lang="es">
+      <i data-lucide="languages" aria-hidden="true"></i>
+      <p><strong>Traducción solo como referencia.</strong> La versión en portugués es el texto con validez jurídica y prevalece en caso de discrepancia. <a href="../termos-de-uso.html" hreflang="pt-BR" lang="pt-BR">Leer el original en portugués</a>.</p>
+    </aside>
+    <!-- /i18n:legal-notice -->
 
     <article class="legal-sheet">
 
