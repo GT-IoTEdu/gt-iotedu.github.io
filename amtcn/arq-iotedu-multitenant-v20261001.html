@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IoTEdu multi-tenant: proposta Laviola</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: documento técnico em coluna única, irmão da página da proposta Satheler; mesmo sistema visual, com uma segunda cor (âmbar) para marcar o que vem do Satheler nas comparações. */
+:root {
+  --bg: #fbfcfc; --surface: #f1f5f4; --fg: #16201f; --muted: #53615e; --rule: #d5dedb;
+  --accent: #0b6e69; --accent-soft: #e2f0ee;
+  --other: #8a5a00; --other-soft: #f7eed9;
+  --deny: #b3261e;
+  --font-display: "Bricolage Grotesque", "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --measure: 70ch;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1514; --surface: #152020; --fg: #e3ebe9; --muted: #9aaaa6; --rule: #273431;
+    --accent: #52b9ae; --accent-soft: #163129; --other: #e2b25a; --other-soft: #33280f;
+    --deny: #f08a80; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1514; --surface: #152020; --fg: #e3ebe9; --muted: #9aaaa6; --rule: #273431;
+  --accent: #52b9ae; --accent-soft: #163129; --other: #e2b25a; --other-soft: #33280f;
+  --deny: #f08a80; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.6;
+  padding-inline: clamp(16px, 4vw, 48px); padding-block: 0 4rem;
+}
+.page { max-width: 1060px; margin-inline: auto; display: grid; gap: 3.5rem; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.05rem, 4.8vw, 3.2rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.45rem, 3vw, 1.95rem); font-weight: 700; }
+h3 { font-size: 1.12rem; font-weight: 600; }
+p { margin: 0; max-width: var(--measure); }
+code { font-family: var(--font-mono); font-size: 0.9em; }
+.eyebrow { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+section { display: grid; gap: 1.25rem; }
+.head { display: grid; gap: 0.5rem; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; font-size: 0.93rem; }
+nav.toc a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--rule); }
+nav.toc a:hover { border-bottom-color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+header.hero { padding-top: 3.25rem; padding-bottom: 2.25rem; border-bottom: 1px solid var(--rule); display: grid; gap: 1.15rem; }
+.hero .lead { font-size: 1.18rem; max-width: 64ch; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 1.4rem; margin-top: 0.4rem; }
+.fact { display: grid; gap: 0.2rem; padding-top: 0.75rem; border-top: 2px solid var(--accent); }
+.fact b { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; }
+.fact span { color: var(--muted); font-size: 0.95rem; }
+
+.diagram-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); padding: 0.75rem; }
+.diagram-wrap svg { display: block; min-width: 800px; width: 100%; height: auto; }
+svg .frame { fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 6 5; }
+svg .box { fill: var(--bg); stroke: var(--rule); stroke-width: 1.2; }
+svg .box-accent { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.4; }
+svg .box-ext { fill: var(--bg); stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 3; }
+svg .tb { fill: var(--fg); font-family: var(--font-body); font-size: 15px; font-weight: 600; }
+svg .tm { fill: var(--muted); font-family: var(--font-body); font-size: 12.5px; }
+svg .tc { fill: var(--fg); font-family: var(--font-mono); font-size: 12.5px; }
+svg .ta { fill: var(--accent); font-family: var(--font-body); font-size: 13px; font-weight: 600; }
+svg .ln { stroke: var(--accent); stroke-width: 1.8; fill: none; }
+svg .ln-muted { stroke: var(--muted); stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
+svg .head { fill: var(--accent); }
+svg .head-muted { fill: var(--muted); }
+.caption { font-size: 0.92rem; color: var(--muted); max-width: var(--measure); }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.96rem; min-width: 660px; }
+th, td { text-align: left; vertical-align: top; padding: 0.6rem 0.9rem 0.6rem 0; border-bottom: 1px solid var(--rule); }
+th { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border-bottom: 1.5px solid var(--fg); }
+td:first-child { font-weight: 600; }
+td.r, th.r { text-align: right; }
+th.sat { color: var(--other); }
+th.lav { color: var(--accent); }
+tr.total td { font-weight: 700; border-bottom: 1.5px solid var(--fg); }
+.win { color: var(--accent); font-weight: 600; }
+.win-other { color: var(--other); font-weight: 600; }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; align-items: start; }
+.two > * { min-width: 0; display: grid; gap: 0.6rem; }
+pre.code { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.1rem; overflow-x: auto; font-family: var(--font-mono); font-size: 0.84rem; line-height: 1.55; color: var(--fg); }
+pre.code .c { color: var(--muted); }
+.tag { display: inline-block; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.05rem 0.45rem; border-radius: 4px; vertical-align: 0.1em; white-space: nowrap; }
+.tag.lav { color: var(--accent); background: var(--accent-soft); }
+.tag.add { color: var(--muted); border: 1px solid var(--rule); }
+.tag.sat { color: var(--other); background: var(--other-soft); }
+
+.adrs { display: grid; gap: 0; }
+.adr { display: grid; grid-template-columns: 4.8rem 1fr; gap: 1rem; padding-block: 1.05rem; border-top: 1px solid var(--rule); }
+.adr > div { min-width: 0; display: grid; gap: 0.4rem; }
+.adr .id { font-family: var(--font-mono); font-weight: 500; color: var(--accent); }
+.adr dl { margin: 0; display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.3rem 1rem; font-size: 0.95rem; }
+.adr dt { color: var(--muted); }
+.adr dd { margin: 0; min-width: 0; }
+
+.agree { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.1rem; }
+.agree li { border-top: 2px solid var(--rule); padding-top: 0.7rem; display: grid; gap: 0.2rem; }
+.agree b { font-weight: 600; }
+
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1.2rem; }
+.timeline li { display: grid; gap: 0.3rem; align-content: start; padding-top: 0.8rem; border-top: 2px solid var(--rule); }
+.timeline li.pilot { border-top-color: var(--accent); }
+.timeline li.opt { border-top-style: dashed; }
+.timeline .n { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); }
+.timeline b { font-family: var(--font-display); font-weight: 600; font-size: 1.03rem; }
+.timeline span { font-size: 0.92rem; color: var(--muted); }
+
+.note { border-left: 3px solid var(--accent); padding: 0.8rem 1rem; background: var(--accent-soft); border-radius: 0 8px 8px 0; max-width: var(--measure); display: grid; gap: 0.4rem; }
+.note.warn { border-left-color: var(--other); background: var(--other-soft); }
+ol.asks { margin: 0; padding-left: 1.3rem; display: grid; gap: 0.55rem; max-width: var(--measure); }
+footer { border-top: 1px solid var(--rule); padding-top: 1.5rem; font-size: 0.9rem; color: var(--muted); display: grid; gap: 0.5rem; }
+
+@media (max-width: 560px) {
+  .adr { grid-template-columns: 1fr; gap: 0.35rem; }
+  .adr dl { grid-template-columns: 1fr; gap: 0.1rem; }
+  .adr dd { margin-bottom: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hero">
+  <span class="eyebrow">GT IoTEdu · proposta v0.2 · 01/10/2026</span>
+  <h1>IoTEdu multi-tenant: um banco central para todos, segmentado por instituição</h1>
+  <p class="lead">Proposta de arquitetura baseada nas sugestões de Luiz Laviola na conversa de 01/10/2026: um backend central e sem estado na nuvem, um único PostgreSQL com <code>tenant_id</code> em todas as tabelas, autenticação delegada a um provedor de identidade gerenciado e logs das sondas fora do banco principal. Instância dedicada só quando um contrato exigir, como num hospital.</p>
+  <p class="muted">No fim da página, a comparação técnica, financeira e estratégica com a proposta anterior, baseada na conversa com Gustavo Satheler (um schema por instituição).</p>
+  <div class="facts">
+    <div class="fact"><b>1 banco para todos</b><span>PostgreSQL com <code>tenant_id</code> em toda tabela e índices que começam por ele</span></div>
+    <div class="fact"><b>Login delegado</b><span>Google Identity Platform para CAFe, Google e Microsoft; nada de integração feita à mão</span></div>
+    <div class="fact"><b>Contêineres sem estado</b><span>matar um e subir outro sem perder nada; estado compartilhado no Redis</span></div>
+    <div class="fact"><b>Exceção por contrato</b><span>a mesma imagem roda dentro de um hospital, atualizada pelo pipeline</span></div>
+  </div>
+  <nav class="toc" aria-label="Seções">
+    <a href="#sugestoes">Sugestões</a><a href="#arquitetura">Arquitetura</a><a href="#isolamento">Isolamento</a><a href="#decisoes">Decisões</a><a href="#roteiro">Roteiro</a><a href="#consenso">Consenso</a><a href="#tecnica">Técnica</a><a href="#financeira">Financeira</a><a href="#estrategica">Estratégica</a><a href="#recomendacao">Recomendação</a>
+  </nav>
+</header>
+
+<section id="sugestoes">
+  <div class="head">
+    <span class="eyebrow">Origem das decisões</span>
+    <h2>O que o Laviola sugeriu</h2>
+    <p class="muted">Conversa de 01/10/2026 (cerca de 50 minutos), transcrita automaticamente; os momentos são aproximados. Participaram também alunos bolsistas do projeto.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Momento</th><th>Sugestão</th><th>Onde entrou</th></tr></thead>
+    <tbody>
+      <tr><td class="num">11:58</td><td>Escalabilidade é requisito; isso elimina a pilha por cliente, "que não vai escalar de forma alguma"</td><td>Fora da proposta</td></tr>
+      <tr><td class="num">13:09</td><td>Não burocratizar com requisito desnecessário; isolamento físico de dados só se o cliente exigir em contrato</td><td>Princípio geral; L-08</td></tr>
+      <tr><td class="num">14:36</td><td>Backend e frontend totalmente desacoplados; backend em camadas, com a persistência separada das regras de negócio</td><td>L-01 (o desacoplamento já existe)</td></tr>
+      <tr><td class="num">16:00</td><td>Testes de carga direto na API, emulando milhares de clientes sem depender da interface</td><td>L-09</td></tr>
+      <tr><td class="num">18:25</td><td>Tudo em contêiner; os testes devem dar o mesmo resultado com e sem contêiner</td><td>L-09</td></tr>
+      <tr><td class="num">20:00</td><td>Contêineres sem estado: matar um e subir outro sem perder nada; estado compartilhado em memória externa, como o Redis</td><td>L-06</td></tr>
+      <tr><td class="num">22:11</td><td>O banco é o único com estado; armazenamento persistente e réplicas de leitura para escalar</td><td>L-07</td></tr>
+      <tr><td class="num">23:47</td><td>Backend central na nuvem para todos; instância própria (backend e banco) dentro do cliente só por contrato, como num hospital</td><td>L-01, L-08</td></tr>
+      <tr><td class="num">26:12</td><td>Pipeline de release que atualiza e desfaz sem mandar ninguém ao servidor do cliente; observabilidade</td><td>L-08</td></tr>
+      <tr><td class="num">27:09</td><td>Evitar banco e schema por instituição: migrar vários bancos dá dor de cabeça, e índices e restrições divergem</td><td>L-02</td></tr>
+      <tr><td class="num">29:07</td><td>Um banco relacional central (PostgreSQL), com todos os dados segmentados por <code>tenant_id</code></td><td>L-02</td></tr>
+      <tr><td class="num">34:23</td><td>Logs das sondas num banco NoSQL separado: se os logs caírem, o sistema continua</td><td>L-05</td></tr>
+      <tr><td class="num">35:50</td><td>A híbrida não compensa; um banco para todos é "de longe o mais vantajoso"</td><td>Fora da proposta</td></tr>
+      <tr><td class="num">37:38</td><td>Só o backend acessa o banco; toda consulta filtrada por <code>tenant_id</code>; a camada de persistência rejeita consulta sem ele</td><td>L-03</td></tr>
+      <tr><td class="num">45:00</td><td>Não fazer autenticação "na unha": cada provedor novo vira manutenção e gargalo de escala</td><td>L-04</td></tr>
+      <tr><td class="num">46:04</td><td>Firebase Authentication e Google Identity Platform; o custo é irrisório perto das horas de manutenção</td><td>L-04</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="arquitetura">
+  <div class="head">
+    <span class="eyebrow">Visão geral</span>
+    <h2>Um backend central, um banco, e uma porta para a exceção</h2>
+  </div>
+  <div class="diagram-wrap" role="img" aria-label="Diagrama: na nuvem, Caddy distribui o tráfego para réplicas sem estado da API; frontend e worker; Redis com o estado compartilhado; um PostgreSQL com tenant_id em todas as tabelas e réplica de leitura; à direita, Google Identity Platform, armazenamento de logs das sondas e cofre de segredos. Abaixo, instituições com gateway e sondas abrindo conexões de saída, e um hospital com uma instância própria atualizada pelo pipeline de release.">
+    <svg viewBox="0 0 960 660" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="head"/></marker>
+        <marker id="seta-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="head-muted"/></marker>
+      </defs>
+      <rect x="16" y="16" width="928" height="410" rx="14" class="frame"/>
+      <text x="36" y="44" class="tb">Nuvem · São Paulo</text>
+      <text x="36" y="63" class="tm">um ambiente para todas as instituições</text>
+
+      <rect x="36" y="80" width="310" height="48" rx="7" class="box-accent"/>
+      <text x="50" y="101" class="tb">Caddy</text>
+      <text x="50" y="118" class="tm">TLS e balanceamento entre as réplicas</text>
+
+      <rect x="36" y="140" width="310" height="92" rx="7" class="box"/>
+      <text x="50" y="162" class="tb">api: réplicas sem estado</text>
+      <rect x="50" y="174" width="88" height="44" rx="5" class="box"/><text x="72" y="201" class="tc">api 1</text>
+      <rect x="147" y="174" width="88" height="44" rx="5" class="box"/><text x="169" y="201" class="tc">api 2</text>
+      <rect x="244" y="174" width="88" height="44" rx="5" class="box"/><text x="266" y="201" class="tc">api N</text>
+
+      <rect x="36" y="244" width="150" height="62" rx="7" class="box"/>
+      <text x="50" y="268" class="tb">frontend</text>
+      <text x="50" y="286" class="tm">Next.js, um build</text>
+      <rect x="196" y="244" width="150" height="62" rx="7" class="box"/>
+      <text x="210" y="268" class="tb">worker</text>
+      <text x="210" y="286" class="tm">fila, alertas, bloqueio</text>
+
+      <rect x="36" y="318" width="310" height="90" rx="7" class="box"/>
+      <text x="50" y="342" class="tb">Redis</text>
+      <text x="50" y="361" class="tm">sessões, locks e deduplicação;</text>
+      <text x="50" y="378" class="tm">pub/sub do painel em tempo real;</text>
+      <text x="50" y="395" class="tm">perdê-lo não perde dado de cliente</text>
+
+      <rect x="370" y="80" width="300" height="236" rx="10" class="box-accent"/>
+      <text x="386" y="104" class="tb">PostgreSQL 17 (um banco)</text>
+      <rect x="386" y="118" width="268" height="34" rx="5" class="box"/><text x="398" y="140" class="tc">tenant (id, nome, host, plano)</text>
+      <rect x="386" y="160" width="268" height="34" rx="5" class="box"/><text x="398" y="182" class="tc">dispositivo (tenant_id, …)</text>
+      <rect x="386" y="202" width="268" height="34" rx="5" class="box"/><text x="398" y="224" class="tc">alerta (tenant_id, …)</text>
+      <rect x="386" y="244" width="268" height="34" rx="5" class="box"/><text x="398" y="266" class="tc">fila_evento (tenant_id, …)</text>
+      <text x="386" y="302" class="ta">filtro automático por tenant e RLS</text>
+
+      <rect x="370" y="328" width="300" height="80" rx="10" class="box"/>
+      <text x="386" y="352" class="tb">réplica de leitura</text>
+      <text x="386" y="371" class="tm">painéis e relatórios, quando a leitura pesar</text>
+      <path d="M520 316 L520 326" class="ln-muted"/>
+
+      <path d="M346 196 L368 196" class="ln" marker-end="url(#seta)"/>
+
+      <rect x="694" y="80" width="230" height="96" rx="10" class="box-ext"/>
+      <text x="708" y="104" class="tb">Identity Platform</text>
+      <text x="708" y="123" class="tm">serviço externo do Google</text>
+      <text x="708" y="141" class="tm">CAFe por SAML; Google e</text>
+      <text x="708" y="158" class="tm">Microsoft por OIDC</text>
+      <rect x="694" y="188" width="230" height="110" rx="10" class="box"/>
+      <text x="708" y="212" class="tb">Logs das sondas</text>
+      <text x="708" y="231" class="tm">NoSQL ou objetos (S3),</text>
+      <text x="708" y="248" class="tm">fora do banco principal;</text>
+      <text x="708" y="265" class="tm">se cair, o sistema segue</text>
+      <rect x="694" y="310" width="230" height="98" rx="10" class="box"/>
+      <text x="708" y="334" class="tb">Segredos e observação</text>
+      <text x="708" y="353" class="tm">cofre de segredos; logs da</text>
+      <text x="708" y="370" class="tm">aplicação e alarmes com</text>
+      <text x="708" y="387" class="tm">o tenant em cada linha</text>
+
+      <path d="M190 470 L190 430" class="ln" marker-end="url(#seta)"/>
+      <path d="M360 470 L360 430" class="ln" marker-end="url(#seta)"/>
+      <text x="202" y="455" class="ta">só conexões de saída</text>
+      <path d="M700 470 L700 430" class="ln-muted" marker-start="url(#seta-m)"/>
+      <text x="712" y="446" class="tm">pipeline de release:</text>
+      <text x="712" y="462" class="tm">atualizar e desfazer à distância</text>
+
+      <rect x="36" y="470" width="420" height="170" rx="12" class="box"/>
+      <text x="52" y="496" class="tb">Instituições (caso comum)</text>
+      <rect x="52" y="510" width="188" height="110" rx="7" class="box"/>
+      <text x="66" y="534" class="tb">gateway</text>
+      <text x="66" y="553" class="tm">Kea DHCP e nftables</text>
+      <text x="66" y="571" class="tm">agente: long-poll da</text>
+      <text x="66" y="589" class="tm">lista de bloqueio assinada</text>
+      <rect x="252" y="510" width="188" height="110" rx="7" class="box"/>
+      <text x="266" y="534" class="tb">sondas</text>
+      <text x="266" y="553" class="tm">Zeek, Suricata, Snort</text>
+      <text x="266" y="571" class="tm">alertas sobem assinados;</text>
+      <text x="266" y="589" class="tm">o tráfego bruto não sai</text>
+
+      <rect x="480" y="470" width="444" height="170" rx="12" class="box-ext"/>
+      <text x="496" y="496" class="tb">Hospital (exceção por contrato)</text>
+      <rect x="496" y="510" width="128" height="110" rx="7" class="box"/>
+      <text x="508" y="534" class="tb">backend</text>
+      <text x="508" y="553" class="tm">a mesma imagem</text>
+      <text x="508" y="571" class="tm">da nuvem</text>
+      <rect x="634" y="510" width="128" height="110" rx="7" class="box"/>
+      <text x="646" y="534" class="tb">banco local</text>
+      <text x="646" y="553" class="tm">os dados não</text>
+      <text x="646" y="571" class="tm">saem do hospital</text>
+      <rect x="772" y="510" width="136" height="110" rx="7" class="box"/>
+      <text x="784" y="534" class="tb">gateway e</text>
+      <text x="784" y="552" class="tb">sondas</text>
+      <text x="784" y="571" class="tm">como nas demais</text>
+    </svg>
+  </div>
+  <p class="caption">O caso comum é a metade esquerda de baixo: a instituição só abre conexões de saída para a nuvem. A exceção, à direita, roda a mesma imagem dentro do cliente e recebe atualizações e rollback pelo mesmo pipeline, sem ninguém ir ao local.</p>
+</section>
+
+<section id="isolamento">
+  <div class="head">
+    <span class="eyebrow">O ponto sensível</span>
+    <h2>Como um banco compartilhado não vaza dado entre instituições</h2>
+    <p class="muted">O Laviola pediu que a camada de persistência recuse qualquer consulta sem <code>tenant_id</code>. Para uma equipe de alunos, esta proposta torna essa regra automática e acrescenta duas barreiras.</p>
+  </div>
+  <div class="two">
+    <div>
+      <h3>1. Filtro automático na persistência <span class="tag lav">Laviola</span></h3>
+      <p class="muted">Ninguém escreve <code>WHERE tenant_id = …</code> à mão. Um evento do SQLAlchemy acrescenta o filtro em toda consulta, e uma consulta feita sem tenant definido é recusada.</p>
+      <pre class="code"><span class="c"># esboço; a validar no projeto de referência</span>
+@event.listens_for(Session, "do_orm_execute")
+def filtra_por_tenant(estado):
+    tenant = tenant_atual.get(None)
+    if tenant is None:
+        raise ConsultaSemTenant()
+    estado.statement = estado.statement.options(
+        with_loader_criteria(
+            ComTenant,
+            lambda m: m.tenant_id == tenant,
+            include_aliases=True))</pre>
+    </div>
+    <div>
+      <h3>2. RLS como rede de segurança <span class="tag add">acréscimo</span></h3>
+      <p class="muted">Se algum código escapar do filtro (SQL escrito à mão, por exemplo), o próprio PostgreSQL esconde as linhas de outra instituição. O valor do tenant morre no fim de cada transação, o que funciona com pool de conexões.</p>
+      <pre class="code">ALTER TABLE dispositivo ENABLE ROW LEVEL SECURITY;
+ALTER TABLE dispositivo FORCE ROW LEVEL SECURITY;
+CREATE POLICY por_tenant ON dispositivo
+  USING (tenant_id = current_setting('app.tenant_id')::int)
+  WITH CHECK (tenant_id = current_setting('app.tenant_id')::int);
+
+<span class="c">-- em cada transação, pela camada de persistência:</span>
+SET LOCAL app.tenant_id = '7';</pre>
+    </div>
+  </div>
+  <div class="note">
+    <b>3. Testes de vazamento no CI <span class="tag add">acréscimo</span></b>
+    <span>Dois tenants fictícios; cada rota tenta ler e gravar dado do outro, de propósito. É o mesmo princípio do projeto de referência, que hoje testa o modelo de schema e precisaria ser adaptado (cerca de 20 a 30 h).</span>
+  </div>
+</section>
+
+<section id="decisoes">
+  <div class="head">
+    <span class="eyebrow">Decisões arquiteturais</span>
+    <h2>Dez decisões, com o gatilho para rever cada uma</h2>
+    <p class="muted"><span class="tag lav">Laviola</span> sugestão dele; <span class="tag add">acréscimo</span> complemento desta análise para a equipe de alunos; <span class="tag sat">mantido</span> vem da proposta anterior e não foi discutido.</p>
+  </div>
+  <div class="adrs">
+    <article class="adr"><div><span class="id">L-01</span></div><div>
+      <h3>Backend central, em camadas, com réplicas sem estado <span class="tag lav">Laviola</span></h3>
+      <dl><dt>Decisão</dt><dd>Uma instalação na nuvem para todas as instituições; persistência separada das regras de negócio; réplicas da API atrás do Caddy, em Docker Compose numa VM.</dd>
+      <dt>Rever quando</dt><dd>Uma VM não bastar ou for preciso deploy sem interrupção: ECS ou Kubernetes gerenciado</dd></dl></div></article>
+    <article class="adr"><div><span class="id">L-02</span></div><div>
+      <h3>Um PostgreSQL central, com <code>tenant_id</code> em toda tabela <span class="tag lav">Laviola</span></h3>
+      <dl><dt>Decisão</dt><dd>Chaves compostas com <code>tenant_id</code>; todo índice de consulta frequente começa por ele; uma migração para todos.</dd>
+      <dt>Rever quando</dt><dd>Escrita acima do que uma instância aguenta: particionar por tenant (Citus, Aurora Limitless)</dd></dl></div></article>
+    <article class="adr"><div><span class="id">L-03</span></div><div>
+      <h3>Filtro de tenant automático, RLS e testes de vazamento <span class="tag lav">Laviola</span> <span class="tag add">acréscimo</span></h3>
+      <dl><dt>Decisão</dt><dd>A persistência recusa consulta sem tenant (Laviola); a RLS barra o que escapar e a suíte de vazamento roda em todo PR (acréscimos).</dd>
+      <dt>Rever quando</dt><dd>Não se aplica</dd></dl></div></article>
+    <article class="adr"><div><span class="id">L-04</span></div><div>
+      <h3>Autenticação delegada ao Google Identity Platform <span class="tag lav">Laviola</span></h3>
+      <dl><dt>Decisão</dt><dd>Um tenant de identidade por instituição; CAFe como provedor SAML, Google e Microsoft por OIDC; o backend só valida o token. Substitui as integrações feitas à mão com Google e CAFe.</dd>
+      <dt>Rever quando</dt><dd>Instituição recusar o Google como operador de dados de identidade: Amazon Cognito ou Keycloak cumprem o mesmo papel</dd></dl></div></article>
+    <article class="adr"><div><span class="id">L-05</span></div><div>
+      <h3>Logs das sondas fora do banco principal <span class="tag lav">Laviola</span></h3>
+      <dl><dt>Decisão</dt><dd>Alertas estruturados no PostgreSQL; logs brutos (eve.json, notice.log) num armazenamento à parte. Começar por objetos (S3, JSON particionado por dia); NoSQL se surgir necessidade de busca interativa.</dd>
+      <dt>Rever quando</dt><dd>Busca frequente nos logs brutos: MongoDB, DynamoDB ou OpenSearch</dd></dl></div></article>
+    <article class="adr"><div><span class="id">L-06</span></div><div>
+      <h3>Estado compartilhado no Redis <span class="tag lav">Laviola</span></h3>
+      <dl><dt>Decisão</dt><dd>Sessões, locks e deduplicação do auto-bloqueio saem da memória do processo; teste de aceite: derrubar uma réplica da API sem perder nenhuma operação.</dd>
+      <dt>Rever quando</dt><dd>Não se aplica</dd></dl></div></article>
+    <article class="adr"><div><span class="id">L-07</span></div><div>
+      <h3>Réplica de leitura do PostgreSQL <span class="tag lav">Laviola</span></h3>
+      <dl><dt>Decisão</dt><dd>Painéis e relatórios leem da réplica; escrita só no primário. Ligar quando a leitura pesar, não no primeiro dia.</dd>
+      <dt>Rever quando</dt><dd>CPU do primário acima de 60% por leitura</dd></dl></div></article>
+    <article class="adr"><div><span class="id">L-08</span></div><div>
+      <h3>Instância dedicada só por contrato, com release remoto <span class="tag lav">Laviola</span></h3>
+      <dl><dt>Decisão</dt><dd>Hospital ou cliente que exija dado dentro de casa recebe a mesma imagem e um banco local; o pipeline atualiza e desfaz à distância; observabilidade igual à da nuvem.</dd>
+      <dt>Rever quando</dt><dd>Mais de três ou quatro instâncias dedicadas: elas passam a pesar na operação e precisam de preço próprio</dd></dl></div></article>
+    <article class="adr"><div><span class="id">L-09</span></div><div>
+      <h3>Testes de carga na API e paridade com e sem contêiner <span class="tag lav">Laviola</span></h3>
+      <dl><dt>Decisão</dt><dd>Scripts (k6 ou Locust) que emulam milhares de clientes direto na API; a mesma suíte de testes dentro e fora do contêiner, com o mesmo resultado.</dd>
+      <dt>Rever quando</dt><dd>Não se aplica</dd></dl></div></article>
+    <article class="adr"><div><span class="id">L-10</span></div><div>
+      <h3>Canal do gateway, fila e segredos como na proposta anterior <span class="tag sat">mantido</span></h3>
+      <dl><dt>Decisão</dt><dd>Gateway busca a lista de bloqueio por long-poll, assinada com tenant e gateway; fila de eventos no PostgreSQL; segredos no cofre. O Laviola não tratou desses pontos.</dd>
+      <dt>Rever quando</dt><dd>Os mesmos gatilhos da proposta anterior</dd></dl></div></article>
+  </div>
+</section>
+
+<section id="roteiro">
+  <div class="head">
+    <span class="eyebrow">Roteiro</span>
+    <h2>Oito sprints de trabalho, mais uma opcional</h2>
+    <p class="muted">Estimativa de 1.590 a 2.120 horas de alunos (1.060 h de referência × 1,5 a 2,0). Com 4 alunos a 15 h por semana, são 26 a 35 semanas; com 6, 18 a 24. Fechar em 16 semanas exigiria de 7 a 9 alunos.</p>
+  </div>
+  <ol class="timeline">
+    <li><span class="n">sprint 1</span><b>Fundação</b><span>CI, testes de carga na API, teste de derrubar contêiner</span></li>
+    <li><span class="n">sprint 2</span><b>MySQL para PostgreSQL</b><span>Modelos portados; dados da UNIPAMPA migrados</span></li>
+    <li><span class="n">sprint 3</span><b>Tenant em tudo</b><span><code>tenant_id</code>, filtro automático, RLS e suíte de vazamento</span></li>
+    <li><span class="n">sprint 4</span><b>Identidade</b><span>Identity Platform: Google, CAFe por SAML, Microsoft</span></li>
+    <li><span class="n">sprint 5</span><b>Sem estado</b><span>Redis para sessões e locks; réplicas da API</span></li>
+    <li><span class="n">sprint 6</span><b>Borda</b><span>Canal do gateway e fila de eventos</span></li>
+    <li><span class="n">sprint 7</span><b>Logs e nuvem</b><span>Logs fora do banco, infraestrutura em código, pipeline e alarmes</span></li>
+    <li class="pilot"><span class="n">sprint 8</span><b>Piloto</b><span>Duas instituições por 30 dias e teste de carga com milhares de clientes emulados</span></li>
+    <li class="opt"><span class="n">opcional</span><b>Instância no hospital</b><span>Mesma imagem com banco local e release remoto (cerca de 60 h de referência)</span></li>
+  </ol>
+</section>
+
+<section id="consenso">
+  <div class="head">
+    <span class="eyebrow">Comparação · onde concordam</span>
+    <h2>Satheler e Laviola concordam em quase tudo</h2>
+  </div>
+  <ul class="agree">
+    <li><b>Começar simples</b><span class="muted">"Feijão com arroz" (Satheler) e "simples e estúpido" (Laviola).</span></li>
+    <li><b>Uma instância PostgreSQL</b><span class="muted">Nenhum dos dois quer um banco por instituição.</span></li>
+    <li><b>Híbrida agora não</b><span class="muted">Overengineering para os dois; dedicado só para quem pagar ou exigir.</span></li>
+    <li><b>Aplicação única na nuvem</b><span class="muted">A pilha por cliente não escala.</span></li>
+    <li><b>Banco relacional</b><span class="muted">O dado é estruturado; PostgreSQL resolve.</span></li>
+  </ul>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Onde divergem</th><th class="sat">Satheler (30/09)</th><th class="lav">Laviola (01/10)</th></tr></thead>
+    <tbody>
+      <tr><td>Separação no banco</td><td>Um schema e um usuário de banco por instituição</td><td>Tudo nas mesmas tabelas, segmentado por <code>tenant_id</code></td></tr>
+      <tr><td>Quem garante o isolamento</td><td>As permissões do PostgreSQL</td><td>A camada de persistência, que recusa consulta sem tenant</td></tr>
+      <tr><td>Autenticação</td><td>Não tratou</td><td>Delegar ao Identity Platform</td></tr>
+      <tr><td>Logs das sondas</td><td>Tudo no PostgreSQL</td><td>Banco NoSQL separado</td></tr>
+      <tr><td>Estado e escala</td><td>Uma VM; escala vertical e horizontal do banco</td><td>Contêineres sem estado, Redis, réplicas de leitura, testes de carga</td></tr>
+      <tr><td>Cliente que exige dado em casa</td><td>Instância dedicada no futuro</td><td>Previsto desde já, com release remoto</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="tecnica">
+  <div class="head">
+    <span class="eyebrow">Comparação · técnica</span>
+    <h2>Isolamento, migrações, escala e operação</h2>
+    <p class="muted"><span class="win">Verde</span> marca a vantagem da proposta Laviola; <span class="win-other">âmbar</span>, a da proposta Satheler.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Critério</th><th class="sat">Satheler: schema por instituição</th><th class="lav">Laviola: banco central com tenant_id</th></tr></thead>
+    <tbody>
+      <tr><td>Consulta que esquece o filtro</td><td class="win-other">O banco recusa (<code>permission denied</code>)</td><td>O filtro automático e a RLS barram, se estiverem configurados</td></tr>
+      <tr><td>Mudança no código atual</td><td class="win-other">Pequena: as tabelas continuam como estão</td><td>Grande: <code>tenant_id</code> em todas as tabelas e chaves</td></tr>
+      <tr><td>Migração de banco</td><td>Uma por schema; pode falhar no meio e deixar schemas em versões diferentes</td><td class="win">Uma só, para todos</td></tr>
+      <tr><td>Deriva entre instituições</td><td>Risco real: um índice ou restrição criado à mão num schema só</td><td class="win">Impossível: há um esquema só</td></tr>
+      <tr><td>Conexões com o banco</td><td>Um pool por instituição; perto de 80 a 100 instituições, precisa de PgBouncer</td><td class="win">Um pool para todos</td></tr>
+      <tr><td>Escala acima de 100 instituições</td><td>Possível, com troca de pool e migrações mais longas</td><td class="win">Natural: réplicas de leitura e, depois, particionamento por tenant</td></tr>
+      <tr><td>Consultas entre instituições (inteligência de ameaças compartilhada)</td><td>Difíceis: um schema por vez</td><td class="win">Uma consulta só</td></tr>
+      <tr><td>Backup, restauração e exclusão de uma instituição (LGPD)</td><td class="win-other"><code>pg_dump -n</code> e <code>DROP SCHEMA</code></td><td>Exportação e exclusão por <code>tenant_id</code>, a escrever e testar</td></tr>
+      <tr><td>Autenticação</td><td>Integrações próprias com Google e CAFe, mantidas pela equipe</td><td class="win">Delegada; provedor novo é configuração</td></tr>
+      <tr><td>Pico de logs das sondas</td><td>Disputa o banco principal</td><td class="win">Vai para um armazenamento à parte</td></tr>
+      <tr><td>Resistência a falha de uma réplica</td><td>Uma VM; o estado em memória se perde</td><td class="win">Réplicas sem estado; o Redis guarda o que é compartilhado</td></tr>
+      <tr><td>Peças para operar</td><td class="win-other">VM, PostgreSQL, cofre</td><td>VM, PostgreSQL, Redis, armazenamento de logs, Identity Platform, cofre</td></tr>
+      <tr><td>Já testado</td><td class="win-other">Sim: 11 testes de isolamento no projeto de referência</td><td>Ainda não: o projeto de referência precisa ser adaptado</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="financeira">
+  <div class="head">
+    <span class="eyebrow">Comparação · financeira</span>
+    <h2>A diferença está nas horas, não na infraestrutura</h2>
+    <p class="muted">Horas de referência × 1,5 a 2,0 para a equipe de alunos; reais a R$ 75/h, a premissa da apresentação de 30/09. Infraestrutura estimada sem créditos e a conferir nas calculadoras dos provedores.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Item</th><th class="r sat">Satheler</th><th class="r lav">Laviola</th></tr></thead>
+    <tbody>
+      <tr><td>Horas de referência para implantar</td><td class="r num">740</td><td class="r num">1.060</td></tr>
+      <tr><td>Horas de alunos</td><td class="r num">1.110–1.480</td><td class="r num">1.590–2.120</td></tr>
+      <tr><td>Semanas com 4 alunos a 15 h</td><td class="r num win-other">18–25</td><td class="r num">26–35</td></tr>
+      <tr><td>Semanas com 6 alunos a 15 h</td><td class="r num">12–16</td><td class="r num">18–24</td></tr>
+      <tr><td>Equivalente em reais</td><td class="r num">R$ 83–111 mil</td><td class="r num">R$ 119–159 mil</td></tr>
+      <tr><td>Instância num hospital (opcional)</td><td class="r num">não planejada</td><td class="r num">+60 h de referência</td></tr>
+      <tr class="total"><td>Operação mensal, 10 instituições</td><td class="r num win-other">≈ 34 h</td><td class="r num">≈ 43 h</td></tr>
+      <tr><td>Operação mensal, 30 instituições</td><td class="r num">≈ 44 h</td><td class="r num">≈ 44 h</td></tr>
+      <tr><td>Operação mensal, 100 instituições</td><td class="r num">≈ 75 h, mais a troca do pool</td><td class="r num win">≈ 50 h</td></tr>
+      <tr><td>Infraestrutura, 10 instituições (US$/mês)</td><td class="r num">≈ 205–255</td><td class="r num">≈ 210–290</td></tr>
+      <tr><td>Infraestrutura, 50 instituições (US$/mês)</td><td class="r num">≈ 330–380</td><td class="r num">≈ 300–400</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">
+    <b>Quanto da diferença é do modelo de dados</b>
+    <span>Das 320 horas de referência a mais, 110 são de três itens que o Laviola trouxe e que valem para qualquer proposta: testes de carga (40 h), Redis (20 h) e logs fora do banco (50 h). Somados à proposta Satheler, ela iria a 850 h. A diferença atribuível à escolha entre schema e <code>tenant_id</code> fica perto de 210 h de referência, ou 315 a 420 h de alunos.</span>
+  </div>
+  <p class="muted">Na infraestrutura, as duas usam uma VM e um RDS PostgreSQL. A proposta Laviola acrescenta o Identity Platform (gratuito para Google e e-mail; SAML e OIDC cobrados por usuário ativo depois de uma faixa pequena, a conferir, na ordem de poucos dólares com 10 instituições), o armazenamento de logs (US$ 5 a 15 em objetos; mais, se for NoSQL gerenciado) e o Redis (sem custo num contêiner na VM, ou cerca de US$ 15 gerenciado). A proposta Satheler paga um segredo por instituição no cofre. Com 50 instituições, as duas precisam de uma instância de banco maior.</p>
+</section>
+
+<section id="estrategica">
+  <div class="head">
+    <span class="eyebrow">Comparação · estratégica</span>
+    <h2>O que cada uma faz pelo IoTEdu como negócio</h2>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Critério</th><th class="sat">Satheler</th><th class="lav">Laviola</th></tr></thead>
+    <tbody>
+      <tr><td>Demanda que pode crescer rápido (N desconhecido)</td><td>Atende dezenas sem esforço; centenas com ajustes</td><td class="win">Feita para N grande desde o início</td></tr>
+      <tr><td>Hospitais e o Einstein (dado dentro de casa)</td><td>Possível, mas não planejado</td><td class="win">Caminho previsto: mesma imagem, banco local, release remoto</td></tr>
+      <tr><td>Inteligência de ameaças compartilhada (roadmap do TX26)</td><td>Exige juntar dados de vários schemas</td><td class="win">Consulta natural num banco só</td></tr>
+      <tr><td>Tempo até o piloto com 4 alunos</td><td class="win-other">18 a 25 semanas</td><td>26 a 35 semanas</td></tr>
+      <tr><td>Tolerância a erro de iniciante</td><td class="win-other">Alta, pelo desenho</td><td>Alta só com filtro automático, RLS e testes desde a sprint 3</td></tr>
+      <tr><td>Padrão de mercado (contratação, investidores, RNP)</td><td>Menos comum</td><td class="win">É como a maioria dos SaaS funciona</td></tr>
+      <tr><td>Dependência de fornecedor</td><td class="win-other">Só o provedor de nuvem</td><td>Nuvem e Google para identidade (Cognito ou Keycloak como saída)</td></tr>
+      <tr><td>Instituições que não confiam em contrato com o Google</td><td class="win-other">Não afeta</td><td>Afeta a identidade: o Google passa a ser operador de dados de login</td></tr>
+      <tr><td>Manutenção da autenticação no longo prazo</td><td>Cresce a cada provedor novo</td><td class="win">Configuração, não código</td></tr>
+      <tr><td>Reversibilidade</td><td>Ir de schemas para <code>tenant_id</code> depois exige juntar dados</td><td>Ir de <code>tenant_id</code> para schemas raramente faz sentido</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note warn">
+    <b>Um ponto a decidir antes da sprint 4</b>
+    <span>Na própria conversa, o Diego lembrou que muitas instituições não confiam em contratos com o Google. O Identity Platform não guarda senha (CAFe e Microsoft continuam autenticando), mas recebe nome, e-mail e vínculo de quem entra. Se isso for um impedimento, o mesmo princípio do Laviola (não fazer autenticação à mão) se cumpre com Amazon Cognito, na mesma nuvem do resto, ou com Keycloak gerenciado.</span>
+  </div>
+</section>
+
+<section id="recomendacao">
+  <div class="head">
+    <span class="eyebrow">Recomendação</span>
+    <h2>Adotar a proposta Laviola, com os guarda-corpos desde o primeiro dia</h2>
+  </div>
+  <div class="two">
+    <div>
+      <h3>Por que mudar em relação à proposta anterior</h3>
+      <p>A proposta Satheler foi recomendada porque o banco barrava o erro de um iniciante. Com o filtro automático na persistência e a RLS do PostgreSQL, o modelo do Laviola passa a barrar o mesmo erro. E ele resolve três coisas que o modelo de schemas deixa para depois: a migração única, que tira dos alunos o risco de schemas em versões diferentes; o caminho para hospitais como o Einstein; e a inteligência de ameaças entre instituições.</p>
+    </div>
+    <div>
+      <h3>O que custa</h3>
+      <p>Cerca de 210 horas de referência a mais pela escolha do modelo de dados (315 a 420 horas de alunos), e mais três peças para operar: Redis, armazenamento de logs e Identity Platform. O piloto chega 8 a 10 semanas mais tarde com 4 alunos. Se o prazo do piloto for o que mais importa, a proposta Satheler, com os três itens comuns do Laviola, continua uma boa escolha.</p>
+    </div>
+  </div>
+  <ol class="asks">
+    <li>Escolher entre os dois modelos de dados: schema por instituição (mais rápido, já testado) ou banco central com <code>tenant_id</code> (escala e estratégia).</li>
+    <li>Adotar em qualquer caso o que o Laviola trouxe e vale para as duas: testes de carga na API, contêineres sem estado com Redis, logs fora do banco principal e release remoto.</li>
+    <li>Decidir o provedor de identidade: Identity Platform, como sugeriu o Laviola, ou Cognito, se a confiança no Google for um problema.</li>
+    <li>Confirmar a equipe: a proposta Laviola em 16 semanas exige de 7 a 9 alunos a 15 h; com 4, planejar de 13 a 18 sprints.</li>
+    <li>Adaptar o projeto de referência ao modelo escolhido antes da sprint 3 (cerca de 20 a 30 h se for o banco central).</li>
+  </ol>
+</section>
+
+<footer>
+  <span>Fontes: transcrição da conversa com Luiz Laviola (01/10/2026), proposta e página da arquitetura baseadas na conversa com Gustavo Satheler (30/09/2026), comparação de abordagens v0.2 e apresentação "Abordagens de Implantação" (30/09/2026).</span>
+  <span>Horas de canal do gateway, aplicação sem estado e migração para PostgreSQL, e as fórmulas de operação, vêm da apresentação de 30/09. As demais horas, o fator de 1,5 a 2,0 para alunos, os custos de Identity Platform, Redis e logs e o esboço do filtro automático são estimativas desta análise, a validar.</span>
+  <span>GT IoTEdu · UNIPAMPA · UFRGS · UFU · proposta para discussão; nada aqui foi implantado em produção.</span>
+</footer>
+
+</div>
+</body>
+</html>

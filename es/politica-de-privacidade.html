@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Política de Privacidad | GT IoTEdu</title>
+  <meta name="description" content="Política de Privacidad del servicio IoTEdu: qué datos personales se tratan, con qué finalidad, durante cuánto tiempo y cuáles son los derechos del titular de los datos." />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Play CDN (para usar as util classes sem build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide (ícones SVG) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="legal.css" />
+</head>
+<body class="bg-slate-900 text-white font-[Inter]">
+
+  <!-- NAV -->
+  <nav class="relative flex md:grid md:grid-cols-[auto,1fr,auto] md:gap-4 items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+    <div class="flex items-center space-x-2 md:justify-self-start">
+      <div class="relative">
+        <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
+        <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+      </div>
+      <a href="index.html" class="text-xl font-bold">GT IoTEdu</a>
+    </div>
+
+    <div class="hidden md:flex items-center justify-center space-x-8 md:justify-self-center">
+      <a href="index.html#proposta" class="hover:text-blue-400 transition-colors">Propuesta</a>
+      <a href="index.html#resultados" class="hover:text-blue-400 transition-colors">Resultados</a>
+      <a href="index.html#parceria" class="hover:text-blue-400 transition-colors">Alianza y Apoyo</a>
+      <a href="index.html#equipe" class="hover:text-blue-400 transition-colors">Equipo</a>
+      <a href="index.html#early-adopters" class="hover:text-blue-400 transition-colors">Early Adopters</a>
+      <a href="publicacoes.html" class="hover:text-blue-400 transition-colors">Publicaciones</a>
+      <a href="videos.html" class="hover:text-blue-400 transition-colors">Videos</a>
+      <a href="news.html" class="hover:text-blue-400 transition-colors">Noticias</a>
+    </div>
+
+    <div class="flex items-center space-x-2 md:space-x-4 md:justify-self-end">
+      <a href="index.html" class="px-4 py-2 rounded-lg border border-slate-700 text-white hover:bg-slate-800 bg-transparent">Inicio</a>
+
+      <button
+        id="mobile-menu-button"
+        type="button"
+        class="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-slate-700 hover:bg-slate-800"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="Abrir menú"
+      >
+        <svg id="mobile-menu-icon-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg id="mobile-menu-icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 hidden">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu (dropdown) -->
+    <div id="mobile-menu" class="md:hidden hidden absolute left-0 right-0 top-full bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+      <div class="px-6 py-4 flex flex-col gap-3">
+        <a href="index.html#proposta" class="py-2 hover:text-blue-400 transition-colors">Propuesta</a>
+        <a href="index.html#resultados" class="py-2 hover:text-blue-400 transition-colors">Resultados</a>
+        <a href="index.html#parceria" class="py-2 hover:text-blue-400 transition-colors">Alianza y Apoyo</a>
+        <a href="index.html#equipe" class="py-2 hover:text-blue-400 transition-colors">Equipo</a>
+        <a href="index.html#early-adopters" class="py-2 hover:text-blue-400 transition-colors">Early Adopters</a>
+        <a href="publicacoes.html" class="py-2 hover:text-blue-400 transition-colors">Publicaciones</a>
+        <a href="videos.html" class="py-2 hover:text-blue-400 transition-colors">Videos</a>
+        <a href="news.html" class="py-2 hover:text-blue-400 transition-colors">Noticias</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 px-4 sm:px-6">
+
+    <nav class="legal-breadcrumb" aria-label="Usted está en">
+      <a href="index.html">Inicio</a>
+      <span aria-hidden="true">/</span>
+      <span>Documentos</span>
+      <span aria-hidden="true">/</span>
+      <span class="current">Política de Privacidad</span>
+    </nav>
+
+    <article class="legal-sheet">
+
+
+      <header class="legal-head">
+        <p class="legal-eyebrow">
+          <i data-lucide="shield-check" aria-hidden="true"></i>
+          GT-IoTEdu · Documento oficial
+        </p>
+        <h1>Política de Privacidad</h1>
+        <p class="legal-lede">
+          Este documento describe la forma y las condiciones en que se tratan los datos personales de los usuarios del servicio IoTEdu: qué se recopila, con qué finalidad, durante cuánto tiempo, con quién se comparte y cuáles son los derechos del titular de los datos.
+        </p>
+
+        <dl class="legal-meta">
+          <div>
+            <dt>Documento</dt>
+            <dd>Política de Privacidad</dd>
+          </div>
+          <div>
+            <dt>Versión</dt>
+            <dd>1.0</dd>
+          </div>
+          <div>
+            <dt>Vigente desde</dt>
+            <dd>23 de septiembre de 2026</dd>
+          </div>
+          <div>
+            <dt>Controladora</dt>
+            <dd>UNIPAMPA<br>
+                <code>09.341.233/0001-22</code></dd>
+          </div>
+          <div>
+            <dt>Ámbito</dt>
+            <dd>Instancia de referencia del GT-IoTEdu<br>
+                <code>app-unipampa.iotedu.org</code></dd>
+          </div>
+          <div>
+            <dt>Legislación</dt>
+            <dd>Lei nº 13.709/2018 (LGPD)<br>Lei nº 12.965/2014 (Marco Civil)</dd>
+          </div>
+        </dl>
+      </header>
+
+      <nav class="legal-toc" aria-label="Índice">
+        <h2>Índice</h2>
+        <ol>
+          <li><a href="#quem-somos">Quiénes somos</a></li>
+          <li><a href="#contato">Cómo contactarnos</a></li>
+          <li><a href="#definicoes">Definiciones</a></li>
+          <li><a href="#servico">El servicio IoTEdu</a></li>
+          <li><a href="#agentes">Agentes de tratamiento de datos personales</a></li>
+          <li><a href="#tratamento">Tratamiento de datos realizado por la plataforma</a></li>
+          <li><a href="#base-legal">Bases legales del tratamiento</a></li>
+          <li><a href="#compartilhamento">Comunicación de datos personales</a></li>
+          <li><a href="#automatizadas">Decisiones automatizadas</a></li>
+          <li><a href="#guarda">Almacenamiento y plazo de conservación</a></li>
+          <li><a href="#seguranca">Medidas de seguridad</a></li>
+          <li><a href="#direitos">Derechos garantizados al usuario</a></li>
+          <li><a href="#alteracoes">Historial de modificaciones</a></li>
+        </ol>
+      </nav>
+
+      <div class="legal-body">
+
+        <section id="quem-somos">
+          <h2><span class="num">1</span> Quiénes somos</h2>
+          <p>
+            IoTEdu es un servicio de gestión y seguridad de dispositivos de Internet de las Cosas en redes académicas, desarrollado en el marco del GT-IoTEdu, Grupo de Trabajo apoyado por la Rede Nacional de Ensino e Pesquisa (RNP, red académica nacional de Brasil).
+          </p>
+          <p>
+            Esta Política de Privacidad se aplica a la <strong>instancia de referencia</strong> del servicio, disponible en
+            <a href="https://app-unipampa.iotedu.org">app-unipampa.iotedu.org</a>,
+            operada por la Fundação Universidade Federal do Pampa (UNIPAMPA), fundación pública de derecho público federal inscrita en el CNPJ/MF (registro nacional de personas jurídicas de Brasil) con el n.º 09.341.233/0001-22.
+          </p>
+          <p>
+            Este documento fue elaborado de conformidad con la Lei nº 13.709/2018 (Lei Geral de Proteção de Dados, LGPD, ley general de protección de datos personales de Brasil), con la Lei nº 12.965/2014 (Marco Civil da Internet, ley que establece los principios, garantías, derechos y deberes para el uso de Internet en Brasil) y con las reglas para proveedores de servicios establecidas en la Política de la Comunidade Acadêmica Federada (CAFE.N.001).
+          </p>
+          <p class="legal-callout">
+            IoTEdu es un software instalado en la infraestructura de cada institución que lo adopta. Cuando otra institución pasa a operar su propia instancia, <strong>esa institución</strong> se convierte en controladora de los datos allí tratados y responde por su propia política de privacidad. Esta política abarca exclusivamente la instancia indicada anteriormente.
+          </p>
+        </section>
+
+        <section id="contato">
+          <h2><span class="num">2</span> Cómo contactarnos</h2>
+          <p>
+            Para consultas, solicitudes o el ejercicio de derechos relacionados con esta política, comuníquese a través de los canales que se indican a continuación.
+          </p>
+          <table class="legal-table">
+            <tbody>
+              <tr>
+                <th scope="row">Servicio IoTEdu</th>
+                <td><a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Responsable del servicio</th>
+                <td>
+                  Diego Kreutz, coordinador del GT-IoTEdu<br>
+                  <a href="mailto:diegokreutz@unipampa.edu.br">diegokreutz@unipampa.edu.br</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Encargado de Protección de Datos Personales (DPO, “encarregado” según la LGPD) de la UNIPAMPA</th>
+                <td>
+                  <a href="mailto:encarregado.lgpd@unipampa.edu.br">encarregado.lgpd@unipampa.edu.br</a><br>
+                  La identificación del servidor público designado y los demás canales de atención figuran en
+                  <a href="https://sites.unipampa.edu.br/lgpd/contato-encarregado/">sites.unipampa.edu.br/lgpd/contato-encarregado</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="definicoes">
+          <h2><span class="num">3</span> Definiciones</h2>
+          <p>A los efectos de esta política, se aplican las siguientes definiciones.</p>
+          <table class="legal-table">
+            <tbody>
+              <tr>
+                <th scope="row">Dato personal</th>
+                <td>Información relacionada con una persona física identificada o identificable, como el nombre, el correo electrónico institucional o el identificador de cuenta.</td>
+              </tr>
+              <tr>
+                <th scope="row">Tratamiento</th>
+                <td>Toda operación realizada con datos personales, incluidas la recopilación, el uso, el acceso, el almacenamiento, la transmisión, la modificación y la eliminación.</td>
+              </tr>
+              <tr>
+                <th scope="row">Titular, usuario, usted</th>
+                <td>Persona física a quien se refieren los datos personales tratados. A los efectos de esta política, cualquier persona que acceda al servicio o que figure como responsable de un dispositivo registrado.</td>
+              </tr>
+              <tr>
+                <th scope="row">Controlador</th>
+                <td>Persona física o jurídica a quien corresponden las decisiones sobre el tratamiento de datos personales.</td>
+              </tr>
+              <tr>
+                <th scope="row">Encargado de Protección de Datos</th>
+                <td>Persona designada por el controlador para actuar como canal de comunicación entre el controlador, los titulares de los datos y la ANPD.</td>
+              </tr>
+              <tr>
+                <th scope="row">ANPD</th>
+                <td>Autoridade Nacional de Proteção de Dados (autoridad nacional de protección de datos de Brasil), encargada de velar por el cumplimiento de la LGPD, implementarla y fiscalizarla.</td>
+              </tr>
+              <tr>
+                <th scope="row">CAFe</th>
+                <td>Comunidade Acadêmica Federada, servicio de gestión de identidad de la RNP que reúne a instituciones de enseñanza, investigación e innovación de Brasil.</td>
+              </tr>
+              <tr>
+                <th scope="row">Proveedor de identidad (IdP)</th>
+                <td>Institución responsable de mantener las credenciales del usuario y de autenticarlo. En la práctica, la institución de origen del usuario.</td>
+              </tr>
+              <tr>
+                <th scope="row">Proveedor de servicios (SP)</th>
+                <td>Componente que, con base en las aserciones de un proveedor de identidad, controla el acceso a un servicio protegido. IoTEdu actúa como proveedor de servicios en la CAFe.</td>
+              </tr>
+              <tr>
+                <th scope="row">Dispositivo</th>
+                <td>Equipo de Internet de las Cosas registrado en la plataforma, como un sensor, una cámara, un controlador o un equipo de laboratorio.</td>
+              </tr>
+              <tr>
+                <th scope="row">Responsable del dispositivo</th>
+                <td>Usuario que registra el dispositivo y al cual este queda vinculado en el inventario de la institución.</td>
+              </tr>
+              <tr>
+                <th scope="row">Unidad</th>
+                <td>Campus, departamento, laboratorio u otra subdivisión institucional a la que se asocian los dispositivos y los administradores.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="servico">
+          <h2><span class="num">4</span> El servicio IoTEdu</h2>
+          <p>
+            IoTEdu permite que los miembros de la comunidad académica registren, en modalidad de autoservicio, los dispositivos de Internet de las Cosas que utilizan en la red de la institución, y que el equipo de tecnologías de la información mantenga un inventario de esos equipos, identifique al responsable de cada uno, supervise su comportamiento en la red y responda a eventos de seguridad.
+          </p>
+          <p>
+            La autenticación se realiza mediante la identidad institucional del usuario, a través de la CAFe. El servicio no mantiene contraseñas propias para usuarios federados ni realiza la autenticación: quien autentica es la institución de origen.
+          </p>
+          <p>
+            La plataforma se instala y se ejecuta en la infraestructura de la institución, en un servidor local, y monitorea un segmento de red dedicado a los dispositivos de Internet de las Cosas.
+          </p>
+        </section>
+
+        <section id="agentes">
+          <h2><span class="num">5</span> Agentes de tratamiento de datos personales</h2>
+          <p>
+            La <strong>institución de origen del usuario</strong>, en su calidad de proveedor de identidad, mantiene las credenciales y los datos de registro del usuario y decide qué atributos pone a disposición del servicio. Con respecto a esos datos, actúa como controladora.
+          </p>
+          <p>
+            La <strong>UNIPAMPA</strong>, en su calidad de entidad que opera la instancia de referencia de IoTEdu, decide sobre el tratamiento de los datos dentro del servicio. Con respecto a esos datos, actúa como controladora.
+          </p>
+          <p class="legal-callout">
+            No existen operadores terceros. El servicio no utiliza proveedores de nube, no contrata procesamiento externo y no transfiere datos personales fuera de la infraestructura de la institución.
+          </p>
+        </section>
+
+        <section id="tratamento">
+          <h2><span class="num">6</span> Tratamiento de datos realizado por la plataforma</h2>
+
+          <h3>6.1 Datos recibidos de la Federación CAFe</h3>
+          <table class="legal-table">
+            <thead>
+              <tr><th>Dato personal tratado</th><th>Origen</th><th>Finalidad del tratamiento</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>eduPersonPrincipalName</code></td>
+                <td>Proporcionado por la institución de origen del usuario, durante la autenticación</td>
+                <td>Identificación única y estable de la cuenta en el servicio</td>
+              </tr>
+              <tr>
+                <td><code>mail</code></td>
+                <td>Proporcionado por la institución de origen del usuario, durante la autenticación</td>
+                <td>Identificación de la cuenta y notificación al responsable sobre eventos que involucren a sus dispositivos</td>
+              </tr>
+              <tr>
+                <td><code>givenName</code> y <code>sn</code></td>
+                <td>Proporcionados por la institución de origen del usuario, durante la autenticación</td>
+                <td>Visualización del nombre del responsable en las pantallas de inventario</td>
+              </tr>
+              <tr>
+                <td><code>eduPersonAffiliation</code></td>
+                <td>Proporcionado por la institución de origen del usuario, durante la autenticación</td>
+                <td>Definición del perfil de acceso del usuario en el servicio</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="legal-callout">
+            El servicio no solicita ni recibe CPF (número de identificación fiscal brasileño), número de matrícula, documento de identidad, fecha de nacimiento, domicilio ni teléfono. El servicio
+            <strong>no tiene acceso a su contraseña</strong> en ningún momento.
+          </p>
+
+          <h3>6.2 Datos de los dispositivos registrados</h3>
+          <table class="legal-table">
+            <thead>
+              <tr><th>Dato personal tratado</th><th>Origen</th><th>Finalidad del tratamiento</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dirección MAC, dirección IP, nombre del equipo (hostname) y descripción</td>
+                <td>Informados por el usuario al registrarlo u obtenidos de la propia red</td>
+                <td>Conformación del inventario de dispositivos de la institución</td>
+              </tr>
+              <tr>
+                <td>Vínculo entre el dispositivo y el usuario responsable, con fecha y hora</td>
+                <td>Generado por la plataforma al momento del registro</td>
+                <td>Identificación de quién responde por cada equipo conectado a la red</td>
+              </tr>
+              <tr>
+                <td>Estado del dispositivo (habilitado, pendiente de aprobación, bloqueado), motivo del bloqueo y autor de la acción</td>
+                <td>Generados por la plataforma y por los administradores</td>
+                <td>Control del acceso del dispositivo a la red y registro de auditoría de las decisiones adoptadas</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>6.3 Datos generados por el monitoreo de seguridad</h3>
+          <table class="legal-table">
+            <thead>
+              <tr><th>Dato personal tratado</th><th>Origen</th><th>Finalidad del tratamiento</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Direcciones IP de origen y destino, puertos, protocolo, firma de la regla activada, severidad, fecha y hora, y los datos sin procesar de la alerta</td>
+                <td>Generados automáticamente por las sondas de detección (Suricata, Snort y Zeek) a partir del tráfico del segmento monitoreado</td>
+                <td>Detección, registro y respuesta a eventos de seguridad en la red, e investigación posterior de incidentes</td>
+              </tr>
+              <tr>
+                <td>Registro de los bloqueos aplicados y de las revisiones realizadas</td>
+                <td>Generados por la plataforma y por los administradores</td>
+                <td>Trazabilidad de las decisiones de bloqueo y desbloqueo</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="legal-callout">
+            Los registros de monitoreo describen el comportamiento en la red de los
+            <strong>dispositivos</strong>, y no la navegación personal del usuario. El monitoreo abarca el segmento de red dedicado a los equipos de Internet de las Cosas, no la red de uso personal de la institución. Aun así, como cada dispositivo está vinculado a un responsable, esos registros pueden asociarse a una persona y, por ello, se tratan como datos personales.
+          </p>
+
+          <h3>6.4 Datos de acceso a la aplicación</h3>
+          <table class="legal-table">
+            <thead>
+              <tr><th>Dato personal tratado</th><th>Origen</th><th>Finalidad del tratamiento</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Identificación de la cuenta, fecha y hora del último acceso</td>
+                <td>Generados automáticamente al acceder al servicio</td>
+                <td>Conservación de los registros de acceso a aplicaciones de Internet e investigación de incidentes</td>
+              </tr>
+              <tr>
+                <td>Cookies de sesión</td>
+                <td>Generadas por el navegador del usuario al acceder al servicio</td>
+                <td>Mantenimiento de la sesión autenticada mientras el usuario utiliza la plataforma</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            El servicio no utiliza cookies de publicidad, de rastreo ni de análisis de comportamiento, y no emplea herramientas de analítica de terceros.
+          </p>
+        </section>
+
+        <section id="base-legal">
+          <h2><span class="num">7</span> Bases legales del tratamiento</h2>
+          <table class="legal-table">
+            <thead>
+              <tr><th>Tratamiento</th><th>Base legal</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Identificación del usuario, asignación del perfil de acceso, inventario de dispositivos y monitoreo de seguridad de la red</td>
+                <td>Ejecución de políticas públicas por parte de la administración pública (LGPD, art. 7º, III), dado que la gestión y la protección de la red institucional son actividades propias de una universidad federal</td>
+              </tr>
+              <tr>
+                <td>Conservación de los registros de acceso a la aplicación</td>
+                <td>Cumplimiento de una obligación legal (LGPD, art. 7º, II), en los términos del art. 15 del Marco Civil da Internet</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            El tratamiento se limita al mínimo necesario para esas finalidades. Los datos no se utilizan con fines comerciales ni publicitarios, ni para la elaboración de perfiles de comportamiento personal o la evaluación del desempeño académico o laboral.
+          </p>
+          <p>
+            Los indicadores elaborados para los informes del GT y para publicaciones científicas son agregados y anónimos, en forma de recuentos, promedios y tiempos de respuesta. No se publican datos que identifiquen a personas o dispositivos individuales.
+          </p>
+        </section>
+
+        <section id="compartilhamento">
+          <h2><span class="num">8</span> Comunicación de datos personales</h2>
+          <p>
+            El servicio no comercializa, no cede ni comparte datos personales con terceros, empresas u otras instituciones.
+          </p>
+          <p>
+            Los datos podrán comunicarse cuando el servicio reciba un requerimiento de una autoridad competente, para el cumplimiento de una obligación legal o regulatoria, y cuando sea necesario notificar un incidente de seguridad al Operador de la Federación CAFe, en cuyo caso la comunicación se limitará a lo necesario para la gestión del incidente.
+          </p>
+          <p>
+            Internamente, el acceso está segmentado por perfil: el usuario final accede únicamente a sus propios dispositivos; el administrador de unidad accede a los dispositivos y eventos de su unidad; el superusuario institucional accede al conjunto de la institución.
+          </p>
+        </section>
+
+        <section id="automatizadas">
+          <h2><span class="num">9</span> Decisiones automatizadas</h2>
+          <p>
+            La plataforma puede <strong>bloquear automáticamente el acceso de un dispositivo a la red</strong> cuando las sondas de detección identifican un evento de alta severidad. La decisión la ejecuta el sistema, sin intervención humana previa, y se notifica al responsable del dispositivo. Los eventos de menor severidad no generan bloqueo automático y se derivan para su evaluación por el administrador de la unidad.
+          </p>
+          <p>
+            En los términos del art. 20 de la LGPD, el titular de los datos puede solicitar la revisión de esa decisión. La solicitud puede presentarse al administrador de la unidad a través de la propia plataforma o por los canales indicados en la sección 2.
+          </p>
+        </section>
+
+        <section id="guarda">
+          <h2><span class="num">10</span> Almacenamiento y plazo de conservación</h2>
+          <p>
+            Los datos se almacenan en un servidor local, en la infraestructura de la institución que opera la instancia, en territorio brasileño. No hay almacenamiento en nubes de terceros ni transferencia internacional de datos.
+          </p>
+          <table class="legal-table">
+            <thead><tr><th>Dato</th><th>Plazo de conservación</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Cuenta del usuario y atributos recibidos de la CAFe</td>
+                <td>Mientras la cuenta exista</td>
+              </tr>
+              <tr>
+                <td>Registro de dispositivos y vínculo con el responsable</td>
+                <td>Mientras el dispositivo permanezca registrado</td>
+              </tr>
+              <tr>
+                <td>Eventos de seguridad, incidentes y registros de bloqueo</td>
+                <td>12 meses, tras lo cual se anonimizan o se eliminan</td>
+              </tr>
+              <tr>
+                <td>Registros de acceso a la aplicación</td>
+                <td>6 meses, conforme al art. 15 del Marco Civil da Internet</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            Una vez finalizado el vínculo del usuario con la institución, o previa solicitud de supresión, se eliminan los datos personales asociados a la cuenta, salvo los registros cuya conservación sea exigida por ley o necesaria para el ejercicio regular de derechos, que podrán mantenerse durante el período correspondiente.
+          </p>
+        </section>
+
+        <section id="seguranca">
+          <h2><span class="num">11</span> Medidas de seguridad</h2>
+          <p>
+            En el servicio se adoptan las siguientes medidas técnicas y organizativas:
+          </p>
+          <ul>
+            <li>comunicación exclusivamente mediante HTTPS, con certificado válido;</li>
+            <li>autenticación federada, sin almacenamiento de contraseñas de usuarios;</li>
+            <li>segmentación de red dedicada para los dispositivos monitoreados;</li>
+            <li>control de acceso por perfil, con separación entre usuario final, administrador de unidad y superusuario institucional;</li>
+            <li>registro de auditoría de las acciones administrativas;</li>
+            <li>infraestructura mantenida en la propia institución, sujeta a sus políticas de seguridad y controles de red.</li>
+          </ul>
+          <p>
+            La instancia de referencia opera en el contexto de un piloto de investigación. Esto no reduce el cuidado con los datos, pero es una información relevante para evaluar su uso. Ningún sistema elimina por completo la posibilidad de una vulneración de seguridad. Si usted considera que sus datos no se están tratando correctamente, o que están expuestos a acceso indebido, pérdida, destrucción o alteración, comuníquese por los canales de la sección 2.
+          </p>
+        </section>
+
+        <section id="direitos">
+          <h2><span class="num">12</span> Derechos garantizados al usuario</h2>
+          <p>
+            Se garantizan al titular de los datos los derechos previstos en la LGPD. Las solicitudes de ejercicio de esos derechos solo serán atendidas cuando las presente el propio titular o un representante legalmente habilitado.
+          </p>
+          <table class="legal-table">
+            <tbody>
+              <tr>
+                <th scope="row">Confirmación y acceso</th>
+                <td>Usted puede solicitar la confirmación de la existencia de tratamiento y el acceso a sus datos personales tratados por el servicio.</td>
+              </tr>
+              <tr>
+                <th scope="row">Rectificación</th>
+                <td>Usted puede solicitar la rectificación de datos incompletos, inexactos o desactualizados.</td>
+              </tr>
+              <tr>
+                <th scope="row">Anonimización, bloqueo o eliminación</th>
+                <td>Usted puede solicitar la anonimización, el bloqueo o la eliminación de datos innecesarios, excesivos o tratados en disconformidad con la LGPD.</td>
+              </tr>
+              <tr>
+                <th scope="row">Información sobre comunicación de datos</th>
+                <td>Usted puede solicitar la relación de las entidades con las que el servicio compartió sus datos personales.</td>
+              </tr>
+              <tr>
+                <th scope="row">Revisión de decisiones automatizadas</th>
+                <td>Usted puede solicitar la revisión del bloqueo automático de dispositivos descrito en la sección 9.</td>
+              </tr>
+              <tr>
+                <th scope="row">Oposición</th>
+                <td>Usted puede oponerse a un tratamiento realizado en disconformidad con la LGPD.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            Parte de estos derechos puede ejercerse directamente en la plataforma: los datos de su cuenta y sus dispositivos son visibles en su panel, y usted puede corregir la información de un dispositivo o eliminarlo de su registro.
+          </p>
+          <p>
+            Cuando no sea posible o procedente adoptar de inmediato las medidas solicitadas, se enviará una respuesta en la que se indicarán las razones de hecho o de derecho correspondientes, conforme al art. 18, § 4º, de la LGPD.
+          </p>
+        </section>
+
+        <section id="alteracoes">
+          <h2><span class="num">13</span> Historial de modificaciones</h2>
+          <p>
+            Esta Política de Privacidad puede ser editada, modificada o actualizada en cualquier momento, con el objetivo de mantenerla vigente y compatible con las normas aplicables y con las prácticas de privacidad y protección de datos.
+          </p>
+          <p>
+            Las modificaciones pueden producirse cuando cambien los datos tratados, las finalidades o las operaciones realizadas, así como cuando lo requiera la ANPD u otro organismo competente. Las modificaciones que afecten al tratamiento de datos recibidos de la federación también se comunicarán a la CAFe.
+          </p>
+          <p>
+            Este documento fue actualizado por última vez el 23 de septiembre de 2026 y entra en vigor inmediatamente después de su publicación.
+          </p>
+        </section>
+
+      </div>
+
+      <footer class="legal-foot">
+        <p>
+          <strong>GT-IoTEdu</strong> ·
+          <a href="https://iotedu.org">iotedu.org</a> ·
+          <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a>
+        </p>
+        <p class="legal-foot-sub">
+          Documento relacionado: <a href="termos-de-uso.html">Términos de Uso</a>
+        </p>
+      </footer>
+
+    </article>
+  </main>
+
+  <!-- FOOTER DO SITE -->
+  <footer class="py-8 px-6 bg-slate-900 border-t border-slate-700">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex items-center justify-center space-x-2 mb-4">
+        <div class="relative">
+          <i data-lucide="wifi" class="h-6 w-6 text-blue-400"></i>
+          <div class="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        </div>
+        <span class="text-lg font-bold">GT IoTEdu</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-4 text-sm">
+        <a href="politica-de-privacidade.html" class="text-slate-300 hover:text-blue-400 transition-colors">Política de Privacidad</a>
+        <span class="text-slate-600" aria-hidden="true">·</span>
+        <a href="termos-de-uso.html" class="text-slate-300 hover:text-blue-400 transition-colors">Términos de Uso</a>
+      </div>
+      <p class="text-slate-400 text-sm">
+        © 2025 GT-IoTEdu. Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function wireMobileMenu() {
+      const button = document.getElementById('mobile-menu-button');
+      const menu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('mobile-menu-icon-open');
+      const iconClose = document.getElementById('mobile-menu-icon-close');
+
+      if (!button || !menu || !iconOpen || !iconClose) return;
+
+      const setOpen = (open) => {
+        menu.classList.toggle('hidden', !open);
+        iconOpen.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      };
+
+      const isOpen = () => button.getAttribute('aria-expanded') === 'true';
+
+      button.addEventListener('click', () => setOpen(!isOpen()));
+      menu.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && target.tagName === 'A') setOpen(false);
+      });
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setOpen(false);
+      });
+      window.addEventListener('resize', () => {
+        if (window.matchMedia('(min-width: 768px)').matches) setOpen(false);
+      });
+
+      setOpen(false);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) { window.lucide.createIcons(); }
+      wireMobileMenu();
+    });
+  </script>
+</body>
+</html>

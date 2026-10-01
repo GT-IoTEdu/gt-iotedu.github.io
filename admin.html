@@ -222,6 +222,44 @@
               </button>
             </div>
 
+            <!-- Traduções -->
+            <div>
+              <label class="block text-sm font-semibold mb-2">
+                Traduções
+              </label>
+              <p class="text-xs text-slate-400 mb-3">Opcional. Aparecem nas versões em inglês (/en/) e espanhol (/es/) do site; campos vazios usam o texto em português. As imagens copiadas do português são gravadas como referência (@img0, @img1...) para não duplicar o arquivo.</p>
+              <div class="space-y-3">
+                <details id="i18n-en" class="i18n-panel bg-slate-700/50 border border-slate-600 rounded-lg" data-lang="en">
+                  <summary class="px-4 py-3 cursor-pointer font-semibold">🇺🇸 Inglês (EN)</summary>
+                  <div class="px-4 pb-4 space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                      <input type="text" class="i18n-title w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white" placeholder="Title">
+                      <input type="text" class="i18n-date w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white" placeholder="Ex: February 2025">
+                    </div>
+                    <input type="text" class="i18n-tags w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white" placeholder="Rótulos das tags, separados por vírgula e na mesma ordem (ex: Presentation, News)">
+                    <div class="flex justify-end">
+                      <button type="button" class="i18n-copy px-3 py-1 text-xs bg-slate-600 hover:bg-slate-500 rounded">Copiar descrição do português</button>
+                    </div>
+                    <div id="article-description-en" class="bg-slate-700 border border-slate-600 rounded-lg text-white" style="min-height: 160px;"></div>
+                  </div>
+                </details>
+                <details id="i18n-es" class="i18n-panel bg-slate-700/50 border border-slate-600 rounded-lg" data-lang="es">
+                  <summary class="px-4 py-3 cursor-pointer font-semibold">🇪🇸 Espanhol (ES)</summary>
+                  <div class="px-4 pb-4 space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                      <input type="text" class="i18n-title w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white" placeholder="Título">
+                      <input type="text" class="i18n-date w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white" placeholder="Ex: Febrero 2025">
+                    </div>
+                    <input type="text" class="i18n-tags w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-blue-400 text-white" placeholder="Rótulos das tags, separados por vírgula e na mesma ordem (ex: Presentación, Noticia)">
+                    <div class="flex justify-end">
+                      <button type="button" class="i18n-copy px-3 py-1 text-xs bg-slate-600 hover:bg-slate-500 rounded">Copiar descrição do português</button>
+                    </div>
+                    <div id="article-description-es" class="bg-slate-700 border border-slate-600 rounded-lg text-white" style="min-height: 160px;"></div>
+                  </div>
+                </details>
+              </div>
+            </div>
+
             <!-- Botões -->
             <div class="flex gap-4 pt-4 border-t border-slate-700">
               <button type="submit"
@@ -284,11 +322,11 @@
     let allArticles = [];
     let indexData = { articles: [] };
     let quill;
+    const I18N_LANGS = ['en', 'es'];
+    const quillI18n = {};
 
-    // Inicializar
-    document.addEventListener('DOMContentLoaded', () => {
-      // Inicializar Quill Editor
-      quill = new Quill('#article-description', {
+    function createEditor(selector, placeholder) {
+      return new Quill(selector, {
         theme: 'snow',
         modules: {
           toolbar: [
@@ -299,11 +337,53 @@
             ['image', 'link']
           ]
         },
-        placeholder: 'Cole ou digite a descrição aqui...'
+        placeholder
       });
-      
+    }
+
+    // Imagens embutidas (data:) da descrição em português, na ordem em que aparecem
+    function embeddedImages(html) {
+      return [...(html || '').matchAll(/src="(data:[^"]*)"/g)].map(m => m[1]);
+    }
+
+    // Tradução gravada -> editor: troca src="@imgN" pela imagem N do português
+    function expandImages(html, ptHtml) {
+      const images = embeddedImages(ptHtml);
+      return (html || '').replace(/src="@img(\d+)"/g, (m, i) => `src="${images[+i] || ''}"`);
+    }
+
+    // Editor -> tradução gravada: imagens idênticas às do português viram src="@imgN"
+    function compactImages(html, ptHtml) {
+      const images = embeddedImages(ptHtml);
+      return (html || '').replace(/src="(data:[^"]*)"/g, (m, src) => {
+        const i = images.indexOf(src);
+        return i >= 0 ? `src="@img${i}"` : m;
+      });
+    }
+
+    function isEmptyEditor(editor) {
+      return editor.getText().trim() === '' && !editor.root.querySelector('img');
+    }
+
+    // Inicializar
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inicializar Quill Editor
+      quill = createEditor('#article-description', 'Cole ou digite a descrição aqui...');
+
       // Atualizar preview quando o conteúdo do Quill mudar
       quill.on('text-change', updatePreview);
+
+      // Editores das traduções
+      I18N_LANGS.forEach(lang => {
+        const editor = createEditor(`#article-description-${lang}`, 'Descrição traduzida (opcional)');
+        editor.on('text-change', updatePreview);
+        quillI18n[lang] = editor;
+        document.querySelector(`#i18n-${lang} .i18n-copy`).addEventListener('click', () => {
+          editor.root.innerHTML = quill.root.innerHTML;
+          editor.update();
+          updatePreview();
+        });
+      });
       
       // Converter texto preto para branco (para compatibilidade com tema escuro)
       quill.root.addEventListener('paste', function() {
@@ -517,6 +597,17 @@
         addTag();
       }
 
+      // Traduções
+      I18N_LANGS.forEach(lang => {
+        const t = (article.i18n && article.i18n[lang]) || {};
+        const panel = document.getElementById(`i18n-${lang}`);
+        panel.querySelector('.i18n-title').value = t.title || '';
+        panel.querySelector('.i18n-date').value = t.dateDisplay || '';
+        panel.querySelector('.i18n-tags').value = (t.tags || []).join(', ');
+        quillI18n[lang].root.innerHTML = expandImages(t.description, article.description);
+        panel.open = Boolean(t.title || t.description);
+      });
+
       // Atualizar título do formulário
       document.getElementById('form-title').textContent = `Editar: ${filename}`;
       document.getElementById('btn-save-text').textContent = 'Atualizar Notícia';
@@ -639,7 +730,7 @@
 
       const description = quill.root.innerHTML;
 
-      return {
+      const data = {
         id: document.getElementById('article-id').value.trim(),
         date: document.getElementById('article-date').value.trim(),
         dateDisplay: document.getElementById('article-date-display').value.trim(),
@@ -650,6 +741,24 @@
         colorScheme: document.getElementById('article-color').value,
         tags
       };
+
+      // Traduções: só entram no JSON os campos preenchidos
+      const i18n = {};
+      I18N_LANGS.forEach(lang => {
+        const panel = document.getElementById(`i18n-${lang}`);
+        const t = {};
+        const title = panel.querySelector('.i18n-title').value.trim();
+        const dateDisplay = panel.querySelector('.i18n-date').value.trim();
+        const tagLabels = panel.querySelector('.i18n-tags').value.split(',').map(s => s.trim()).filter(Boolean);
+        if (title) t.title = title;
+        if (dateDisplay) t.dateDisplay = dateDisplay;
+        if (tagLabels.length) t.tags = tagLabels;
+        if (!isEmptyEditor(quillI18n[lang])) t.description = compactImages(quillI18n[lang].root.innerHTML, description);
+        if (Object.keys(t).length) i18n[lang] = t;
+      });
+      if (Object.keys(i18n).length) data.i18n = i18n;
+
+      return data;
     }
 
     // Atualizar preview JSON
@@ -727,6 +836,10 @@
     function resetForm() {
       document.getElementById('news-form').reset();
       quill.setContents([]);
+      I18N_LANGS.forEach(lang => {
+        quillI18n[lang].setContents([]);
+        document.getElementById(`i18n-${lang}`).open = false;
+      });
       document.getElementById('tags-container').innerHTML = '';
       addTag();
       currentEditingFilename = null;

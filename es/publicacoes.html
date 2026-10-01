@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Publicaciones | GT IoTEDU</title>
+  <meta name="description" content="Artículos científicos publicados y presentaciones en eventos del GT IoTEDU, con enlaces a los eventos, los PDF y las diapositivas" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    :root {
+      --ink:       #0f172a;
+      --paper:     #1e293b;
+      --mist:      #334155;
+      --ghost:     #64748b;
+      --fog:       #94a3b8;
+      --accent:    #38bdf8;
+      --accent2:   #34d399;
+      --warn:      #fb923c;
+      --header-h:  72px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { overflow-x: hidden; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: calc(var(--header-h) + 2rem) 2rem 3rem;
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto; gap: 2rem;
+      align-items: start;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.2rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 28px; height: 2px;
+      background: var(--accent);
+    }
+    .hero h1 { margin: 0; }
+    .hero-meta {
+      text-align: right; color: var(--ghost);
+      font-size: .8rem; line-height: 1.8;
+    }
+    .hero-count {
+      font-size: 3rem; font-weight: 800;
+      color: #fff; line-height: 1;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── PAPERS ── */
+    .papers-section {
+      max-width: 1200px; margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+
+    .event-group + .event-group { margin-top: 3.5rem; }
+
+    .event-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      flex-wrap: wrap; gap: .5rem 1.5rem;
+      padding-bottom: 1rem; margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .event-name {
+      font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+      font-weight: 800; color: #fff; margin: 0;
+    }
+    .event-name a { color: inherit; text-decoration: none; }
+    .event-name a:hover { color: var(--accent); }
+    .event-info {
+      font-size: .85rem; color: var(--fog); margin: .35rem 0 0;
+    }
+    .event-when {
+      font-size: .8rem; color: var(--ghost); white-space: nowrap;
+    }
+
+    .paper-list { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .paper-card {
+      background: var(--paper);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 16px;
+      padding: 1.5rem 1.75rem;
+      transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s, border-color .3s;
+      animation: fadeUp .5s ease both;
+    }
+    .paper-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56,189,248,.25);
+      box-shadow: 0 24px 48px -12px rgba(0,0,0,.5);
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .paper-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .9rem; }
+    .paper-tag {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-size: .67rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+      padding: .25rem .65rem; border-radius: 999px;
+      border: 1px solid;
+    }
+    .tag-blue   { color: var(--accent);  border-color: rgba(56,189,248,.3); background: rgba(56,189,248,.08); }
+    .tag-green  { color: var(--accent2); border-color: rgba(52,211,153,.3); background: rgba(52,211,153,.08); }
+    .tag-orange { color: var(--warn);    border-color: rgba(251,146,60,.3); background: rgba(251,146,60,.08); }
+
+    .paper-title {
+      font-size: 1.15rem; line-height: 1.35; font-weight: 700;
+      color: #fff; margin: 0 0 .5rem;
+    }
+    .paper-authors {
+      font-size: .9rem; color: #cbd5e1; line-height: 1.6; margin: 0;
+    }
+    .paper-ref {
+      font-size: .8rem; color: var(--ghost); line-height: 1.6; margin: .35rem 0 0;
+    }
+    .paper-ref a { color: var(--fog); text-decoration: none; }
+    .paper-ref a:hover { color: var(--accent); text-decoration: underline; }
+
+    .paper-links {
+      display: flex; flex-wrap: wrap; gap: .6rem;
+      margin-top: 1.2rem; padding-top: 1.1rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .paper-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .8rem; font-weight: 600;
+      padding: .45rem 1rem; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.15);
+      color: #e2e8f0; text-decoration: none;
+      transition: all .2s;
+    }
+    .paper-btn:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(56,189,248,.4);
+      color: var(--accent);
+    }
+    .paper-btn.primary {
+      color: var(--accent);
+      border-color: rgba(56,189,248,.35);
+      background: rgba(56,189,248,.08);
+    }
+    .paper-btn.disabled {
+      color: var(--ghost);
+      border-style: dashed;
+      border-color: rgba(255,255,255,.1);
+      cursor: default;
+    }
+    .paper-btn.disabled:hover { background: none; color: var(--ghost); border-color: rgba(255,255,255,.1); }
+
+    /* ── SELOS DE ARTEFATO ── */
+    .tag-gold { color: #fbbf24; border-color: rgba(251,191,36,.35); background: rgba(251,191,36,.08); }
+
+    .paper-badges {
+      display: flex; align-items: center; flex-wrap: wrap; gap: .75rem 1.25rem;
+      margin-top: 1.1rem; padding: .9rem 1.1rem;
+      border: 1px solid rgba(251,191,36,.2);
+      border-radius: 12px;
+      background: rgba(251,191,36,.04);
+    }
+    .badge-imgs { display: flex; gap: .4rem; flex-shrink: 0; }
+    .badge-imgs img { width: 44px; height: 44px; }
+    .badge-text { font-size: .82rem; color: #cbd5e1; line-height: 1.6; min-width: 0; }
+    .badge-text strong { color: #fbbf24; font-weight: 600; }
+    .badge-text a { color: var(--accent); text-decoration: none; }
+    .badge-text a:hover { text-decoration: underline; }
+
+    .badges-legend {
+      display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem;
+      margin: 0 0 3rem; padding: 1.1rem 1.4rem;
+      border: 1px solid rgba(255,255,255,.08); border-radius: 14px;
+      font-size: .85rem; color: var(--fog);
+    }
+    .badges-legend .legend-item { display: inline-flex; align-items: center; gap: .5rem; }
+    .badges-legend img { width: 32px; height: 32px; }
+    .badges-legend .legend-title { color: #fff; font-weight: 700; margin-right: .25rem; }
+
+    /* ── NAVEGAÇÃO INTERNA E SEÇÕES ── */
+    .page-jump { display: flex; flex-wrap: wrap; gap: .6rem; margin: 0 0 2rem; }
+    .section-title {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: clamp(1.6rem, 3vw, 2.25rem); font-weight: 800; color: #fff;
+      margin: 0 0 2rem; scroll-margin-top: calc(var(--header-h) + 1.5rem);
+    }
+    .section-title + .section-sub { margin: -1.4rem 0 2rem; color: var(--fog); font-size: .95rem; }
+    .talks-block { margin-top: 5rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,.08); }
+    .tag-teal { color: #2dd4bf; border-color: rgba(45,212,191,.3); background: rgba(45,212,191,.08); }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .site-footer .logo-row {
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      margin-bottom: .5rem;
+    }
+    .site-footer p { font-size: .78rem; color: var(--ghost); }
+    .site-footer .legal-links {
+      margin-bottom: .6rem;
+      display: flex; align-items: center; justify-content: center;
+      gap: .75rem; flex-wrap: wrap;
+      font-size: .8rem;
+    }
+    .site-footer .legal-links a { color: #cbd5e1; text-decoration: none; }
+    .site-footer .legal-links a:hover { color: var(--accent); text-decoration: underline; }
+    .site-footer .legal-links span { color: #475569; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero {
+        padding: calc(var(--header-h) + 2rem) 1rem 2.25rem;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .hero-meta { text-align: left; }
+      .hero-count { font-size: 2.5rem; }
+      .papers-section { padding: 2.25rem 1rem 5rem; }
+      .divider { padding: 0 1rem; }
+      .paper-card { padding: 1.25rem; }
+      .event-when { white-space: normal; }
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-white font-[Inter]">
+
+<!-- NAV -->
+<nav class="relative flex md:grid md:grid-cols-[auto,1fr,auto] md:gap-4 items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+  <div class="flex items-center space-x-2 md:justify-self-start">
+    <div class="relative">
+      <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
+      <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+    </div>
+    <a href="index.html" class="text-xl font-bold">GT IoTEDU</a>
+  </div>
+
+  <div class="hidden md:flex items-center justify-center space-x-8 md:justify-self-center">
+    <a href="index.html#proposta" class="hover:text-blue-400 transition-colors">Propuesta</a>
+    <a href="index.html#resultados" class="hover:text-blue-400 transition-colors">Resultados</a>
+    <a href="index.html#parceria" class="hover:text-blue-400 transition-colors">Alianza y Apoyo</a>
+    <a href="index.html#equipe" class="hover:text-blue-400 transition-colors">Equipo</a>
+    <a href="index.html#early-adopters" class="hover:text-blue-400 transition-colors">Early Adopters</a>
+    <a href="publicacoes.html" class="text-blue-400" aria-current="page">Publicaciones</a>
+    <a href="videos.html" class="hover:text-blue-400 transition-colors">Videos</a>
+    <a href="news.html" class="hover:text-blue-400 transition-colors">Noticias</a>
+  </div>
+
+  <div class="flex items-center space-x-2 md:space-x-4 md:justify-self-end">
+    <a href="index.html" class="px-4 py-2 rounded-lg border border-slate-700 text-white hover:bg-slate-800 bg-transparent">Inicio</a>
+
+    <button
+      id="mobile-menu-button"
+      type="button"
+      class="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-slate-700 hover:bg-slate-800"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Abrir menú"
+    >
+      <svg id="mobile-menu-icon-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <svg id="mobile-menu-icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 hidden">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu (dropdown) -->
+  <div id="mobile-menu" class="md:hidden hidden absolute left-0 right-0 top-full bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+    <div class="px-6 py-4 flex flex-col gap-3">
+      <a href="index.html#proposta" class="py-2 hover:text-blue-400 transition-colors">Propuesta</a>
+      <a href="index.html#resultados" class="py-2 hover:text-blue-400 transition-colors">Resultados</a>
+      <a href="index.html#parceria" class="py-2 hover:text-blue-400 transition-colors">Alianza y Apoyo</a>
+      <a href="index.html#equipe" class="py-2 hover:text-blue-400 transition-colors">Equipo</a>
+      <a href="index.html#early-adopters" class="py-2 hover:text-blue-400 transition-colors">Early Adopters</a>
+      <a href="publicacoes.html" class="py-2 text-blue-400" aria-current="page">Publicaciones</a>
+      <a href="videos.html" class="py-2 hover:text-blue-400 transition-colors">Videos</a>
+      <a href="news.html" class="py-2 hover:text-blue-400 transition-colors">Noticias</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow">
+        <i data-lucide="book-open" style="width:14px;height:14px"></i>
+        Producción científica
+      </div>
+      <h1 class="text-5xl md:text-7xl font-extrabold leading-[0.95]">
+        <span class="text-white">Artículos</span><br>
+        <span class="bg-gradient-to-r from-blue-400 via-green-400 to-blue-600 bg-clip-text text-transparent">Publicados</span>
+      </h1>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-count">12</div>
+      <div>artículos en<br>5 eventos</div>
+      <div class="hero-count" style="margin-top:1rem">3</div>
+      <div>presentaciones<br>en eventos</div>
+    </div>
+  </div>
+</header>
+
+<div class="divider"><hr style="border:none;border-top:1px solid rgba(255,255,255,.08)"></div>
+
+<main class="papers-section">
+
+  <nav class="page-jump" aria-label="Secciones de la página">
+    <a class="paper-btn primary" href="#artigos"><i data-lucide="file-text" style="width:14px;height:14px"></i>Artículos publicados</a>
+    <a class="paper-btn" href="#apresentacoes"><i data-lucide="presentation" style="width:14px;height:14px"></i>Presentaciones en eventos</a>
+  </nav>
+
+  <h2 class="section-title" id="artigos"><i data-lucide="file-text" style="width:28px;height:28px;color:var(--accent)"></i>Artículos publicados</h2>
+
+  <aside class="badges-legend" aria-label="Sellos de artefacto">
+    <span class="legend-title"><i data-lucide="award" style="width:16px;height:16px;display:inline;vertical-align:-3px;color:#fbbf24"></i> 5 trabajos con los 4 sellos de artefacto</span>
+    <span class="legend-item"><img src="images/selos/disponivel.png" alt="">Disponible</span>
+    <span class="legend-item"><img src="images/selos/funcional.png" alt="">Funcional</span>
+    <span class="legend-item"><img src="images/selos/sustentavel.png" alt="">Sostenible</span>
+    <span class="legend-item"><img src="images/selos/reprodutivel.png" alt="">Reproducible</span>
+  </aside>
+
+  <!-- ═════════ SBSeg 2026 ═════════ -->
+  <section class="event-group" aria-labelledby="ev-sbseg2026">
+    <div class="event-head">
+      <div>
+        <h2 class="event-name" id="ev-sbseg2026"><a href="https://www.sbseg2026.uff.br/" target="_blank" rel="noopener noreferrer">SBSeg 2026</a></h2>
+        <p class="event-info">XXVI Simpósio Brasileiro de Cibersegurança · Sesión de Herramientas (Salão de Ferramentas) · Anales Extendidos</p>
+      </div>
+      <span class="event-when">1 al 4 de septiembre de 2026 · Armação dos Búzios, RJ</span>
+    </div>
+
+    <div class="paper-list">
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-blue">Sesión de Herramientas</span><span class="paper-tag tag-gold"><i data-lucide="award" style="width:10px;height:10px"></i>4 sellos de artefacto</span></div>
+        <h3 class="paper-title">IoTEdu Core: Multi-IDS Correlation and Automated Containment of Attacks in Institutional IoT Networks</h3>
+        <p class="paper-authors">Emanuel Ferreira, Matheus Ciocca, Douglas Fideles, Tuigg Barcelos, Silvio Quincozes, Diego Kreutz</p>
+        <p class="paper-ref">Anales Extendidos del SBSeg 2026, pp. 156-165 · DOI 10.5753/sbseg_estendido.2026.33721</p>
+        <div class="paper-badges">
+          <div class="badge-imgs">
+            <img src="images/selos/disponivel.png" alt="Sello Artefactos Disponibles" title="Artefactos Disponibles (SeloD)">
+            <img src="images/selos/funcional.png" alt="Sello Artefactos Funcionales" title="Artefactos Funcionales (SeloF)">
+            <img src="images/selos/sustentavel.png" alt="Sello Artefactos Sostenibles" title="Artefactos Sostenibles (SeloS)">
+            <img src="images/selos/reprodutivel.png" alt="Sello Experimentos Reproducibles" title="Experimentos Reproducibles (SeloR)">
+          </div>
+          <p class="badge-text"><strong>4 sellos de artefacto:</strong> Disponible, Funcional, Sostenible y Reproducible · <a href="https://doc-artefatos.github.io/sbseg2026/results.html" target="_blank" rel="noopener noreferrer">Resultados de la evaluación de artefactos del SBSeg 2026</a></p>
+        </div>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/download/44462/44225" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/2026-sbseg-iotedu-core.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas</a>
+          <a class="paper-btn" href="https://github.com/GT-IoTEdu/iotedu-core_sbseg26" target="_blank" rel="noopener noreferrer"><i data-lucide="package" style="width:14px;height:14px"></i>Artefacto</a>
+          <a class="paper-btn" href="https://www.sbseg2026.uff.br/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/view/44462" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página en los anales</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-blue">Sesión de Herramientas</span><span class="paper-tag tag-gold"><i data-lucide="award" style="width:10px;height:10px"></i>4 sellos de artefacto</span></div>
+        <h3 class="paper-title">Toward Agentic Intrusion Detection in the Internet of Things: Rule Generation and Live Validation for XRCE-DDS Attacks</h3>
+        <p class="paper-authors">Matheus M. Ciocca, Emanuel C. Ferreira, Tuigg R. Barcelos, Silvio E. Quincozes, Diego Kreutz, Paulo Silas Severo de Souza</p>
+        <p class="paper-ref">Anales Extendidos del SBSeg 2026, pp. 242-250 · DOI 10.5753/sbseg_estendido.2026.33720</p>
+        <div class="paper-badges">
+          <div class="badge-imgs">
+            <img src="images/selos/disponivel.png" alt="Sello Artefactos Disponibles" title="Artefactos Disponibles (SeloD)">
+            <img src="images/selos/funcional.png" alt="Sello Artefactos Funcionales" title="Artefactos Funcionales (SeloF)">
+            <img src="images/selos/sustentavel.png" alt="Sello Artefactos Sostenibles" title="Artefactos Sostenibles (SeloS)">
+            <img src="images/selos/reprodutivel.png" alt="Sello Experimentos Reproducibles" title="Experimentos Reproducibles (SeloR)">
+          </div>
+          <p class="badge-text"><strong>4 sellos de artefacto:</strong> Disponible, Funcional, Sostenible y Reproducible · <a href="https://doc-artefatos.github.io/sbseg2026/results.html" target="_blank" rel="noopener noreferrer">Resultados de la evaluación de artefactos del SBSeg 2026</a></p>
+        </div>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/download/44471/44234" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/2026-sbseg-rulesfarmer.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas</a>
+          <a class="paper-btn" href="https://github.com/GT-IoTEdu/rules-farmer_sbseg26" target="_blank" rel="noopener noreferrer"><i data-lucide="package" style="width:14px;height:14px"></i>Artefacto</a>
+          <a class="paper-btn" href="https://www.sbseg2026.uff.br/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/view/44471" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página en los anales</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-blue">Sesión de Herramientas</span><span class="paper-tag tag-gold"><i data-lucide="award" style="width:10px;height:10px"></i>4 sellos de artefacto</span></div>
+        <h3 class="paper-title">AttackZoo: A Reproducible Testbed for Attack Execution and Network Traffic Dataset Generation</h3>
+        <p class="paper-authors">Leonardo Bitzki, Diego Kreutz, Leandro Bertholdo, Cristhian Kapelinski</p>
+        <p class="paper-ref">Anales Extendidos del SBSeg 2026, pp. 109-118 · DOI 10.5753/sbseg_estendido.2026.33492</p>
+        <div class="paper-badges">
+          <div class="badge-imgs">
+            <img src="images/selos/disponivel.png" alt="Sello Artefactos Disponibles" title="Artefactos Disponibles (SeloD)">
+            <img src="images/selos/funcional.png" alt="Sello Artefactos Funcionales" title="Artefactos Funcionales (SeloF)">
+            <img src="images/selos/sustentavel.png" alt="Sello Artefactos Sostenibles" title="Artefactos Sostenibles (SeloS)">
+            <img src="images/selos/reprodutivel.png" alt="Sello Experimentos Reproducibles" title="Experimentos Reproducibles (SeloR)">
+          </div>
+          <p class="badge-text"><strong>4 sellos de artefacto:</strong> Disponible, Funcional, Sostenible y Reproducible · <a href="https://doc-artefatos.github.io/sbseg2026/results.html" target="_blank" rel="noopener noreferrer">Resultados de la evaluación de artefactos del SBSeg 2026</a></p>
+        </div>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/download/44457/44220" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/2026-sbseg-attackzoo.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas</a>
+          <a class="paper-btn" href="https://github.com/GT-IoTEdu/attackzoo-sbseg26" target="_blank" rel="noopener noreferrer"><i data-lucide="package" style="width:14px;height:14px"></i>Artefacto</a>
+          <a class="paper-btn" href="https://www.sbseg2026.uff.br/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/view/44457" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página en los anales</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════ WTICIFES 2026 ═════════ -->
+  <section class="event-group" aria-labelledby="ev-wticifes2026">
+    <div class="event-head">
+      <div>
+        <h2 class="event-name" id="ev-wticifes2026"><a href="https://wticifes.com.br/2026/" target="_blank" rel="noopener noreferrer">WTICIFES 2026</a></h2>
+        <p class="event-info">18º Workshop de Tecnologia da Informação e Comunicação das Instituições Federais de Ensino Superior</p>
+      </div>
+      <span class="event-when">4 al 6 de agosto de 2026 · Vale dos Vinhedos, Bento Gonçalves, RS</span>
+    </div>
+
+    <div class="paper-list">
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-green">Artículo aprobado y presentado</span></div>
+        <h3 class="paper-title">IoTEdu: Plataforma Integrada para Gestão, Monitoramento e Resposta a Incidentes em Redes WiFi IoT nas IFES</h3>
+        <p class="paper-authors">Joner Assolin, Matheus Ciocca, Emanuel Carricio, Diego Kreutz, Silvio E. Quincozes, Angelo Diniz, Canofre Santos, Roberto Rosa dos Santos, Rui de Quadros Ribeiro</p>
+        <p class="paper-ref">WTICIFES 2026 · PDF puesto a disposición por el GT IoTEDU</p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="papers/2026-wticifes-iotedu.pdf" target="_blank" rel="noopener"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/2026-wticifes-iotedu.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas</a>
+          <a class="paper-btn" href="https://wticifes.com.br/2026/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-green">Artículo aprobado y presentado</span></div>
+        <h3 class="paper-title">IoT-ID: Fingerprinting Determinístico para Gestão e Segurança de Dispositivos IoT nas IFES</h3>
+        <p class="paper-authors">Joner Assolin, Diego Kreutz, Anna Letycia, Rodrigo Miani, Leonardo Bitzki, Marcio Pohlmann, Jerônimo Menezes</p>
+        <p class="paper-ref">WTICIFES 2026 · PDF puesto a disposición por el GT IoTEDU</p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="papers/2026-wticifes-iot-id.pdf" target="_blank" rel="noopener"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <span class="paper-btn disabled" aria-disabled="true"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas no disponibles</span>
+          <a class="paper-btn" href="https://wticifes.com.br/2026/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════ SBCUP 2026 ═════════ -->
+  <section class="event-group" aria-labelledby="ev-sbcup2026">
+    <div class="event-head">
+      <div>
+        <h2 class="event-name" id="ev-sbcup2026"><a href="https://csbc.sbc.org.br/2026/sbcup/" target="_blank" rel="noopener noreferrer">SBCUP 2026</a></h2>
+        <p class="event-info">XVIII Simpósio Brasileiro de Computação Ubíqua e Pervasiva · CSBC 2026 · Artículos Completos</p>
+      </div>
+      <span class="event-when">19 al 23 de julio de 2026 · Gramado, RS</span>
+    </div>
+
+    <div class="paper-list">
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-orange">Artículo completo</span></div>
+        <h3 class="paper-title">NetSecBed: A Container-Native Testbed for Reproducible Cybersecurity Experimentation</h3>
+        <p class="paper-authors">Leonardo Bitzki, Diego Kreutz, Tiago Heinrich, Leandro Bertholdo, Silvio Quincozes, Douglas Fideles, Angelo Nogueira</p>
+        <p class="paper-ref">Anales del SBCUP 2026, pp. 290-302 · DOI <a href="https://doi.org/10.5753/sbcup.2026.23835" target="_blank" rel="noopener noreferrer">10.5753/sbcup.2026.23835</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/sbcup/article/download/43307/43073" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/2026-sbcup-netsecbed.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas</a>
+          <a class="paper-btn" href="https://csbc.sbc.org.br/2026/sbcup/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/sbcup/article/view/43307" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página en los anales</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════ SBRC 2026 ═════════ -->
+  <section class="event-group" aria-labelledby="ev-sbrc2026">
+    <div class="event-head">
+      <div>
+        <h2 class="event-name" id="ev-sbrc2026"><a href="https://sbrc.sbc.org.br/2026/" target="_blank" rel="noopener noreferrer">SBRC 2026</a></h2>
+        <p class="event-info">XLIV Simpósio Brasileiro de Redes de Computadores e Sistemas Distribuídos · Sesión de Herramientas (Salão de Ferramentas) · Anales Extendidos</p>
+      </div>
+      <span class="event-when">25 al 29 de mayo de 2026 · Praia do Forte, BA</span>
+    </div>
+
+    <div class="paper-list">
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-blue">Sesión de Herramientas</span><span class="paper-tag tag-gold"><i data-lucide="award" style="width:10px;height:10px"></i>4 sellos de artefacto</span></div>
+        <h3 class="paper-title">IoT-Zoo: A Container-Based Framework for Heterogeneous IoT Device Profiles and Reproducible Traffic Capture</h3>
+        <p class="paper-authors">Vagner E. Quincozes, Diego Kreutz, Silvio E. Quincozes</p>
+        <p class="paper-ref">Anales Extendidos del SBRC 2026, pp. 94-104 · DOI <a href="https://doi.org/10.5753/sbrc_estendido.2026.22847" target="_blank" rel="noopener noreferrer">10.5753/sbrc_estendido.2026.22847</a></p>
+        <div class="paper-badges">
+          <div class="badge-imgs">
+            <img src="images/selos/disponivel.png" alt="Sello Artefactos Disponibles" title="Artefactos Disponibles (SeloD)">
+            <img src="images/selos/funcional.png" alt="Sello Artefactos Funcionales" title="Artefactos Funcionales (SeloF)">
+            <img src="images/selos/sustentavel.png" alt="Sello Artefactos Sostenibles" title="Artefactos Sostenibles (SeloS)">
+            <img src="images/selos/reprodutivel.png" alt="Sello Experimentos Reproducibles" title="Experimentos Reproducibles (SeloR)">
+          </div>
+          <p class="badge-text"><strong>4 sellos de artefacto:</strong> Disponible, Funcional, Sostenible y Reproducible · <a href="https://doc-artefatos.github.io/sbrc2026/results.html" target="_blank" rel="noopener noreferrer">Resultados de la evaluación de artefactos del SBRC 2026</a></p>
+        </div>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/sbrc_estendido/article/download/42589/42356" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/2026-sbrc-iot-zoo.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas</a>
+          <a class="paper-btn" href="https://github.com/GT-IoTEdu/sbrc2026-IoT-Zoo" target="_blank" rel="noopener noreferrer"><i data-lucide="package" style="width:14px;height:14px"></i>Artefacto</a>
+          <a class="paper-btn" href="https://sbrc.sbc.org.br/2026/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/sbrc_estendido/article/view/42589" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página en los anales</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-blue">Sesión de Herramientas</span><span class="paper-tag tag-gold"><i data-lucide="award" style="width:10px;height:10px"></i>4 sellos de artefacto</span></div>
+        <h3 class="paper-title">IoT-ID: Deterministic Device Identity from Hybrid Network Fingerprinting</h3>
+        <p class="paper-authors">Anna Letycia, Joner Assolin, Diego Kreutz, Rodrigo Miani</p>
+        <p class="paper-ref">Anales Extendidos del SBRC 2026, pp. 85-93 · DOI <a href="https://doi.org/10.5753/sbrc_estendido.2026.23244" target="_blank" rel="noopener noreferrer">10.5753/sbrc_estendido.2026.23244</a></p>
+        <div class="paper-badges">
+          <div class="badge-imgs">
+            <img src="images/selos/disponivel.png" alt="Sello Artefactos Disponibles" title="Artefactos Disponibles (SeloD)">
+            <img src="images/selos/funcional.png" alt="Sello Artefactos Funcionales" title="Artefactos Funcionales (SeloF)">
+            <img src="images/selos/sustentavel.png" alt="Sello Artefactos Sostenibles" title="Artefactos Sostenibles (SeloS)">
+            <img src="images/selos/reprodutivel.png" alt="Sello Experimentos Reproducibles" title="Experimentos Reproducibles (SeloR)">
+          </div>
+          <p class="badge-text"><strong>4 sellos de artefacto:</strong> Disponible, Funcional, Sostenible y Reproducible · <a href="https://doc-artefatos.github.io/sbrc2026/results.html" target="_blank" rel="noopener noreferrer">Resultados de la evaluación de artefactos del SBRC 2026</a></p>
+        </div>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/sbrc_estendido/article/download/42588/42355" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <span class="paper-btn disabled" aria-disabled="true"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas no disponibles</span>
+          <a class="paper-btn" href="https://github.com/GT-IoTEdu/sbrc26_fingerprint" target="_blank" rel="noopener noreferrer"><i data-lucide="package" style="width:14px;height:14px"></i>Artefacto</a>
+          <a class="paper-btn" href="https://sbrc.sbc.org.br/2026/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/sbrc_estendido/article/view/42588" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página en los anales</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════ ERRC 2025 ═════════ -->
+  <section class="event-group" aria-labelledby="ev-errc2025">
+    <div class="event-head">
+      <div>
+        <h2 class="event-name" id="ev-errc2025"><a href="https://crrc-rs.github.io/errc2025/" target="_blank" rel="noopener noreferrer">ERRC 2025</a></h2>
+        <p class="event-info">XXII Escola Regional de Redes de Computadores, realizada junto con el WRSeg 2025 · Artículos Completos</p>
+      </div>
+      <span class="event-when">8 al 10 de diciembre de 2025 · Porto Alegre, RS</span>
+    </div>
+
+    <div class="paper-list">
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-orange">Artículo completo</span></div>
+        <h3 class="paper-title">IoTEdu: Access Control, Detection, and Automatic Incident Response in Academic IoT Networks</h3>
+        <p class="paper-authors">Joner Assolin, Diego Kreutz, Leandro Bertholdo</p>
+        <p class="paper-ref">Anales de la ERRC 2025, pp. 40-46 · DOI <a href="https://doi.org/10.5753/errc.2025.17841" target="_blank" rel="noopener noreferrer">10.5753/errc.2025.17841</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/errc/article/download/39179/38951" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <span class="paper-btn disabled" aria-disabled="true"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas no disponibles</span>
+          <a class="paper-btn" href="https://crrc-rs.github.io/errc2025/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/errc/article/view/39179" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página en los anales</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-orange">Artículo completo</span></div>
+        <h3 class="paper-title">IoTEdu: Network Services for the Automated Management of Campus Internet-of-Things Networks</h3>
+        <p class="paper-authors">Leonardo Bitzki, Diego Kreutz, Leandro Bertholdo</p>
+        <p class="paper-ref">Anales de la ERRC 2025, pp. 47-53 · DOI <a href="https://doi.org/10.5753/errc.2025.17739" target="_blank" rel="noopener noreferrer">10.5753/errc.2025.17739</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/errc/article/download/39180/38952" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/2025-errc-iotedu-network-services.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas</a>
+          <a class="paper-btn" href="https://crrc-rs.github.io/errc2025/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/errc/article/view/39180" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página en los anales</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-orange">Artículo completo</span></div>
+        <h3 class="paper-title">Análise de Desempenho e Eficácia da Sonda Zeek: Um Estudo Comparativo de Perfis de Execução sob Restrições de Recursos</h3>
+        <p class="paper-authors">Rafael B. Torres, Rodrigo Brandão Mansilha, Diego Kreutz</p>
+        <p class="paper-ref">Anales de la ERRC 2025, pp. 1-7 · DOI <a href="https://doi.org/10.5753/errc.2025.17791" target="_blank" rel="noopener noreferrer">10.5753/errc.2025.17791</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/errc/article/download/39173/38945" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/2025-errc-zeek.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas</a>
+          <a class="paper-btn" href="https://crrc-rs.github.io/errc2025/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/errc/article/view/39173" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página en los anales</a>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-tags"><span class="paper-tag tag-orange">Artículo completo</span></div>
+        <h3 class="paper-title">Avaliação de uma Arquitetura Híbrida Borda-Nuvem para Monitoramento de Motores Elétricos em Tempo Real</h3>
+        <p class="paper-authors">Guilherme Siqueira, Diego Kreutz</p>
+        <p class="paper-ref">Anales de la ERRC 2025, pp. 14-20 · DOI <a href="https://doi.org/10.5753/errc.2025.17834" target="_blank" rel="noopener noreferrer">10.5753/errc.2025.17834</a></p>
+        <div class="paper-links">
+          <a class="paper-btn primary" href="https://sol.sbc.org.br/index.php/errc/article/download/39175/38947" target="_blank" rel="noopener noreferrer"><i data-lucide="file-down" style="width:14px;height:14px"></i>PDF</a>
+          <a class="paper-btn" href="papers/slides/2025-errc-edge-cloud-motores.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas</a>
+          <a class="paper-btn" href="https://crrc-rs.github.io/errc2025/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Evento</a>
+          <a class="paper-btn" href="https://sol.sbc.org.br/index.php/errc/article/view/39175" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" style="width:14px;height:14px"></i>Página en los anales</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════════════ APRESENTAÇÕES EM EVENTOS ═════════════════ -->
+  <div class="talks-block">
+    <h2 class="section-title" id="apresentacoes"><i data-lucide="presentation" style="width:28px;height:28px;color:#2dd4bf"></i>Presentaciones en eventos</h2>
+    <p class="section-sub">Charlas sobre el GT IoTEDU en eventos de la RNP y de la comunidad, con las diapositivas en PDF.</p>
+
+    <!-- ═════════ RNP+ Lab ═════════ -->
+    <section class="event-group" aria-labelledby="ev-rnpmaislab">
+      <div class="event-head">
+        <div>
+          <h2 class="event-name" id="ev-rnpmaislab"><a href="https://rnpmais.rnp.br/lab/iotedu" target="_blank" rel="noopener noreferrer">RNP+ Lab</a></h2>
+          <p class="event-info">Laboratorio RNP+ · Programa de I+D en Servicios Avanzados de la RNP</p>
+        </div>
+        <span class="event-when">Septiembre de 2026</span>
+      </div>
+
+      <div class="paper-list">
+        <article class="paper-card">
+          <div class="paper-tags"><span class="paper-tag tag-teal">Presentación</span></div>
+          <h3 class="paper-title">GT-IoTEdu: Segurança Avançada e Gestão de Dispositivos IoT (balanço da Fase 1)</h3>
+          <p class="paper-authors">Diego Kreutz, Coordinador Académico del GT-IoTEdu, UNIPAMPA</p>
+          <p class="paper-ref">Resultados del MVPv1, subproductos abiertos, publicaciones del período y el camino hacia la Fase 2</p>
+          <div class="paper-links">
+            <a class="paper-btn primary" href="apresentacoes/2026-rnpmais-lab-iotedu.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas (PDF)</a>
+            <a class="paper-btn" href="https://rnpmais.rnp.br/lab/iotedu" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Sitio del evento</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═════════ Fórum RNP 2026 ═════════ -->
+    <section class="event-group" aria-labelledby="ev-forumrnp2026">
+      <div class="event-head">
+        <div>
+          <h2 class="event-name" id="ev-forumrnp2026"><a href="https://lets.4.events/forum-rnp-2026-C21350E48" target="_blank" rel="noopener noreferrer">Fórum RNP 2026</a></h2>
+          <p class="event-info">Foro de la Rede Nacional de Ensino e Pesquisa (RNP) · Royal Tulip Alvorada</p>
+        </div>
+        <span class="event-when">24 al 27 de agosto de 2026 · Brasília, DF</span>
+      </div>
+
+      <div class="paper-list">
+        <article class="paper-card">
+          <div class="paper-tags"><span class="paper-tag tag-teal">Charla</span></div>
+          <h3 class="paper-title">Shadow IoT: o fantasma invisível na sua rede acadêmica</h3>
+          <p class="paper-authors">Diego Kreutz, Coordinador del GT-IoTEdu, UNIPAMPA</p>
+          <p class="paper-ref">Diagnóstico validado en 61 entrevistas en 14 instituciones, la plataforma IoTEdu y la invitación a las primeras implementaciones en producción</p>
+          <div class="paper-links">
+            <a class="paper-btn primary" href="apresentacoes/2026-forum-rnp-shadow-iot.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas (PDF)</a>
+            <a class="paper-btn" href="https://lets.4.events/forum-rnp-2026-C21350E48" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Sitio del evento</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═════════ WRNP 2026 ═════════ -->
+    <section class="event-group" aria-labelledby="ev-wrnp2026">
+      <div class="event-head">
+        <div>
+          <h2 class="event-name" id="ev-wrnp2026"><a href="https://indico.rnp.br/event/155/" target="_blank" rel="noopener noreferrer">WRNP 2026</a></h2>
+          <p class="event-info">Workshop da RNP, en edición conjunta con el SBRC 2026 · Escenario principal</p>
+        </div>
+        <span class="event-when">25 al 29 de mayo de 2026 · Praia do Forte, BA</span>
+      </div>
+
+      <div class="paper-list">
+        <article class="paper-card">
+          <div class="paper-tags"><span class="paper-tag tag-teal">Charla</span></div>
+          <h3 class="paper-title">GT-IoTEDU: Segurança e Gestão Avançada de Dispositivos IoT</h3>
+          <p class="paper-authors">Diego Kreutz, UNIPAMPA</p>
+          <p class="paper-ref">Presentación de los resultados del Grupo de Trabajo en el escenario principal del WRNP</p>
+          <div class="paper-links">
+            <a class="paper-btn primary" href="apresentacoes/2026-wrnp-iotedu.pdf" target="_blank" rel="noopener"><i data-lucide="presentation" style="width:14px;height:14px"></i>Diapositivas (PDF)</a>
+            <a class="paper-btn" href="https://indico.rnp.br/event/155/" target="_blank" rel="noopener noreferrer"><i data-lucide="calendar" style="width:14px;height:14px"></i>Sitio del evento</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="logo-row">
+    <i data-lucide="wifi" style="width:20px;height:20px;color:var(--accent)"></i>
+    <span style="font-weight:700">GT IoTEDU</span>
+  </div>
+  <p class="legal-links">
+    <a href="politica-de-privacidade.html">Política de Privacidad</a>
+    <span aria-hidden="true">·</span>
+    <a href="termos-de-uso.html">Términos de Uso</a>
+  </p>
+  <p>© 2025 GT-IoTEDU. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  function wireMobileMenu() {
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('mobile-menu-icon-open');
+    const iconClose = document.getElementById('mobile-menu-icon-close');
+
+    if (!button || !menu || !iconOpen || !iconClose) return;
+
+    const setOpen = (open) => {
+      menu.classList.toggle('hidden', !open);
+      iconOpen.classList.toggle('hidden', open);
+      iconClose.classList.toggle('hidden', !open);
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    };
+
+    const isOpen = () => button.getAttribute('aria-expanded') === 'true';
+
+    button.addEventListener('click', () => setOpen(!isOpen()));
+    menu.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target && target.tagName === 'A') setOpen(false);
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    window.addEventListener('resize', () => {
+      if (window.matchMedia('(min-width: 768px)').matches) setOpen(false);
+    });
+
+    setOpen(false);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide) window.lucide.createIcons();
+    wireMobileMenu();
+  });
+</script>
+</body>
+</html>

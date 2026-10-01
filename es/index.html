@@ -1,0 +1,1446 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GT IoT Edu | Plataforma de Internet de las Cosas para la Educación</title>
+  <meta name="description" content="Una plataforma educativa de Internet de las Cosas en alianza con la RNP" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Play CDN (para usar as util classes sem build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide (ícones SVG) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Seus ajustes extras -->  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-slate-900 text-white font-[Inter]">
+  <!-- NAV -->
+  <nav class="relative flex md:grid md:grid-cols-[auto,1fr,auto] md:gap-4 items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+    <div class="flex items-center space-x-2 md:justify-self-start">
+      <div class="relative">
+        <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
+        <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+      </div>
+      <a href="index.html" class="text-xl font-bold">GT IoTEdu</a>
+    </div>
+
+    <div class="hidden md:flex items-center justify-center space-x-8 md:justify-self-center">
+      <a href="index.html#proposta" class="hover:text-blue-400 transition-colors">Propuesta</a>
+      <a href="index.html#resultados" class="hover:text-blue-400 transition-colors">Resultados</a>
+      <a href="index.html#parceria" class="hover:text-blue-400 transition-colors">Alianza y Apoyo</a>
+      <a href="index.html#equipe" class="hover:text-blue-400 transition-colors">Equipo</a>
+      <a href="index.html#early-adopters" class="hover:text-blue-400 transition-colors">Early Adopters</a>
+      <a href="publicacoes.html" class="hover:text-blue-400 transition-colors">Publicaciones</a>
+      <a href="videos.html" class="hover:text-blue-400 transition-colors">Videos</a>
+      <a href="news.html" class="hover:text-blue-400 transition-colors">Noticias</a>
+    </div>
+
+    <div class="flex items-center space-x-2 md:space-x-4 md:justify-self-end">
+      <a href="index.html" class="px-4 py-2 rounded-lg border border-slate-700 text-white hover:bg-slate-800 bg-transparent">Inicio</a>
+
+      <button
+        id="mobile-menu-button"
+        type="button"
+        class="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-slate-700 hover:bg-slate-800"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="Abrir menú"
+      >
+        <svg id="mobile-menu-icon-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg id="mobile-menu-icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 hidden">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu (dropdown) -->
+    <div id="mobile-menu" class="md:hidden hidden absolute left-0 right-0 top-full bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+      <div class="px-6 py-4 flex flex-col gap-3">
+        <a href="index.html#proposta" class="py-2 hover:text-blue-400 transition-colors">Propuesta</a>
+        <a href="index.html#resultados" class="py-2 hover:text-blue-400 transition-colors">Resultados</a>
+        <a href="index.html#parceria" class="py-2 hover:text-blue-400 transition-colors">Alianza y Apoyo</a>
+        <a href="index.html#equipe" class="py-2 hover:text-blue-400 transition-colors">Equipo</a>
+        <a href="index.html#early-adopters" class="py-2 hover:text-blue-400 transition-colors">Early Adopters</a>
+        <a href="publicacoes.html" class="py-2 hover:text-blue-400 transition-colors">Publicaciones</a>
+        <a href="videos.html" class="py-2 hover:text-blue-400 transition-colors">Videos</a>
+        <a href="news.html" class="py-2 hover:text-blue-400 transition-colors">Noticias</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="min-h-screen pt-20 px-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+
+   
+    <div class="absolute top-[78px] left-1/2 -translate-x-1/2 z-20">
+      <div class="inline-flex items-center gap-2.5 bg-slate-800/90 border border-blue-500/40 rounded-xl px-6 py-3 text-base text-slate-200 backdrop-blur-sm whitespace-nowrap shadow-lg shadow-blue-500/10 hover:border-blue-400/60 hover:shadow-blue-500/20 transition-all duration-300">
+        <i data-lucide="flask-conical" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
+        ¿Quieres conocer nuestra DEMO en línea? Consulta nuestra <a href="https://github.com/GT-IoTEdu/mvpv1-snapshot/blob/main/DEMO.md" target="_blank" class="text-blue-400 font-semibold hover:text-blue-300 transition-colors ml-1">guía del usuario de la DEMO en línea</a>
+      </div>
+    </div>
+
+    <!-- Ícones flutuantes -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 left-10 animate-bounce delay-100">
+        <i data-lucide="smartphone" class="w-8 h-8 text-blue-400/30"></i>
+      </div>
+      <div class="absolute top-32 right-20 animate-bounce delay-300">
+        <i data-lucide="camera" class="w-6 h-6 text-green-400/30"></i>
+      </div>
+      <div class="absolute top-40 left-1/4 animate-bounce delay-500">
+        <i data-lucide="thermometer" class="w-7 h-7 text-purple-400/30"></i>
+      </div>
+      <div class="absolute top-60 right-1/3 animate-bounce delay-700">
+        <i data-lucide="lightbulb" class="w-6 h-6 text-yellow-400/30"></i>
+      </div>
+      <div class="absolute bottom-40 left-16 animate-bounce delay-200">
+        <i data-lucide="home" class="w-8 h-8 text-teal-400/30"></i>
+      </div>
+      <div class="absolute bottom-32 right-16 animate-bounce delay-600">
+        <i data-lucide="car" class="w-7 h-7 text-orange-400/30"></i>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto text-center relative z-10 min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center py-12">
+      <!-- <span class="inline-flex items-center mb-8 bg-blue-600/20 text-blue-300 border border-blue-500/30 px-4 py-2 rounded-lg">
+        <i data-lucide="network" class="w-4 h-4 mr-2"></i>
+        IoT para Educação
+        <span class="w-2 h-2 bg-green-400 rounded-full ml-2 animate-pulse"></span>
+      </span> -->
+
+      <h1 class="text-5xl sm:text-6xl md:text-8xl font-extrabold mt-12 mb-8 leading-[0.95]">
+        <span class="text-white">GT IoT</span><br />
+        <span class="bg-gradient-to-r from-blue-400 via-green-400 to-blue-600 bg-clip-text text-transparent">EDU</span>
+      </h1>
+
+      <p class="text-lg sm:text-xl md:text-2xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+        Plataforma innovadora para <span class="text-blue-400 font-semibold">simplificar y proteger</span> el uso de dispositivos IoT en
+        <span class="text-green-400 font-semibold"> instituciones</span>, con
+        <span class="text-blue-400 font-semibold"> registro sencillo y seguridad integrada</span>.
+      </p>
+
+      <!-- Vídeo promocional em destaque -->
+      <div class="w-full max-w-3xl mx-auto mb-10">
+        <div class="relative rounded-2xl overflow-hidden border border-blue-700/40 shadow-2xl shadow-blue-500/20 bg-slate-800/50" style="aspect-ratio:16/9">
+          <iframe
+            class="absolute inset-0 w-full h-full"
+            src="https://www.youtube.com/embed/SEa1RV5HhF4"
+            title="Video promocional GT IoTEdu"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        </div>
+        <a href="https://www.youtube.com/@IoTEdu4All" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 mt-5 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl transition-colors font-semibold shadow-lg shadow-red-500/20">
+          <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+          Suscríbete a nuestro canal
+        </a>
+      </div>
+
+      <!-- <div class="flex justify-center items-center gap-8 mb-12 opacity-60">
+        <div class="flex items-center gap-2">
+          <i data-lucide="wifi" class="w-6 h-6 text-blue-400"></i>
+          <span class="text-sm text-slate-400">WiFi</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="bluetooth" class="w-6 h-6 text-blue-400"></i>
+          <span class="text-sm text-slate-400">Bluetooth</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="radio" class="w-6 h-6 text-green-400"></i>
+          <span class="text-sm text-slate-400">LoRa</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="satellite" class="w-6 h-6 text-purple-400"></i>
+          <span class="text-sm text-slate-400">5G</span>
+        </div>
+      </div> -->
+
+      <!-- <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#contexto" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg rounded-xl transition">
+          Explore a Plataforma
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- CONTEXTO -->
+  <section id="contexto" class="py-16 px-6 bg-slate-900 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <!-- <span class="inline-flex items-center mb-6 bg-green-600/20 text-green-300 border border-green-500/30 px-4 py-2 rounded-lg">
+          <i data-lucide="settings" class="w-4 h-4 mr-2"></i>
+          Contexto
+        </span> -->
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Sobre el Proyecto</h2>
+        <p class="text-xl text-slate-300 max-w-4xl mx-auto">
+          El crecimiento exponencial de los dispositivos IoT en las instituciones trajo nuevos desafíos de gestión, seguridad y
+          usabilidad. Nuestra solución busca democratizar el acceso a la tecnología IoT de forma segura y eficiente.
+        </p>
+        <!-- <p class="text-lg text-slate-300 max-w-4xl mx-auto mt-4">
+          <span class="font-semibold text-white">Público-alvo:</span> equipes de TI e redes de universidades e institutos, docentes e pesquisadores que operam laboratórios com IoT,
+          e estudantes que prototipam soluções conectadas para ensino, pesquisa e inovação.
+        </p> -->
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h3 class="text-2xl font-bold text-white mb-6">Desafíos Actuales</h3>
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-red-600/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i data-lucide="settings" class="w-4 h-4 text-red-400"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-1">Complejidad de Configuración</h4>
+                <p class="text-slate-400">Procesos burocráticos y técnicos que dificultan la adopción de dispositivos IoT</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-orange-600/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i data-lucide="shield" class="w-4 h-4 text-orange-400"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-1">Seguridad Inadecuada</h4>
+                <p class="text-slate-400">Falta de protocolos estandarizados para dispositivos IoT en las redes institucionales</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-yellow-600/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i data-lucide="users" class="w-4 h-4 text-yellow-400"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-1">Dependencia de TI</h4>
+                <p class="text-slate-400">Los usuarios dependen constantemente del equipo técnico para configuraciones básicas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-blue-900/30 to-green-900/30 rounded-2xl p-8 border border-blue-700/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-blue-500/60">
+          <h3 class="text-2xl font-bold text-white mb-6">Nuestra Solución</h3>
+          <p class="text-slate-300 mb-6">
+            Una plataforma intuitiva que permite a los usuarios registrar y gestionar sus dispositivos IoT de forma autónoma,
+            con seguridad integrada.
+          </p>
+
+          <div class="grid grid-cols-5 gap-4">
+            <div class="text-center">
+              <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i data-lucide="thermometer" class="w-6 h-6 text-blue-400"></i>
+              </div>
+              <div class="text-xs text-slate-400">Sensores</div>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-green-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i data-lucide="camera" class="w-6 h-6 text-green-400"></i>
+              </div>
+              <div class="text-xs text-slate-400">Cámaras</div>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i data-lucide="lightbulb" class="w-6 h-6 text-purple-400"></i>
+              </div>
+              <div class="text-xs text-slate-400">Smart</div>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-orange-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i data-lucide="monitor" class="w-6 h-6 text-orange-400"></i>
+              </div>
+              <div class="text-xs text-slate-400">Audio/Video</div>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-red-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i data-lucide="home" class="w-6 h-6 text-red-400"></i>
+              </div>
+              <div class="text-xs text-slate-400">Automatización</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const button = document.getElementById('mobile-menu-button');
+      const menu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('mobile-menu-icon-open');
+      const iconClose = document.getElementById('mobile-menu-icon-close');
+
+      if (!button || !menu || !iconOpen || !iconClose) return;
+
+      const setOpen = (open) => {
+        menu.classList.toggle('hidden', !open);
+        iconOpen.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      };
+
+      const isOpen = () => button.getAttribute('aria-expanded') === 'true';
+
+      button.addEventListener('click', () => setOpen(!isOpen()));
+
+      menu.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && target.tagName === 'A') setOpen(false);
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setOpen(false);
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.matchMedia('(min-width: 768px)').matches) setOpen(false);
+      });
+
+      setOpen(false);
+    })();
+  </script>
+
+  <!-- PROPOSTA -->
+<section id="proposta" class="min-h-screen py-16 px-6 bg-slate-900 scroll-mt-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Nuestra Propuesta</h2>
+      <p class="text-2xl text-blue-400 font-semibold max-w-4xl mx-auto">
+        Simplificar y proteger el uso de dispositivos IoT en instituciones.
+      </p>
+    </div>
+
+    <div class="space-y-12">
+      <!-- 3 cards lado a lado (desktop) -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-blue-500/60">
+          <div class="p-8 h-full flex flex-col">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mr-4">
+                <i data-lucide="clock" class="w-8 h-8 text-blue-400"></i>
+              </div>
+              <div class="flex gap-2 opacity-60">
+                <i data-lucide="smartphone" class="w-6 h-6"></i>
+                <i data-lucide="wifi" class="w-6 h-6"></i>
+                <i data-lucide="check-circle" class="w-6 h-6 text-green-400"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Registro Sencillo y Sin Burocracia</h3>
+            <p class="text-slate-300 mb-6">Los usuarios registran sus dispositivos en segundos, sin necesidad del equipo de TI.</p>
+            <div class="space-y-3 mt-auto">
+              <div class="flex items-center text-blue-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Interfaz intuitiva</div>
+              <div class="flex items-center text-blue-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Validación automatizada</div>
+              <div class="flex items-center text-blue-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Configuración automática de red</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-green-500/60">
+          <div class="p-8 h-full flex flex-col">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center mr-4">
+                <i data-lucide="network" class="w-8 h-8 text-green-400"></i>
+              </div>
+              <div class="flex gap-2 opacity-60">
+                <i data-lucide="router" class="w-6 h-6"></i>
+                <i data-lucide="shield" class="w-6 h-6"></i>
+                <i data-lucide="activity" class="w-6 h-6"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Conectividad Segura para IoT</h3>
+            <p class="text-slate-300 mb-6">Dispositivos conectados con seguridad y bajo la responsabilidad del usuario.</p>
+            <div class="space-y-3 mt-auto">
+              <div class="flex items-center text-green-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Segmentación automática</div>
+              <div class="flex items-center text-green-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Monitoreo en tiempo real</div>
+              <div class="flex items-center text-green-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Políticas de seguridad integradas</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 border border-red-700/50 rounded-2xl h-full lg:min-h-[28rem] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-red-500/60">
+          <div class="p-8 h-full flex flex-col">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-red-600/20 rounded-2xl flex items-center justify-center mr-4">
+                <i data-lucide="shield-alert" class="w-8 h-8 text-red-400"></i>
+              </div>
+              <div class="flex gap-2 opacity-60">
+                <i data-lucide="bell" class="w-6 h-6"></i>
+                <i data-lucide="ban" class="w-6 h-6"></i>
+                <i data-lucide="timer" class="w-6 h-6 text-orange-400"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Detección y Respuesta Automatizada</h3>
+            <p class="text-slate-300 mb-6">
+              Las señales priorizadas por severidad pueden activar el bloqueo automático en el firewall, según las políticas de seguridad.
+            </p>
+            <div class="space-y-3 mt-auto">
+              <div class="flex items-center text-red-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Consolidación de señales de múltiples sondas de seguridad</div>
+              <div class="flex items-center text-red-300"><i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>Bloqueo automático mediante firewall</div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Abaixo: Fluxo à esquerda + Orquestração à direita -->
+      <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+        <div class="bg-gradient-to-r from-slate-900/80 to-slate-700/30 border border-slate-600/50 rounded-2xl p-8 md:p-12 h-full flex flex-col lg:min-h-[32rem] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-slate-500/60">
+          <h3 class="text-2xl md:text-3xl font-bold text-white text-center mb-6">Flujo de Detección y Respuesta</h3>
+
+          <ol class="mt-3 flex-1 space-y-2">
+            <li class="relative pl-20 pb-8">
+              <div class="absolute left-0 top-0 w-12 h-12 bg-blue-600/20 rounded-2xl flex items-center justify-center">
+                <i data-lucide="wifi" class="w-7 h-7 text-blue-400"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-base text-slate-200 font-semibold">Tráfico IoT</div>
+                <div class="text-sm text-slate-400">Monitoreado</div>
+              </div>
+              <div class="absolute left-6 top-14 bottom-0 w-px bg-slate-600/50"></div>
+            </li>
+
+            <li class="relative pl-20 pb-8">
+              <div class="absolute left-0 top-0 w-12 h-12 bg-purple-600/20 rounded-2xl flex items-center justify-center">
+                <i data-lucide="scan-search" class="w-7 h-7 text-purple-400"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-base text-slate-200 font-semibold">Sondas de seguridad</div>
+                <div class="text-sm text-slate-400">Suricata · Snort · Zeek</div>
+              </div>
+              <div class="absolute left-6 top-14 bottom-0 w-px bg-slate-600/50"></div>
+            </li>
+
+            <li class="relative pl-20 pb-8">
+              <div class="absolute left-0 top-0 w-12 h-12 bg-yellow-600/20 rounded-2xl flex items-center justify-center">
+                <i data-lucide="cpu" class="w-7 h-7 text-yellow-400"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-base text-slate-200 font-semibold">IoTEdu Core</div>
+                <div class="text-sm text-slate-400">Consolidación y priorización</div>
+              </div>
+              <div class="absolute left-6 top-14 bottom-0 w-px bg-slate-600/50"></div>
+            </li>
+
+            <li class="relative pl-20 pb-8">
+              <div class="absolute left-0 top-0 w-12 h-12 bg-red-600/20 rounded-2xl flex items-center justify-center">
+                <i data-lucide="shield-x" class="w-7 h-7 text-red-400"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-base text-slate-200 font-semibold">Firewall</div>
+                <div class="text-sm text-slate-400">Bloqueo automático</div>
+              </div>
+              <div class="absolute left-6 top-14 bottom-0 w-px bg-slate-600/50"></div>
+            </li>
+
+            <li class="relative pl-20">
+              <div class="absolute left-0 top-0 w-12 h-12 bg-green-600/20 rounded-2xl flex items-center justify-center">
+                <i data-lucide="layout-dashboard" class="w-7 h-7 text-green-400"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-base text-slate-200 font-semibold">Dashboard</div>
+                <div class="text-sm text-slate-400">Alertas</div>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl h-full lg:min-h-[28rem] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-500/60">
+          <div class="p-6 md:p-8 h-full flex flex-col">
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 bg-purple-600/20 rounded-2xl flex items-center justify-center mr-4">
+                <i data-lucide="layers" class="w-7 h-7 text-purple-400"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">Orquestación Multisonda</h3>
+                <p class="text-sm text-slate-400">Un pipeline unificado para monitorear, organizar y mitigar.</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3 opacity-80 mb-6">
+              <div class="flex items-center justify-center rounded-xl border border-slate-700/60 bg-slate-900/40 py-3">
+                <span class="text-xs text-slate-300 font-semibold">Suricata</span>
+              </div>
+              <div class="flex items-center justify-center rounded-xl border border-slate-700/60 bg-slate-900/40 py-3">
+                <span class="text-xs text-slate-300 font-semibold">Snort</span>
+              </div>
+              <div class="flex items-center justify-center rounded-xl border border-slate-700/60 bg-slate-900/40 py-3">
+                <span class="text-xs text-slate-300 font-semibold">Zeek</span>
+              </div>
+            </div>
+
+            <p class="text-slate-300 mb-6">
+              Consolida señales de diferentes mecanismos de detección para reducir falsos positivos y agilizar la toma de decisiones.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div class="rounded-2xl border border-slate-700/60 bg-slate-900/40 p-4">
+                <div class="flex items-center gap-3 text-slate-200 font-semibold">
+                  <i data-lucide="sliders-horizontal" class="w-5 h-5 text-purple-400"></i>
+                  <span class="text-sm">Normalización</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">Estandariza y organiza las señales de diferentes mecanismos de detección.</p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-700/60 bg-slate-900/40 p-4">
+                <div class="flex items-center gap-3 text-slate-200 font-semibold">
+                  <i data-lucide="shuffle" class="w-5 h-5 text-purple-400"></i>
+                  <span class="text-sm">Consolidación</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">Organiza las señales por contexto y tiempo para reducir el ruido y facilitar el análisis.</p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-700/60 bg-slate-900/40 p-4">
+                <div class="flex items-center gap-3 text-slate-200 font-semibold">
+                  <i data-lucide="zap" class="w-5 h-5 text-purple-400"></i>
+                  <span class="text-sm">Mitigación</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">Disparadores automatizados de acciones (p. ej., reglas y bloqueos) cuando sea necesario.</p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-700/60 bg-slate-900/40 p-4">
+                <div class="flex items-center gap-3 text-slate-200 font-semibold">
+                  <i data-lucide="file-text" class="w-5 h-5 text-purple-400"></i>
+                  <span class="text-sm">Trazabilidad</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">Registra evidencias para la mejora continua del pipeline.</p>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</section>
+
+  <!-- VÍDEO PITCH -->
+  <section id="pitch" class="py-16 px-6 bg-slate-900 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Video Pitch</h2>
+          <p class="text-xl text-slate-300 leading-relaxed">
+            Un resumen rápido del GT IoTEdu: el problema, la propuesta y cómo los resultados del proyecto se conectan y culminan en el IoTEdu Core.
+          </p>
+         
+        </div>
+
+        <div class="bg-slate-900/40 border border-slate-700/50 rounded-2xl p-3">
+          <div class="w-full rounded-xl overflow-hidden" style="position: relative; overflow: hidden; aspect-ratio: 1920/1080">
+            <iframe
+              src="https://www.canva.com/design/DAHFol9wLxk/bhP53nOrmr43ERGNo95y2Q/watch?embed"
+              loading="lazy"
+              title="El caos del IoT en las redes institucionales"
+              allowfullscreen
+              allow="fullscreen"
+              style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: auto; margin: auto; overflow:hidden;"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTOS: WRNP 2026 & SBRC 2026 -->
+  <section id="eventos" class="py-16 px-6 bg-slate-900 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <!-- Carrossel (esquerda) -->
+        <div id="wrnp-carousel" class="relative">
+          <div class="overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-950">
+            <div id="wrnp-track" class="flex transition-transform duration-500 ease-out">
+              <div class="min-w-full aspect-[4/3]">
+                <img src="images/wrnp/1.jpeg" alt="IoTEdu en el WRNP/SBRC 2026, foto 1" loading="lazy" class="w-full h-full object-cover" />
+              </div>
+              <div class="min-w-full aspect-[4/3]">
+                <img src="images/wrnp/2.jpeg" alt="IoTEdu en el WRNP/SBRC 2026, foto 2" loading="lazy" class="w-full h-full object-cover" />
+              </div>
+              <div class="min-w-full aspect-[4/3]">
+                <img src="images/wrnp/3.jpeg" alt="IoTEdu en el WRNP/SBRC 2026, foto 3" loading="lazy" class="w-full h-full object-cover" />
+              </div>
+              <div class="min-w-full aspect-[4/3]">
+                <img src="images/wrnp/5.jpeg" alt="IoTEdu en el WRNP/SBRC 2026, foto 5" loading="lazy" class="w-full h-full object-cover" />
+              </div>
+              <div class="min-w-full aspect-[4/3]">
+                <img src="images/wrnp/6.jpeg" alt="IoTEdu en el WRNP/SBRC 2026, foto 6" loading="lazy" class="w-full h-full object-cover" />
+              </div>
+              <div class="min-w-full aspect-[4/3]">
+                <img src="images/wrnp/7.jpeg" alt="IoTEdu en el WRNP/SBRC 2026, foto 7" loading="lazy" class="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Controles -->
+          <button id="wrnp-prev" type="button" aria-label="Imagen anterior"
+            class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-slate-900/70 hover:bg-slate-900 border border-slate-700 text-white transition-colors">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <button id="wrnp-next" type="button" aria-label="Imagen siguiente"
+            class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-slate-900/70 hover:bg-slate-900 border border-slate-700 text-white transition-colors">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+
+          <!-- Contador -->
+          <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-slate-900/70 border border-slate-700 text-xs text-slate-200">
+            <span id="wrnp-counter">1</span> / <span id="wrnp-total">6</span>
+          </div>
+
+          <!-- Indicadores -->
+          <div id="wrnp-dots" class="flex justify-center gap-2 mt-5"></div>
+        </div>
+
+        <!-- Texto + botão (direita) -->
+        <div>
+          
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">IoTEdu estuvo presente en el WRNP y el SBRC 2026</h2>
+          <p class="text-lg text-slate-300 leading-relaxed">
+            Llevamos el proyecto a Praia do Forte (Bahía, Brasil), representado por Joner De Mello Assolin, Diego Kreutz y Rodrigo Miani.
+            Fueron cuatro presentaciones, dos en el WRNP 2026 (stand y escenario principal) y dos en la Sesión de Herramientas (Salão de Ferramentas) del SBRC 2026.
+            Los aspectos más destacados fueron el <strong class="text-white">IoT-ID</strong> (fingerprinting determinístico de dispositivos)
+            y el <strong class="text-white">IoT-Zoo</strong> (testbed con más de 40 dispositivos para experimentos reproducibles a gran escala).
+            Volvimos con valiosos comentarios y nuevas colaboraciones. ¡Algunas más allá de Brasil!
+          </p>
+          <div class="mt-6">
+            <a href="https://www.linkedin.com/posts/wrnp2026-sbrc2026-iot-ugcPost-7467387298255503360-XZji/"
+               target="_blank" rel="noopener"
+               class="flex justify-center px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-colors">
+              Ver publicación en LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="resultados" class="min-h-screen py-16 px-6 bg-slate-900 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Resultados del Proyecto</h2>
+        <p class="text-xl text-slate-300 max-w-4xl mx-auto">
+          Conoce los productos y herramientas desarrollados a lo largo del Grupo de Trabajo en alianza con la RNP.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+          <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-green-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 bg-green-600/20 rounded-xl flex items-center justify-center mr-4">
+                <i data-lucide="boxes" class="w-7 h-7 text-green-400"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-green-400 uppercase tracking-wider">Testbed</span>
+                <h4 class="text-xl font-bold text-white mt-1">IoT-Zoo</h4>
+              </div>
+            </div>
+            <p class="text-slate-300 flex-1">
+              Framework basado en contenedores para la simulación de dispositivos IoT heterogéneos. Automatiza el despliegue de escenarios multidominio y la captura de tráfico (PCAP) para apoyar la investigación, la enseñanza y la validación de soluciones.
+            </p>
+            <div class="mt-6">
+              <a href="https://github.com/GT-IoTEdu/sbrc2026-IoT-Zoo" target="_blank" class="inline-flex items-center text-sm font-semibold text-green-400 hover:text-green-300 transition-colors">
+                <i data-lucide="github" class="w-4 h-4 mr-2"></i>
+                Repositorio IoT-Zoo
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 bg-red-600/20 rounded-xl flex items-center justify-center mr-4">
+                <i data-lucide="swords" class="w-7 h-7 text-red-400"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-red-400 uppercase tracking-wider">Testbed</span>
+                <h4 class="text-xl font-bold text-white mt-1">AttackZoo</h4>
+              </div>
+            </div>
+            <p class="text-slate-300 flex-1">
+              Entorno reproducible que integra un repositorio en contenedores con ataques mapeados según MITRE ATT&amp;CK. Facilita la generación trazable de <em>datasets</em> de tráfico de red para la investigación, la enseñanza y la extensión en ciberseguridad.
+            </p>
+            <div class="mt-6">
+              <a href="https://github.com/GT-IoTEdu/sbrc2026-ataques-acesso" target="_blank" class="inline-flex items-center text-sm font-semibold text-red-400 hover:text-red-300 transition-colors">
+                <i data-lucide="github" class="w-4 h-4 mr-2"></i>
+                Repositorio AttackZoo
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center mr-4">
+                <i data-lucide="user-plus" class="w-7 h-7 text-blue-400"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">Prueba de Concepto</span>
+                <h4 class="text-xl font-bold text-white mt-1">Prueba de Concepto I</h4>
+              </div>
+            </div>
+            <p class="text-slate-300 flex-1">
+              Primera etapa del flujo de registro y validación de dispositivos IoT: identifica el dispositivo, registra metadatos y prepara el camino para el aprovisionamiento de red y la aplicación de controles básicos de seguridad.
+            </p>
+            <div class="mt-6">
+              <a href="#iotedu-core" class="inline-flex items-center text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+                <i data-lucide="arrow-down-right" class="w-4 h-4 mr-2"></i>
+                Ver la evolución en el IoTEdu Core
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-teal-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 bg-teal-600/20 rounded-xl flex items-center justify-center mr-4">
+                <i data-lucide="shield" class="w-7 h-7 text-teal-400"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-teal-400 uppercase tracking-wider">Prueba de Concepto</span>
+                <h4 class="text-xl font-bold text-white mt-1">Prueba de Concepto II</h4>
+              </div>
+            </div>
+            <p class="text-slate-300 flex-1">
+              Evolución del flujo con seguridad integrada: conecta sondas de seguridad al entorno y permite activar políticas en el firewall a partir de las evidencias recopiladas, manteniendo la gobernanza y la trazabilidad de las acciones.
+            </p>
+            <div class="mt-6">
+              <a href="#iotedu-core" class="inline-flex items-center text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors">
+                <i data-lucide="arrow-down-right" class="w-4 h-4 mr-2"></i>
+                Ver la evolución en el IoTEdu Core
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 bg-purple-600/20 rounded-xl flex items-center justify-center mr-4">
+                <i data-lucide="fingerprint" class="w-7 h-7 text-purple-400"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Herramienta</span>
+                <h4 class="text-xl font-bold text-white mt-1">IoT-ID Fingerprinting</h4>
+              </div>
+            </div>
+            <p class="text-slate-300 flex-1">
+              Herramienta determinística de identificación de dispositivos IoT. Utiliza el análisis de tráfico para producir identidades estables y explicables, sin depender de modelos probabilísticos ni de entrenamiento de IA.
+            </p>
+            <div class="mt-6">
+              <a href="https://github.com/GT-IoTEdu/fingerprint" target="_blank" class="inline-flex items-center text-sm font-semibold text-purple-400 hover:text-purple-300 transition-colors">
+                <i data-lucide="github" class="w-4 h-4 mr-2"></i>
+                Repositorio IoT-ID
+              </a>
+            </div>
+          </div>
+
+          <div id="iotedu-core" class="bg-gradient-to-br from-blue-900/40 to-purple-900/20 border border-blue-500/50 rounded-2xl h-full flex flex-col p-8 relative overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-blue-400/60">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative z-10 flex flex-col h-full">
+              <div class="flex items-center mb-6">
+                <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4 shadow-lg shadow-blue-500/20">
+                  <i data-lucide="shield-check" class="w-7 h-7 text-white"></i>
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-blue-300 uppercase tracking-wider">Plataforma</span>
+                  <h4 class="text-xl font-bold text-white mt-1">IoTEdu Core (MVP)</h4>
+                </div>
+              </div>
+              <p class="text-slate-300 flex-1">
+                 Núcleo que integra el registro con la seguridad institucional. Centraliza la recopilación de señales y alertas provenientes de sondas de seguridad y, a partir de ello, habilita respuestas mediante el firewall.
+              </p>
+              <div class="mt-6">
+                <a href="https://github.com/GT-IoTEdu/API_SBRC26_SF" target="_blank" class="inline-flex items-center text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+                  <i data-lucide="github" class="w-4 h-4 mr-2"></i>
+                  Repositorio IoTEdu Core
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- DATASETS -->
+<!-- Adicionar "Datasets" no nav, entre "Resultados" e "Parceria RNP": -->
+<!-- <a href="index.html#datasets" class="hover:text-blue-400 transition-colors">Datasets</a> -->
+
+<section id="datasets" class="py-16 px-6 bg-slate-900 scroll-mt-24">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Datasets Públicos</h2>
+      <p class="text-xl text-slate-300 max-w-4xl mx-auto">
+        Datasets de tráfico de red etiquetados y puestos a disposición de forma abierta para la comunidad de investigación en seguridad e IoT.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-stretch">
+
+      <!-- Dataset 1 — SBRC 2026 (Attack) -->
+      <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <div class="flex items-center mb-6">
+          <div class="w-14 h-14 bg-red-600/20 rounded-xl flex items-center justify-center mr-4">
+            <i data-lucide="swords" class="w-7 h-7 text-red-400"></i>
+          </div>
+          <div>
+            <span class="text-xs font-bold text-red-400 uppercase tracking-wider">Dataset · Ataques</span>
+            <h4 class="text-xl font-bold text-white mt-1">GT-IoTEdu Attack Dataset</h4>
+          </div>
+        </div>
+
+        <p class="text-slate-300 mb-6 flex-1">
+          Dataset de tráfico etiquetado con 42 escenarios de ataque en un entorno controlado, que abarca reconocimiento, explotación de red, ataques web, fuerza bruta, exfiltración, denegación de servicio e IoT. Generado por AttackZoo con mapeo MITRE ATT&amp;CK.
+        </p>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 gap-3 mb-6">
+          <div class="rounded-xl bg-slate-800/60 border border-slate-700/40 px-4 py-3">
+            <div class="text-lg font-bold text-red-400">42</div>
+            <div class="text-xs text-slate-400">tipos de ataque</div>
+          </div>
+          <div class="rounded-xl bg-slate-800/60 border border-slate-700/40 px-4 py-3">
+            <div class="text-lg font-bold text-red-400">8h</div>
+            <div class="text-xs text-slate-400">de captura</div>
+          </div>
+          <div class="rounded-xl bg-slate-800/60 border border-slate-700/40 px-4 py-3">
+            <div class="text-lg font-bold text-red-400">106,37 GB</div>
+            <div class="text-xs text-slate-400">en PCAP</div>
+          </div>
+          <div class="rounded-xl bg-slate-800/60 border border-slate-700/40 px-4 py-3">
+            <div class="text-lg font-bold text-red-400">26,7 GB</div>
+            <div class="text-xs text-slate-400">dataset final</div>
+          </div>
+        </div>
+
+        <!-- Features tags -->
+        <div class="flex flex-wrap gap-2 mb-6">
+         
+        </div>
+
+        <div class="mt-auto">
+          <a href="https://doi.org/10.6084/m9.figshare.31861711" target="_blank"
+            class="inline-flex items-center text-sm font-semibold text-red-400 hover:text-red-300 transition-colors">
+            <i data-lucide="external-link" class="w-4 h-4 mr-2"></i>
+            Acceder 
+          </a>
+        </div>
+      </div>
+
+      <!-- Dataset 2 — IoT-Zoo Baseline -->
+      <div class="bg-gradient-to-br from-slate-900/80 to-slate-800/50 border border-slate-700/50 rounded-2xl h-full flex flex-col p-8 hover:border-green-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <div class="flex items-center mb-6">
+          <div class="w-14 h-14 bg-green-600/20 rounded-xl flex items-center justify-center mr-4">
+            <i data-lucide="boxes" class="w-7 h-7 text-green-400"></i>
+          </div>
+          <div>
+            <span class="text-xs font-bold text-green-400 uppercase tracking-wider">Dataset · Tráfico Legítimo</span>
+            <h4 class="text-xl font-bold text-white mt-1">GT-IoTEdu IoT-Zoo Dataset</h4>
+          </div>
+        </div>
+
+        <p class="text-slate-300 mb-6 flex-1">
+          Dataset de tráfico legítimo a nivel de paquete, capturado en el testbed IoT-Zoo con 43 perfiles de dispositivos heterogéneos en los dominios de Observatorio Urbano, Industrial, e-Health y Smart Farming. Resultado de la fusión sincronizada entre Scapy y Tshark.
+        </p>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 gap-3 mb-6">
+          <div class="rounded-xl bg-slate-800/60 border border-slate-700/40 px-4 py-3">
+            <div class="text-lg font-bold text-green-400">43</div>
+            <div class="text-xs text-slate-400">perfiles de dispositivos</div>
+          </div>
+          <div class="rounded-xl bg-slate-800/60 border border-slate-700/40 px-4 py-3">
+            <div class="text-lg font-bold text-green-400">8h</div>
+            <div class="text-xs text-slate-400">de captura</div>
+          </div>
+          <div class="rounded-xl bg-slate-800/60 border border-slate-700/40 px-4 py-3">
+            <div class="text-lg font-bold text-green-400">19 GB</div>
+            <div class="text-xs text-slate-400">en PCAP</div>
+          </div>
+          <div class="rounded-xl bg-slate-800/60 border border-slate-700/40 px-4 py-3">
+            <div class="text-lg font-bold text-green-400">3,4 GB</div>
+            <div class="text-xs text-slate-400">dataset final</div>
+          </div>
+        </div>
+
+        <!-- Features tags -->
+        <div class="flex flex-wrap gap-2 mb-6">
+        
+        </div>
+
+        <div class="mt-auto">
+         <a href="https://zenodo.org/records/19489364" target="_blank"
+            class="inline-flex items-center text-sm font-semibold text-green-400 hover:text-red-300 transition-colors">
+            <i data-lucide="external-link" class="w-4 h-4 mr-2"></i>
+            Acceder 
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- PARCERIA E APOIO -->
+  <section id="parceria" class="py-16 px-6 bg-slate-900 scroll-mt-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Alianza y Apoyo</h2>
+        <p class="text-xl text-slate-300 max-w-4xl mx-auto">
+          Proyecto financiado por la RNP y desarrollado con el apoyo de importantes instituciones de educación superior de Brasil.
+        </p>
+      </div>
+
+      <h3 class="text-2xl md:text-3xl font-bold mb-8 text-white text-center">Red Financiadora</h3>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-blue-500/60">
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-200/10 to-transparent"></div>
+          <div class="p-12 text-center relative z-10">
+
+            <div class="w-64 h-40 mx-auto mb-8 relative">
+              <a href="https://www.rnp.br/" target="_blank" rel="noopener noreferrer">
+              <img src="images/instituicoes/rnp.png" alt="Logotipo de la RNP" class="w-full h-full object-contain drop-shadow-lg" />
+            </a>
+            </div>
+            <!-- <h3 class="text-3xl font-bold text-white mb-4">RNP</h3> -->
+            <p class="text-xl text-blue-300 font-semibold mb-6">Rede Nacional de Ensino e Pesquisa</p>
+            <p class="text-slate-300 mb-8 text-lg leading-relaxed">
+              Alianza estratégica con la RNP para el desarrollo y la implementación de la plataforma GT IoTEdu, aprovechando la
+              infraestructura nacional de red de la RNP para conectar dispositivos IoT de forma segura y eficiente en
+              instituciones educativas.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+              <div class="text-center">
+                <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                  <i data-lucide="globe" class="w-8 h-8 text-blue-400"></i>
+                </div>
+                <h4 class="text-lg font-bold text-white mb-2">Infraestructura Nacional</h4>
+                <p class="text-slate-400 text-sm">Red de alta velocidad que conecta instituciones</p>
+              </div>
+              <div class="text-center">
+                <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                  <i data-lucide="shield" class="w-8 h-8 text-green-400"></i>
+                </div>
+                <h4 class="text-lg font-bold text-white mb-2">Seguridad Avanzada</h4>
+                <p class="text-slate-400 text-sm">Protocolos de seguridad para el entorno institucional</p>
+              </div>
+              <div class="text-center">
+                <div class="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                  <i data-lucide="users" class="w-8 h-8 text-purple-400"></i>
+                </div>
+                <h4 class="text-lg font-bold text-white mb-2">Comunidad</h4>
+                <p class="text-slate-400 text-sm">Soporte especializado para instituciones</p>
+              </div>
+            </div>
+
+            <a href="https://www.rnp.br/" target="_blank" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl transition">
+              Más Información Sobre la RNP
+              <i data-lucide="network" class="w-5 h-5 ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- APOIO (id mantido para links antigos com #apoio) -->
+      <div id="apoio" class="text-center mt-16 mb-8 scroll-mt-24">
+        <h3 class="text-2xl md:text-3xl font-bold text-white">Apoyo Institucional</h3>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- UNIPAMPA -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-green-500/60">
+          <div class="absolute inset-0 bg-gradient-to-r from-green-600/10 to-transparent"></div>
+          <div class="p-8 text-center relative z-10">
+            <div class="w-64 h-44 mx-auto mb-6 relative">
+              <a href="https://unipampa.edu.br/portal/" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+                <img src="images/instituicoes/unipampa_branca.svg" alt="Logotipo de UNIPAMPA" class="w-full h-full object-contain drop-shadow-lg" />
+              </a>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">UNIPAMPA</h3>
+            <p class="text-green-300 font-semibold mb-4">Universidade Federal do Pampa</p>
+          </div>
+        </div>
+
+        <!-- UFRGS -->
+        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-blue-500/60">
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-transparent"></div>
+          <div class="p-8 text-center relative z-10">
+            <div class="w-50 h-40 mx-auto mb-6 relative">
+              <a href="https://www.ufrgs.br/" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+                <img src="images/instituicoes/ufrgs_branca.svg" alt="Logotipo de UFRGS" class="w-full h-full object-contain drop-shadow-lg" />
+              </a>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">UFRGS</h3>
+            <p class="text-blue-300 font-semibold mb-4">Universidade Federal do Rio Grande do Sul</p>
+          </div>
+        </div>
+
+        <!-- UFU -->
+        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-500/60">
+          <div class="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-transparent"></div>
+          <div class="p-8 text-center relative z-10">
+            <div class="w-64 h-44 mx-auto mb-6 relative">
+              <a href="https://www.ufu.br/" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+                <img src="images/instituicoes/ufu_cinza.svg" alt="Logotipo de UFU" class="w-full h-full object-contain drop-shadow-lg" />
+              </a>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">UFU</h3>
+            <p class="text-purple-300 font-semibold mb-4">Universidade Federal de Uberlândia</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPE -->
+<section id="equipe" class="min-h-screen py-16 px-6 bg-slate-900 scroll-mt-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <!-- <span class="inline-flex items-center mb-6 bg-purple-600/20 text-purple-300 border border-purple-500/30 px-4 py-2 rounded-lg">
+        <i data-lucide="users" class="w-4 h-4 mr-2"></i>
+        Equipe
+      </span> -->
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Equipo</h2>
+      <p class="text-xl text-slate-300 max-w-4xl mx-auto">Conoce a los investigadores y desarrolladores detrás del proyecto.</p>
+    </div>
+
+    <!-- Coordenação & Liderança -->
+    <div class="mb-12 text-center">
+      <h3 class="text-2xl font-bold text-white mb-2">Coordinación y Liderazgo</h3>
+      <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Coordinación y liderazgo de innovación del GT.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 justify-items-center max-w-3xl mx-auto">
+        <!-- Diego Kreutz -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl w-full max-w-md min-h-72 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-green-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/diego.png" alt="Foto de Diego Kreutz" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Diego Kreutz</h4>
+            <p class="text-green-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Coordinador<br/>
+              <a href="mailto:diegokreutz@unipampa.edu.br" class="hover:text-slate-200 transition-colors">diegokreutz@unipampa.edu.br</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Leandro M. Bertholdo -->
+        <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700/50 rounded-2xl w-full max-w-md min-h-72 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-blue-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-blue-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/leonardo_bertholdo.png" alt="Foto de Leandro M. Bertholdo" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Leandro M. Bertholdo</h4>
+            <p class="text-blue-300 text-sm font-semibold mb-3">Professor - UFRGS</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Líder de Innovación<br/>
+              <a href="mailto:berthold@penta.ufrgs.br" class="hover:text-slate-200 transition-colors">berthold@penta.ufrgs.br</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assistentes de Inovação -->
+    <div class="mb-12 text-center">
+      <h3 class="text-2xl font-bold text-white mb-2">Asistentes de Innovación</h3>
+      <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Apoyo directo a las actividades de innovación del proyecto.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 justify-items-center max-w-3xl mx-auto">
+        <!-- Angelo Gaspar Diniz Nogueira -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl w-full max-w-md min-h-72 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-green-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/angelo.png" alt="Foto de Angelo Gaspar Diniz Nogueira" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Angelo Gaspar Diniz Nogueira</h4>
+            <p class="text-green-300 text-sm font-semibold mb-3">Estudiante de maestría - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10"><br/>
+              <a href="mailto:angelonogueira.aluno@unipampa.edu.br" class="hover:text-slate-200 transition-colors">angelonogueira.aluno@unipampa.edu.br</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Vagner Quincozes -->
+        <div class="bg-gradient-to-br from-orange-900/50 to-orange-800/30 border border-orange-700/50 rounded-2xl w-full max-w-md min-h-72 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-orange-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-orange-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/vagner.png" alt="Foto de Vagner Quincozes" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Vagner Quincozes</h4>
+            <p class="text-orange-300 text-sm font-semibold mb-3">Estudiante de doctorado - UFF</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10"><br/>
+              <a href="mailto:vequincozes@gmail.com" class="hover:text-slate-200 transition-colors">vequincozes@gmail.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pesquisadores -->
+    <div class="mb-12 text-center">
+      <h3 class="text-2xl font-bold text-white mb-2">Investigadores</h3>
+      <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Investigadores responsables de las actividades técnicas del GT.</p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        <!-- Rodrigo Mansilha -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl w-full max-w-md min-h-72 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-green-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/rodrigo_mansilha.png" alt="Foto de Rodrigo Mansilha" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Rodrigo Mansilha</h4>
+            <p class="text-green-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Investigador<br/>
+              <a href="mailto:mansilha@unipampa.edu.br" class="hover:text-slate-200 transition-colors">mansilha@unipampa.edu.br</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Silvio Quincozes -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl w-full max-w-md min-h-72 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-green-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/silvio_ereno_quincozes.png" alt="Foto de Silvio Quincozes" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Silvio Quincozes</h4>
+            <p class="text-green-300 text-sm font-semibold mb-3">Professor - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Investigador<br/>
+              <a href="mailto:silvioquincozes@unipampa.edu.br" class="hover:text-slate-200 transition-colors">silvioquincozes@unipampa.edu.br</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Rodrigo Miani -->
+        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl w-full max-w-md min-h-72 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-purple-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/rodrigo_miani.png" alt="Foto de Rodrigo Miani" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Rodrigo Miani</h4>
+            <p class="text-purple-300 text-sm font-semibold mb-3">Professor - UFU</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Investigador<br/>
+              <a href="mailto:miani@ufu.br" class="hover:text-slate-200 transition-colors">miani@ufu.br</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bolsistas Pesquisadores -->
+    <div class="text-center">
+      <h3 class="text-2xl font-bold text-white mb-2">Becarios de Investigación</h3>
+      <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Estudiantes de maestría y de grado que participan en el proyecto.</p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        <!-- Anna Letycia Reis -->
+        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl w-full max-w-md min-h-[16rem] transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-purple-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/anna_letycia.png" alt="Foto de Anna Letycia Reis" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Anna Letycia Reis</h4>
+            <p class="text-purple-300 text-sm font-semibold mb-3">Estudiante de maestría - UFU</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Correo institucional<br/>
+              <a href="mailto:anna.reis@ufu.br" class="hover:text-slate-200 transition-colors">anna.fernandes@ufu.br</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Douglas Rodrigues Fideles -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl w-full max-w-md min-h-[16rem] transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-green-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/douglas_fideles.png" alt="Foto de Douglas Fideles" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Douglas Rodrigues Fideles</h4>
+            <p class="text-green-300 text-sm font-semibold mb-3">Estudiante de maestría - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Correo institucional<br/>
+              <a href="mailto:douglas.fideles@unipampa.edu.br" class="hover:text-slate-200 transition-colors">douglasfideles.aluno@unipampa.edu.br</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Emanuel Carricio -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl w-full max-w-md min-h-[16rem] transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-green-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/emanuel.png" alt="Foto de Emanuel Carricio" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Emanuel Carricio</h4>
+            <p class="text-green-300 text-sm font-semibold mb-3">Estudiante de grado - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Correo institucional<br/>
+              <a href="mailto:emanuel.carricio@unipampa.edu.br" class="hover:text-slate-200 transition-colors">emanuelferreira.aluno@unipampa.edu.br</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Joner de Mello Assolin -->
+        <div class="bg-gradient-to-br from-teal-900/50 to-teal-800/30 border border-teal-700/50 rounded-2xl w-full max-w-md min-h-[16rem] transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-teal-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-teal-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/jonner.png" alt="Foto de Joner de Mello Assolin" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Joner de Mello Assolin</h4>
+            <p class="text-teal-300 text-sm font-semibold mb-3">Estudiante de maestría - UFAM</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Correo institucional<br/>
+              <a href="mailto:joner.assolin@ufam.edu.br" class="hover:text-slate-200 transition-colors">joner.assolin@ufam.edu.br</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Matheus Ciocca -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl w-full max-w-md min-h-[16rem] transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-green-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/matheus_ciocca.png" alt="Foto de Matheus Ciocca" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Matheus Ciocca</h4>
+            <p class="text-green-300 text-sm font-semibold mb-3">Estudiante de grado - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Correo institucional<br/>
+              <a href="mailto:matheus.ciocca@unipampa.edu.br" class="hover:text-slate-200 transition-colors">matheusciocca.aluno@unipampa.edu.br</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Leonardo Bitzki -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl w-full max-w-md min-h-[16rem] transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-green-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/leonardo_bitzki.png" alt="Foto de Leonardo Bitzki" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Leonardo Bitzki</h4>
+            <p class="text-green-300 text-sm font-semibold mb-3">Estudiante de maestría - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Correo institucional<br/>
+              <a href="mailto:leonardo.bitzki@unipampa.edu.br" class="hover:text-slate-200 transition-colors">leonardobitzki.aluno@unipampa.edu.br</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colaboradores Voluntários -->
+    <div id="colaboradores" class="mt-12 text-center">
+      <h3 class="text-2xl font-bold mb-6 text-white">Colaboradores Voluntarios</h3>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        <!-- João Pedro Ramires -->
+        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl w-full max-w-md min-h-[16rem] transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-purple-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/joao_pedro_ramires.png" alt="Foto de João Pedro Ramires" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">João Pedro Ramires</h4>
+            <p class="text-purple-300 text-sm font-semibold mb-3">Estudiante de maestría - UFU</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Correo institucional<br/>
+              <a href="mailto:joao.ramies@ufu.br" class="hover:text-slate-200 transition-colors">joao.esteves@ufu.br</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Cauã Pereina Neres -->
+        <div class="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700/50 rounded-2xl w-full max-w-md min-h-[16rem] transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-purple-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/caua_pereira.png" alt="Foto de Caua Pereira" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Cauã Pereira</h4>
+            <p class="text-purple-300 text-sm font-semibold mb-3">Estudiante de grado - UFU</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Correo institucional<br/>
+              <a href="mailto:caua.pereira@ufu.br" class="hover:text-slate-200 transition-colors">cauaneres@ufu.br</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Rafael Barboza Torres -->
+        <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700/50 rounded-2xl w-full max-w-md min-h-[16rem] transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-green-500/60">
+          <div class="p-6 text-center h-full flex flex-col">
+            <div class="w-16 h-16 rounded-full overflow-hidden ring-1 ring-green-400/30 mx-auto mb-4">
+              <img src="images/pessoas_fundo_branco/rafael.png" alt="Foto de Rafael Barboza" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Rafael Barboza Torres</h4>
+            <p class="text-green-300 text-sm font-semibold mb-3">Estudiante de maestría - Unipampa</p>
+            <p class="text-slate-400 text-xs mt-auto min-h-10">Correo institucional<br/>
+              <a href="mailto:rafael.torres@unipampa.edu.br" class="hover:text-slate-200 transition-colors">rafaeltorres.aluno@unipampa.edu.br</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- EARLY ADOPTERS -->
+  <section id="early-adopters" class="py-16 px-6 bg-slate-900 scroll-mt-24">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-gradient-to-br from-blue-900/50 to-green-900/30 border border-blue-700/50 relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-blue-500/60">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-200/10 to-transparent"></div>
+        <div class="p-8 md:p-10 relative z-10">
+
+          <div class="flex items-center justify-center mb-6">
+            <div class="w-14 h-14 bg-blue-600/20 rounded-2xl flex items-center justify-center">
+              <i data-lucide="heart-handshake" class="w-7 h-7 text-blue-400"></i>
+            </div>
+          </div>
+
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white text-center">Sé un Early Adopter de IoTEdu</h2>
+
+          <div class="space-y-4 text-slate-300 leading-relaxed text-justify">
+            <p>Buscamos instituciones interesadas en adoptar IoTEdu y seguir de cerca su evolución.</p>
+            <p>Con la plataforma, los usuarios pueden registrar sus propios dispositivos, mientras el equipo de TI mantiene el inventario, la identificación del responsable, la visibilidad y el monitoreo de seguridad en un único entorno.</p>
+            <p>Al participar, tu institución también aporta retroalimentación y ayuda a orientar la evolución de la solución hacia necesidades reales.</p>
+          </div>
+
+          <div class="flex justify-center mt-8">
+            <a href="mailto:diegokreutz@unipampa.edu.br?subject=Early%20Adopter%20-%20GT%20IoTEdu&body=Ol%C3%A1%2C%20equipe%20GT-IoTEdu!%0D%0A%0D%0AGostar%C3%ADamos%20de%20ser%20um%20early%20adopter%20do%20IoTEdu.%0D%0A%0D%0AInstitui%C3%A7%C3%A3o%3A%20%0D%0AContato%3A%20"
+               class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg rounded-xl transition">
+              <i data-lucide="mail" class="w-5 h-5"></i>
+              Quiero ser Early Adopter
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 px-6 bg-slate-900 border-t border-slate-700">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex items-center justify-center space-x-2 mb-4">
+        <div class="relative">
+          <i data-lucide="wifi" class="h-6 w-6 text-blue-400"></i>
+          <div class="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        </div>
+        <span class="text-lg font-bold">GT IoTEdu</span>
+      </div>
+      <div class="flex items-center justify-center mb-4">
+        <a href="https://www.youtube.com/@IoTEdu4All" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg transition-colors font-semibold">
+          <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+          Canal en YouTube
+        </a>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-4 text-sm">
+        <a href="politica-de-privacidade.html" class="text-slate-300 hover:text-blue-400 transition-colors">Política de Privacidad</a>
+        <span class="text-slate-600" aria-hidden="true">·</span>
+        <a href="termos-de-uso.html" class="text-slate-300 hover:text-blue-400 transition-colors">Términos de Uso</a>
+      </div>
+      <p class="text-slate-400 text-sm">
+        © 2025 GT-IoTEdu. Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Inicializa ícones Lucide
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.lucide) { window.lucide.createIcons(); }
+    });
+
+    // Rolagem suave para âncoras (suporta #secao e index.html#secao)
+    document.querySelectorAll('a[href^="#"], a[href^="index.html#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href && href.includes('#')) {
+          const hash = href.slice(href.indexOf('#'));
+          if (!hash || hash.length <= 1) return;
+
+          const el = document.querySelector(hash);
+          if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Carrossel WRNP/SBRC 2026
+    (function () {
+      const track = document.getElementById('wrnp-track');
+      if (!track) return;
+      const slides = Array.from(track.children);
+      const dotsWrap = document.getElementById('wrnp-dots');
+      const counter = document.getElementById('wrnp-counter');
+      const total = document.getElementById('wrnp-total');
+      if (total) total.textContent = String(slides.length);
+      let index = 0;
+      let timer = null;
+
+      function update() {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        if (counter) counter.textContent = String(index + 1);
+        Array.from(dotsWrap.children).forEach((d, i) => {
+          d.classList.toggle('bg-blue-400', i === index);
+          d.classList.toggle('w-5', i === index);
+          d.classList.toggle('bg-slate-600', i !== index);
+        });
+      }
+
+      function go(i) {
+        index = (i + slides.length) % slides.length;
+        update();
+      }
+
+      function start() {
+        stop();
+        timer = setInterval(() => go(index + 1), 5000);
+      }
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'h-2.5 w-2.5 rounded-full bg-slate-600 transition-all duration-300';
+        b.setAttribute('aria-label', `Ir a la imagen ${i + 1}`);
+        b.addEventListener('click', () => { go(i); start(); });
+        dotsWrap.appendChild(b);
+      });
+
+      document.getElementById('wrnp-prev').addEventListener('click', () => { go(index - 1); start(); });
+      document.getElementById('wrnp-next').addEventListener('click', () => { go(index + 1); start(); });
+
+      const carousel = document.getElementById('wrnp-carousel');
+      carousel.addEventListener('mouseenter', stop);
+      carousel.addEventListener('mouseleave', start);
+
+      // Suporte a toque (swipe)
+      let startX = 0;
+      track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; stop(); }, { passive: true });
+      track.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) go(dx < 0 ? index + 1 : index - 1);
+        start();
+      }, { passive: true });
+
+      update();
+      start();
+    })();
+  </script>
+</body>
+</html>
