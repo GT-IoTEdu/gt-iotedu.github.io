@@ -73,3 +73,32 @@ Veja todos os ícones em: https://lucide.dev/icons/
 - `blue` - Azul
 - `teal` - Azul-petróleo
 - `slate` - Cinza
+## Traduções (EN e ES)
+
+O site tem versões em inglês (`/en/`) e espanhol (`/es/`), que leem os mesmos arquivos JSON. A tradução de cada notícia fica no campo opcional `i18n`; qualquer campo ausente usa o texto em português.
+
+```json
+{
+  "id": "2025-02-workshop-iot",
+  "title": "Workshop de IoT na Unipampa",
+  "...": "...",
+  "i18n": {
+    "en": {
+      "title": "IoT Workshop at Unipampa",
+      "dateDisplay": "February 2025",
+      "tags": ["News"],
+      "description": "<p>Texto traduzido...</p><p><img src=\"@img0\"></p>"
+    },
+    "es": {
+      "title": "Taller de IoT en la Unipampa",
+      "dateDisplay": "Febrero 2025",
+      "tags": ["Noticia"],
+      "description": "<p>Texto traducido...</p><p><img src=\"@img0\"></p>"
+    }
+  }
+}
+```
+
+- `tags`: só os rótulos, na mesma ordem das tags em português (ícone e cor vêm do original).
+- Imagens: para não repetir imagens embutidas (base64) em cada idioma, a tradução usa `src="@img0"`, `src="@img1"`..., que a página troca pela 1ª, 2ª... imagem da descrição em português.
+- O `admin.html` tem a seção **Traduções**, que preenche esse campo automaticamente (inclusive a troca das imagens por `@imgN`).

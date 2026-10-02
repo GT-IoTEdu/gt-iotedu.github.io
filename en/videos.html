@@ -329,8 +329,8 @@
 <body class="bg-slate-900 text-white font-[Inter]">
 
 <!-- NAV -->
-<nav class="relative flex md:grid md:grid-cols-[auto,1fr,auto] md:gap-4 items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
-  <div class="flex items-center space-x-2 md:justify-self-start">
+<nav class="relative flex xl:grid xl:grid-cols-[auto,1fr,auto] xl:gap-4 items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+  <div class="flex items-center space-x-2 xl:justify-self-start">
     <div class="relative">
       <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
       <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
@@ -338,7 +338,7 @@
     <a href="index.html" class="text-xl font-bold">GT IoTEDU</a>
   </div>
 
-  <div class="hidden md:flex items-center justify-center space-x-8 md:justify-self-center">
+  <div class="hidden xl:flex items-center justify-center space-x-6 whitespace-nowrap xl:justify-self-center">
     <a href="index.html#proposta" class="hover:text-blue-400 transition-colors">Proposal</a>
     <a href="index.html#resultados" class="hover:text-blue-400 transition-colors">Results</a>
     <a href="index.html#parceria" class="hover:text-blue-400 transition-colors">Partnership &amp; Support</a>
@@ -349,9 +349,9 @@
     <a href="news.html" class="hover:text-blue-400 transition-colors">News</a>
   </div>
 
-  <div class="flex items-center space-x-2 md:space-x-4 md:justify-self-end">
+  <div class="flex items-center space-x-2 xl:space-x-4 xl:justify-self-end">
     <!-- i18n:switch -->
-    <div class="hidden md:flex items-center gap-1 text-sm font-semibold" role="group" aria-label="Language">
+    <div class="hidden xl:flex items-center gap-1 text-sm font-semibold" role="group" aria-label="Language">
       <a href="../videos.html" hreflang="pt-BR" lang="pt-BR" title="Português" class="px-1.5 py-1 rounded text-slate-400 hover:text-white transition-colors">PT</a>
       <span class="text-slate-600" aria-hidden="true">|</span>
       <a href="videos.html" hreflang="en" lang="en" title="English" class="px-1.5 py-1 rounded text-blue-400" aria-current="true">EN</a>
@@ -364,7 +364,7 @@
     <button
       id="mobile-menu-button"
       type="button"
-      class="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-slate-700 hover:bg-slate-800"
+      class="xl:hidden inline-flex items-center justify-center p-2 rounded-lg border border-slate-700 hover:bg-slate-800"
       aria-controls="mobile-menu"
       aria-expanded="false"
       aria-label="Open menu"
@@ -382,7 +382,7 @@
   </div>
 
   <!-- Mobile menu (dropdown) -->
-  <div id="mobile-menu" class="md:hidden hidden absolute left-0 right-0 top-full bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+  <div id="mobile-menu" class="xl:hidden hidden absolute left-0 right-0 top-full bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
     <div class="px-6 py-4 flex flex-col gap-3">
       <a href="index.html#proposta" class="py-2 hover:text-blue-400 transition-colors">Proposal</a>
       <a href="index.html#resultados" class="py-2 hover:text-blue-400 transition-colors">Results</a>
@@ -642,7 +642,7 @@
       if (e.key === 'Escape') setOpen(false);
     });
     window.addEventListener('resize', () => {
-      if (window.matchMedia('(min-width: 768px)').matches) setOpen(false);
+      if (window.matchMedia('(min-width: 1280px)').matches) setOpen(false);
     });
 
     setOpen(false);
