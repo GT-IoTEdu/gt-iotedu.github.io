@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IoTEdu schema por instituição</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: documento técnico em coluna única, irmão da variante banco central; mesmo sistema visual das versões de 30/09 e 01/10. Três cores com papel fixo: verde-azulado para o núcleo e o que foi decidido, roxo para o que depende de um provedor específico, âmbar para o que está em aberto. */
+:root {
+  --bg: #fbfcfc; --surface: #f1f5f4; --fg: #16201f; --muted: #53615e; --rule: #d5dedb;
+  --accent: #0b6e69; --accent-soft: #e2f0ee;
+  --open: #8a5a00; --open-soft: #f7eed9;
+  --lock: #6a3d9a; --lock-soft: #f1eaf8;
+  --deny: #b3261e;
+  --font-display: "Bricolage Grotesque", "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --measure: 70ch;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1514; --surface: #152020; --fg: #e3ebe9; --muted: #9aaaa6; --rule: #273431;
+    --accent: #52b9ae; --accent-soft: #163129; --open: #e2b25a; --open-soft: #33280f;
+    --lock: #c3a2ec; --lock-soft: #2a1f3a; --deny: #f08a80; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1514; --surface: #152020; --fg: #e3ebe9; --muted: #9aaaa6; --rule: #273431;
+  --accent: #52b9ae; --accent-soft: #163129; --open: #e2b25a; --open-soft: #33280f;
+  --lock: #c3a2ec; --lock-soft: #2a1f3a; --deny: #f08a80; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.6;
+  padding-inline: clamp(16px, 4vw, 48px); padding-block: 0 4rem;
+}
+.page { max-width: 1060px; margin-inline: auto; display: grid; gap: 3.5rem; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.05rem, 4.8vw, 3.2rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.45rem, 3vw, 1.95rem); font-weight: 700; }
+h3 { font-size: 1.12rem; font-weight: 600; }
+p { margin: 0; max-width: var(--measure); }
+code { font-family: var(--font-mono); font-size: 0.9em; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eyebrow { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+section { display: grid; gap: 1.25rem; }
+.head { display: grid; gap: 0.5rem; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; font-size: 0.93rem; }
+nav.toc a { text-decoration: none; border-bottom: 1px solid var(--rule); }
+nav.toc a:hover { border-bottom-color: var(--accent); }
+
+header.hero { padding-top: 3.25rem; padding-bottom: 2.25rem; border-bottom: 1px solid var(--rule); display: grid; gap: 1.15rem; }
+.hero .lead { font-size: 1.18rem; max-width: 64ch; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.4rem; margin-top: 0.4rem; }
+.fact { display: grid; gap: 0.2rem; padding-top: 0.75rem; border-top: 2px solid var(--accent); }
+.fact b { font-family: var(--font-display); font-size: 1.22rem; font-weight: 600; }
+.fact span { color: var(--muted); font-size: 0.95rem; }
+
+.diagram-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); padding: 0.75rem; }
+.diagram-wrap svg { display: block; min-width: 820px; width: 100%; height: auto; }
+svg .frame { fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 6 5; }
+svg .box { fill: var(--bg); stroke: var(--rule); stroke-width: 1.2; }
+svg .box-accent { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.4; }
+svg .box-mg { fill: var(--bg); stroke: var(--muted); stroke-width: 1.3; stroke-dasharray: 5 4; }
+svg .box-lock { fill: var(--lock-soft); stroke: var(--lock); stroke-width: 1.8; }
+svg .tb { fill: var(--fg); font-family: var(--font-body); font-size: 15px; font-weight: 600; }
+svg .tn { fill: var(--fg); font-family: var(--font-body); font-size: 13px; }
+svg .tm { fill: var(--muted); font-family: var(--font-body); font-size: 12.5px; }
+svg .tc { fill: var(--fg); font-family: var(--font-mono); font-size: 12.5px; }
+svg .ta { fill: var(--accent); font-family: var(--font-body); font-size: 13px; font-weight: 600; }
+svg .tl { fill: var(--lock); font-family: var(--font-body); font-size: 12.5px; font-weight: 600; }
+svg .ln { stroke: var(--accent); stroke-width: 1.8; fill: none; }
+svg .ln-muted { stroke: var(--muted); stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
+svg .head { fill: var(--accent); }
+svg .head-muted { fill: var(--muted); }
+.caption { font-size: 0.92rem; color: var(--muted); max-width: var(--measure); }
+ul.legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.6rem; font-size: 0.93rem; }
+ul.legend li { display: flex; align-items: center; gap: 0.5rem; }
+.sw { display: inline-block; width: 1.6rem; height: 1rem; border-radius: 3px; flex: none; }
+.sw.core { background: var(--accent-soft); border: 1.5px solid var(--accent); }
+.sw.mg { background: var(--bg); border: 1.5px dashed var(--muted); }
+.sw.lock { background: var(--lock-soft); border: 2px solid var(--lock); }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.96rem; min-width: 660px; }
+th, td { text-align: left; vertical-align: top; padding: 0.6rem 0.9rem 0.6rem 0; border-bottom: 1px solid var(--rule); }
+th { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border-bottom: 1.5px solid var(--fg); }
+td:first-child { font-weight: 600; }
+td.r, th.r { text-align: right; }
+.lockt { color: var(--lock); font-weight: 600; }
+.opent { color: var(--open); font-weight: 600; }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; align-items: start; }
+.two > * { min-width: 0; display: grid; gap: 0.6rem; align-content: start; }
+pre.code { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.1rem; overflow-x: auto; font-family: var(--font-mono); font-size: 0.84rem; line-height: 1.55; color: var(--fg); }
+pre.code .c { color: var(--muted); }
+pre.code .e { color: var(--deny); }
+.tag { display: inline-block; font-family: var(--font-body); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.05rem 0.45rem; border-radius: 4px; vertical-align: 0.15em; white-space: nowrap; }
+.tag.ok { color: var(--accent); background: var(--accent-soft); }
+.tag.prop { color: var(--muted); border: 1px solid var(--rule); }
+.tag.open { color: var(--open); background: var(--open-soft); }
+.tag.lock { color: var(--lock); background: var(--lock-soft); }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; counter-reset: passo; }
+.steps li { counter-increment: passo; display: grid; grid-template-columns: 2.3rem 1fr; gap: 0.9rem; padding-block: 0.8rem; border-top: 1px solid var(--rule); }
+.steps li::before { content: counter(passo); font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--accent); line-height: 1.2; }
+.steps li > div { min-width: 0; display: grid; gap: 0.15rem; }
+.deny { color: var(--deny); font-weight: 600; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.filters button { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.85rem; border-radius: 999px; cursor: pointer; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); }
+.filters button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.adrs { display: grid; gap: 0; }
+.adr { display: grid; grid-template-columns: 5.6rem 1fr; gap: 1rem; padding-block: 1.1rem; border-top: 1px solid var(--rule); }
+.adr > div { min-width: 0; display: grid; gap: 0.45rem; }
+.adr .id { font-family: var(--font-mono); font-weight: 500; color: var(--accent); }
+.adr .area { font-size: 0.8rem; color: var(--muted); display: block; margin-top: 0.2rem; }
+.adr dl { margin: 0; display: grid; grid-template-columns: 10.5rem 1fr; gap: 0.35rem 1rem; font-size: 0.95rem; }
+.adr dt { color: var(--muted); }
+.adr dd { margin: 0; min-width: 0; }
+.adr dd ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.2rem; }
+.adr.aberta .id { color: var(--open); }
+
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1.2rem; }
+.timeline li { display: grid; gap: 0.3rem; align-content: start; padding-top: 0.8rem; border-top: 2px solid var(--rule); }
+.timeline li.pilot { border-top-color: var(--accent); }
+.timeline li.opt { border-top-style: dashed; }
+.timeline .n { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); }
+.timeline b { font-family: var(--font-display); font-weight: 600; font-size: 1.03rem; }
+.timeline span { font-size: 0.92rem; color: var(--muted); }
+
+.note { border-left: 3px solid var(--accent); padding: 0.8rem 1rem; background: var(--accent-soft); border-radius: 0 8px 8px 0; max-width: var(--measure); display: grid; gap: 0.4rem; }
+.note.open { border-left-color: var(--open); background: var(--open-soft); }
+.note.lock { border-left-color: var(--lock); background: var(--lock-soft); }
+ol.asks { margin: 0; padding-left: 1.3rem; display: grid; gap: 0.55rem; max-width: var(--measure); }
+footer { border-top: 1px solid var(--rule); padding-top: 1.5rem; font-size: 0.9rem; color: var(--muted); display: grid; gap: 0.5rem; }
+
+@media (max-width: 560px) {
+  .adr { grid-template-columns: 1fr; gap: 0.35rem; }
+  .adr dl { grid-template-columns: 1fr; gap: 0.1rem; }
+  .adr dd { margin-bottom: 0.45rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .filters button { transition: background-color 0.15s, color 0.15s; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hero">
+  <span class="eyebrow">GT IoTEdu · proposta v0.3 · variante schema por instituição · 02/10/2026</span>
+  <h1>IoTEdu multi-tenant: um schema por instituição, e o tenant vindo só do token</h1>
+  <p class="lead">Revisão da proposta de 30/09 (sugestões de Gustavo Satheler) com os direcionamentos e a reunião do GT de 02/10: núcleo agnóstico de nuvem com as dependências de provedor marcadas, um ADR por decisão, login pelo Firebase com o ID token verificado a cada requisição, tenant definido só pelo token (e não mais pelo host), <code>tenant_id NOT NULL</code> em toda tabela de tenant, logs brutos em armazenamento de objetos e todo o estado no PostgreSQL, com RPO e RTO definidos.</p>
+  <p class="muted">A reunião do GT de 02/10 indicou a variante irmã, com um banco central e <code>tenant_id</code>: <a href="arq-iotedu-multitenant-v20261002-tenantid.html">arq-iotedu-multitenant-v20261002-tenantid.html</a>. Esta variante fica registrada para a comparação e como alternativa, caso o isolamento garantido pelas permissões do banco volte a pesar mais. A comparação está no fim da página.</p>
+  <div class="facts">
+    <div class="fact"><b>Tenant só do token</b><span>o host passa a escolher só a marca; nunca autoriza</span></div>
+    <div class="fact"><b>1 schema e 1 papel</b><span>por instituição; o banco recusa acesso a outro schema</span></div>
+    <div class="fact"><b><code>tenant_id NOT NULL</code></b><span>também aqui, com <code>CHECK</code> fixo no valor do tenant do schema</span></div>
+    <div class="fact"><b>Estado só no banco</b><span>API e worker sem estado, sem Redis</span></div>
+    <div class="fact"><b>Logs brutos em objetos</b><span>API compatível com S3, fora do PostgreSQL</span></div>
+  </div>
+  <nav class="toc" aria-label="Seções">
+    <a href="#diretrizes">Diretrizes</a><a href="#arquitetura">Arquitetura</a><a href="#dependencias">Dependências</a><a href="#autenticacao">Autenticação</a><a href="#isolamento">Isolamento</a><a href="#prova">Teste</a><a href="#logs">Logs</a><a href="#estado">Estado e disponibilidade</a><a href="#adrs">ADRs</a><a href="#roteiro">Roteiro</a><a href="#variantes">Variantes</a><a href="#decidir">Para decidir</a>
+  </nav>
+</header>
+
+<section id="diretrizes">
+  <div class="head">
+    <span class="eyebrow">Origem das mudanças</span>
+    <h2>Os seis direcionamentos de 02/10 e onde entraram</h2>
+    <p class="muted">As sugestões de Gustavo Satheler (30/09) continuam a base: MVP o mais simples possível, uma instância PostgreSQL, um schema e um usuário de banco por instituição, credenciais no cofre, instituição nova como migração e tudo feito com o PostgreSQL. Esta tabela mostra o que os direcionamentos de hoje mudam nessa base.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Direcionamento</th><th>O que muda em relação à v0.1</th><th>Onde</th></tr></thead>
+    <tbody>
+      <tr><td>1. Desenho da arquitetura</td><td>Diagrama dos core features, agnóstico de plataforma; o que depende de um provedor (Identity Platform no GCP) aparece marcado em roxo. A v0.1 escolhia a AWS; agora a nuvem fica para depois, com esses pontos visíveis</td><td>Arquitetura, ADR-014</td></tr>
+      <tr><td>2. ADRs</td><td>As doze decisões da v0.1 ganham contexto e o motivo de cada alternativa descartada; as novas seguem o mesmo formato, e as abertas aparecem como abertas</td><td>ADRs</td></tr>
+      <tr><td>3. Autenticação</td><td>Firebase substitui o login central próprio com CAFe e Google da v0.1; o backend verifica o ID token no servidor em toda requisição, sem sessão. Em aberto: Identity Platform multi-tenancy ou projeto único com claim de tenant</td><td>ADR-005, ADR-006</td></tr>
+      <tr><td>4. Isolamento de tenants</td><td>O tenant vem somente do token verificado, não mais do host; o token escolhe o schema e o papel. As tabelas de cada schema ganham <code>tenant_id NOT NULL</code>, que na v0.1 não existia. Em aberto: um usuário pertence a um ou a vários tenants</td><td>ADR-003, ADR-004, ADR-007</td></tr>
+      <tr><td>5. Armazenamento de logs</td><td>Dois cenários estimados (normal e anomalia) com tamanho de alerta, pico de eventos por segundo e o que é guardado; logs brutos em objetos compatíveis com S3, e não mais no PostgreSQL como na v0.1</td><td>Logs, ADR-009, ADR-010</td></tr>
+      <tr><td>6. Estado e disponibilidade</td><td>A v0.1 já deixava o Redis de fora; a sessão por cookie dá lugar ao token. RPO e RTO definidos para o banco. Kubernetes depois: HPA na API e worker escalado pelo tamanho da fila</td><td>Estado, ADR-011 a ADR-013</td></tr>
+    </tbody>
+  </table></div>
+  <div class="head">
+    <h3>O que a reunião do GT de 02/10 acrescentou</h3>
+    <p class="muted">Reunião de cerca de 32 minutos com Douglas Fideles, Joao, Matheus Ciocca e Emanuel Ferreira, transcrita automaticamente; os momentos são aproximados.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Momento</th><th>Ponto levantado</th><th>Onde entrou</th></tr></thead>
+    <tbody>
+      <tr><td class="num">05:57</td><td>Joao: definir o conjunto mínimo de decisões, priorizar as que não podem ficar para depois, reduzir as opções restantes e compará-las com dados</td><td>Para decidir (agora e depois)</td></tr>
+      <tr><td class="num">07:21</td><td>Matheus: a híbrida é por contrato, não por tamanho da instituição; talvez só o hospital peça banco próprio</td><td>ADR-015</td></tr>
+      <tr><td class="num">11:08</td><td>Joao: log separado do banco; experimento para medir quanto log uma anomalia gera; políticas de retenção</td><td>Logs, ADR-009</td></tr>
+      <tr><td class="num">13:27</td><td>Matheus: log de rede e de conexão de usuário, uma semana no máximo; alertas e bloqueios, por mais tempo</td><td>Tabela de retenção</td></tr>
+      <tr><td class="num">14:24</td><td>Matheus: a instância da UNIPAMPA já gera alguns megabytes de log (com falsos positivos); a medição já foi pedida ao Claudio</td><td>Medição de logs</td></tr>
+      <tr><td class="num">15:44</td><td>Matheus: a retenção é política de cada instituição; não pode ficar fixa no código</td><td>ADR-019</td></tr>
+      <tr><td class="num">16:09</td><td>Douglas: um serviço de configuração por cliente, como num marketplace white label; camadas de armazenamento do S3 para guardar por anos a baixo custo</td><td>ADR-019, ADR-009</td></tr>
+      <tr><td class="num">19:05</td><td>Joao: log não precisa de acesso rápido; desacoplá-lo evita que um incidente degrade o banco da aplicação</td><td>ADR-009</td></tr>
+      <tr><td class="num">20:00</td><td>Joao: banco único com <code>tenant_id</code>, acesso definido pela autenticação do Firebase; separar depois, só se for preciso</td><td>Indica a variante irmã; ver Variantes</td></tr>
+      <tr><td class="num">22:33</td><td>Douglas: comunicação assíncrona, orientada a eventos; a instituição envia o evento, recebe sucesso, e o processamento vem depois</td><td>ADR-010</td></tr>
+      <tr><td class="num">23:58</td><td>Joao e Douglas: Kafka, MQTT ou RabbitMQ; definir o modelo primeiro e o produto depois, com custos</td><td>ADR-018</td></tr>
+      <tr><td class="num">24:44</td><td>Matheus: estimar o consumo mínimo e o recomendado de recursos antes de olhar preço de provedor; arquitetura agnóstica</td><td>Dependências, ADR-014</td></tr>
+      <tr><td class="num">25:14</td><td>Douglas: camadas, com a regra de negócio isolada de banco, fila e demais conexões</td><td>ADR-001, diagrama</td></tr>
+      <tr><td class="num">27:45</td><td>Joao: contêineres sem estado e dado persistido de imediato; se o servidor cair com dado só em memória, ele se perde</td><td>Estado, ADR-010</td></tr>
+      <tr><td class="num">29:05</td><td>Douglas: confirmar se os contêineres do sistema atual guardam algum estado</td><td>Roteiro, sprint 1</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="arquitetura">
+  <div class="head">
+    <span class="eyebrow">Visão geral</span>
+    <h2>Core features num núcleo agnóstico, com as dependências à vista</h2>
+    <p class="muted">O mesmo desenho da variante irmã; muda só o que está dentro do PostgreSQL. O núcleo (proxy, API e worker) é imagem de contêiner própria e roda igual em qualquer nuvem ou dentro de um hospital. À direita, serviços gerenciados que toda nuvem oferece. Em roxo, o único ponto que hoje prende a um provedor específico.</p>
+  </div>
+  <ul class="legend" aria-label="Legenda do diagrama">
+    <li><span class="sw core"></span>núcleo agnóstico, em contêiner</li>
+    <li><span class="sw mg"></span>serviço gerenciado com equivalente em qualquer nuvem</li>
+    <li><span class="sw lock"></span>depende de um provedor específico</li>
+  </ul>
+  <div class="diagram-wrap" role="img" aria-label="Diagrama: à esquerda, o Firebase Auth (Identity Platform, GCP) marcado como dependência de provedor, o painel web que faz login no Firebase e envia o ID token em toda requisição, e a instituição com gateway e sondas que só abrem conexões de saída. No centro, o núcleo agnóstico: proxy reverso, API sem estado com os módulos verificação de token, tenant do token, dispositivos, alertas, bloqueio, canal do gateway, ingestão e administração de tenants; worker que consome a fila; execução em Compose hoje e Kubernetes depois. À direita, serviços gerenciados: PostgreSQL com todo o estado, um schema e um papel por instituição e tenant_id NOT NULL, cofre de segredos, observabilidade, armazenamento de objetos para os logs brutos e backup contínuo.">
+    <svg viewBox="0 0 960 740" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="head"/></marker>
+        <marker id="seta-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="head-muted"/></marker>
+      </defs>
+
+      <rect x="20" y="20" width="200" height="132" rx="10" class="box-lock"/>
+      <text x="34" y="44" class="tb">Firebase Auth</text>
+      <text x="34" y="62" class="tl">Identity Platform · GCP</text>
+      <text x="34" y="84" class="tm">CAFe por SAML; Google e</text>
+      <text x="34" y="101" class="tm">Microsoft por OIDC</text>
+      <text x="34" y="123" class="tm">emite o ID token (JWT),</text>
+      <text x="34" y="140" class="tm">válido por 1 hora</text>
+
+      <path d="M120 190 L120 156" class="ln" marker-end="url(#seta)"/>
+      <text x="130" y="178" class="ta">1. login</text>
+
+      <rect x="20" y="190" width="200" height="120" rx="10" class="box"/>
+      <text x="34" y="214" class="tb">Painel web</text>
+      <text x="34" y="233" class="tm">Next.js no navegador,</text>
+      <text x="34" y="250" class="tm">com o SDK do Firebase</text>
+      <text x="34" y="272" class="ta">2. ID token em toda</text>
+      <text x="34" y="289" class="ta">requisição à API</text>
+      <path d="M220 250 L253 250" class="ln" marker-end="url(#seta)"/>
+
+      <text x="20" y="346" class="tb">Tenant sempre de</text>
+      <text x="20" y="364" class="tb">credencial verificada</text>
+      <text x="20" y="385" class="tm">pessoas: claim do ID token</text>
+      <text x="20" y="402" class="tm">máquinas: chave do dispositivo</text>
+
+      <rect x="20" y="430" width="200" height="270" rx="10" class="box"/>
+      <text x="34" y="455" class="tb">Instituição</text>
+      <text x="34" y="473" class="ta">só conexões de saída</text>
+      <rect x="32" y="486" width="176" height="96" rx="7" class="box"/>
+      <text x="44" y="508" class="tb">gateway</text>
+      <text x="44" y="527" class="tm">Kea DHCP e nftables;</text>
+      <text x="44" y="545" class="tm">long-poll da lista de</text>
+      <text x="44" y="563" class="tm">bloqueio assinada</text>
+      <rect x="32" y="592" width="176" height="96" rx="7" class="box"/>
+      <text x="44" y="614" class="tb">sondas</text>
+      <text x="44" y="633" class="tm">Zeek, Suricata, Snort;</text>
+      <text x="44" y="651" class="tm">agregam e enfileiram</text>
+      <text x="44" y="669" class="tm">em disco local</text>
+      <path d="M208 534 L253 534" class="ln" marker-end="url(#seta)"/>
+      <path d="M208 640 L253 640" class="ln" marker-end="url(#seta)"/>
+
+      <rect x="240" y="20" width="390" height="680" rx="14" class="frame"/>
+      <text x="258" y="46" class="tb">Núcleo IoTEdu · agnóstico</text>
+      <text x="258" y="65" class="tm">contêineres sem estado; a mesma imagem em</text>
+      <text x="258" y="82" class="tm">qualquer nuvem ou dentro de um cliente</text>
+
+      <path d="M220 104 L560 104 L560 136" class="ln-muted" marker-end="url(#seta-m)"/>
+      <text x="262" y="124" class="tm">verifica com as chaves públicas, em cache</text>
+
+      <rect x="256" y="140" width="40" height="550" rx="7" class="box-accent"/>
+      <text transform="translate(281 415) rotate(-90)" text-anchor="middle" class="tb">proxy reverso · TLS · Caddy</text>
+
+      <rect x="310" y="140" width="306" height="300" rx="10" class="box"/>
+      <text x="324" y="164" class="tb">API sem estado · N réplicas</text>
+      <rect x="322" y="178" width="140" height="40" rx="5" class="box-accent"/><text x="332" y="203" class="tn">verifica o token</text>
+      <rect x="466" y="178" width="140" height="40" rx="5" class="box-accent"/><text x="476" y="203" class="tn">tenant do token</text>
+      <rect x="322" y="228" width="140" height="40" rx="5" class="box"/><text x="332" y="253" class="tn">dispositivos</text>
+      <rect x="466" y="228" width="140" height="40" rx="5" class="box"/><text x="476" y="253" class="tn">alertas</text>
+      <rect x="322" y="278" width="140" height="40" rx="5" class="box"/><text x="332" y="303" class="tn">bloqueio</text>
+      <rect x="466" y="278" width="140" height="40" rx="5" class="box"/><text x="476" y="303" class="tn">canal do gateway</text>
+      <rect x="322" y="328" width="140" height="40" rx="5" class="box"/><text x="332" y="353" class="tn">ingestão</text>
+      <rect x="466" y="328" width="140" height="40" rx="5" class="box"/><text x="476" y="353" class="tn">config. por tenant</text>
+      <text x="324" y="390" class="tm">regras de negócio isoladas dos adaptadores</text>
+      <text x="324" y="408" class="tm">conecta com o papel do schema do tenant;</text>
+      <text x="324" y="426" class="tm">nenhuma sessão nem dado só em memória</text>
+      <path d="M616 200 L657 200" class="ln" marker-end="url(#seta)"/>
+
+      <rect x="310" y="455" width="306" height="115" rx="10" class="box"/>
+      <text x="324" y="479" class="tb">Worker · N réplicas</text>
+      <text x="324" y="498" class="tm">consome a fila (interface; broker em aberto)</text>
+      <text x="324" y="516" class="tm">grava alertas agregados no tenant certo</text>
+      <text x="324" y="534" class="tm">decide o bloqueio e publica a nova</text>
+      <text x="324" y="552" class="tm">versão da lista do gateway</text>
+      <path d="M616 480 L640 480 L640 232 L657 232" class="ln" marker-end="url(#seta)"/>
+
+      <rect x="310" y="585" width="306" height="105" rx="10" class="box"/>
+      <text x="324" y="609" class="tb">Execução</text>
+      <text x="324" y="628" class="tm">hoje: Docker Compose numa VM</text>
+      <text x="324" y="646" class="tm">depois: Kubernetes; HPA na API,</text>
+      <text x="324" y="664" class="tm">worker escalado pelo tamanho da fila</text>
+
+      <rect x="660" y="20" width="280" height="240" rx="10" class="box-mg"/>
+      <text x="676" y="44" class="tb">PostgreSQL gerenciado</text>
+      <text x="676" y="62" class="tm">motor portátil; o produto é da nuvem</text>
+      <text x="676" y="88" class="tn">todo o estado da aplicação</text>
+      <text x="676" y="108" class="tc">schema tn_… e papel por tenant</text>
+      <text x="676" y="128" class="tc">tenant_id NOT NULL + CHECK</text>
+      <text x="676" y="148" class="tn">fila (1ª impl.) no schema plataforma</text>
+      <text x="676" y="168" class="tn">alertas no schema do tenant</text>
+      <text x="676" y="196" class="ta">piloto: RPO ≤ 5 min · RTO ≤ 2 h</text>
+      <text x="676" y="214" class="ta">produção: RPO ≈ 0 · RTO ≤ 5 min</text>
+      <text x="676" y="240" class="tm">RDS, Cloud SQL ou Azure Database</text>
+
+      <rect x="660" y="280" width="280" height="74" rx="10" class="box-mg"/>
+      <text x="676" y="304" class="tb">Cofre de segredos</text>
+      <text x="676" y="323" class="tm">chaves de gateways e sondas</text>
+      <text x="676" y="341" class="tm">produto da nuvem, interface trocável</text>
+
+      <rect x="660" y="368" width="280" height="74" rx="10" class="box-mg"/>
+      <text x="676" y="392" class="tb">Observabilidade</text>
+      <text x="676" y="411" class="tm">OpenTelemetry; destino à escolha</text>
+      <text x="676" y="429" class="tm">tenant em cada linha de log</text>
+
+      <rect x="660" y="455" width="280" height="115" rx="10" class="box-mg"/>
+      <text x="676" y="479" class="tb">Armazenamento de objetos</text>
+      <text x="676" y="498" class="tm">API S3: S3, GCS, R2 ou MinIO</text>
+      <text x="676" y="518" class="tn">logs brutos em JSONL comprimido</text>
+      <text x="676" y="536" class="tn">tenant, data e hora no prefixo</text>
+      <text x="676" y="557" class="ta">nunca no PostgreSQL</text>
+
+      <rect x="660" y="585" width="280" height="105" rx="10" class="box-mg"/>
+      <text x="676" y="609" class="tb">Backup contínuo</text>
+      <text x="676" y="628" class="tm">WAL e snapshots em outra zona;</text>
+      <text x="676" y="646" class="tm">restauração ensaiada a cada</text>
+      <text x="676" y="664" class="tm">trimestre, com o RTO medido</text>
+
+      <path d="M120 688 L120 714 L648 714 L648 545 L657 545" class="ln-muted" marker-end="url(#seta-m)"/>
+      <text x="262" y="732" class="tm">lotes de logs brutos, direto ao armazenamento por URL pré-assinada emitida pela API</text>
+    </svg>
+  </div>
+  <p class="caption">Três setas cruzam a fronteira do núcleo vindas de fora: o painel, o gateway e as sondas, todos por conexão de saída até o proxy. O núcleo nunca abre conexão para dentro do campus. A seta tracejada de baixo é o único dado que não passa pela API: os lotes de logs brutos vão direto ao armazenamento de objetos, num prefixo do tenant que a API assina.</p>
+</section>
+
+<section id="dependencias">
+  <div class="head">
+    <span class="eyebrow">Para a escolha da nuvem</span>
+    <h2>Onde cada peça prende, e quanto</h2>
+    <p class="muted">A escolha da nuvem fica para depois. Esta tabela é o que essa escolha precisa olhar: cada linha diz qual interface o núcleo usa e qual produto a implementa em cada lugar.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Peça</th><th>Interface que o núcleo usa</th><th>AWS</th><th>GCP</th><th>Azure ou fora de nuvem</th><th>Dependência</th></tr></thead>
+    <tbody>
+      <tr><td>Identidade</td><td>JWT verificado com chaves públicas</td><td colspan="3">Firebase Authentication com Identity Platform (Google), usado de qualquer nuvem</td><td class="lockt">Alta com multi-tenancy (opção A); média com claim (opção B)</td></tr>
+      <tr><td>Banco</td><td>Protocolo PostgreSQL</td><td>RDS</td><td>Cloud SQL</td><td>Azure Database; PostgreSQL próprio</td><td>Baixa</td></tr>
+      <tr><td>Logs brutos</td><td>API S3</td><td>S3</td><td>Cloud Storage (interoperabilidade S3)</td><td>Azure Blob não fala S3: exige adaptador; MinIO; R2</td><td>Baixa; média no Azure</td></tr>
+      <tr><td>Segredos</td><td>Interface interna <code>segredos.obter()</code></td><td>Secrets Manager</td><td>Secret Manager</td><td>Key Vault; arquivo cifrado</td><td>Baixa</td></tr>
+      <tr><td>Observabilidade</td><td>OpenTelemetry</td><td>CloudWatch</td><td>Cloud Logging</td><td>Azure Monitor; Grafana</td><td>Baixa</td></tr>
+      <tr><td>Execução</td><td>Imagem OCI</td><td>EC2, ECS, EKS</td><td>Compute Engine, GKE</td><td>VM, AKS; servidor do cliente</td><td>Baixa</td></tr>
+      <tr><td>Infraestrutura em código</td><td>OpenTofu</td><td colspan="3">Um módulo por nuvem, com as mesmas saídas</td><td>Média: reescrever módulos</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note lock">
+    <b>O Firebase não obriga a rodar o backend no GCP</b>
+    <span>A verificação do ID token só precisa das chaves públicas do Google, que a API baixa e guarda em cache. O backend pode ficar na AWS, no Azure ou dentro de um hospital. O que fica no Google são as contas de usuário e, na opção A, o próprio modelo de tenants.</span>
+  </div>
+  <div class="note">
+    <b>Primeiro recursos, depois preços</b>
+    <span>Como sugeriu Matheus, o custo começa pelo consumo, não pela tabela de um provedor: para cada peça, um perfil mínimo e um recomendado (vCPU, memória, disco, IOPS, GB armazenados por mês, eventos por segundo). Com esses números, comparar AWS, GCP e Azure vira consulta às calculadoras, sem mudar o desenho. Os perfis saem da medição de logs e do teste de carga da sprint 1.</span>
+  </div>
+</section>
+
+<section id="autenticacao">
+  <div class="head">
+    <span class="eyebrow">Autenticação · decidida em 02/10</span>
+    <h2>Login no Firebase, verificação do ID token a cada requisição</h2>
+    <p class="muted">O cliente prova quem é ao Firebase; o backend não confia no cliente e verifica o token sozinho, em toda requisição. Substitui o login central da v0.1 (um SP e um cliente OAuth próprios, com código de uso único devolvendo a pessoa ao host do tenant). Não há sessão no servidor, o que também cumpre a diretriz de aplicação sem estado.</p>
+  </div>
+  <div class="two">
+    <ol class="steps">
+      <li><div><b>Login no Firebase</b><span class="muted">O painel usa o SDK do Firebase: CAFe por SAML, Google ou Microsoft. Recebe um ID token (JWT) válido por 1 hora, renovado pelo SDK.</span></div></li>
+      <li><div><b>Token em toda requisição</b><span class="muted"><code>Authorization: Bearer &lt;ID token&gt;</code>. Nada de cookie de sessão.</span></div></li>
+      <li><div><b>A API verifica</b><span class="muted">Assinatura (chaves públicas em cache), emissor, audiência igual ao projeto, validade. Falhou: <span class="deny">401</span>.</span></div></li>
+      <li><div><b>O tenant sai do token</b><span class="muted">Da claim de tenant (opção A ou B, abaixo), mapeada para o tenant interno. Tenant inexistente, suspenso ou sem pertinência: <span class="deny">403</span>.</span></div></li>
+      <li><div><b>Revogação onde importa</b><span class="muted">Bloqueio em massa e administração também consultam se o token foi revogado; isso custa uma chamada de rede, então não vale para toda requisição.</span></div></li>
+    </ol>
+    <pre class="code"><span class="c"># esboço; a validar no projeto de referência</span>
+from firebase_admin import auth
+
+def tenant_da_requisicao(authorization: str,
+                         sensivel: bool = False) -> Tenant:
+    token = authorization.removeprefix("Bearer ")
+    try:
+        claims = auth.verify_id_token(
+            token, check_revoked=sensivel)
+    except (auth.InvalidIdTokenError, ValueError):
+        raise HTTPException(401)
+
+    <span class="c"># opção B: claim gravada pelo backend</span>
+    externo = claims.get("tenant_id")
+    <span class="c"># opção A: claims["firebase"]["tenant"]</span>
+
+    tenant = tenants.por_id_externo(externo)
+    if tenant is None or not tenant.ativo:
+        raise HTTPException(403)
+    return tenant   <span class="c"># define o tenant, o papel e o pool</span></pre>
+  </div>
+
+  <div class="head">
+    <h3>Em aberto: onde o tenant mora no Firebase <span class="tag open">em aberto</span></h3>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Critério</th><th>A. Identity Platform multi-tenancy</th><th>B. Projeto único com claim de tenant</th></tr></thead>
+    <tbody>
+      <tr><td>Onde está o tenant</td><td>Claim <code>firebase.tenant</code>, posta pelo próprio Identity Platform</td><td>Custom claim <code>tenant_id</code>, gravada pelo backend com o Admin SDK</td></tr>
+      <tr><td>Provedores de login</td><td>Cada tenant tem os seus: o IdP SAML de cada instituição fica no tenant dela</td><td>Todos no mesmo projeto; o painel escolhe o provedor pela instituição</td></tr>
+      <tr><td>Contas</td><td>Isoladas por tenant; a mesma pessoa em dois tenants são duas contas</td><td>Um único cadastro; uma conta por pessoa</td></tr>
+      <tr><td>Plano exigido</td><td colspan="2">SAML e OIDC exigem Firebase Authentication com Identity Platform nas duas opções; a diferença é o recurso de tenants</td></tr>
+      <tr><td>Troca de tenant ativo</td><td>Novo login no outro tenant</td><td>O backend grava nova claim e o cliente força a renovação do token</td></tr>
+      <tr><td>Limites</td><td>Recurso específico do Identity Platform</td><td>Claims de até 1.000 bytes; mudança só vale no próximo token (até 1 hora, ou renovação forçada)</td></tr>
+      <tr><td>Saída do Google</td><td class="lockt">Recriar tenants, provedores e contas em outro produto; o modelo não existe igual fora do GCP</td><td>O backend só lê uma claim de um JWT; Keycloak, Cognito ou Entra ID emitem claim equivalente. As contas ainda precisam migrar</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note open">
+    <b>Inclinação desta análise: B, a confirmar antes da sprint de identidade</b>
+    <span>A opção B mantém o backend agnóstico, que é o objetivo do desenho: trocar de provedor de identidade muda só o verificador. A opção A compensa se as instituições quiserem administrar os próprios provedores ou exigirem contas separadas. Nos dois casos, falta validar com a RNP o registro do Firebase como provedor de serviço na CAFe: a CAFe é uma federação, e o Firebase configura um provedor SAML por IdP de instituição, sem o serviço de descoberta da federação.</span>
+  </div>
+</section>
+
+<section id="isolamento">
+  <div class="head">
+    <span class="eyebrow">Isolamento · decidido em 02/10</span>
+    <h2>O token escolhe o schema; o banco é a última barreira</h2>
+    <p class="muted">O mecanismo da v0.1 continua: um papel de banco por instituição, com <code>search_path</code> fixo e permissão só no próprio schema. Muda a origem do tenant, que deixa de ser o host, e entra <code>tenant_id NOT NULL</code> nas tabelas.</p>
+  </div>
+  <div class="two">
+    <ol class="steps">
+      <li><div><b>O painel pede com o token</b><span class="muted"><code>GET /api/dispositivos</code> com <code>Authorization: Bearer &lt;ID token&gt;</code>.</span></div></li>
+      <li><div><b>O token vira tenant</b><span class="muted">A API verifica o token e lê a claim de tenant; consulta <code>plataforma.tenant</code>. Tenant desconhecido ou suspenso: <span class="deny">403</span>, nunca um tenant padrão.</span></div></li>
+      <li><div><b>O host não decide</b><span class="muted"><code>unipampa.iotedu.org</code> escolhe a marca e o botão de login. Se o host apontar um tenant e o token outro: <span class="deny">403</span> e registro de segurança.</span></div></li>
+      <li><div><b>A conexão usa o papel do tenant</b><span class="muted">A API conecta como <code>tn_unipampa_app</code>, cujo <code>search_path</code> aponta para <code>tn_unipampa</code>. As consultas não citam schema.</span></div></li>
+      <li><div><b>O banco é a última barreira</b><span class="muted">Ler outro schema dá <span class="deny">permission denied</span>; gravar linha com outro <code>tenant_id</code> viola o <code>CHECK</code>.</span></div></li>
+    </ol>
+    <pre class="code"><span class="c">-- criar-tenant ufscar "UFSCar" (tenant 12)</span>
+CREATE ROLE tn_ufscar_app LOGIN NOINHERIT PASSWORD '…';
+ALTER ROLE tn_ufscar_app SET search_path = tn_ufscar;
+CREATE SCHEMA tn_ufscar;
+<span class="c">-- alembic upgrade head, dentro de tn_ufscar,
+-- com o id do tenant como parâmetro:</span>
+CREATE TABLE dispositivo (
+  tenant_id int NOT NULL DEFAULT 12
+            CHECK (tenant_id = 12),
+  id bigint GENERATED ALWAYS AS IDENTITY,
+  …,
+  PRIMARY KEY (tenant_id, id));
+GRANT USAGE ON SCHEMA tn_ufscar TO tn_ufscar_app;
+
+<span class="c">-- conectado como tn_ufscar_app:</span>
+SELECT * FROM tn_unipampa.dispositivo;
+<span class="e">ERROR:  permission denied for schema tn_unipampa</span></pre>
+  </div>
+  <div class="two">
+    <div>
+      <h3>Por que <code>tenant_id</code> num schema que já isola</h3>
+      <p class="muted">A diretriz vale para as duas variantes. Aqui ela protege menos, porque o papel já não enxerga outro schema, mas traz três ganhos: a linha carrega a própria origem em backups, exportações e cópias; uma linha copiada para o schema errado é recusada pelo <code>CHECK</code>; e uma futura consolidação num banco central, se o grupo mudar de ideia, fica um <code>INSERT … SELECT</code>. O custo é o fim do "as tabelas continuam como estão" da v0.1: cerca de 40 h de referência.</p>
+    </div>
+    <div>
+      <h3>O teste do CI, por schema</h3>
+      <p class="muted">O mesmo teste da variante irmã roda em cada schema <code>tn_…</code> e falha se alguma tabela vier sem <code>tenant_id NOT NULL</code> ou sem o <code>CHECK</code> com o valor do tenant. O schema <code>plataforma</code> guarda só tabelas globais (tenants, membros, fila) e fica numa lista explícita.</p>
+    </div>
+  </div>
+
+  <div class="head">
+    <h3>Em aberto: um usuário pertence a um tenant ou a vários? <span class="tag open">em aberto</span></h3>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Critério</th><th>Um tenant por usuário</th><th>Vários tenants por usuário</th></tr></thead>
+    <tbody>
+      <tr><td>Modelo</td><td><code>plataforma.usuario.tenant_id NOT NULL</code></td><td>Tabela <code>plataforma.membro (usuario_id, tenant_id, papel)</code></td></tr>
+      <tr><td>Tenant ativo</td><td>Sempre o mesmo; um papel de banco por conta</td><td>Precisa vir do token também: trocar de tenant é renovar o token (B) ou fazer outro login (A), e trocar de papel de banco</td></tr>
+      <tr><td>Quem precisa de vários</td><td>Ninguém no piloto; quem atua em duas instituições usa duas contas</td><td>Equipe de suporte do IoTEdu, pesquisadores com dois vínculos, um consórcio ou a RNP</td></tr>
+      <tr><td>Risco</td><td>Contas duplicadas para a mesma pessoa</td><td>Mais lugares onde o tenant ativo pode sair errado; o papel do banco ainda contém o estrago</td></tr>
+      <tr><td>Combina com</td><td>Opção A do Firebase, que já separa contas por tenant</td><td>Opção B, com a claim do tenant ativo</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note open">
+    <b>Sugestão para a discussão</b>
+    <span>Criar <code>plataforma.membro</code> desde já, mas aceitar só um tenant ativo por conta no piloto. O acesso da equipe de suporte entra como papel de plataforma, separado, auditado e com prazo, e não como permissão em todos os schemas.</span>
+  </div>
+</section>
+
+<section id="prova">
+  <div class="head">
+    <span class="eyebrow">Projeto de referência</span>
+    <h2>O isolamento por schema já foi testado; a origem do tenant, ainda não</h2>
+  </div>
+  <div class="note">
+    <b>11 de 11 testes passaram contra um PostgreSQL 16 real (v0.1)</b>
+    <span>Dispositivo de um tenant não aparece no outro; o papel não lê outro schema nem a plataforma; evento vai para o tenant da credencial e reentrega não duplica; toda rota de dados usa a sessão do tenant. Os testes de host (sessão presa ao host, host desconhecido sem tenant padrão) precisam virar testes de token: token sem claim, token de outro projeto, host e token divergentes. Faltam também os testes do <code>CHECK</code> de <code>tenant_id</code>. Cerca de 15 a 20 h de referência.</span>
+  </div>
+</section>
+
+<section id="logs">
+  <div class="head">
+    <span class="eyebrow">Logs · decidido em 02/10</span>
+    <h2>Quanto log, em que pico, e onde cada tipo fica</h2>
+    <p class="muted">Os números abaixo são hipóteses desta análise para dimensionar o desenho. Eles só viram premissa depois da medição na UNIPAMPA, descrita no fim da seção.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>O que é guardado</th><th>Exemplo</th><th>Onde</th><th>Retenção padrão (ajustável por instituição)</th></tr></thead>
+    <tbody>
+      <tr><td>Alerta e bloqueio estruturados</td><td>Assinatura, origem, destino, severidade, contagem; quem bloqueou o quê e quando</td><td>PostgreSQL, com <code>tenant_id</code></td><td>12 meses</td></tr>
+      <tr><td>Evento bruto de alerta</td><td>Linha <code>alert</code> do eve.json; notice.log do Zeek</td><td>Objetos: JSONL comprimido por tenant, data e hora</td><td>30 dias na camada padrão, depois camada fria até 1 ano</td></tr>
+      <tr><td>Log de rede e de conexão</td><td>conn.log e dns.log do Zeek; <code>flow</code> do eve.json; conexões de usuários a serviços da TI</td><td>Objetos, só se a instituição ativar</td><td>7 dias</td></tr>
+      <tr><td>Tráfego bruto (pcap)</td><td>Pacotes capturados</td><td>Não sai da instituição</td><td>Definida pela instituição</td></tr>
+      <tr><td>Logs da aplicação</td><td>API e worker, com o tenant em cada linha</td><td>Observabilidade</td><td>30 dias, fixo (operação da plataforma)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">
+    <b>A retenção é política de cada instituição, não código</b>
+    <span>Uma instituição pode exigir um mês e outra um ano. A tabela acima traz só os valores padrão; cada tenant ajusta os seus dentro de limites (por exemplo, de 7 dias a 5 anos), numa configuração por tenant guardada no banco (ADR-019). Como o log raramente é lido e pode demorar minutos para voltar, o que passa de 30 dias desce para camadas frias do armazenamento (no S3, Glacier; no GCP, Coldline ou Archive), bem mais baratas. As regras de ciclo de vida do bucket são geradas a partir da configuração de cada tenant, por prefixo.</span>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Medida</th><th class="r">Cenário normal</th><th class="r">Cenário de anomalia</th></tr></thead>
+    <tbody>
+      <tr><td>Tamanho de um alerta bruto (eve.json)</td><td class="r num">≈ 1,5 KB; ≈ 0,3 KB comprimido</td><td class="r num">igual</td></tr>
+      <tr><td>Linha de alerta no PostgreSQL, com índices</td><td class="r num">≈ 0,8 KB</td><td class="r num">igual</td></tr>
+      <tr><td>Taxa por instituição</td><td class="r num">0,2 alerta/s (≈ 17 mil por dia)</td><td class="r num">1.000 alertas/s por até 1 h</td></tr>
+      <tr><td>Pico por instituição</td><td class="r num">5 alertas/s</td><td class="r num">1.000 alertas/s (varredura, worm, DDoS)</td></tr>
+      <tr><td>Pico da plataforma, 10 instituições</td><td class="r num">50 eventos/s</td><td class="r num">3.000 eventos/s (três ao mesmo tempo)</td></tr>
+      <tr><td>Bruto por instituição</td><td class="r num">≈ 26 MB/dia (≈ 5 MB comprimido)</td><td class="r num">+5,4 GB por hora (≈ 1 GB comprimido)</td></tr>
+      <tr><td>Entrada na fila do PostgreSQL</td><td class="r num">≈ 17 mil linhas/dia por instituição</td><td class="r num">dezenas a centenas por minuto, após agregação</td></tr>
+      <tr class="total"><td>Por ano, 10 instituições</td><td class="r num">Postgres ≈ 10 GB (50 GB sem agregar); objetos ≈ 18 GB</td><td class="r num">objetos: +1 GB por hora de anomalia em cada instituição</td></tr>
+      <tr><td>Se a instituição ativar conn.log</td><td class="r num">≈ 400 MB/dia comprimido por instituição</td><td class="r num">≈ 1,5 TB/ano com 10 instituições</td></tr>
+    </tbody>
+  </table></div>
+  <div class="two">
+    <div>
+      <h3>O que os números decidem</h3>
+      <p class="muted">O pico de anomalia (3.000 eventos/s) passa do limite que a primeira implementação da fila, no PostgreSQL, aguenta com folga (o gatilho é 500 eventos/s sustentados), e encareceria qualquer broker. Por isso o caminho bruto não passa pela fila: a sonda envia lotes comprimidos (a cada 60 s ou 5 MB) direto ao armazenamento de objetos, por uma URL pré-assinada que a API emite para o prefixo do tenant. Na fila entra só o alerta agregado, por assinatura e origem em janelas de 60 s. Sem agregação, o pior momento do campus seria também o pior momento do banco.</p>
+    </div>
+    <div>
+      <h3>Custo e isolamento no armazenamento</h3>
+      <p class="muted">Sem metadados de fluxo, o armazenamento de objetos fica na ordem de US$ 1 a 2 por mês com 10 instituições; com conn.log, na casa das dezenas de dólares e crescendo (valores a conferir). O prefixo <code>logs/tenant=7/data=2026-10-02/hora=14/</code> é definido pela API a partir da credencial da sonda, nunca pela sonda, e a regra de ciclo de vida do bucket cuida da retenção sem código.</p>
+    </div>
+  </div>
+  <div class="note">
+    <b>Como medir antes de fixar as premissas</b>
+    <span>A medição na instância da UNIPAMPA já foi pedida ao Claudio; ela já tem alguns megabytes de log, inflados por falsos positivos que ainda serão corrigidos. Por 14 dias: bytes por alerta (média e p95) de cada ferramenta; eventos por segundo em janelas de 1 s (p50, p99 e máximo); megabytes por minuto e por dia; volume de conn.log e dns.log. E uma anomalia controlada, com varredura no laboratório, para medir o pico real e o efeito da agregação. A conta final é simples: megabytes por minuto em cada cenário, vezes o período de retenção, vezes o número de instituições. Separar o que é falso positivo, para não dimensionar pelo erro. Cerca de 16 h de referência, na sprint 1.</span>
+  </div>
+</section>
+
+<section id="estado">
+  <div class="head">
+    <span class="eyebrow">Estado e disponibilidade · decidido em 02/10</span>
+    <h2>Todo o estado no banco, e dois números para o banco</h2>
+    <p class="muted">A aplicação não guarda estado: qualquer réplica da API ou do worker pode morrer a qualquer momento. A v0.1 já deixava o Redis de fora e punha a fila no PostgreSQL; com o ID token verificado a cada requisição, some também a sessão por cookie.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Estado</th><th>Na v0.1</th><th>Nesta versão</th></tr></thead>
+    <tbody>
+      <tr><td>Sessão de login</td><td>Cookie de sessão preso ao host</td><td>Não existe: o ID token vai em cada requisição e é verificado</td></tr>
+      <tr><td>Lock do auto-bloqueio</td><td>Não definido</td><td><code>pg_advisory_xact_lock</code> por dispositivo, no schema do tenant</td></tr>
+      <tr><td>Deduplicação de eventos</td><td>Gravação idempotente por <code>id_externo</code></td><td>Igual: <code>UNIQUE (tenant_id, id_externo)</code> e <code>ON CONFLICT DO NOTHING</code></td></tr>
+      <tr><td>Fila de eventos</td><td>PostgreSQL, <code>SKIP LOCKED</code></td><td>Igual, como primeira implementação atrás de uma interface</td></tr>
+      <tr><td>Painel em tempo real</td><td><code>LISTEN/NOTIFY</code></td><td>Igual; perder a conexão só atrasa a tela</td></tr>
+      <tr><td>Logs brutos</td><td>PostgreSQL</td><td>Objetos</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note">
+    <b>Persistir antes de responder</b>
+    <span>Joao lembrou o risco: se o servidor cair com dado só em memória, o dado se perde. A regra é a API só responder <code>202 Accepted</code> à sonda ou ao gateway depois que o evento estiver gravado de forma durável (no banco ou no broker); o processamento vem depois, no worker. Falta confirmar se os contêineres do sistema atual seguem essa regra ou guardam algo localmente: é a primeira tarefa da sprint 1.</span>
+  </div>
+  <div class="two">
+    <div>
+      <h3>Persistência não é disponibilidade</h3>
+      <p class="muted">Volume persistente e backup garantem que os dados não se percam. Não garantem que o serviço continue no ar: se a instância do banco cair, tudo que depende dela para até alguém restaurar. Por isso o banco tem dois números, aprovados pelo grupo e medidos em ensaio:</p>
+      <p><b>RPO</b> (recovery point objective): quanto dado aceitamos perder.<br><b>RTO</b> (recovery time objective): quanto tempo aceitamos ficar fora do ar.</p>
+    </div>
+    <div>
+      <h3>O que continua funcionando com o banco fora</h3>
+      <p class="muted">O gateway mantém a última lista de bloqueio e continua bloqueando. As sondas acumulam eventos na fila em disco e reenviam depois; enquanto o disco aguentar, nenhum evento se perde. O painel fica fora do ar. Por isso o RTO mede, na prática, quanto tempo a equipe da instituição fica sem enxergar, não sem proteção.</p>
+    </div>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Fase</th><th>RPO</th><th>RTO</th><th>Como se cumpre</th></tr></thead>
+    <tbody>
+      <tr><td>Piloto</td><td class="num">≤ 5 min</td><td class="num">≤ 2 h</td><td>Backup contínuo com recuperação a um ponto no tempo (PITR) em instância única; restauração em instância nova e troca do endereço</td></tr>
+      <tr><td>Produção, primeiro cliente pagante</td><td class="num">≈ 0</td><td class="num">≤ 5 min</td><td>Standby síncrono em outra zona com failover automático (Multi-AZ ou alta disponibilidade regional)</td></tr>
+      <tr><td>Desastre regional</td><td class="num">≤ 1 h</td><td class="num">≤ 24 h</td><td>Cópia dos backups em outra região; só quando um contrato pedir</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">
+    <b>RPO e RTO que nunca foram ensaiados são desejo, não número</b>
+    <span>A cada trimestre, restaurar o banco de produção num ambiente separado, a partir do backup, e cronometrar. O tempo medido é o RTO real; a diferença entre o último dado restaurado e o momento escolhido é o RPO real. O primeiro ensaio entra na sprint 7.</span>
+  </div>
+
+  <div class="two">
+    <div>
+      <h3>Kubernetes pode vir depois</h3>
+      <p class="muted">No piloto, réplicas fixas em Docker Compose numa VM bastam. Quando uma VM não bastar ou for preciso deploy sem interrupção, a mesma imagem vai para Kubernetes gerenciado. O autoscaling horizontal (HPA) funciona bem para a API, por CPU ou por requisições por segundo.</p>
+    </div>
+    <div>
+      <h3>O worker escala pela fila, não por CPU</h3>
+      <p class="muted">O worker passa a maior parte do tempo esperando o banco e o armazenamento. Numa anomalia, a fila cresce enquanto a CPU continua baixa, e um HPA por CPU não reagiria. O sinal certo é o tamanho da fila, por exemplo com KEDA consultando <code>SELECT count(*) FROM fila_evento WHERE estado = 'pendente'</code>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="adrs">
+  <div class="head">
+    <span class="eyebrow">Decisões arquiteturais</span>
+    <h2>Vinte e um ADRs: contexto, decisão e o que foi descartado</h2>
+    <p class="muted"><span class="tag ok">decidida</span> direcionamento de 02/10; <span class="tag prop">proposta</span> vem da v0.1 ou desta análise e precisa de aprovação; <span class="tag open">em aberto</span> decisão pendente, com as opções.</p>
+  </div>
+  <div class="filters" role="group" aria-label="Filtrar decisões por área">
+    <button type="button" data-area="todas" aria-pressed="true">Todas</button>
+    <button type="button" data-area="dados" aria-pressed="false">Dados e isolamento</button>
+    <button type="button" data-area="identidade" aria-pressed="false">Identidade</button>
+    <button type="button" data-area="eventos" aria-pressed="false">Eventos e logs</button>
+    <button type="button" data-area="infra" aria-pressed="false">Infraestrutura e operação</button>
+    <button type="button" data-area="aberta" aria-pressed="false">Em aberto</button>
+  </div>
+  <div class="adrs" id="lista-adrs">
+    <article class="adr" data-area="infra"><div><span class="id">ADR-001</span><span class="area">infraestrutura</span></div><div>
+      <h3>Backend central, em camadas, com contêineres sem estado <span class="tag ok">decidida</span></h3>
+      <dl><dt>Contexto</dt><dd>Escalabilidade é requisito, o número de instituições é desconhecido e a equipe é de alunos com pouca experiência em operação.</dd>
+      <dt>Decisão</dt><dd>Uma instalação atende todas as instituições; API e worker em contêiner, sem estado; regras de negócio numa camada própria, que fala com banco, fila, armazenamento e identidade só por interfaces (portas e adaptadores). Trocar o banco, o broker ou o provedor não toca a regra de negócio.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Pilha por cliente: custo e operação crescem a cada instituição; "não vai escalar de forma alguma".</li><li>Microsserviços: peças demais para a equipe, sem ganho no tamanho atual.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Um módulo precisar escalar ou ser publicado em ritmo muito diferente dos outros.</dd></dl></div></article>
+
+    <article class="adr" data-area="dados"><div><span class="id">ADR-002</span><span class="area">dados</span></div><div>
+      <h3>Uma instância PostgreSQL, um schema e um papel por tenant <span class="tag prop">proposta</span></h3>
+      <dl><dt>Contexto</dt><dd>A equipe é de alunos; o isolamento precisa resistir ao erro de uma consulta sem filtro (Satheler, 30/09).</dd>
+      <dt>Decisão</dt><dd>Um schema <code>tn_…</code> e um papel <code>tn_…_app</code> por instituição, com <code>search_path</code> fixo e permissão só no próprio schema; o schema <code>plataforma</code> guarda tenants, membros e a fila.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Banco central com <code>tenant_id</code> e RLS: o isolamento depende do código e de configuração (é a variante irmã, indicada pela reunião de 02/10).</li><li>Banco por instituição: custo fixo por cliente.</li><li>Tudo no mesmo schema sem <code>tenant_id</code>: não há como separar.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Centenas de tenants, migrações longas demais ou consultas entre tenants frequentes.</dd></dl></div></article>
+
+    <article class="adr" data-area="dados"><div><span class="id">ADR-003</span><span class="area">dados</span></div><div>
+      <h3><code>tenant_id NOT NULL</code> com <code>CHECK</code> em toda tabela de tenant <span class="tag ok">decidida</span></h3>
+      <dl><dt>Contexto</dt><dd>A diretriz de 02/10 vale para as duas variantes. Num schema por tenant, a coluna não é a barreira principal, mas dá proveniência à linha e barra cópia para o schema errado.</dd>
+      <dt>Decisão</dt><dd><code>tenant_id int NOT NULL DEFAULT &lt;id&gt; CHECK (tenant_id = &lt;id&gt;)</code>, gerado pela migração com o id do tenant do schema; chave primária começando por ele; teste no CI em cada schema.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Tabelas sem <code>tenant_id</code> (v0.1): contraria a diretriz e perde a origem da linha fora do schema.</li><li>Chave estrangeira para <code>plataforma.tenant</code>: exigiria dar ao papel do tenant acesso ao schema da plataforma.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Não se aplica.</dd></dl></div></article>
+
+    <article class="adr" data-area="dados identidade"><div><span class="id">ADR-004</span><span class="area">dados e identidade</span></div><div>
+      <h3>Tenant definido somente pela credencial verificada <span class="tag ok">decidida</span></h3>
+      <dl><dt>Contexto</dt><dd>Hoje o <code>?institution_id=</code> vem do cliente; tudo que o cliente envia pode ser forjado.</dd>
+      <dt>Decisão</dt><dd>Pessoas: tenant das claims do ID token verificado. Máquinas: tenant da chave do dispositivo, consultada no servidor. Tenant enviado pelo cliente e divergente: 403 e registro de segurança.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Host, como na v0.1: bom para a marca, mas não prova quem é a pessoa; um cookie roubado num host valeria nele.</li><li>Cabeçalho <code>X-Tenant</code> ou parâmetro: forjável.</li><li>Escolha numa lista sem validação no servidor: o mesmo problema de hoje.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Não se aplica.</dd></dl></div></article>
+
+    <article class="adr" data-area="identidade"><div><span class="id">ADR-005</span><span class="area">identidade</span></div><div>
+      <h3>Login com Firebase e ID token verificado a cada requisição <span class="tag ok">decidida</span> <span class="tag lock">GCP</span></h3>
+      <dl><dt>Contexto</dt><dd>As integrações feitas à mão com Google e CAFe viram manutenção, e cada provedor novo vira código (Laviola, 01/10).</dd>
+      <dt>Decisão</dt><dd>Clientes autenticam pelo SDK do Firebase; o backend verifica assinatura, emissor, audiência e validade em toda requisição, sem sessão; revogação consultada em operações sensíveis.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Login próprio com SAML e OAuth: manutenção contínua e risco de segurança.</li><li>Sessão no servidor: cria estado fora do banco.</li><li>Verificar só no frontend: o cliente controla o próprio código.</li><li>Keycloak operado pela equipe: mais uma peça crítica para alunos manterem no ar.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Uma instituição recusar o Google como operador dos dados de login: Cognito, Entra ID ou Keycloak gerenciado; na opção B, muda só o verificador.</dd></dl></div></article>
+
+    <article class="adr aberta" data-area="identidade aberta"><div><span class="id">ADR-006</span><span class="area">identidade</span></div><div>
+      <h3>Onde o tenant mora no Firebase <span class="tag open">em aberto</span></h3>
+      <dl><dt>Contexto</dt><dd>O Firebase oferece duas formas de separar instituições, com graus diferentes de dependência do GCP.</dd>
+      <dt>Opções</dt><dd><ul><li>A. Identity Platform multi-tenancy: provedores e contas por tenant; prende a identidade ao GCP.</li><li>B. Projeto único com claim <code>tenant_id</code> gravada pelo backend: backend agnóstico; claims limitadas a 1.000 bytes e atualizadas na renovação do token.</li></ul></dd>
+      <dt>Inclinação</dt><dd>B, pelo objetivo de manter o núcleo agnóstico. Decidir antes da sprint 4, depois de validar o registro na CAFe com a RNP.</dd></dl></div></article>
+
+    <article class="adr aberta" data-area="identidade aberta"><div><span class="id">ADR-007</span><span class="area">identidade</span></div><div>
+      <h3>Um usuário pertence a um tenant ou a vários <span class="tag open">em aberto</span></h3>
+      <dl><dt>Contexto</dt><dd>Suporte, pesquisadores com dois vínculos e consórcios podem precisar de mais de um tenant; a regra do token exige que o tenant ativo também venha do token.</dd>
+      <dt>Opções</dt><dd><ul><li>Um tenant por usuário: regra trivial; quem tem dois vínculos usa duas contas.</li><li>Vários: tabela <code>membro</code>; trocar de tenant é renovar o token ou fazer outro login.</li></ul></dd>
+      <dt>Inclinação</dt><dd>Tabela <code>membro</code> desde já, um tenant ativo por conta no piloto, suporte como papel de plataforma auditado.</dd></dl></div></article>
+
+    <article class="adr" data-area="dados"><div><span class="id">ADR-008</span><span class="area">dados</span></div><div>
+      <h3>Papel por tenant como barreira, com suíte de isolamento no CI <span class="tag prop">proposta</span></h3>
+      <dl><dt>Contexto</dt><dd>A aplicação pode errar o tenant; o banco precisa recusar o resto.</dd>
+      <dt>Decisão</dt><dd>Toda rota de dados usa a conexão do papel do tenant do token; o papel não lê outro schema nem a plataforma; a suíte de isolamento (11 testes da v0.1, mais os de token e de <code>CHECK</code>) roda em todo PR.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Um papel único com <code>SET search_path</code> por requisição: um esquecimento aponta para o schema errado com permissão total.</li><li>RLS dentro de cada schema: redundante com o papel.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Não se aplica.</dd></dl></div></article>
+
+    <article class="adr" data-area="eventos"><div><span class="id">ADR-009</span><span class="area">eventos e logs</span></div><div>
+      <h3>Logs brutos em armazenamento de objetos compatível com S3 <span class="tag ok">decidida</span></h3>
+      <dl><dt>Contexto</dt><dd>Uma anomalia gera até 1.000 alertas/s por instituição; no PostgreSQL, isso disputaria o banco que guarda todo o estado.</dd>
+      <dt>Decisão</dt><dd>JSONL comprimido, particionado por tenant, data e hora; lotes enviados por URL pré-assinada; retenção por regra de ciclo de vida; no banco, só o alerta estruturado.</dd>
+      <dt>Descartadas</dt><dd><ul><li>PostgreSQL, como na v0.1: volume e pico disputam o banco do estado, e os backups incham.</li><li>NoSQL gerenciado (MongoDB, DynamoDB): custo fixo e mais uma peça, sem necessidade de busca interativa; DynamoDB prende à AWS.</li><li>OpenSearch: caro e trabalhoso de operar.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Busca frequente nos logs brutos: primeiro consultar os próprios objetos (DuckDB, Athena ou BigQuery com tabela externa), só depois um índice.</dd></dl></div></article>
+
+    <article class="adr" data-area="eventos"><div><span class="id">ADR-010</span><span class="area">eventos e logs</span></div><div>
+      <h3>Ingestão assíncrona, orientada a eventos, com agregação na sonda <span class="tag ok">decidida</span></h3>
+      <dl><dt>Contexto</dt><dd>A instituição não pode esperar o processamento de cada evento; e, sem agregação, o pico de anomalia (3.000 eventos/s) sobrecarrega qualquer fila.</dd>
+      <dt>Decisão</dt><dd>A sonda agrega por assinatura e origem em janelas de 60 s e guarda fila em disco; a API grava o evento de forma durável e responde <code>202</code>; o worker processa depois; gravação idempotente por <code>id_externo</code>. A fila fica atrás de uma interface, e o broker é escolhido no ADR-018.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Processamento síncrono na requisição: a sonda espera, e um pico derruba a API.</li><li>Responder antes de gravar: o evento se perde se o contêiner cair.</li><li>Enviar tudo e descartar no servidor: gasta banda e fila justamente no pior momento.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Não se aplica ao modelo; o produto da fila tem gatilho próprio.</dd></dl></div></article>
+
+    <article class="adr" data-area="infra"><div><span class="id">ADR-011</span><span class="area">infraestrutura</span></div><div>
+      <h3>Todo o estado no PostgreSQL; Redis fora do núcleo <span class="tag ok">decidida</span></h3>
+      <dl><dt>Contexto</dt><dd>A v0.1 já evitava o Redis; a sessão por cookie era o último estado fora do banco. Com o ID token, não existe sessão.</dd>
+      <dt>Decisão</dt><dd>Locks por advisory lock, deduplicação por restrição <code>UNIQUE</code>, tempo real por <code>LISTEN/NOTIFY</code>; nenhuma réplica guarda estado em memória.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Redis como estado compartilhado (proposto na v0.2): segunda peça com estado, que também precisaria de RPO e RTO.</li><li>Memória do processo: impede ter mais de uma réplica.</li></ul></dd>
+      <dt>Rever quando</dt><dd>A latência de leitura pedir cache: Redis só como cache descartável, cuja perda não perde nada.</dd></dl></div></article>
+
+    <article class="adr" data-area="infra"><div><span class="id">ADR-012</span><span class="area">operação</span></div><div>
+      <h3>RPO e RTO do banco, com ensaio trimestral <span class="tag prop">proposta</span></h3>
+      <dl><dt>Contexto</dt><dd>Persistência não é disponibilidade: backup garante que o dado não se perca, não que o serviço continue no ar.</dd>
+      <dt>Decisão</dt><dd>Piloto: RPO ≤ 5 min e RTO ≤ 2 h, com PITR. Produção: RPO ≈ 0 e RTO ≤ 5 min, com standby síncrono em outra zona. Restauração ensaiada a cada trimestre.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Só snapshot diário: RPO de até 24 h.</li><li>PostgreSQL em contêiner operado pela equipe: failover e PITR manuais.</li><li>Multirregião agora: custo dobrado sem exigência de contrato.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Um contrato trouxer SLA explícito.</dd></dl></div></article>
+
+    <article class="adr" data-area="infra"><div><span class="id">ADR-013</span><span class="area">infraestrutura</span></div><div>
+      <h3>Compose agora, Kubernetes depois; worker escala pela fila <span class="tag ok">decidida</span></h3>
+      <dl><dt>Contexto</dt><dd>A carga do piloto cabe numa VM, e a equipe ainda não opera Kubernetes.</dd>
+      <dt>Decisão</dt><dd>Réplicas fixas em Docker Compose no piloto; na migração, HPA na API e KEDA no worker pelo tamanho da fila.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Kubernetes agora: curva de aprendizado e operação sem necessidade de escala.</li><li>Worker escalado por CPU: ele espera I/O, e a CPU fica baixa com a fila crescendo.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Uma VM não bastar, ou for preciso deploy sem interrupção.</dd></dl></div></article>
+
+    <article class="adr" data-area="infra"><div><span class="id">ADR-014</span><span class="area">infraestrutura</span></div><div>
+      <h3>Núcleo agnóstico e nuvem escolhida depois <span class="tag ok">decidida</span></h3>
+      <dl><dt>Contexto</dt><dd>Créditos, contrato com a RNP e custo ainda podem mudar a escolha; ela deve ser feita com as dependências à vista.</dd>
+      <dt>Decisão</dt><dd>Contêiner, PostgreSQL, API S3, OpenTelemetry e OpenTofu no núcleo. Dependências marcadas no desenho: identidade no GCP; banco, objetos, cofre e observabilidade como produtos trocáveis.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Escolher a nuvem agora (a v0.1 escolhia a AWS): créditos e contrato indefinidos.</li><li>Serviços proprietários no núcleo (DynamoDB, Pub/Sub, Firestore): prenderiam o código.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Na escolha da nuvem.</dd></dl></div></article>
+
+    <article class="adr" data-area="infra"><div><span class="id">ADR-015</span><span class="area">infraestrutura</span></div><div>
+      <h3>Instância dedicada só por contrato, com release remoto <span class="tag prop">proposta</span></h3>
+      <dl><dt>Contexto</dt><dd>Hospitais podem exigir que o dado não saia de casa; ir ao servidor do cliente para atualizar não escala.</dd>
+      <dt>Decisão</dt><dd>A mesma imagem com banco local; o pipeline atualiza e desfaz à distância; as mesmas regras de RPO, RTO e observabilidade.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Instância dedicada como padrão: é a pilha por cliente; a híbrida por tamanho foi descartada por Satheler e pela reunião de 02/10.</li><li>Código específico por cliente: divergência de versões.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Mais de três ou quatro instâncias dedicadas: elas passam a ter preço e equipe próprios.</dd></dl></div></article>
+
+    <article class="adr" data-area="eventos"><div><span class="id">ADR-016</span><span class="area">eventos e logs</span></div><div>
+      <h3>Canal do gateway por long-poll assinado <span class="tag prop">proposta</span></h3>
+      <dl><dt>Contexto</dt><dd>Hoje a nuvem chama o gateway, o que exige porta aberta no campus.</dd>
+      <dt>Decisão</dt><dd>O gateway busca a lista de bloqueio por long-poll HTTPS; lista versionada e assinada com tenant e gateway; a chave do gateway define o tenant no servidor.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Nuvem chamando o gateway: porta de entrada no campus.</li><li>MQTT ou IoT Core: mais uma peça, e IoT Core prende à AWS.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Latência de bloqueio medida acima da meta.</dd></dl></div></article>
+
+    <article class="adr" data-area="infra"><div><span class="id">ADR-017</span><span class="area">operação</span></div><div>
+      <h3>Testes de carga na API e paridade com e sem contêiner <span class="tag prop">proposta</span></h3>
+      <dl><dt>Contexto</dt><dd>A escala precisa ser medida antes do piloto, e o comportamento não pode depender do ambiente.</dd>
+      <dt>Decisão</dt><dd>k6 ou Locust emulando milhares de clientes direto na API, com ID tokens de teste; o cenário de anomalia da seção de logs vira teste; a mesma suíte dentro e fora do contêiner.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Testar pela interface: lento e não chega a milhares de clientes.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Não se aplica.</dd></dl></div></article>
+
+    <article class="adr aberta" data-area="eventos aberta"><div><span class="id">ADR-018</span><span class="area">eventos e logs</span></div><div>
+      <h3>Qual broker implementa a fila de eventos <span class="tag open">em aberto</span></h3>
+      <dl><dt>Contexto</dt><dd>O modelo orientado a eventos está decidido (ADR-010); o produto não. A reunião citou Kafka, MQTT e RabbitMQ, e pediu para comparar com dados de volume e custo.</dd>
+      <dt>Opções</dt><dd><ul><li>Fila no PostgreSQL (<code>SKIP LOCKED</code>): nenhuma peça nova e o estado continua num lugar só; gatilho de troca em 500 eventos/s sustentados ou atraso acima de 5 s.</li><li>RabbitMQ: fila clássica de trabalho, simples de operar; mais uma peça com estado, que também precisa de RPO e RTO.</li><li>Kafka: retenção e reprocessamento de eventos, volume alto; o mais caro e trabalhoso de operar para a equipe.</li><li>MQTT: bom para dispositivos com conexão instável; é protocolo de transporte da borda, não substitui a fila de trabalho do worker.</li></ul></dd>
+      <dt>Inclinação</dt><dd>Começar com a fila no PostgreSQL atrás da interface e decidir a troca com os números da medição de logs e do teste de carga, depois da agregação. Gerenciados da nuvem (SQS, Pub/Sub, Service Bus) prenderiam o núcleo.</dd></dl></div></article>
+
+    <article class="adr" data-area="dados"><div><span class="id">ADR-019</span><span class="area">dados</span></div><div>
+      <h3>Configuração por tenant, começando pela retenção de logs <span class="tag prop">proposta</span></h3>
+      <dl><dt>Contexto</dt><dd>Cada instituição pode exigir um prazo diferente de retenção, e outras regras vão variar (limites de bloqueio automático, provedores de login, notificações). Nada disso pode ficar fixo no código.</dd>
+      <dt>Decisão</dt><dd>Tabela <code>plataforma.tenant_config</code> (com <code>tenant_id NOT NULL</code>), valores padrão e limites validados; as regras de ciclo de vida do armazenamento são geradas a partir dela.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Valores fixos no código: cada pedido de instituição vira deploy.</li><li>Um serviço de configuração separado agora: mais uma peça sem necessidade; a tabela atende e pode virar serviço depois.</li><li>Configuração dentro de cada schema: a plataforma precisaria ler todos os schemas para gerar as regras.</li></ul></dd>
+      <dt>Rever quando</dt><dd>As regras por tenant passarem de parâmetros a lógica própria de cada cliente.</dd></dl></div></article>
+
+    <article class="adr" data-area="dados"><div><span class="id">ADR-020</span><span class="area">dados</span></div><div>
+      <h3>Alembic por schema e entrada de tenant por comando <span class="tag prop">proposta</span></h3>
+      <dl><dt>Contexto</dt><dd>Instituição nova deve ser uma migração, sem mudar a regra da aplicação (Satheler, 30/09); com <code>tenant_id</code>, a migração precisa conhecer o id do tenant.</dd>
+      <dt>Decisão</dt><dd>As mesmas migrações rodam em cada schema, com o id do tenant como parâmetro; <code>criar-tenant</code> cria papel, schema, tabelas e registro; migrações compatíveis com a versão anterior do código e retomáveis.</dd>
+      <dt>Descartadas</dt><dd><ul><li>Migração manual (<code>setup_database.py</code>): já diverge hoje.</li><li>Um repositório de migração por cliente: deriva garantida.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Migrar todos os schemas passar de cerca de 10 minutos.</dd></dl></div></article>
+
+    <article class="adr" data-area="dados"><div><span class="id">ADR-021</span><span class="area">dados</span></div><div>
+      <h3>Um pool de conexões pequeno por tenant <span class="tag prop">proposta</span></h3>
+      <dl><dt>Contexto</dt><dd>Cada papel exige conexões próprias; com réplicas da API, o total multiplica.</dd>
+      <dt>Decisão</dt><dd>2 a 5 conexões por tenant e por réplica, criadas sob demanda e fechadas quando ociosas.</dd>
+      <dt>Descartadas</dt><dd><ul><li>PgBouncer desde já: mais uma peça antes de precisar.</li><li><code>SET LOCAL ROLE</code> com pool único: devolve o risco de esquecer a troca.</li></ul></dd>
+      <dt>Rever quando</dt><dd>Conexões totais perto do limite da instância; com réplicas, isso chega perto de 80 a 100 tenants.</dd></dl></div></article>
+  </div>
+</section>
+
+<section id="roteiro">
+  <div class="head">
+    <span class="eyebrow">Roteiro</span>
+    <h2>Sete sprints de duas semanas até o piloto</h2>
+    <p class="muted">Partindo das 740 horas de referência da v0.1: mais 50 dos logs em objetos, 40 do <code>tenant_id</code> com <code>CHECK</code>, 40 dos testes de carga, 20 do ensaio de recuperação, 20 da interface de fila, 20 da configuração por tenant, 16 da medição de logs e 15 a 20 da troca dos testes de host por testes de token. O Firebase substitui o login central próprio, com saldo a medir. São cerca de 950 horas de referência, ou 1.425 a 1.900 horas de alunos (fator de 1,5 a 2,0): de 24 a 32 semanas com 4 alunos a 15 h, ou de 16 a 22 com 6. Estimativas desta análise, a validar.</p>
+  </div>
+  <ol class="timeline">
+    <li><span class="n">sprint 1</span><b>Fundação</b><span>Confirmar que os contêineres atuais não guardam estado; CI, Alembic, testes de carga; medição de logs (já iniciada); perfis de recursos</span></li>
+    <li><span class="n">sprint 2</span><b>MySQL para PostgreSQL</b><span>Modelos portados, <code>tenant_id</code> com <code>CHECK</code>, dados da UNIPAMPA migrados</span></li>
+    <li><span class="n">sprint 3</span><b>Núcleo multi-tenant</b><span>Registro, <code>criar-tenant</code>, papel e pool por tenant; fim do <code>institution_id</code> vindo do cliente</span></li>
+    <li><span class="n">sprint 4</span><b>Identidade</b><span>Firebase, verificação do token, decisões A ou B e pertinência; testes de token; CAFe por SAML</span></li>
+    <li><span class="n">sprint 5</span><b>Borda e logs</b><span>Canal do gateway, agregação na sonda, fila atrás de interface, logs em objetos com retenção por tenant</span></li>
+    <li><span class="n">sprint 6</span><b>Nuvem e recuperação</b><span>Infraestrutura em código, PITR, alarmes, runbooks e o primeiro ensaio de RPO e RTO</span></li>
+    <li class="pilot"><span class="n">sprint 7</span><b>Piloto</b><span>UNIPAMPA e uma segunda instituição por 30 dias, com teste de carga e anomalia controlada</span></li>
+  </ol>
+</section>
+
+<section id="variantes">
+  <div class="head">
+    <span class="eyebrow">Comparação com a variante irmã</span>
+    <h2>As diretrizes de hoje aproximam as duas variantes</h2>
+    <p class="muted">Autenticação, origem do tenant, logs, estado e RPO/RTO agora são iguais nas duas. O que ainda as separa é como o banco guarda os dados de cada instituição. A reunião do GT de 02/10 indicou a variante irmã. <a href="arq-iotedu-multitenant-v20261002-tenantid.html">Ver a variante com banco central e <code>tenant_id</code></a>.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Critério</th><th>Schema por instituição (esta)</th><th>Banco central com <code>tenant_id</code></th></tr></thead>
+    <tbody>
+      <tr><td>Quem barra a consulta errada</td><td>As permissões do PostgreSQL (o papel não lê outro schema)</td><td>Filtro automático, RLS e testes</td></tr>
+      <tr><td><code>tenant_id NOT NULL</code></td><td>Obrigatório agora, como proveniência e defesa extra; deixou de valer "as tabelas continuam como estão"</td><td>Necessário: é a base do isolamento</td></tr>
+      <tr><td>Migração de banco</td><td>Uma por schema; pode parar no meio</td><td>Uma só</td></tr>
+      <tr><td>Conexões</td><td>Um pool por tenant; PgBouncer perto de 80 a 100 tenants</td><td>Um pool para todos</td></tr>
+      <tr><td>Consultas entre instituições</td><td>Um schema por vez</td><td>Uma consulta</td></tr>
+      <tr><td>Exclusão e exportação de uma instituição (LGPD)</td><td><code>pg_dump -n</code> e <code>DROP SCHEMA</code></td><td>Por <code>tenant_id</code>, a escrever e testar</td></tr>
+      <tr><td>Horas de referência</td><td class="num">≈ 950</td><td class="num">≈ 1.130</td></tr>
+      <tr><td>Já testado</td><td>Em parte: 11 testes passam, mas os do host precisam virar testes de token</td><td>Não: o projeto de referência precisa ser adaptado (20 a 30 h)</td></tr>
+      <tr><td>Indicação da reunião de 02/10</td><td>Não</td><td>Sim: "um único banco e dividir as coisas pelo tenant ID"</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="decidir">
+  <div class="head">
+    <span class="eyebrow">Para o grupo decidir</span>
+    <h2>O conjunto mínimo: o que não pode ficar para depois</h2>
+    <p class="muted">Como propôs Joao, priorizar as decisões que travam o resto e reduzir as demais a poucas opções comparadas com dados. Se tudo for prioridade, nada é.</p>
+  </div>
+  <div class="two">
+    <div>
+      <h3>Decidir agora</h3>
+      <ol class="asks">
+        <li>Modelo de dados: esta variante (schema por instituição) ou a de banco central com <code>tenant_id</code>, que a reunião de hoje indicou.</li>
+        <li>Firebase: Identity Platform multi-tenancy (A) ou projeto único com claim de tenant (B) (ADR-006).</li>
+        <li>Pertinência: um tenant por usuário ou vários, e como entra o acesso de suporte (ADR-007).</li>
+        <li>Valores de RPO e RTO do piloto e da produção, e o ensaio trimestral (ADR-012).</li>
+        <li>Pedir à RNP a validação do Firebase como provedor de serviço na CAFe, com um provedor SAML por instituição.</li>
+      </ol>
+    </div>
+    <div>
+      <h3>Decidir com dados, depois da sprint 1</h3>
+      <ol class="asks">
+        <li>Broker da fila de eventos (ADR-018), com os números da medição e do teste de carga.</li>
+        <li>Retenções padrão e limites por instituição (ADR-019), com os megabytes por minuto medidos.</li>
+        <li>Nuvem, a partir dos perfis mínimo e recomendado de recursos e da tabela de dependências.</li>
+        <li>Momento de migrar para Kubernetes (ADR-013).</li>
+      </ol>
+    </div>
+  </div>
+  <p class="muted">Tarefas combinadas na reunião para a próxima: trazer as regras de negócio de cada módulo e com o que cada um se conecta; confirmar se os contêineres atuais guardam estado; trazer o consumo de recursos e de armazenamento atual e a medição de logs.</p>
+</section>
+
+<footer>
+  <span>Fontes: direcionamentos de 02/10/2026 e transcrição da reunião do GT no mesmo dia; proposta v0.1 baseada na conversa com Gustavo Satheler (30/09/2026) e o projeto iotedu-mt-referencia; proposta v0.2 baseada na conversa com Luiz Laviola (01/10/2026); apresentação "Abordagens de Implantação" (30/09/2026).</span>
+  <span>Os cenários de logs (tamanho de alerta, taxas, picos e volumes), os valores de RPO e RTO, as horas acrescentadas ou retiradas e os custos de armazenamento são estimativas desta análise, a medir e conferir. Limites do Firebase (validade de 1 hora do ID token, 1.000 bytes de custom claims, exigência do Identity Platform para SAML e OIDC) conforme a documentação pública, a reconfirmar na implantação.</span>
+  <span>GT IoTEdu · UNIPAMPA · UFRGS · UFU · proposta para discussão; nada aqui foi implantado em produção.</span>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var botoes = document.querySelectorAll('.filters button');
+  var adrs = document.querySelectorAll('#lista-adrs .adr');
+  function aplicar(area) {
+    botoes.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.area === area)); });
+    adrs.forEach(function (a) { a.hidden = area !== 'todas' && a.dataset.area.split(' ').indexOf(area) < 0; });
+    try { localStorage.setItem('iotedu-adr-area-v3s', area); } catch (e) {}
+  }
+  botoes.forEach(function (b) { b.addEventListener('click', function () { aplicar(b.dataset.area); }); });
+  var salva = null;
+  try { salva = localStorage.getItem('iotedu-adr-area-v3s'); } catch (e) {}
+  if (salva && document.querySelector('.filters button[data-area="' + salva + '"]')) aplicar(salva);
+})();
+</script>
+</body>
+</html>
