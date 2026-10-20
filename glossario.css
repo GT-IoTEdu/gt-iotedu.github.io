@@ -1,0 +1,336 @@
+/* ==========================================================================
+   glossario.css — Glossário do IoTEdu (complementa o legal.css)
+   ========================================================================== */
+
+.gloss-sheet { max-width: 60rem; }
+
+.gloss-version { font-size: .88rem; margin-top: 1.5rem; }
+.gloss-version p { margin: 0; }
+
+/* ---------- sumário ----------------------------------------------------- */
+
+.gloss-toc-group {
+  margin: 1rem 0 .4rem;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--legal-ink-soft);
+}
+.gloss-toc .gloss-toc-flat {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1.25rem;
+  font-size: .9rem;
+}
+.gloss-toc .gloss-toc-secs {
+  columns: 1;
+  counter-reset: none;
+  margin: .5rem 0 0;
+}
+.gloss-toc .gloss-toc-secs li { margin: 0; border-top: 1px solid var(--legal-rule-soft); }
+.gloss-toc .gloss-toc-secs li::before { content: none; }
+.gloss-toc summary {
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
+  padding: .45rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+.gloss-toc summary::-webkit-details-marker { display: none; }
+.gloss-toc summary::after {
+  content: "▸";
+  margin-left: auto;
+  color: var(--legal-ink-soft);
+  transition: transform .15s;
+}
+.gloss-toc details[open] summary::after { transform: rotate(90deg); }
+.gloss-toc-num {
+  min-width: 1.6rem;
+  color: var(--legal-accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.gloss-toc summary a { font-weight: 600; color: var(--legal-ink-strong); }
+.gloss-toc-count {
+  font-size: .72rem;
+  color: var(--legal-ink-soft);
+  border: 1px solid var(--legal-rule);
+  border-radius: 999px;
+  padding: 0 .5rem;
+}
+.gloss-toc-terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .2rem 1rem;
+  padding: 0 0 .75rem 2.2rem;
+  font-size: .84rem;
+}
+
+/* ---------- verbetes ---------------------------------------------------- */
+
+.gloss-term {
+  scroll-margin-top: 6.5rem;
+  background: var(--legal-surface-soft);
+  border: 1px solid var(--legal-rule-soft);
+  border-left: 3px solid rgba(96, 165, 250, .5);
+  border-radius: 0 8px 8px 0;
+  padding: .9rem 1.2rem .2rem;
+  margin: 1rem 0;
+}
+.gloss-term:target { border-left-color: var(--legal-accent); background: rgba(96, 165, 250, .08); }
+.legal-body .gloss-term h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .25rem .6rem;
+  margin: 0 0 .5rem;
+  font-size: 1.05rem;
+}
+.legal-sheet a.gloss-anchor {
+  color: var(--legal-ink-soft);
+  text-decoration: none;
+  opacity: .5;
+  margin-left: -.1rem;
+}
+.gloss-term:hover .gloss-anchor { opacity: 1; }
+.gloss-local { color: #fff; }
+.gloss-foreign { font-weight: 500; color: var(--legal-ink-soft); }
+.gloss-badge {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #86efac;
+  background: rgba(74, 222, 128, .1);
+  border: 1px solid rgba(74, 222, 128, .35);
+  border-radius: 999px;
+  padding: .05rem .55rem;
+}
+.gloss-term p { margin: 0 0 .8rem; }
+
+.gloss-section { scroll-margin-top: 6rem; }
+
+/* tabelas largas rolam dentro do próprio bloco */
+.gloss-table-wrap { overflow-x: auto; margin: 1.25rem 0; }
+.gloss-table-wrap .legal-table { margin: 0; }
+
+@media print {
+  .gloss-side, .gs-open, .gs-backdrop, .gloss-top, .gloss-empty { display: none !important; }
+  .gloss-layout { display: block !important; }
+  .gloss-toc { display: block !important; }
+  .gloss-term { background: #fff; border-color: #e2e8f0; }
+  .gloss-local { color: #0f172a; }
+  .gloss-badge { color: #166534; background: #f0fdf4; }
+}
+
+.gloss-toc .gloss-toc-flat li { margin: 0; }
+.gloss-toc .gloss-toc-flat li::before { content: none; }
+
+/* nada pode alargar a página no celular */
+.gloss-sheet { overflow-wrap: anywhere; }
+.gloss-body pre { overflow-x: auto; max-width: 100%; }
+.gloss-table-wrap .legal-table { overflow-wrap: normal; }
+
+/* ==========================================================================
+   layout com barra lateral
+   ========================================================================== */
+
+.gloss-layout {
+  max-width: 84rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 17.5rem minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+.gloss-main { min-width: 0; }
+.gloss-main .legal-breadcrumb,
+.gloss-main .legal-translation-note,
+.gloss-main .gloss-sheet { max-width: 62rem; margin-left: 0; }
+
+/* no desktop o índice mora na barra lateral */
+@media (min-width: 1024px) { .gloss-toc { display: none; } }
+
+.gloss-side {
+  position: sticky;
+  top: calc(5.5rem + env(safe-area-inset-top, 0px));
+  height: calc(100vh - 7rem - env(safe-area-inset-top, 0px));
+  display: flex;
+  flex-direction: column;
+  background: rgba(30, 41, 59, .6);
+  border: 1px solid #334155;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.gs-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .9rem 1rem .2rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+.gs-close { display: none; color: #94a3b8; padding: .25rem; border-radius: 6px; }
+.gs-close:hover { color: #fff; background: #334155; }
+.gs-close svg { width: 18px; height: 18px; }
+
+/* campo de busca */
+.gs-search {
+  margin: .6rem .8rem .2rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: 0 .65rem;
+  height: 2.5rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 9px;
+  transition: border-color .15s, box-shadow .15s;
+}
+.gs-search:focus-within { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(96, 165, 250, .2); }
+.gs-search svg { width: 16px; height: 16px; flex: none; color: #64748b; }
+.gs-search:focus-within svg { color: #60a5fa; }
+.gs-search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: #f1f5f9;
+  font: inherit;
+  font-size: .88rem;
+}
+.gs-search input::placeholder { color: #64748b; }
+.gs-search input::-webkit-search-cancel-button { filter: invert(.7); cursor: pointer; }
+.gs-search kbd {
+  font: 600 .7rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #94a3b8;
+  border: 1px solid #334155;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: .15rem .4rem;
+}
+.gs-search:focus-within kbd { display: none; }
+
+.gs-status { margin: .35rem 1rem 0; min-height: 1rem; font-size: .75rem; color: #60a5fa; font-weight: 600; }
+
+/* lista */
+.gs-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: .2rem .55rem 1.2rem;
+  font-size: .85rem;
+  scrollbar-width: thin;
+  scrollbar-color: #334155 transparent;
+}
+.gs-group {
+  margin: .9rem .45rem .3rem;
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+.gs-nav a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  border-radius: 6px;
+  padding: .3rem .45rem;
+  line-height: 1.35;
+}
+.gs-nav a:hover { background: rgba(148, 163, 184, .1); color: #fff; }
+.gs-nav a.active { color: #93c5fd; background: rgba(96, 165, 250, .12); }
+
+.gs-sec-link { display: flex !important; align-items: baseline; gap: .5rem; font-weight: 600; }
+.gs-num { min-width: 1.2rem; color: #60a5fa; font-variant-numeric: tabular-nums; font-size: .8rem; }
+.gs-label { flex: 1; }
+.gs-count { font-size: .68rem; color: #64748b; font-weight: 500; }
+
+.gs-terms {
+  list-style: none;
+  margin: .1rem 0 .4rem 1.1rem;
+  padding: 0 0 0 .6rem;
+  border-left: 1px solid #334155;
+  display: none;
+}
+.gs-sec.current .gs-terms,
+.gloss-searching .gs-terms { display: block; }
+.gs-terms a { font-size: .8rem; color: #94a3b8; padding: .2rem .45rem; }
+.gs-terms a.active { color: #93c5fd; box-shadow: inset 2px 0 0 #60a5fa; border-radius: 0 6px 6px 0; }
+.gs-terms a.gs-weak { opacity: .65; font-style: italic; }
+.gs-nav mark { background: rgba(250, 204, 21, .25); color: #fde68a; border-radius: 2px; padding: 0 .05em; }
+
+.gloss-empty {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  justify-content: center;
+  padding: 2rem 1rem;
+  border: 1px dashed #334155;
+  border-radius: 10px;
+  color: #94a3b8;
+}
+.gloss-empty svg { width: 20px; height: 20px; }
+
+/* botões flutuantes */
+.gloss-top, .gs-open {
+  position: fixed;
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #93c5fd;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .6);
+}
+.gloss-top { right: 1.25rem; width: 2.75rem; opacity: 0; pointer-events: none; transition: opacity .2s; }
+.gloss-top.show { opacity: 1; pointer-events: auto; }
+.gloss-top:hover, .gs-open:hover { background: #334155; }
+.gloss-top svg, .gs-open svg { width: 18px; height: 18px; }
+.gs-open { display: none; left: 50%; transform: translateX(-50%); padding: 0 1.1rem; font-weight: 600; font-size: .9rem; color: #f1f5f9; }
+
+/* ---------- celular e tablet: barra vira gaveta ------------------------- */
+@media (max-width: 1023px) {
+  .gloss-layout { display: block; }
+  .gloss-main .legal-breadcrumb,
+  .gloss-main .legal-translation-note,
+  .gloss-main .gloss-sheet { margin-left: auto; margin-right: auto; }
+  .gloss-side {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: auto;
+    width: min(20rem, 86vw);
+    z-index: 70;
+    border-radius: 0 14px 14px 0;
+    background: #0f172a;
+    padding-top: env(safe-area-inset-top, 0px);
+    transform: translateX(-105%);
+    transition: transform .22s ease;
+  }
+  .gloss-side.open { transform: none; }
+  .gs-close { display: inline-flex; }
+  .gs-backdrop { position: fixed; inset: 0; z-index: 60; background: rgba(2, 6, 23, .6); backdrop-filter: blur(2px); }
+  .gs-open { display: flex; }
+  .gs-search kbd { display: none; }
+}
+
+/* [hidden] tem que vencer os display: das regras acima */
+.gloss-layout [hidden] { display: none !important; }

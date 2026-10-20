@@ -1,0 +1,1761 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IoTEdu Glossary | GT IoTEdu</title>
+  <meta name="description" content="IoTEdu glossary: one term per concept, in English and Portuguese, with what each term is, what it does in the system and which words to avoid." />
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Play CDN (para usar as util classes sem build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide (ícones SVG) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../legal.css" />
+  <link rel="stylesheet" href="../glossario.css" />
+  <!-- i18n:hreflang -->
+  <link rel="alternate" hreflang="pt-BR" href="https://iotedu.org/glossario.html" />
+  <link rel="alternate" hreflang="en" href="https://iotedu.org/en/glossario.html" />
+  <link rel="alternate" hreflang="es" href="https://iotedu.org/es/glossario.html" />
+  <link rel="alternate" hreflang="x-default" href="https://iotedu.org/glossario.html" />
+  <!-- /i18n:hreflang -->
+</head>
+<body id="top" class="bg-slate-900 text-white font-[Inter]">
+
+  <!-- NAV -->
+  <nav class="relative flex xl:grid xl:grid-cols-[auto,1fr,auto] xl:gap-4 items-center justify-between px-6 py-4 bg-slate-900/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b border-slate-800">
+    <div class="flex items-center space-x-2 xl:justify-self-start">
+      <div class="relative">
+        <i data-lucide="wifi" class="w-8 h-8 text-blue-400"></i>
+        <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+      </div>
+      <a href="index.html" class="text-xl font-bold">GT IoTEdu</a>
+    </div>
+
+    <div class="hidden xl:flex items-center justify-center space-x-6 whitespace-nowrap xl:justify-self-center">
+      <a href="index.html#proposta" class="hover:text-blue-400 transition-colors">Proposal</a>
+      <a href="index.html#resultados" class="hover:text-blue-400 transition-colors">Results</a>
+      <a href="index.html#parceria" class="hover:text-blue-400 transition-colors">Partnership &amp; Support</a>
+      <a href="index.html#equipe" class="hover:text-blue-400 transition-colors">Team</a>
+      <a href="index.html#early-adopters" class="hover:text-blue-400 transition-colors">Early Adopters</a>
+      <a href="publicacoes.html" class="hover:text-blue-400 transition-colors">Publications</a>
+      <a href="videos.html" class="hover:text-blue-400 transition-colors">Videos</a>
+      <a href="news.html" class="hover:text-blue-400 transition-colors">News</a>
+    </div>
+
+    <div class="flex items-center space-x-2 xl:space-x-4 xl:justify-self-end">
+      <!-- i18n:switch -->
+      <div class="hidden xl:flex items-center gap-1 text-sm font-semibold" role="group" aria-label="Language">
+        <a href="../glossario.html" hreflang="pt-BR" lang="pt-BR" title="Português" class="px-1.5 py-1 rounded text-slate-400 hover:text-white transition-colors">PT</a>
+        <span class="text-slate-600" aria-hidden="true">|</span>
+        <a href="glossario.html" hreflang="en" lang="en" title="English" class="px-1.5 py-1 rounded text-blue-400" aria-current="true">EN</a>
+        <span class="text-slate-600" aria-hidden="true">|</span>
+        <a href="../es/glossario.html" hreflang="es" lang="es" title="Español" class="px-1.5 py-1 rounded text-slate-400 hover:text-white transition-colors">ES</a>
+      </div>
+      <!-- /i18n:switch -->
+      <a href="index.html" class="px-4 py-2 rounded-lg border border-slate-700 text-white hover:bg-slate-800 bg-transparent">Home</a>
+
+      <button
+        id="mobile-menu-button"
+        type="button"
+        class="xl:hidden inline-flex items-center justify-center p-2 rounded-lg border border-slate-700 hover:bg-slate-800"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="Open menu"
+      >
+        <svg id="mobile-menu-icon-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg id="mobile-menu-icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 hidden">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu (dropdown) -->
+    <div id="mobile-menu" class="xl:hidden hidden absolute left-0 right-0 top-full bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+      <div class="px-6 py-4 flex flex-col gap-3">
+        <a href="index.html#proposta" class="py-2 hover:text-blue-400 transition-colors">Proposal</a>
+        <a href="index.html#resultados" class="py-2 hover:text-blue-400 transition-colors">Results</a>
+        <a href="index.html#parceria" class="py-2 hover:text-blue-400 transition-colors">Partnership &amp; Support</a>
+        <a href="index.html#equipe" class="py-2 hover:text-blue-400 transition-colors">Team</a>
+        <a href="index.html#early-adopters" class="py-2 hover:text-blue-400 transition-colors">Early Adopters</a>
+        <a href="publicacoes.html" class="py-2 hover:text-blue-400 transition-colors">Publications</a>
+        <a href="videos.html" class="py-2 hover:text-blue-400 transition-colors">Videos</a>
+        <a href="news.html" class="py-2 hover:text-blue-400 transition-colors">News</a>
+        <!-- i18n:switch-mobile -->
+        <div class="flex items-center gap-4 pt-3 mt-1 border-t border-slate-800 text-sm font-semibold" role="group" aria-label="Language">
+          <a href="../glossario.html" hreflang="pt-BR" lang="pt-BR" title="Português" class="py-1 text-slate-400 hover:text-white transition-colors">PT</a>
+          <a href="glossario.html" hreflang="en" lang="en" title="English" class="py-1 text-blue-400" aria-current="true">EN</a>
+          <a href="../es/glossario.html" hreflang="es" lang="es" title="Español" class="py-1 text-slate-400 hover:text-white transition-colors">ES</a>
+        </div>
+        <!-- /i18n:switch-mobile -->
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 px-4 sm:px-6">
+
+    <div class="gloss-layout">
+
+      <aside class="gloss-side" id="gloss-side" aria-label="Contents">
+        <div class="gs-head">
+          <span>Contents</span>
+          <button type="button" class="gs-close" id="gs-close" aria-label="Close contents"><i data-lucide="x" aria-hidden="true"></i></button>
+        </div>
+        <div class="gs-search">
+          <i data-lucide="search" aria-hidden="true"></i>
+          <input type="search" id="gloss-q" placeholder="Filter terms…" aria-label="Filter terms…" autocomplete="off" spellcheck="false" />
+          <kbd id="gs-kbd" aria-hidden="true">/</kbd>
+        </div>
+        <p class="gs-status" id="gs-status" aria-live="polite"></p>
+        <nav class="gs-nav" id="gs-nav"><p class="gs-group">Introduction</p><div class="gs-flat"><a href="#purpose" class="gs-link" data-target="purpose">Purpose</a><a href="#rules" class="gs-link" data-target="rules">Rules</a><a href="#quick-reference" class="gs-link" data-target="quick-reference">Quick reference</a></div><p class="gs-group">Sections</p><div class="gs-sec" data-sec="1-project-and-organization"><a href="#1-project-and-organization" class="gs-sec-link" data-target="1-project-and-organization"><span class="gs-num">1</span><span class="gs-label">Project and organization</span><span class="gs-count">11</span></a><ul class="gs-terms"><li><a href="#iotedu--iotedu" class="gs-term" data-target="iotedu--iotedu" data-norm="iotedu">IoTEdu</a></li><li><a href="#gt-iotedu--iotedu-working-group" class="gs-term" data-target="gt-iotedu--iotedu-working-group" data-norm="gt-iotedu">GT-IoTEdu</a></li><li><a href="#stack--stack" class="gs-term" data-target="stack--stack" data-norm="stack">Stack</a></li><li><a href="#component--componente" class="gs-term" data-target="component--componente" data-norm="component">Component</a></li><li><a href="#submodule-gitlink--submódulo-gitlink" class="gs-term" data-target="submodule-gitlink--submódulo-gitlink" data-norm="submodule, gitlink">Submodule, gitlink</a></li><li><a href="#deployment--instalação" class="gs-term" data-target="deployment--instalação" data-norm="deployment">Deployment</a></li><li><a href="#lab-mode--modo-lab" class="gs-term" data-target="lab-mode--modo-lab" data-norm="lab mode">Lab mode</a></li><li><a href="#demo--demo" class="gs-term" data-target="demo--demo" data-norm="demo">Demo</a></li><li><a href="#mvp--mvp" class="gs-term" data-target="mvp--mvp" data-norm="mvp">MVP</a></li><li><a href="#iotedu-dockerized--iotedu-dockerized" class="gs-term" data-target="iotedu-dockerized--iotedu-dockerized" data-norm="iotedu-dockerized">iotedu-dockerized</a></li><li><a href="#unipampa-ufrgs-rnp--unipampa-ufrgs-rnp" class="gs-term" data-target="unipampa-ufrgs-rnp--unipampa-ufrgs-rnp" data-norm="unipampa, ufrgs, rnp">UNIPAMPA, UFRGS, RNP</a></li></ul></div><div class="gs-sec" data-sec="2-people-roles-and-units"><a href="#2-people-roles-and-units" class="gs-sec-link" data-target="2-people-roles-and-units"><span class="gs-num">2</span><span class="gs-label">People, roles and units</span><span class="gs-count">8</span></a><ul class="gs-terms"><li><a href="#institution--instituição" class="gs-term" data-target="institution--instituição" data-norm="institution">Institution</a></li><li><a href="#unit--unidade--decided" class="gs-term" data-target="unit--unidade--decided" data-norm="unit">Unit</a></li><li><a href="#short-name--sigla" class="gs-term" data-target="short-name--sigla" data-norm="short name">Short name</a></li><li><a href="#user--usuário-user" class="gs-term" data-target="user--usuário-user" data-norm="user">User</a></li><li><a href="#network-manager--gestor-de-rede-admin--decided" class="gs-term" data-target="network-manager--gestor-de-rede-admin--decided" data-norm="network manager">Network manager</a></li><li><a href="#superuser--superusuário-superuser" class="gs-term" data-target="superuser--superusuário-superuser" data-norm="superuser">Superuser</a></li><li><a href="#owner--responsável" class="gs-term" data-target="owner--responsável" data-norm="owner">Owner</a></li><li><a href="#role--papel" class="gs-term" data-target="role--papel" data-norm="role">Role</a></li></ul></div><div class="gs-sec" data-sec="3-device-and-lifecycle"><a href="#3-device-and-lifecycle" class="gs-sec-link" data-target="3-device-and-lifecycle"><span class="gs-num">3</span><span class="gs-label">Device and lifecycle</span><span class="gs-count">15</span></a><ul class="gs-terms"><li><a href="#device--dispositivo--decided" class="gs-term" data-target="device--dispositivo--decided" data-norm="device">Device</a></li><li><a href="#device-type--tipo-de-dispositivo" class="gs-term" data-target="device-type--tipo-de-dispositivo" data-norm="device type">Device type</a></li><li><a href="#mac-address--mac" class="gs-term" data-target="mac-address--mac" data-norm="mac address">MAC address</a></li><li><a href="#randomized-mac--mac-aleatório" class="gs-term" data-target="randomized-mac--mac-aleatório" data-norm="randomized mac">Randomized MAC</a></li><li><a href="#identifier--identificador" class="gs-term" data-target="identifier--identificador" data-norm="identifier">Identifier</a></li><li><a href="#register-registration--cadastrar-cadastro--decided" class="gs-term" data-target="register-registration--cadastrar-cadastro--decided" data-norm="register, registration">Register, registration</a></li><li><a href="#self-registration--autocadastro" class="gs-term" data-target="self-registration--autocadastro" data-norm="self-registration">Self-registration</a></li><li><a href="#access-status--situação-de-acesso" class="gs-term" data-target="access-status--situação-de-acesso" data-norm="access status">Access status</a></li><li><a href="#allow--liberar--decided" class="gs-term" data-target="allow--liberar--decided" data-norm="allow">Allow</a></li><li><a href="#block--bloquear-bloqueio" class="gs-term" data-target="block--bloquear-bloqueio" data-norm="block">Block</a></li><li><a href="#allow-devices-on-registration--dispositivo-já-nasce-liberado" class="gs-term" data-target="allow-devices-on-registration--dispositivo-já-nasce-liberado" data-norm="allow devices on registration?">Allow devices on registration?</a></li><li><a href="#remove--remover" class="gs-term" data-target="remove--remover" data-norm="remove">Remove</a></li><li><a href="#presence-online--offline--presença-conectado--desconectado" class="gs-term" data-target="presence-online--offline--presença-conectado--desconectado" data-norm="presence: online / offline">Presence: Online / Offline</a></li><li><a href="#last-seen--visto-por-último--decided" class="gs-term" data-target="last-seen--visto-por-último--decided" data-norm="last seen">Last seen</a></li><li><a href="#joined-on--entrada-na-rede--decided" class="gs-term" data-target="joined-on--entrada-na-rede--decided" data-norm="joined on">Joined on</a></li></ul></div><div class="gs-sec" data-sec="4-network-and-infrastructure"><a href="#4-network-and-infrastructure" class="gs-sec-link" data-target="4-network-and-infrastructure"><span class="gs-num">4</span><span class="gs-label">Network and infrastructure</span><span class="gs-count">22</span></a><ul class="gs-terms"><li><a href="#iot-network--rede-iot--decided" class="gs-term" data-target="iot-network--rede-iot--decided" data-norm="iot network">IoT network</a></li><li><a href="#wan--wan" class="gs-term" data-target="wan--wan" data-norm="wan">WAN</a></li><li><a href="#wireless-network-ssid--rede-sem-fio-ssid" class="gs-term" data-target="wireless-network-ssid--rede-sem-fio-ssid" data-norm="wireless network (ssid)">Wireless network (SSID)</a></li><li><a href="#access-point--ponto-de-acesso" class="gs-term" data-target="access-point--ponto-de-acesso" data-norm="access point">Access point</a></li><li><a href="#vlan-router--roteador-da-vlan" class="gs-term" data-target="vlan-router--roteador-da-vlan" data-norm="vlan router">VLAN router</a></li><li><a href="#gateway-network-sense--gateway-sentido-de-rede" class="gs-term" data-target="gateway-network-sense--gateway-sentido-de-rede" data-norm="gateway (network sense)">Gateway (network sense)</a></li><li><a href="#iotedu-gateway--gateway-iotedu--decided-44" class="gs-term" data-target="iotedu-gateway--gateway-iotedu--decided-44" data-norm="iotedu gateway">IoTEdu gateway</a></li><li><a href="#gateway-api-gwapi--api-do-gateway-gwapi--decided" class="gs-term" data-target="gateway-api-gwapi--api-do-gateway-gwapi--decided" data-norm="gateway api (gwapi)">Gateway API (GWAPI)</a></li><li><a href="#pfsense--pfsense" class="gs-term" data-target="pfsense--pfsense" data-norm="pfsense">pfSense</a></li><li><a href="#firewall--firewall" class="gs-term" data-target="firewall--firewall" data-norm="firewall">Firewall</a></li><li><a href="#authorized-group--blocked-group--grupo-autorizados--grupo-bloqueados--decided" class="gs-term" data-target="authorized-group--blocked-group--grupo-autorizados--grupo-bloqueados--decided" data-norm="authorized group / blocked group">Authorized group / Blocked group</a></li><li><a href="#alias--alias" class="gs-term" data-target="alias--alias" data-norm="alias">Alias</a></li><li><a href="#firewall-rule--regra-de-firewall" class="gs-term" data-target="firewall-rule--regra-de-firewall" data-norm="firewall rule">Firewall rule</a></li><li><a href="#nat--nat" class="gs-term" data-target="nat--nat" data-norm="nat">NAT</a></li><li><a href="#dhcp-server--servidor-dhcp" class="gs-term" data-target="dhcp-server--servidor-dhcp" data-norm="dhcp server">DHCP server</a></li><li><a href="#reservation--reserva" class="gs-term" data-target="reservation--reserva" data-norm="reservation">Reservation</a></li><li><a href="#unit-ip-range--faixa-de-ips-da-unidade" class="gs-term" data-target="unit-ip-range--faixa-de-ips-da-unidade" data-norm="unit ip range">Unit IP range</a></li><li><a href="#dynamic-pool--pool-dinâmico" class="gs-term" data-target="dynamic-pool--pool-dinâmico" data-norm="dynamic pool">Dynamic pool</a></li><li><a href="#lease--concessão" class="gs-term" data-target="lease--concessão" data-norm="lease">Lease</a></li><li><a href="#shared-network-namespace--namespace-de-rede-compartilhado" class="gs-term" data-target="shared-network-namespace--namespace-de-rede-compartilhado" data-norm="shared network namespace">Shared network namespace</a></li><li><a href="#macvlan-vlan-nic--macvlan-nic-da-vlan" class="gs-term" data-target="macvlan-vlan-nic--macvlan-nic-da-vlan" data-norm="macvlan, vlan nic">Macvlan, VLAN NIC</a></li><li><a href="#capture-interface--interface-de-captura" class="gs-term" data-target="capture-interface--interface-de-captura" data-norm="capture interface">Capture interface</a></li></ul></div><div class="gs-sec" data-sec="5-detection-ids-probes-and-rules"><a href="#5-detection-ids-probes-and-rules" class="gs-sec-link" data-target="5-detection-ids-probes-and-rules"><span class="gs-num">5</span><span class="gs-label">Detection: IDS, probes and rules</span><span class="gs-count">17</span></a><ul class="gs-terms"><li><a href="#ids--ids-intrusion-detection-system" class="gs-term" data-target="ids--ids-intrusion-detection-system" data-norm="ids">IDS</a></li><li><a href="#security-probe--sonda-de-segurança--decided-42" class="gs-term" data-target="security-probe--sonda-de-segurança--decided-42" data-norm="security probe">Security probe</a></li><li><a href="#ids-rule-signature--regra-de-ids-assinatura" class="gs-term" data-target="ids-rule-signature--regra-de-ids-assinatura" data-norm="ids rule, signature">IDS rule, signature</a></li><li><a href="#sid--sid-signature-id" class="gs-term" data-target="sid--sid-signature-id" data-norm="sid">SID</a></li><li><a href="#et-open--et-open" class="gs-term" data-target="et-open--et-open" data-norm="et open">ET Open</a></li><li><a href="#notice-zeek--notice" class="gs-term" data-target="notice-zeek--notice" data-norm="notice (zeek)">Notice (Zeek)</a></li><li><a href="#simir--simir" class="gs-term" data-target="simir--simir" data-norm="simir">SIMIR</a></li><li><a href="#priority--prioridade" class="gs-term" data-target="priority--prioridade" data-norm="priority">Priority</a></li><li><a href="#severity--severidade" class="gs-term" data-target="severity--severidade" data-norm="severity">Severity</a></li><li><a href="#alert--alerta" class="gs-term" data-target="alert--alerta" data-norm="alert">Alert</a></li><li><a href="#incident--incidente--decided" class="gs-term" data-target="incident--incidente--decided" data-norm="incident">Incident</a></li><li><a href="#incident-status--situação-do-incidente" class="gs-term" data-target="incident-status--situação-do-incidente" data-norm="incident status">Incident status</a></li><li><a href="#false-positive--falso-positivo" class="gs-term" data-target="false-positive--falso-positivo" data-norm="false positive">False positive</a></li><li><a href="#k-of-n-majority-vote--k-de-n-votação-por-maioria" class="gs-term" data-target="k-of-n-majority-vote--k-de-n-votação-por-maioria" data-norm="k-of-n (majority vote)">k-of-n (majority vote)</a></li><li><a href="#aggregation--agregação" class="gs-term" data-target="aggregation--agregação" data-norm="aggregation">Aggregation</a></li><li><a href="#automatic-block--bloqueio-automático" class="gs-term" data-target="automatic-block--bloqueio-automático" data-norm="automatic block">Automatic block</a></li><li><a href="#auto-block-allowlist--lista-de-exceção-do-bloqueio" class="gs-term" data-target="auto-block-allowlist--lista-de-exceção-do-bloqueio" data-norm="auto-block allowlist">Auto-block allowlist</a></li></ul></div><div class="gs-sec" data-sec="6-alert-delivery-agent-and-credential"><a href="#6-alert-delivery-agent-and-credential" class="gs-sec-link" data-target="6-alert-delivery-agent-and-credential"><span class="gs-num">6</span><span class="gs-label">Alert delivery (agent and credential)</span><span class="gs-count">4</span></a><ul class="gs-terms"><li><a href="#alert-agent--agente-de-alertas--decided-42" class="gs-term" data-target="alert-agent--agente-de-alertas--decided-42" data-norm="alert agent">Alert agent</a></li><li><a href="#agent-credential--credencial-do-agente--decided" class="gs-term" data-target="agent-credential--credencial-do-agente--decided" data-norm="agent credential">Agent credential</a></li><li><a href="#heartbeat--sinal-de-vida" class="gs-term" data-target="heartbeat--sinal-de-vida" data-norm="heartbeat">Heartbeat</a></li><li><a href="#sse-legacy--sse-legado" class="gs-term" data-target="sse-legacy--sse-legado" data-norm="sse (legacy)">SSE (legacy)</a></li></ul></div><div class="gs-sec" data-sec="7-appeals-and-history"><a href="#7-appeals-and-history" class="gs-sec-link" data-target="7-appeals-and-history"><span class="gs-num">7</span><span class="gs-label">Appeals and history</span><span class="gs-count">3</span></a><ul class="gs-terms"><li><a href="#appeal--contestação" class="gs-term" data-target="appeal--contestação" data-norm="appeal">Appeal</a></li><li><a href="#block-history--histórico-de-bloqueios" class="gs-term" data-target="block-history--histórico-de-bloqueios" data-norm="block history">Block history</a></li><li><a href="#activity--atividade--decided" class="gs-term" data-target="activity--atividade--decided" data-norm="activity">Activity</a></li></ul></div><div class="gs-sec" data-sec="8-screens-and-navigation"><a href="#8-screens-and-navigation" class="gs-sec-link" data-target="8-screens-and-navigation"><span class="gs-num">8</span><span class="gs-label">Screens and navigation</span><span class="gs-count">5</span></a><ul class="gs-terms"><li><a href="#system-health--saúde-do-sistema" class="gs-term" data-target="system-health--saúde-do-sistema" data-norm="system health">System health</a></li><li><a href="#service--serviço" class="gs-term" data-target="service--serviço" data-norm="service">Service</a></li><li><a href="#network-map--mapa-da-rede" class="gs-term" data-target="network-map--mapa-da-rede" data-norm="network map">Network map</a></li><li><a href="#preferences--preferências" class="gs-term" data-target="preferences--preferências" data-norm="preferences">Preferences</a></li><li><a href="#report--report--decided" class="gs-term" data-target="report--report--decided" data-norm="report">Report</a></li></ul></div><div class="gs-sec" data-sec="9-authentication"><a href="#9-authentication" class="gs-sec-link" data-target="9-authentication"><span class="gs-num">9</span><span class="gs-label">Authentication</span><span class="gs-count">8</span></a><ul class="gs-terms"><li><a href="#sign-in-method--método-de-login" class="gs-term" data-target="sign-in-method--método-de-login" data-norm="sign-in method">Sign-in method</a></li><li><a href="#sign-in-sign-out--entrar-sair" class="gs-term" data-target="sign-in-sign-out--entrar-sair" data-norm="sign in, sign out">Sign in, Sign out</a></li><li><a href="#cafe--cafe" class="gs-term" data-target="cafe--cafe" data-norm="cafe">CAFe</a></li><li><a href="#service-provider-sp--provedor-de-serviço-sp" class="gs-term" data-target="service-provider-sp--provedor-de-serviço-sp" data-norm="service provider (sp)">Service provider (SP)</a></li><li><a href="#idp--idp-identity-provider" class="gs-term" data-target="idp--idp-identity-provider" data-norm="idp">IdP</a></li><li><a href="#iotedu-idp--idp-iotedu" class="gs-term" data-target="iotedu-idp--idp-iotedu" data-norm="iotedu idp">IoTEdu IdP</a></li><li><a href="#first-sign-in--primeiro-acesso" class="gs-term" data-target="first-sign-in--primeiro-acesso" data-norm="first sign-in">First sign-in</a></li><li><a href="#superuser-access--acesso-do-superusuário" class="gs-term" data-target="superuser-access--acesso-do-superusuário" data-norm="superuser access">Superuser access</a></li></ul></div><div class="gs-sec" data-sec="10-fingerprint"><a href="#10-fingerprint" class="gs-sec-link" data-target="10-fingerprint"><span class="gs-num">10</span><span class="gs-label">Fingerprint</span><span class="gs-count">2</span></a><ul class="gs-terms"><li><a href="#fingerprint--fingerprint" class="gs-term" data-target="fingerprint--fingerprint" data-norm="fingerprint">Fingerprint</a></li><li><a href="#risk-fingerprint--risco" class="gs-term" data-target="risk-fingerprint--risco" data-norm="risk (fingerprint)">Risk (fingerprint)</a></li></ul></div><div class="gs-sec" data-sec="11-operations"><a href="#11-operations" class="gs-sec-link" data-target="11-operations"><span class="gs-num">11</span><span class="gs-label">Operations</span><span class="gs-count">8</span></a><ul class="gs-terms"><li><a href="#implantash--implantash" class="gs-term" data-target="implantash--implantash" data-norm="implanta.sh">implanta.sh</a></li><li><a href="#compose-profile--perfil-do-compose" class="gs-term" data-target="compose-profile--perfil-do-compose" data-norm="compose profile">Compose profile</a></li><li><a href="#caddy-reverse-proxy--caddy-proxy" class="gs-term" data-target="caddy-reverse-proxy--caddy-proxy" data-norm="caddy (reverse proxy)">Caddy (reverse proxy)</a></li><li><a href="#monitoring--monitoramento" class="gs-term" data-target="monitoring--monitoramento" data-norm="monitoring">Monitoring</a></li><li><a href="#dozzle--dozzle" class="gs-term" data-target="dozzle--dozzle" data-norm="dozzle">Dozzle</a></li><li><a href="#synthetic-clients--clientes-sintéticos" class="gs-term" data-target="synthetic-clients--clientes-sintéticos" data-norm="synthetic clients">Synthetic clients</a></li><li><a href="#attackzoo--attackzoo" class="gs-term" data-target="attackzoo--attackzoo" data-norm="attackzoo">AttackZoo</a></li><li><a href="#gateway-state--estado-do-gateway" class="gs-term" data-target="gateway-state--estado-do-gateway" data-norm="gateway state">Gateway state</a></li></ul></div><p class="gs-group">Appendices</p><div class="gs-flat"><a href="#internal-values-that-stay-off-the-screen" class="gs-link" data-target="internal-values-that-stay-off-the-screen">Internal values that stay off the screen</a><a href="#naming-decisions" class="gs-link" data-target="naming-decisions">Naming decisions</a></div></nav>
+      </aside>
+      <div class="gs-backdrop" id="gs-backdrop" hidden></div>
+      <div class="gloss-main">
+    <nav class="legal-breadcrumb" aria-label="You are here">
+      <a href="index.html">Home</a>
+      <span aria-hidden="true">/</span>
+      <span>Documents</span>
+      <span aria-hidden="true">/</span>
+      <span class="current">IoTEdu Glossary</span>
+    </nav>
+
+    <article class="legal-sheet gloss-sheet">
+      <header class="legal-head">
+        <p class="legal-eyebrow"><i data-lucide="book-open" aria-hidden="true"></i> GT-IoTEdu · Documentation</p>
+        <h1>IoTEdu Glossary</h1>
+        <p class="legal-lede">One term per concept for the interface, the i18n catalogs, the Help, the docs and the issues. For each term: what it is, what it does inside IoTEdu, how it appears in the code and which words to avoid.</p>
+        <div class="legal-callout gloss-version"><strong>Version 1.1 (2026-10-19).</strong> Terms marked <strong>decided</strong> were settled on 2026-10-16 and apply now; those marked <strong>open</strong> still await an answer. Every statement about the code was checked against <code>main</code> on 2026-10-19 (after #55). The step-by-step of each flow is in <a href="https://github.com/GT-IoTEdu/iotedu-stack/blob/main/docs/en/how-it-works.md">How IoTEdu works today</a>. They apply to the interface, the i18n catalogs (<code>frontend/lib/i18n/catalogos/*.ts</code>), Help, the docs and the text of issues. Related: #42 (probe names), #44 (&quot;Gateway&quot; name), #40 (System health components) and #16 (i18n).</div>
+        
+        <dl class="legal-meta">
+          <div><dt>Document</dt><dd>IoTEdu Glossary</dd></div>
+          <div><dt>Version</dt><dd>1.1</dd></div>
+          <div><dt>Updated</dt><dd>2026-10-19</dd></div>
+          <div><dt>Terms</dt><dd>103</dd></div>
+          <div><dt>Source</dt><dd><a href="https://github.com/GT-IoTEdu/iotedu-stack/blob/main/docs/en/glossary.md"><code>iotedu-stack/docs/en/glossary.md</code></a></dd></div>
+        </dl>
+      </header>
+
+      <nav class="legal-toc gloss-toc" id="sumario" aria-label="Contents"><h2>Contents</h2><p class="gloss-toc-group">Introduction</p><ul class="gloss-toc-flat"><li><a href="#purpose">Purpose</a></li><li><a href="#rules">Rules</a></li><li><a href="#quick-reference">Quick reference</a></li></ul><ol class="gloss-toc-secs"><li><details><summary><span class="gloss-toc-num">1</span><a href="#1-project-and-organization">Project and organization</a><span class="gloss-toc-count">11</span></summary><div class="gloss-toc-terms"><a href="#iotedu--iotedu">IoTEdu</a><a href="#gt-iotedu--iotedu-working-group">GT-IoTEdu</a><a href="#stack--stack">Stack</a><a href="#component--componente">Component</a><a href="#submodule-gitlink--submódulo-gitlink">Submodule, gitlink</a><a href="#deployment--instalação">Deployment</a><a href="#lab-mode--modo-lab">Lab mode</a><a href="#demo--demo">Demo</a><a href="#mvp--mvp">MVP</a><a href="#iotedu-dockerized--iotedu-dockerized">iotedu-dockerized</a><a href="#unipampa-ufrgs-rnp--unipampa-ufrgs-rnp">UNIPAMPA, UFRGS, RNP</a></div></details></li><li><details><summary><span class="gloss-toc-num">2</span><a href="#2-people-roles-and-units">People, roles and units</a><span class="gloss-toc-count">8</span></summary><div class="gloss-toc-terms"><a href="#institution--instituição">Institution</a><a href="#unit--unidade--decided">Unit</a><a href="#short-name--sigla">Short name</a><a href="#user--usuário-user">User</a><a href="#network-manager--gestor-de-rede-admin--decided">Network manager</a><a href="#superuser--superusuário-superuser">Superuser</a><a href="#owner--responsável">Owner</a><a href="#role--papel">Role</a></div></details></li><li><details><summary><span class="gloss-toc-num">3</span><a href="#3-device-and-lifecycle">Device and lifecycle</a><span class="gloss-toc-count">15</span></summary><div class="gloss-toc-terms"><a href="#device--dispositivo--decided">Device</a><a href="#device-type--tipo-de-dispositivo">Device type</a><a href="#mac-address--mac">MAC address</a><a href="#randomized-mac--mac-aleatório">Randomized MAC</a><a href="#identifier--identificador">Identifier</a><a href="#register-registration--cadastrar-cadastro--decided">Register, registration</a><a href="#self-registration--autocadastro">Self-registration</a><a href="#access-status--situação-de-acesso">Access status</a><a href="#allow--liberar--decided">Allow</a><a href="#block--bloquear-bloqueio">Block</a><a href="#allow-devices-on-registration--dispositivo-já-nasce-liberado">Allow devices on registration?</a><a href="#remove--remover">Remove</a><a href="#presence-online--offline--presença-conectado--desconectado">Presence: Online / Offline</a><a href="#last-seen--visto-por-último--decided">Last seen</a><a href="#joined-on--entrada-na-rede--decided">Joined on</a></div></details></li><li><details><summary><span class="gloss-toc-num">4</span><a href="#4-network-and-infrastructure">Network and infrastructure</a><span class="gloss-toc-count">22</span></summary><div class="gloss-toc-terms"><a href="#iot-network--rede-iot--decided">IoT network</a><a href="#wan--wan">WAN</a><a href="#wireless-network-ssid--rede-sem-fio-ssid">Wireless network (SSID)</a><a href="#access-point--ponto-de-acesso">Access point</a><a href="#vlan-router--roteador-da-vlan">VLAN router</a><a href="#gateway-network-sense--gateway-sentido-de-rede">Gateway (network sense)</a><a href="#iotedu-gateway--gateway-iotedu--decided-44">IoTEdu gateway</a><a href="#gateway-api-gwapi--api-do-gateway-gwapi--decided">Gateway API (GWAPI)</a><a href="#pfsense--pfsense">pfSense</a><a href="#firewall--firewall">Firewall</a><a href="#authorized-group--blocked-group--grupo-autorizados--grupo-bloqueados--decided">Authorized group / Blocked group</a><a href="#alias--alias">Alias</a><a href="#firewall-rule--regra-de-firewall">Firewall rule</a><a href="#nat--nat">NAT</a><a href="#dhcp-server--servidor-dhcp">DHCP server</a><a href="#reservation--reserva">Reservation</a><a href="#unit-ip-range--faixa-de-ips-da-unidade">Unit IP range</a><a href="#dynamic-pool--pool-dinâmico">Dynamic pool</a><a href="#lease--concessão">Lease</a><a href="#shared-network-namespace--namespace-de-rede-compartilhado">Shared network namespace</a><a href="#macvlan-vlan-nic--macvlan-nic-da-vlan">Macvlan, VLAN NIC</a><a href="#capture-interface--interface-de-captura">Capture interface</a></div></details></li><li><details><summary><span class="gloss-toc-num">5</span><a href="#5-detection-ids-probes-and-rules">Detection: IDS, probes and rules</a><span class="gloss-toc-count">17</span></summary><div class="gloss-toc-terms"><a href="#ids--ids-intrusion-detection-system">IDS</a><a href="#security-probe--sonda-de-segurança--decided-42">Security probe</a><a href="#ids-rule-signature--regra-de-ids-assinatura">IDS rule, signature</a><a href="#sid--sid-signature-id">SID</a><a href="#et-open--et-open">ET Open</a><a href="#notice-zeek--notice">Notice (Zeek)</a><a href="#simir--simir">SIMIR</a><a href="#priority--prioridade">Priority</a><a href="#severity--severidade">Severity</a><a href="#alert--alerta">Alert</a><a href="#incident--incidente--decided">Incident</a><a href="#incident-status--situação-do-incidente">Incident status</a><a href="#false-positive--falso-positivo">False positive</a><a href="#k-of-n-majority-vote--k-de-n-votação-por-maioria">k-of-n (majority vote)</a><a href="#aggregation--agregação">Aggregation</a><a href="#automatic-block--bloqueio-automático">Automatic block</a><a href="#auto-block-allowlist--lista-de-exceção-do-bloqueio">Auto-block allowlist</a></div></details></li><li><details><summary><span class="gloss-toc-num">6</span><a href="#6-alert-delivery-agent-and-credential">Alert delivery (agent and credential)</a><span class="gloss-toc-count">4</span></summary><div class="gloss-toc-terms"><a href="#alert-agent--agente-de-alertas--decided-42">Alert agent</a><a href="#agent-credential--credencial-do-agente--decided">Agent credential</a><a href="#heartbeat--sinal-de-vida">Heartbeat</a><a href="#sse-legacy--sse-legado">SSE (legacy)</a></div></details></li><li><details><summary><span class="gloss-toc-num">7</span><a href="#7-appeals-and-history">Appeals and history</a><span class="gloss-toc-count">3</span></summary><div class="gloss-toc-terms"><a href="#appeal--contestação">Appeal</a><a href="#block-history--histórico-de-bloqueios">Block history</a><a href="#activity--atividade--decided">Activity</a></div></details></li><li><details><summary><span class="gloss-toc-num">8</span><a href="#8-screens-and-navigation">Screens and navigation</a><span class="gloss-toc-count">5</span></summary><div class="gloss-toc-terms"><a href="#system-health--saúde-do-sistema">System health</a><a href="#service--serviço">Service</a><a href="#network-map--mapa-da-rede">Network map</a><a href="#preferences--preferências">Preferences</a><a href="#report--report--decided">Report</a></div></details></li><li><details><summary><span class="gloss-toc-num">9</span><a href="#9-authentication">Authentication</a><span class="gloss-toc-count">8</span></summary><div class="gloss-toc-terms"><a href="#sign-in-method--método-de-login">Sign-in method</a><a href="#sign-in-sign-out--entrar-sair">Sign in, Sign out</a><a href="#cafe--cafe">CAFe</a><a href="#service-provider-sp--provedor-de-serviço-sp">Service provider (SP)</a><a href="#idp--idp-identity-provider">IdP</a><a href="#iotedu-idp--idp-iotedu">IoTEdu IdP</a><a href="#first-sign-in--primeiro-acesso">First sign-in</a><a href="#superuser-access--acesso-do-superusuário">Superuser access</a></div></details></li><li><details><summary><span class="gloss-toc-num">10</span><a href="#10-fingerprint">Fingerprint</a><span class="gloss-toc-count">2</span></summary><div class="gloss-toc-terms"><a href="#fingerprint--fingerprint">Fingerprint</a><a href="#risk-fingerprint--risco">Risk (fingerprint)</a></div></details></li><li><details><summary><span class="gloss-toc-num">11</span><a href="#11-operations">Operations</a><span class="gloss-toc-count">8</span></summary><div class="gloss-toc-terms"><a href="#implantash--implantash">implanta.sh</a><a href="#compose-profile--perfil-do-compose">Compose profile</a><a href="#caddy-reverse-proxy--caddy-proxy">Caddy (reverse proxy)</a><a href="#monitoring--monitoramento">Monitoring</a><a href="#dozzle--dozzle">Dozzle</a><a href="#synthetic-clients--clientes-sintéticos">Synthetic clients</a><a href="#attackzoo--attackzoo">AttackZoo</a><a href="#gateway-state--estado-do-gateway">Gateway state</a></div></details></li></ol><p class="gloss-toc-group">Appendices</p><ul class="gloss-toc-flat"><li><a href="#internal-values-that-stay-off-the-screen">Internal values that stay off the screen</a></li><li><a href="#naming-decisions">Naming decisions</a></li></ul></nav>
+
+      <p class="gloss-empty" id="gloss-empty" hidden><i data-lucide="search-x" aria-hidden="true"></i> <span>No term found.</span></p>
+
+      <div class="legal-body gloss-body">
+        <section id="purpose" class="gloss-section"><h2>Purpose</h2><p>The same concept shows up today under different names: <em>dispositivo</em> and <em>aparelho</em>, <em>Detection engines</em>, <em>IDS
+sensors</em> and <em>Real-time IDS/IPS</em>. And one name points to different things: <em>gateway</em> has four meanings, and <em>liberar</em>
+means both approve and unblock. This glossary sets <strong>one term per concept</strong>, in Portuguese and English. For each term
+it says what it is, <strong>what it does inside IoTEdu</strong> and how it appears in the code, and lists the words to avoid.</p>
+</section><section id="rules" class="gloss-section"><h2>Rules</h2><ol>
+<li><strong>On screen, the glossary term.</strong> If a concept is not here, it goes into the glossary before it goes on screen.</li>
+<li><strong>No internal values on screen.</strong> Values such as <code>mixed</code>, <code>MANAGER</code>, <code>gwapi</code>, <code>manual_allowed</code>, <code>SUPERUSER_ACCESS</code>
+and <code>global</code> are not shown to people using the dashboard; the full list is in
+<a href="#internal-values-that-stay-off-the-screen">Internal values that stay off the screen</a>.</li>
+<li><strong>One meaning per word.</strong> If a word already has a meaning here, don't reuse it for another. Example: <em>Activity</em> is
+the audit screen, so the time a device was last seen is <em>Last seen</em>, not <em>Last activity</em>.</li>
+<li><strong>The same pt/en pair everywhere.</strong> The i18n catalog uses the pair from this table, and the catalog test already
+requires the same translation for the same key.</li>
+<li><strong>In technical docs, the technical name goes in parentheses.</strong> Example: &quot;Authorized group (nft set
+<code>manual_allowed</code>)&quot;. The technical name explains the term; it does not replace it.</li>
+<li><strong>Issues and PRs use these terms.</strong> Whoever reports can use any word; the title and the &quot;Situação no código&quot;
+section use the glossary term.</li>
+</ol>
+<p><strong>Status column legend:</strong> <strong>in use</strong> = already the interface or code term; <strong>decided</strong> = settled on 2026-10-16, with the
+interface and docs still to be updated; <strong>open</strong> = no answer yet.</p>
+</section><section id="quick-reference" class="gloss-section"><h2>Quick reference</h2><div class="gloss-table-wrap"><table class="legal-table">
+<thead>
+<tr>
+<th>English</th>
+<th>Português</th>
+<th>Avoid (en / pt)</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device</td>
+<td>Dispositivo</td>
+<td>host, appliance / aparelho, equipamento</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>Unit</td>
+<td>Unidade</td>
+<td>institution, campus (for the unit) / campus, instituição</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>Institution</td>
+<td>Instituição</td>
+<td>unit (for the organization)</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>User</td>
+<td>Usuário</td>
+<td>regular user / usuário comum, usuária comum</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Network manager</td>
+<td>Gestor de rede</td>
+<td>unit administrator, admin, manager, ADMIN / administrador da unidade, gestão</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>Superuser</td>
+<td>Superusuário</td>
+<td>global administrator / administrador global, administrador do IoTEdu</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Responsável</td>
+<td>responsible / dono, proprietário</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Register, registration</td>
+<td>Cadastrar, cadastro</td>
+<td>sign up / registrar, registro</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>Self-registration</td>
+<td>Autocadastro</td>
+<td>auto-registration / autoregistro</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Awaiting approval</td>
+<td>Aguardando liberação</td>
+<td>Pending, Allowance pending / Aguardando, Liberação pendente, Aguardando decisão</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>Allowed</td>
+<td>Liberado</td>
+<td>authorized, approved, released / autorizado, aprovado, liberação concedida</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Blocked</td>
+<td>Bloqueado</td>
+<td>restricted, banned / restrito, suspenso</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Allow</td>
+<td>Liberar</td>
+<td>approve, authorize, unblock, release / aprovar, autorizar, desbloquear</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>Block</td>
+<td>Bloquear</td>
+<td>suspend, ban / suspender, banir</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Online / Offline</td>
+<td>Conectado / Desconectado</td>
+<td>active, inactive, connected / ativo, inativo, online (in pt)</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Last seen</td>
+<td>Visto por último</td>
+<td>Last activity / Última atividade, Último acesso</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>IoT network</td>
+<td>Rede IoT</td>
+<td>LAN / LAN, VLAN IoT, rede da unidade (on screen)</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>Wireless network (SSID)</td>
+<td>Rede sem fio (SSID)</td>
+<td>Wi-Fi / Wi-Fi da unidade</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>IoTEdu gateway</td>
+<td>Gateway IoTEdu</td>
+<td>bare &quot;Gateway&quot; for the API, network gateway (firewall + DHCP)</td>
+<td>decided (#44)</td>
+</tr>
+<tr>
+<td>Gateway API (GWAPI)</td>
+<td>API do gateway (GWAPI)</td>
+<td>gateway, gwapi (on screen)</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>Firewall</td>
+<td>Firewall</td>
+<td>gateway (for the firewall)</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>DHCP server</td>
+<td>Servidor DHCP</td>
+<td>gateway (for DHCP)</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Reservation</td>
+<td>Reserva</td>
+<td>static mapping, fixed address (as a name) / mapeamento estático, endereço fixo (como nome)</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Lease</td>
+<td>Concessão</td>
+<td>loan / empréstimo, IP dinâmico (as a name)</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Authorized / Blocked group</td>
+<td>Grupo Autorizados / Bloqueados</td>
+<td>allowed alias, block list, manual_allowed (on screen)</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>IDS</td>
+<td>IDS</td>
+<td>scanner, probe (for the set of three)</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Security probe</td>
+<td>Sonda de segurança</td>
+<td>engine, detection engine, sensor, real-time IDS/IPS, scanner / motor, motor de detecção, sensor</td>
+<td>decided (#42)</td>
+</tr>
+<tr>
+<td>Alert agent</td>
+<td>Agente de alertas</td>
+<td>IDS sensor, push sensor, push agent (on screen) / Sensor IDS, sensor push, agente push</td>
+<td>decided (#42)</td>
+</tr>
+<tr>
+<td>Agent credential</td>
+<td>Credencial do agente</td>
+<td>sensor, key / chave</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>Alert</td>
+<td>Alerta</td>
+<td>event, notice (on screen) / ocorrência, evento</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Incident</td>
+<td>Incidente</td>
+<td>alert (for the group)</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>Severity</td>
+<td>Severidade</td>
+<td>priority, criticality, seriousness / gravidade, criticidade, prioridade</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Handle / Handled</td>
+<td>Tratar / Tratado</td>
+<td>resolve, resolved / resolver, resolvido</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>False positive</td>
+<td>Falso positivo</td>
+<td>false alarm / alarme falso</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Automatic block</td>
+<td>Bloqueio automático</td>
+<td>IDS block, auto-ban / bloqueio pelo IDS, bloqueio administrativo</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Appeal</td>
+<td>Contestação</td>
+<td>feedback, dispute, contest / feedback, recurso, reclamação</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Activity</td>
+<td>Atividade</td>
+<td>audit log, audit trail, history / auditoria, histórico, trilha de auditoria</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>System health</td>
+<td>Saúde do sistema</td>
+<td>status page / status, monitoramento</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Service</td>
+<td>Serviço</td>
+<td>component, module (on screen) / componente, módulo</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Report</td>
+<td>Report</td>
+<td>feedback / relato, reportagem</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>Fingerprint</td>
+<td>Fingerprint</td>
+<td>IoT-ID, device fingerprinting, device identification / impressão digital, identificação de dispositivos</td>
+<td>decided</td>
+</tr>
+<tr>
+<td>Sign-in method</td>
+<td>Método de login</td>
+<td>login provider / forma de acesso, provedor</td>
+<td>in use</td>
+</tr>
+<tr>
+<td>Sign in / Sign out</td>
+<td>Entrar / Sair</td>
+<td>log in, log out / logar, login (as a verb)</td>
+<td>in use</td>
+</tr>
+</tbody>
+</table></div>
+</section><section id="1-project-and-organization" class="gloss-section"><h2><span class="num">1</span> Project and organization</h2><article class="gloss-term" id="iotedu--iotedu" data-search="iotedu · iotedu"><h3><a class="gloss-anchor" href="#iotedu--iotedu" aria-hidden="true">#</a><span class="gloss-local">IoTEdu</span> <span class="gloss-foreign"><em>IoTEdu</em></span></h3><p><strong>What it is.</strong> A platform for managing and protecting institutional IoT networks. A user registers a device by MAC and
+gets a fixed address on the IoT network. The network manager allows or blocks access. The IDS watch the traffic and can
+block the device on their own. Everything runs on a single Linux host with Docker Compose.
+<strong>Spelling.</strong> Always <code>IoTEdu</code>. Avoid IOTEDU, IoT-EDU and Iotedu. The <code>API-IoT-EDU</code> in <code>ids-agent/ids_signing.py</code> is a
+leftover.</p>
+</article><article class="gloss-term" id="gt-iotedu--iotedu-working-group" data-search="gt-iotedu · iotedu working group"><h3><a class="gloss-anchor" href="#gt-iotedu--iotedu-working-group" aria-hidden="true">#</a><span class="gloss-local">GT-IoTEdu</span> <span class="gloss-foreign"><em>IoTEdu working group</em></span></h3><p><strong>What it is.</strong> The working group and the GitHub organization. Repositories whose name starts with an underscore
+(<code>_backend</code>, <code>_dhcp</code>, …) are stack components; the others predate the stack or are unrelated to it.
+<strong>Avoid</strong> translating it halfway (&quot;GT IoTEdu&quot; in one place and &quot;WG&quot; in another). In English use &quot;IoTEdu working group&quot;
+or keep &quot;GT-IoTEdu&quot;.</p>
+</article><article class="gloss-term" id="stack--stack" data-search="stack · stack"><h3><a class="gloss-anchor" href="#stack--stack" aria-hidden="true">#</a><span class="gloss-local">Stack</span> <span class="gloss-foreign"><em>Stack</em></span></h3><p><strong>What it is.</strong> The umbrella repository <code>iotedu-stack</code>. It holds <code>docker-compose.yml</code>, <code>.env.example</code>, the scripts and
+the docs, and includes each component as a submodule.
+<strong>In the system.</strong> A stack version is a reproducible combination of components, because each submodule is pinned to a
+commit (<em>gitlink</em>).</p>
+</article><article class="gloss-term" id="component--componente" data-search="component · componente"><h3><a class="gloss-anchor" href="#component--componente" aria-hidden="true">#</a><span class="gloss-local">Component</span> <span class="gloss-foreign"><em>Componente</em></span></h3><p><strong>What it is.</strong> A part of the stack with its own repository: backend, frontend, idp, bootstrap, gateway, dhcp,
+firewall, clients, monitoring, ids, ids-agent, fingerprint and attack.
+<strong>Not to be confused</strong> with a <em>service</em> (a compose container). A component can have several services; <code>ids</code> has three,
+for example.</p>
+</article><article class="gloss-term" id="submodule-gitlink--submódulo-gitlink" data-search="submodule, gitlink · submódulo, gitlink"><h3><a class="gloss-anchor" href="#submodule-gitlink--submódulo-gitlink" aria-hidden="true">#</a><span class="gloss-local">Submodule, gitlink</span> <span class="gloss-foreign"><em>Submódulo, gitlink</em></span></h3><p><strong>What it is.</strong> The submodule is the component's directory inside the stack. The gitlink is the commit of it that the
+stack uses.
+<strong>In the system.</strong> A merge to a component's <code>main</code> reaches a deployment only after the gitlink is updated in the stack
+and someone runs <code>implanta.sh atualizar</code>.</p>
+</article><article class="gloss-term" id="deployment--instalação" data-search="deployment · instalação"><h3><a class="gloss-anchor" href="#deployment--instalação" aria-hidden="true">#</a><span class="gloss-local">Deployment</span> <span class="gloss-foreign"><em>Instalação</em></span></h3><p><strong>What it is.</strong> A stack running for one institution. There are two today: UNIPAMPA (<code>app-unipampa.iotedu.org</code>) and
+UFRGS (<code>iotedu.ufrgs.br</code>).
+<strong>Avoid</strong> &quot;instance&quot; and &quot;environment&quot; with the same meaning. <em>Environment</em> is for lab vs. production.</p>
+</article><article class="gloss-term" id="lab-mode--modo-lab" data-search="lab mode · modo lab"><h3><a class="gloss-anchor" href="#lab-mode--modo-lab" aria-hidden="true">#</a><span class="gloss-local">Lab mode</span> <span class="gloss-foreign"><em>Modo lab</em></span></h3><p><strong>What it is.</strong> A deployment without a physical network: <code>LAN_PARENT_IFACE</code> empty, the IoT network on the internal
+bridge <code>br-gateway-lan</code>, <code>*.iotedu.localtest.me</code> domains and Caddy's local CA.
+<strong>Opposite:</strong> <em>physical mode</em> (a real VLAN via macvlan), which is how institutions run.</p>
+</article><article class="gloss-term" id="demo--demo" data-search="demo · demo"><h3><a class="gloss-anchor" href="#demo--demo" aria-hidden="true">#</a><span class="gloss-local">Demo</span> <span class="gloss-foreign"><em>Demo</em></span></h3><p><strong>What it is.</strong> The demonstration data created by <code>db-init</code> and the realm: the default unit &quot;Demo IoTEdu&quot;/&quot;Lab&quot;, with
+an SSID and password (<code>DEMO_WIFI_*</code>), the accounts <code>superuser@</code>, <code>admin@</code> and <code>user1..4@</code> (each with its role when
+<code>SEED_DEMO_PESSOAS=true</code>), client1 and client2, and the <code>DEMO_IP_RANGE_*</code> ranges. <code>implanta.sh demo</code> completes the set
+with the stack running: three more devices, allowing, an incident with an automatic block of client2 and a Pending
+appeal (#84).
+<strong>Note.</strong> In production, <code>DEMO_IP_RANGE_*</code> is the unit's real reservation range, despite the name.</p>
+</article><article class="gloss-term" id="mvp--mvp" data-search="mvp · mvp"><h3><a class="gloss-anchor" href="#mvp--mvp" aria-hidden="true">#</a><span class="gloss-local">MVP</span> <span class="gloss-foreign"><em>MVP</em></span></h3><p><strong>What it is.</strong> Not a defined stage of the stack. It appears only in the old repository name <code>mvpv1-snapshot</code> and in
+issues such as &quot;what must be ready for the demo&quot;. <strong>To decide</strong> whether the term becomes an official milestone (with a
+date and scope) or leaves the vocabulary.</p>
+</article><article class="gloss-term" id="iotedu-dockerized--iotedu-dockerized" data-search="iotedu-dockerized · iotedu-dockerized"><h3><a class="gloss-anchor" href="#iotedu-dockerized--iotedu-dockerized" aria-hidden="true">#</a><span class="gloss-local">iotedu-dockerized</span> <span class="gloss-foreign"><em>iotedu-dockerized</em></span></h3><p><strong>What it is.</strong> The previous monolithic repository, frozen in October 2026. References to it (for example,
+<code>docs/pt-br/hardware-baseline.md</code> and <code>app/backend/...</code> paths) are historical.</p>
+</article><article class="gloss-term" id="unipampa-ufrgs-rnp--unipampa-ufrgs-rnp" data-search="unipampa, ufrgs, rnp · unipampa, ufrgs, rnp"><h3><a class="gloss-anchor" href="#unipampa-ufrgs-rnp--unipampa-ufrgs-rnp" aria-hidden="true">#</a><span class="gloss-local">UNIPAMPA, UFRGS, RNP</span> <span class="gloss-foreign"><em>UNIPAMPA, UFRGS, RNP</em></span></h3><p><strong>What they are.</strong> The two institutions with a deployment (UNIPAMPA: VLAN 915, SSID IoTEdu, gateway at <code>10.2.226.2</code>)
+and Brazil's National Research and Education Network, which runs the CAFe federation and registers service providers
+(SPs).</p>
+</article></section><section id="2-people-roles-and-units" class="gloss-section"><h2><span class="num">2</span> People, roles and units</h2><article class="gloss-term" id="institution--instituição" data-search="institution · instituição"><h3><a class="gloss-anchor" href="#institution--instituição" aria-hidden="true">#</a><span class="gloss-local">Institution</span> <span class="gloss-foreign"><em>Instituição</em></span></h3><p><strong>What it is.</strong> The organization: the university or institute (UNIPAMPA, UFRGS).
+<strong>In the system.</strong> One deployment serves one institution. In CAFe, the <em>home institution</em> (<em>instituição de origem</em>) is
+the institution whose IdP authenticates the person.
+<strong>Note.</strong> In the code, the <code>institutions</code> table and the <code>institution_id</code> field represent the <strong>unit</strong>, not the
+institution. It's a historical name: keep it in the code and say <em>unit</em> on screen.</p>
+</article><article class="gloss-term" id="unit--unidade--decided" data-search="unit · unidade — decided"><h3><a class="gloss-anchor" href="#unit--unidade--decided" aria-hidden="true">#</a><span class="gloss-local">Unit</span> <span class="gloss-foreign"><em>Unidade</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> The network slice IoTEdu manages: one <code>institutions</code> row, with a name and a city.
+<strong>What it does in the system.</strong> Each unit has:</p>
+<ul>
+<li>its own fixed IP range (<code>ip_range_start</code>–<code>ip_range_end</code>);</li>
+<li>its own gateway (<code>gateway_backend</code>, <code>gwapi_base_url</code>);</li>
+<li>the wireless network (<code>wifi_ssid</code>, <code>wifi_password</code>);</li>
+<li>the <em>Allow devices on registration?</em> option;</li>
+<li>its managers, alert agents and devices.</li>
+</ul>
+<p>Every record (device, alert, appeal) belongs to a unit, and a network manager only sees their own. On first sign-in,
+the user picks the unit (<code>PUT /api/auth/me/institution</code>); after that, only the superuser can change it.
+<strong>Avoid</strong> <em>campus</em> and <em>campuses</em>, and don't use <em>institution</em> for the unit (the map currently says &quot;Institution
+{name}&quot;). In English, don't alternate <em>unit</em> and <em>institution</em>.
+<strong>Open question:</strong> is a unit always a campus? Or can there be more than one unit on the same campus (a building, a
+lab)?</p>
+</article><article class="gloss-term" id="short-name--sigla" data-search="short name · sigla"><h3><a class="gloss-anchor" href="#short-name--sigla" aria-hidden="true">#</a><span class="gloss-local">Short name</span> <span class="gloss-foreign"><em>Sigla</em></span></h3><p><strong>What it is.</strong> The unit's abbreviation (e.g. <code>UNIPAMPA-AL</code>). Use <em>short name</em> in English; avoid <em>acronym</em>.
+<strong>In the system.</strong> It isn't stored yet: the dashboard uses <code>sigla</code> if the backend sends it and otherwise joins the
+initials of up to four words of the name (&quot;Demo IoTEdu&quot; → <code>DI</code>).</p>
+</article><article class="gloss-term" id="user--usuário-user" data-search="user · usuário (user)"><h3><a class="gloss-anchor" href="#user--usuário-user" aria-hidden="true">#</a><span class="gloss-local">User</span> <span class="gloss-foreign"><em>Usuário</em> (<code>USER</code>)</span></h3><p><strong>What it is.</strong> Someone who registers and follows their own devices.
+<strong>What they can do in the system:</strong></p>
+<ul>
+<li>register devices;</li>
+<li>see only the devices they own;</li>
+<li>appeal a block.</li>
+</ul>
+<p><strong>What they cannot do:</strong></p>
+<ul>
+<li>allow or block;</li>
+<li>remove a blocked device;</li>
+<li>see the network map;</li>
+<li>see which probe caused a block or incident (#49).</li>
+</ul>
+<p><strong>Avoid</strong> &quot;regular user&quot; on screen.</p>
+</article><article class="gloss-term" id="network-manager--gestor-de-rede-admin--decided" data-search="network manager · gestor de rede (admin) — decided"><h3><a class="gloss-anchor" href="#network-manager--gestor-de-rede-admin--decided" aria-hidden="true">#</a><span class="gloss-local">Network manager</span> <span class="gloss-foreign"><em>Gestor de rede</em> (<code>ADMIN</code>)</span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> The person who runs the IoT network of <strong>one</strong> unit.
+<strong>What they do in the system:</strong></p>
+<ul>
+<li>allow, block and remove the unit's devices;</li>
+<li>handle incidents and review appeals;</li>
+<li>edit <em>My network</em> (range, wireless network, allow on registration);</li>
+<li>see the unit's network map.</li>
+</ul>
+<p><strong>State of the code.</strong> The enum has only <code>USER</code>, <code>ADMIN</code> and <code>SUPERUSER</code>. However:</p>
+<ul>
+<li><code>User.is_manager()</code> checks <code>ADMIN</code>, and <code>is_admin()</code> checks <code>SUPERUSER</code>;</li>
+<li>the guards accept the string <code>&quot;MANAGER&quot;</code>;</li>
+<li>the frontend shows <code>MANAGER</code> as &quot;Network manager&quot; and <code>ADMIN</code> as &quot;Unit administrator&quot; (<code>nav.ts:82-83</code>);</li>
+<li>Help lists only three levels.</li>
+</ul>
+<p><strong>Decided.</strong> Three roles, one name each: User, Network manager (<code>ADMIN</code>) and Superuser. <code>MANAGER</code> and &quot;Unit
+administrator&quot; are removed from the code and the screen.</p>
+</article><article class="gloss-term" id="superuser--superusuário-superuser" data-search="superuser · superusuário (superuser)"><h3><a class="gloss-anchor" href="#superuser--superusuário-superuser" aria-hidden="true">#</a><span class="gloss-local">Superuser</span> <span class="gloss-foreign"><em>Superusuário</em> (<code>SUPERUSER</code>)</span></h3><p><strong>What it is.</strong> The administrator of the whole deployment.
+<strong>What they do in the system:</strong></p>
+<ul>
+<li>act on any unit (by passing <code>institution_id</code>);</li>
+<li>create units;</li>
+<li>change users' roles and set each unit's managers;</li>
+<li>manage alert agents and sign-in methods.</li>
+</ul>
+<p>The email in <code>SUPERUSER_ACCESS</code> is always a superuser and can sign in through superuser access (<code>/login/admin</code>) even
+when the sign-in method is switched off.
+<strong>Avoid</strong> &quot;global administrator&quot; and &quot;IoTEdu administrator&quot;.</p>
+</article><article class="gloss-term" id="owner--responsável" data-search="owner · responsável"><h3><a class="gloss-anchor" href="#owner--responsável" aria-hidden="true">#</a><span class="gloss-local">Owner</span> <span class="gloss-foreign"><em>Responsável</em></span></h3><p><strong>What it is.</strong> The user linked to a device (<code>user_device_assignments</code>). Whoever registers a device becomes its owner
+automatically.
+<strong>What it does in the system.</strong> Decides who sees the device and who can appeal its block. A device can have more than
+one owner, or none (&quot;No owner&quot;). Open problem: #23.</p>
+</article><article class="gloss-term" id="role--papel" data-search="role · papel"><h3><a class="gloss-anchor" href="#role--papel" aria-hidden="true">#</a><span class="gloss-local">Role</span> <span class="gloss-foreign"><em>Papel</em></span></h3><p><strong>What it is.</strong> A person's access level (User, Network manager, Superuser).
+<strong>Avoid</strong> using <em>Profile</em> for role (&quot;Role:&quot; in the menu is fine; &quot;Profile&quot; is the <em>My profile</em> screen). In Portuguese,
+<em>Perfil</em> is used for both, which this rule fixes. A service's &quot;role&quot; in System health is called <em>Function</em> / <em>Função</em>.</p>
+</article></section><section id="3-device-and-lifecycle" class="gloss-section"><h2><span class="num">3</span> Device and lifecycle</h2><article class="gloss-term" id="device--dispositivo--decided" data-search="device · dispositivo — decided"><h3><a class="gloss-anchor" href="#device--dispositivo--decided" aria-hidden="true">#</a><span class="gloss-local">Device</span> <span class="gloss-foreign"><em>Dispositivo</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> Any equipment registered by MAC that gets a fixed IP on the IoT network: a board (ESP32, Raspberry Pi),
+a sensor, a lamp, a phone, a laptop.
+<strong>In the code.</strong> The table is <code>dhcp_static_mappings</code> (<code>DhcpStaticMapping</code>), because technically a device is a DHCP
+reservation. The foreign keys are <code>dhcp_mapping_id</code> and <code>device_id</code>.
+<strong>Avoid</strong> (pt) <em>aparelho</em>: the catalogs currently have ~83 &quot;aparelho&quot; against ~114 &quot;dispositivo&quot;, sometimes in the same
+dialog. In English it is always <em>device</em>.
+<strong>Decided:</strong> <em>dispositivo</em> in Portuguese (more technical, matches English).</p>
+</article><article class="gloss-term" id="device-type--tipo-de-dispositivo" data-search="device type · tipo de dispositivo"><h3><a class="gloss-anchor" href="#device-type--tipo-de-dispositivo" aria-hidden="true">#</a><span class="gloss-local">Device type</span> <span class="gloss-foreign"><em>Tipo de dispositivo</em></span></h3><p><strong>What it is.</strong> The category chosen at registration: phone, sensor, camera, LoRa gateway, etc. (#59 proposes more
+types and brand/model fields).
+<strong>Note.</strong> The &quot;LoRa gateway&quot; type is a device on the network, not the IoTEdu gateway.</p>
+</article><article class="gloss-term" id="mac-address--mac" data-search="mac address · mac"><h3><a class="gloss-anchor" href="#mac-address--mac" aria-hidden="true">#</a><span class="gloss-local">MAC address</span> <span class="gloss-foreign"><em>MAC</em></span></h3><p><strong>What it is.</strong> The physical address of the network interface. It identifies the device in IoTEdu.
+<strong>What it does in the system.</strong> It is the key of the DHCP reservation: the same MAC always gets the same IP. The form
+accepts any punctuation and normalizes it to <code>XX:XX:XX:XX:XX:XX</code>.</p>
+</article><article class="gloss-term" id="randomized-mac--mac-aleatório" data-search="randomized mac · mac aleatório"><h3><a class="gloss-anchor" href="#randomized-mac--mac-aleatório" aria-hidden="true">#</a><span class="gloss-local">Randomized MAC</span> <span class="gloss-foreign"><em>MAC aleatório</em></span></h3><p><strong>What it is.</strong> The address phones and laptops invent for each network (&quot;private address&quot;).
+<strong>In the system.</strong> The registered MAC must be the one the device uses on <strong>this</strong> network; otherwise the reservation
+never matches and the device stays on a pool IP.</p>
+</article><article class="gloss-term" id="identifier--identificador" data-search="identifier · identificador"><h3><a class="gloss-anchor" href="#identifier--identificador" aria-hidden="true">#</a><span class="gloss-local">Identifier</span> <span class="gloss-foreign"><em>Identificador</em></span></h3><p><strong>What it is.</strong> The short device name entered at registration (e.g. <code>sensor-bench-3</code>).
+<strong>In the code.</strong> <code>cid</code> (client ID), validated as a hostname.</p>
+</article><article class="gloss-term" id="register-registration--cadastrar-cadastro--decided" data-search="register, registration · cadastrar, cadastro — decided"><h3><a class="gloss-anchor" href="#register-registration--cadastrar-cadastro--decided" aria-hidden="true">#</a><span class="gloss-local">Register, registration</span> <span class="gloss-foreign"><em>Cadastrar, cadastro</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> Adding a device to IoTEdu.
+<strong>What it does in the system.</strong> When a device is registered:</p>
+<ol>
+<li>the system picks the IP (automatically, the lowest free one in the unit's range, or manually);</li>
+<li>creates the reservation on the DHCP server through the gateway API;</li>
+<li>saves the device in the database;</li>
+<li>links whoever registered it as owner;</li>
+<li>sets the initial status (<em>Awaiting approval</em>, or <em>Allowed</em> if the unit allows on registration).</li>
+</ol>
+<p>The route is <code>POST /api/devices/dhcp/save</code>, for every role. A User doesn't pick the IP: the server takes the lowest free
+one in the range. There is also <code>POST /api/devices/dhcp/static_mapping</code> (manager), which only creates the reservation
+and isn't used by the screen.
+<strong>Avoid</strong> (pt) alternating <em>registrar</em> and <em>cadastrar</em>. In English, <em>Register</em>.</p>
+</article><article class="gloss-term" id="self-registration--autocadastro" data-search="self-registration · autocadastro"><h3><a class="gloss-anchor" href="#self-registration--autocadastro" aria-hidden="true">#</a><span class="gloss-local">Self-registration</span> <span class="gloss-foreign"><em>Autocadastro</em></span></h3><p><strong>What it is.</strong> Registration helped by the Fingerprint.
+<strong>What it does in the system.</strong> The system opens a listening window (<code>POST /api/devices/dhcp/fingerprint/observar</code>) and lists the
+devices that just requested DHCP. The person picks theirs, and the form comes pre-filled with MAC, name, type and
+manufacturer. The device stores <code>fingerprint_sha256</code>. The fixed IP always comes from the unit's range, never from the
+IP seen in the capture. Related: #17.</p>
+</article><article class="gloss-term" id="access-status--situação-de-acesso" data-search="access status · situação de acesso"><h3><a class="gloss-anchor" href="#access-status--situação-de-acesso" aria-hidden="true">#</a><span class="gloss-local">Access status</span> <span class="gloss-foreign"><em>Situação de acesso</em></span></h3><p><strong>What it is.</strong> What the device may do on the network. It has three values and is <strong>independent</strong> of presence
+(<em>Online</em> / <em>Offline</em>).
+<strong>In the code.</strong> <code>status_acesso</code> = <code>LIBERADO</code> | <code>BLOQUEADO</code> | <code>AGUARDANDO</code> (<code>status_acesso_service.py</code>). The decision
+order is: <code>is_blocked</code>, then IP in the Blocked group, then IP in the Authorized group, then firewall rules that cite
+an alias holding the IP, otherwise Awaiting.</p>
+<div class="gloss-table-wrap"><table class="legal-table">
+<thead>
+<tr>
+<th>Status</th>
+<th>Português</th>
+<th>What the firewall lets through</th>
+<th>How a device gets here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Awaiting approval</strong></td>
+<td><em>Aguardando liberação</em></td>
+<td>only DNS, HTTP/HTTPS (80/443) and ping</td>
+<td>registration with <em>allow on registration</em> off</td>
+</tr>
+<tr>
+<td><strong>Allowed</strong></td>
+<td><em>Liberado</em></td>
+<td>everything</td>
+<td>a manager allows it, or registration with <em>allow on registration</em> on</td>
+</tr>
+<tr>
+<td><strong>Blocked</strong></td>
+<td><em>Bloqueado</em></td>
+<td>nothing</td>
+<td>a manager blocks it, or an automatic block</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Note.</strong> A device <em>Awaiting approval</em> can already open websites, because 80/443 pass. What allowing changes is the
+rest: MQTT, NTP, SSH and other ports.
+<strong>Decided.</strong> Badge &quot;Pending&quot; → &quot;Awaiting approval&quot;, replacing &quot;Pending&quot; and &quot;Allowance pending&quot;, so that <em>Pending</em> is
+used only for appeals.</p>
+</article><article class="gloss-term" id="allow--liberar--decided" data-search="allow · liberar — decided"><h3><a class="gloss-anchor" href="#allow--liberar--decided" aria-hidden="true">#</a><span class="gloss-local">Allow</span> <span class="gloss-foreign"><em>Liberar</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> Giving full network access.
+<strong>What it does in the system.</strong> Puts the device's IP in the firewall's Authorized group. If the device was blocked, it
+also removes the IP from Blocked, clears the reason and makes the IDS &quot;forget&quot; the block (<code>esquecer_bloqueio_dos_ids</code>),
+so a new attack blocks it again. The result is always <em>Allowed</em>, whether the device was <em>Awaiting approval</em> or
+<em>Blocked</em>. The route is <code>POST /api/devices/devices/{id}/unblock</code>. The #24 case (allowing after a block without putting
+the IP in Authorized) is already fixed in the code; the issue awaits an on-screen test.
+<strong>Avoid</strong> <em>approve</em>, <em>authorize</em>, <em>unblock</em>, <em>release</em> and the noun <em>allowance</em> on screen. The technical group name
+(Authorized) stays in the docs.
+<strong>Note.</strong> &quot;Release IP&quot; (<code>DELETE /api/devices/ip-assignment/release/{ip}</code>) is something else: it returns an IP to the range. On screen,
+<em>Release IP</em> / <em>Devolver IP</em>.</p>
+</article><article class="gloss-term" id="block--bloquear-bloqueio" data-search="block · bloquear, bloqueio"><h3><a class="gloss-anchor" href="#block--bloquear-bloqueio" aria-hidden="true">#</a><span class="gloss-local">Block</span> <span class="gloss-foreign"><em>Bloquear, bloqueio</em></span></h3><p><strong>What it is.</strong> Cutting all of the device's network access.
+<strong>What it does in the system.</strong> Sets <code>is_blocked=True</code> and the <strong>block reason</strong> (<code>reason</code>). Removes the IP from
+Authorized and adds it to Blocked; the Blocked rule comes before the Authorized one, so the block always wins. It also
+records a row in the appeals table (<code>blocking_feedback_history</code>).
+There are two kinds:</p>
+<ul>
+<li><strong>Manual block</strong> (<em>Bloqueio manual</em>): done by a network manager or the superuser.</li>
+<li><strong>Automatic block</strong> (<em>Bloqueio automático</em>): done by the backend from IDS alerts (section 5).</li>
+</ul>
+<p><strong>Note.</strong> The block is by <strong>IP</strong>. A blocked pool IP stays blocked for the next device that gets it (challenge 19 in
+<a href="https://github.com/GT-IoTEdu/iotedu-stack/blob/main/docs/en/deployment/challenges.md">challenges</a>).
+<strong>Avoid</strong> <em>suspend</em> for devices; <em>suspend</em> is for user accounts.</p>
+</article><article class="gloss-term" id="allow-devices-on-registration--dispositivo-já-nasce-liberado" data-search="allow devices on registration? · dispositivo já nasce liberado?"><h3><a class="gloss-anchor" href="#allow-devices-on-registration--dispositivo-já-nasce-liberado" aria-hidden="true">#</a><span class="gloss-local">Allow devices on registration?</span> <span class="gloss-foreign"><em>Dispositivo já nasce liberado?</em></span></h3><p><strong>What it is.</strong> A unit option in <em>My network</em> (<code>institutions.auto_liberar_dispositivos</code>, #21).
+<strong>What it does in the system.</strong> When on, registration puts the IP straight into Authorized, and the device starts as
+<em>Allowed</em> without a manager in the loop. Turning it on allows the whole <em>Awaiting approval</em> queue at once, after a
+confirmation. When off (the default), every device starts <em>Awaiting approval</em>.
+<strong>Note.</strong> With the option on, the IDS are the only barrier.
+<strong>One English text.</strong> The same control currently appears as &quot;Allowed on registration?&quot; and &quot;Allow devices on
+registration?&quot;.</p>
+</article><article class="gloss-term" id="remove--remover" data-search="remove · remover"><h3><a class="gloss-anchor" href="#remove--remover" aria-hidden="true">#</a><span class="gloss-local">Remove</span> <span class="gloss-foreign"><em>Remover</em></span></h3><p><strong>What it is.</strong> Deleting the device from IoTEdu.
+<strong>What it does in the system.</strong> Deletes the DHCP reservation and the owner links. Removes the IP from both the
+Authorized and Blocked groups, so the next device with that IP doesn't inherit the access. Keeps the appeal history,
+with the removed device's name, MAC and IP. A user cannot remove a blocked device.
+<strong>Avoid</strong> <em>delete</em> on screen.</p>
+</article><article class="gloss-term" id="presence-online--offline--presença-conectado--desconectado" data-search="presence: online / offline · presença: conectado / desconectado"><h3><a class="gloss-anchor" href="#presence-online--offline--presença-conectado--desconectado" aria-hidden="true">#</a><span class="gloss-local">Presence: Online / Offline</span> <span class="gloss-foreign"><em>Presença: Conectado / Desconectado</em></span></h3><p><strong>What it is.</strong> Whether the device is on the network right now. It is independent of access status: a device can be
+<em>Allowed</em> and <em>Offline</em>.
+<strong>What it does in the system.</strong> The gateway computes presence from three signals:</p>
+<ol>
+<li>the ARP table (<code>ip neigh</code>, state <code>REACHABLE</code>);</li>
+<li>an active ping to the reserved IPs;</li>
+<li>the traffic measured in conntrack (packets per second).</li>
+</ol>
+<p>A confirmed IP stays online for <code>PRESENCE_GRACE_S</code> (30 s). The screen re-reads presence every 15 s;
+the backend also polls the gateway every <code>PRESENCE_POLL_INTERVAL_S</code> (60 s) to record <em>Last seen</em> even when nobody is
+looking. Related: #12.
+<strong>It is not</strong> the DHCP lease (that old heuristic was dropped).
+<strong>On screen.</strong> <em>Online</em> / <em>Offline</em> in English, <em>Conectado</em> / <em>Desconectado</em> in Portuguese. Avoid <em>active/inactive</em> and
+&quot;Allowed, inactive&quot; (use &quot;Allowed, offline&quot;).</p>
+</article><article class="gloss-term" id="last-seen--visto-por-último--decided" data-search="last seen · visto por último — decided"><h3><a class="gloss-anchor" href="#last-seen--visto-por-último--decided" aria-hidden="true">#</a><span class="gloss-local">Last seen</span> <span class="gloss-foreign"><em>Visto por último</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> The last moment presence confirmed the device (<code>last_seen_at</code>). Empty means <em>Never seen</em> (<em>Nunca
+visto</em>).
+<strong>It is not</strong> the registration date or the last change (<code>updated_at</code>). Related: #5 and #13.
+<strong>Avoid</strong> &quot;Last activity&quot;, which collides with the <em>Activity</em> screen.</p>
+</article><article class="gloss-term" id="joined-on--entrada-na-rede--decided" data-search="joined on · entrada na rede — decided"><h3><a class="gloss-anchor" href="#joined-on--entrada-na-rede--decided" aria-hidden="true">#</a><span class="gloss-local">Joined on</span> <span class="gloss-foreign"><em>Entrada na rede</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> The date the device was registered on the network (<code>created_at</code>). #46 asks for it to appear on screen.
+<strong>Avoid</strong> &quot;Registered on&quot; and &quot;Join date&quot; with different meanings.</p>
+</article></section><section id="4-network-and-infrastructure" class="gloss-section"><h2><span class="num">4</span> Network and infrastructure</h2><p>This section says what each piece <strong>is</strong> and what it <strong>does inside IoTEdu</strong>. In short, three containers share a single
+network namespace and together are the IoT network's router:</p>
+<pre><code>            Internet / institution network
+                         │  (WAN, NAT)
+   ┌─────────────────────┴──────────────────────┐
+   │ IoTEdu gateway (one network namespace)     │
+   │  ├─ iotedu-gateway  → Gateway API (GWAPI), routing, presence
+   │  ├─ iotedu-firewall → nftables: Authorized/Blocked groups, NAT
+   │  └─ iotedu-dhcp     → Kea: reservations and leases
+   └─────────────────────┬──────────────────────┘
+                         │  (LAN = IoT network, the unit's VLAN)
+          devices  ·  IDS listening on this interface
+</code></pre>
+<p>The backend talks only to the gateway API (<code>GWAPI_INTERNAL_URL</code>, <code>http://iotedu-gateway:8080</code>), which forwards
+requests to the firewall and to DHCP.</p>
+<article class="gloss-term" id="iot-network--rede-iot--decided" data-search="iot network · rede iot — decided"><h3><a class="gloss-anchor" href="#iot-network--rede-iot--decided" aria-hidden="true">#</a><span class="gloss-local">IoT network</span> <span class="gloss-foreign"><em>Rede IoT</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> The segment where the devices live: the VLAN the institution's IT provided (at UNIPAMPA, VLAN 915,
+<code>10.2.226.0/24</code>) or, in the lab, the <code>br-gateway-lan</code> bridge.
+<strong>What it does in the system.</strong> The IoTEdu gateway is the router and DHCP server of this segment. It is the stack's
+<em>LAN</em>: <code>LAN_CIDR</code>, <code>LAN_IP</code> and <code>LAN_PARENT_IFACE</code> in <code>.env</code>.
+<strong>On screen</strong>, <em>IoT network</em>. Use <em>LAN</em> only in technical docs. There is no &quot;IoT network&quot; separate from the LAN: they
+are the same segment.</p>
+</article><article class="gloss-term" id="wan--wan" data-search="wan · wan"><h3><a class="gloss-anchor" href="#wan--wan" aria-hidden="true">#</a><span class="gloss-local">WAN</span> <span class="gloss-foreign"><em>WAN</em></span></h3><p><strong>What it is.</strong> The gateway's outbound side: the Docker network <code>gateway_wan</code> (<code>10.89.0.0/24</code>).
+<strong>What it does in the system.</strong> Device traffic leaves through it with NAT. It is also how the backend reaches the
+gateway API. A technical-docs term; it doesn't go on screen.</p>
+</article><article class="gloss-term" id="wireless-network-ssid--rede-sem-fio-ssid" data-search="wireless network (ssid) · rede sem fio (ssid)"><h3><a class="gloss-anchor" href="#wireless-network-ssid--rede-sem-fio-ssid" aria-hidden="true">#</a><span class="gloss-local">Wireless network (SSID)</span> <span class="gloss-foreign"><em>Rede sem fio (SSID)</em></span></h3><p><strong>What it is.</strong> The name (SSID) and password of the IoT network's Wi-Fi, stored on the unit (<code>wifi_ssid</code>,
+<code>wifi_password</code>).
+<strong>What it does in the system.</strong> It is information only: IoTEdu does not configure the access point. The value is shown
+at registration so the user knows which network to connect the device to (#15, #39).</p>
+</article><article class="gloss-term" id="access-point--ponto-de-acesso" data-search="access point · ponto de acesso"><h3><a class="gloss-anchor" href="#access-point--ponto-de-acesso" aria-hidden="true">#</a><span class="gloss-local">Access point</span> <span class="gloss-foreign"><em>Ponto de acesso</em></span></h3><p><strong>What it is.</strong> The institution's Wi-Fi equipment that broadcasts the IoT network's SSID. It is outside the stack.
+<strong>In the system.</strong> It only carries devices to the VLAN; the IoTEdu gateway hands out IPs and decides access.</p>
+</article><article class="gloss-term" id="vlan-router--roteador-da-vlan" data-search="vlan router · roteador da vlan"><h3><a class="gloss-anchor" href="#vlan-router--roteador-da-vlan" aria-hidden="true">#</a><span class="gloss-local">VLAN router</span> <span class="gloss-foreign"><em>Roteador da VLAN</em></span></h3><p><strong>What it is.</strong> The router IT already has on the segment (at UNIPAMPA, <code>10.2.226.1</code>).
+<strong>What it does in the system.</strong> Nothing on the devices' path, which goes out through the IoTEdu gateway. It must be in
+<code>IDS_AUTOBLOCK_WHITELIST</code>, so a burst of alerts doesn't block it. Docker requires its address as <code>LAN_DOCKER_GATEWAY</code>.</p>
+</article><article class="gloss-term" id="gateway-network-sense--gateway-sentido-de-rede" data-search="gateway (network sense) · gateway (sentido de rede)"><h3><a class="gloss-anchor" href="#gateway-network-sense--gateway-sentido-de-rede" aria-hidden="true">#</a><span class="gloss-local">Gateway (network sense)</span> <span class="gloss-foreign"><em>Gateway (sentido de rede)</em></span></h3><p><strong>What it is.</strong> In general, a segment's default router, which connects the network to other networks.
+<strong>In IoTEdu.</strong> For the devices, the default gateway <strong>is</strong> the IoTEdu gateway: DHCP hands out <code>routers = LAN_IP</code>, and
+traffic leaves through it with NAT. The term is correct in the network sense. The problem in #44 is that the interface
+uses &quot;Gateway&quot; for something else: the control role (&quot;who applies allows and blocks&quot;) and the API + firewall + DHCP set
+shown as a single item.</p>
+</article><article class="gloss-term" id="iotedu-gateway--gateway-iotedu--decided-44" data-search="iotedu gateway · gateway iotedu — decided (#44)"><h3><a class="gloss-anchor" href="#iotedu-gateway--gateway-iotedu--decided-44" aria-hidden="true">#</a><span class="gloss-local">IoTEdu gateway</span> <span class="gloss-foreign"><em>Gateway IoTEdu</em></span> <span class="gloss-badge"><strong>decided (#44)</strong></span></h3><p><strong>What it is.</strong> The set of three compose services that share one network namespace (<code>iotedu-gateway</code>, <code>iotedu-dhcp</code>,
+<code>iotedu-firewall</code>; containers <code>iotedu-gw-gateway</code>, <code>iotedu-gw-dhcp</code>, <code>iotedu-gw-firewall</code>), deployed per unit. It replaces pfSense.
+<strong>What it does in the system:</strong></p>
+<ol>
+<li><strong>routes</strong> the IoT network outward, with NAT;</li>
+<li><strong>filters</strong> traffic (firewall);</li>
+<li><strong>hands out addresses</strong> (DHCP);</li>
+<li><strong>measures device presence</strong>;</li>
+<li><strong>exposes the API</strong> the backend uses for all of this.</li>
+</ol>
+<p>It has its own IP on the VLAN (<code>LAN_IP</code>, at UNIPAMPA <code>10.2.226.2</code>).
+<strong>Operational caution.</strong> Recreating <code>iotedu-gateway</code> recreates the other two and takes down DHCP and routing on the IoT
+network. Do it only through <code>implanta.sh recriar-tudo</code>.
+<strong>Decided (#44).</strong> The set stays <em>IoTEdu gateway</em>, because it really is the IoT network's gateway, and its parts get
+their own names:</p>
+<ul>
+<li>in System health, Firewall, DHCP server and Gateway API become separate items (#40);</li>
+<li>on screen, the description stops being &quot;who applies allows and blocks&quot; and becomes &quot;router of the IoT network:
+firewall, DHCP and presence&quot;.</li>
+</ul>
+<p><em>Access controller</em> was rejected: it would call &quot;controller&quot; a piece that also routes and does NAT.</p>
+<p><strong>Avoid</strong> &quot;Network gateway (firewall + DHCP)&quot;, &quot;gateway&quot; for the firewall or DHCP alone, and &quot;the gateway's block list&quot;
+(the correct form is &quot;the firewall's Blocked group&quot;).</p>
+</article><article class="gloss-term" id="gateway-api-gwapi--api-do-gateway-gwapi--decided" data-search="gateway api (gwapi) · api do gateway (gwapi) — decided"><h3><a class="gloss-anchor" href="#gateway-api-gwapi--api-do-gateway-gwapi--decided" aria-hidden="true">#</a><span class="gloss-local">Gateway API (GWAPI)</span> <span class="gloss-foreign"><em>API do gateway (GWAPI)</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> The Flask process in the <code>iotedu-gateway</code> service (container <code>iotedu-gw-gateway</code>), on port 8080. It is the IoTEdu gateway's only
+entry point.
+<strong>What it does in the system:</strong></p>
+<ul>
+<li>authenticates the backend with HTTP Basic, using the unit's <code>ADMIN_USER</code> / <code>ADMIN_PASSWORD</code>;</li>
+<li>forwards <code>/dhcp/*</code> to the DHCP API (127.0.0.1:8081) and <code>/firewall/*</code> to the firewall API (127.0.0.1:8082);</li>
+<li>answers <code>/network/presence</code> (presence);</li>
+<li>answers <code>/health</code> (health of DHCP and firewall, with each one's version, plus its own; 503 if a part fails) and
+<code>/health/live</code>;</li>
+<li>serves two HTML diagnostic pages of its own, behind a login page.</li>
+</ul>
+<p>The backend stores its address in <code>institutions.gwapi_base_url</code>.
+<strong>On screen.</strong> The internal address (<code>http://iotedu-gateway:8080</code>) is not shown to the manager (#66). <code>gwapi</code> is not
+screen text.
+<strong>Note.</strong> <code>FW_API_PORT</code> is the <strong>gateway API</strong> port, not the firewall's. The <code>FW_</code> prefix is left over from before the
+split.</p>
+</article><article class="gloss-term" id="pfsense--pfsense" data-search="pfsense · pfsense"><h3><a class="gloss-anchor" href="#pfsense--pfsense" aria-hidden="true">#</a><span class="gloss-local">pfSense</span> <span class="gloss-foreign"><em>pfSense</em></span></h3><p><strong>What it is.</strong> The external firewall/DHCP that IoTEdu used before. It is still an option per unit
+(<code>gateway_backend = pfsense | gwapi</code>).
+<strong>In the code.</strong> The GWAPI client imitates pfSense's <em>alias</em> vocabulary (<code>cadastrar_alias_pfsense</code>, <code>pf_id</code>) even when
+the unit uses GWAPI; <code>pf_id</code> 1 and 2 are constants, not real IDs. On screen, show &quot;pfSense (legacy)&quot; only to the
+superuser.</p>
+</article><article class="gloss-term" id="firewall--firewall" data-search="firewall · firewall"><h3><a class="gloss-anchor" href="#firewall--firewall" aria-hidden="true">#</a><span class="gloss-local">Firewall</span> <span class="gloss-foreign"><em>Firewall</em></span></h3><p><strong>What it is.</strong> The <code>iotedu-firewall</code> service (container <code>iotedu-gw-firewall</code>): nftables plus an internal API (127.0.0.1:8082). Its state is stored
+as JSON on the <code>iotedu_gateway_state</code> volume.
+<strong>What it does in the system.</strong> Decides what each IP on the IoT network may reach outside it:</p>
+<ul>
+<li><strong>Default policy: deny</strong> (<em>default deny</em>). <code>input</code> and <code>forward</code> use <code>policy drop</code>; the <code>lan_to_wan</code> chain ends by
+dropping.</li>
+<li><strong>Initial rules:</strong> DNS (53), HTTP (80), HTTPS (443) and ICMP pass for everyone. That is why <em>Awaiting approval</em>
+devices can already browse.</li>
+<li><strong>System rules:</strong> <code>drop-manual-blocked</code> drops everything from Blocked; <code>allow-manual-allowed</code> accepts everything from
+Authorized. The drop comes first, so the block wins.</li>
+<li><strong>NAT</strong> (<code>masquerade</code>) of <code>LAN_CIDR</code> out the WAN.</li>
+</ul>
+<p>Allowing and blocking don't create rules: they only add or remove the IP (<code>/32</code>) from the groups.</p>
+</article><article class="gloss-term" id="authorized-group--blocked-group--grupo-autorizados--grupo-bloqueados--decided" data-search="authorized group / blocked group · grupo autorizados / grupo bloqueados — decided"><h3><a class="gloss-anchor" href="#authorized-group--blocked-group--grupo-autorizados--grupo-bloqueados--decided" aria-hidden="true">#</a><span class="gloss-local">Authorized group / Blocked group</span> <span class="gloss-foreign"><em>Grupo Autorizados / grupo Bloqueados</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> The two IP sets that define access status.
+<strong>The same group has four names</strong>, one per layer:</p>
+<div class="gloss-table-wrap"><table class="legal-table">
+<thead>
+<tr>
+<th>Layer</th>
+<th>Allowed</th>
+<th>Blocked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nftables (firewall)</td>
+<td>set <code>manual_allowed</code></td>
+<td>set <code>manual_blocked</code></td>
+</tr>
+<tr>
+<td>Firewall API</td>
+<td><em>group</em> <code>manual_allowed</code></td>
+<td><em>group</em> <code>manual_blocked</code></td>
+</tr>
+<tr>
+<td>Backend (pfSense-style alias)</td>
+<td>alias <code>Autorizados</code></td>
+<td>alias <code>Bloqueados</code></td>
+</tr>
+<tr>
+<td>Backend (also accepted name)</td>
+<td><code>liberados</code></td>
+<td><code>bloqueados</code></td>
+</tr>
+<tr>
+<td>Screen and docs</td>
+<td>&quot;Autorizados&quot; / &quot;liberados&quot; (#24)</td>
+<td>&quot;Bloqueados&quot; / &quot;block list&quot;</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Decided.</strong> In the docs, <em>Authorized group</em> and <em>Blocked group</em> (<em>grupo Autorizados</em> / <em>grupo Bloqueados</em>), with the
+nft name in parentheses on first mention. On the user and manager screens, talk about the status (<em>Allowed</em> /
+<em>Blocked</em>), not the group. The names in the code and on the gateway don't change, because renaming would require
+migrating the alias in the database and on the gateway. The <code>liberados</code> spelling, accepted as a synonym, is not used in
+new text.</p>
+</article><article class="gloss-term" id="alias--alias" data-search="alias · alias"><h3><a class="gloss-anchor" href="#alias--alias" aria-hidden="true">#</a><span class="gloss-local">Alias</span> <span class="gloss-foreign"><em>Alias</em></span></h3><p><strong>What it is.</strong> A named group of IPs, networks or ports per unit (<code>pfsense_aliases</code>), inherited from pfSense. The
+<em>Aliases</em> screen is in the Network menu.
+<strong>In the system.</strong> Authorized and Blocked are system aliases; the rest are free for the manager to use.
+<strong>Note.</strong> In the firewall API the same concept is called <em>group</em> and, in nftables, <em>set</em>.</p>
+</article><article class="gloss-term" id="firewall-rule--regra-de-firewall" data-search="firewall rule · regra (de firewall)"><h3><a class="gloss-anchor" href="#firewall-rule--regra-de-firewall" aria-hidden="true">#</a><span class="gloss-local">Firewall rule</span> <span class="gloss-foreign"><em>Regra (de firewall)</em></span></h3><p><strong>What it is.</strong> One line of the policy: source, destination, port, action (<code>pass</code>/<code>block</code>).
+<strong>Not to be confused</strong> with an <em>IDS rule</em> (signature, section 5). Always say &quot;firewall rule&quot; or &quot;IDS rule&quot;.</p>
+</article><article class="gloss-term" id="nat--nat" data-search="nat · nat"><h3><a class="gloss-anchor" href="#nat--nat" aria-hidden="true">#</a><span class="gloss-local">NAT</span> <span class="gloss-foreign"><em>NAT</em></span></h3><p><strong>What it is.</strong> Translating IoT network addresses to the host's address on the way out (<code>masquerade</code>). Devices use
+private IPs and go out with the IoTEdu server's IP.</p>
+</article><article class="gloss-term" id="dhcp-server--servidor-dhcp" data-search="dhcp server · servidor dhcp"><h3><a class="gloss-anchor" href="#dhcp-server--servidor-dhcp" aria-hidden="true">#</a><span class="gloss-local">DHCP server</span> <span class="gloss-foreign"><em>Servidor DHCP</em></span></h3><p><strong>What it is.</strong> The <code>iotedu-dhcp</code> service (container <code>iotedu-gw-dhcp</code>): ISC Kea DHCPv4 plus the Kea Control Agent and an internal API
+(127.0.0.1:8081).
+<strong>What it does in the system.</strong> Gives devices an IP, the router (<code>LAN_IP</code>), DNS (<code>DHCP_DNS</code>) and domain
+(<code>DHCP_DOMAIN</code>). The API changes Kea's running configuration (<code>config-set</code>) and stores reservations in
+<code>DHCP_RESERVATIONS_FILE</code>. There can be only <strong>one</strong> DHCP server on the VLAN.</p>
+</article><article class="gloss-term" id="reservation--reserva" data-search="reservation · reserva"><h3><a class="gloss-anchor" href="#reservation--reserva" aria-hidden="true">#</a><span class="gloss-local">Reservation</span> <span class="gloss-foreign"><em>Reserva</em></span></h3><p><strong>What it is.</strong> The fixed MAC ↔ IP binding on the DHCP server. Every registered device has one.
+<strong>What it does in the system.</strong> Ensures the device always gets the same IP, and that IP is the one that goes into the
+firewall groups. The device starts using the reserved IP only <strong>after it requests DHCP again</strong> (disconnect and
+reconnect).
+<strong>In the code.</strong> <code>dhcp_static_mappings</code> (pfSense: <em>static mapping</em>), <code>gateway_reservation_id</code> (UUID on GWAPI).
+<strong>Avoid</strong> &quot;static mapping&quot; on screen.</p>
+</article><article class="gloss-term" id="unit-ip-range--faixa-de-ips-da-unidade" data-search="unit ip range · faixa de ips da unidade"><h3><a class="gloss-anchor" href="#unit-ip-range--faixa-de-ips-da-unidade" aria-hidden="true">#</a><span class="gloss-local">Unit IP range</span> <span class="gloss-foreign"><em>Faixa de IPs da unidade</em></span></h3><p><strong>What it is.</strong> The interval the registered devices' fixed IPs come from (<code>ip_range_start</code>–<code>ip_range_end</code>; initially
+<code>DEMO_IP_RANGE_*</code>).
+<strong>Rule.</strong> It must be <strong>disjoint</strong> from the pool; otherwise the same IP can be leased and reserved at the same time
+(challenge 3). Related: #47.</p>
+</article><article class="gloss-term" id="dynamic-pool--pool-dinâmico" data-search="dynamic pool · pool (dinâmico)"><h3><a class="gloss-anchor" href="#dynamic-pool--pool-dinâmico" aria-hidden="true">#</a><span class="gloss-local">Dynamic pool</span> <span class="gloss-foreign"><em>Pool (dinâmico)</em></span></h3><p><strong>What it is.</strong> The range of temporary IPs for devices not yet registered (<code>DHCP_POOL_START</code>–<code>DHCP_POOL_END</code>).
+<strong>In the system.</strong> A pool device gets <em>Awaiting approval</em> access: only DNS, 80/443 and ping.</p>
+</article><article class="gloss-term" id="lease--concessão" data-search="lease · concessão"><h3><a class="gloss-anchor" href="#lease--concessão" aria-hidden="true">#</a><span class="gloss-local">Lease</span> <span class="gloss-foreign"><em>Concessão</em></span></h3><p><strong>What it is.</strong> DHCP's time-limited loan of an IP. Leases are in Kea's lease file (<code>kea-leases4.csv</code>, volume
+<code>iotedu_gateway_leases</code>).
+<strong>It is not</strong> presence: a valid lease doesn't mean the device is online.</p>
+</article><article class="gloss-term" id="shared-network-namespace--namespace-de-rede-compartilhado" data-search="shared network namespace · namespace de rede compartilhado"><h3><a class="gloss-anchor" href="#shared-network-namespace--namespace-de-rede-compartilhado" aria-hidden="true">#</a><span class="gloss-local">Shared network namespace</span> <span class="gloss-foreign"><em>Namespace de rede compartilhado</em></span></h3><p><strong>What it is.</strong> The firewall and DHCP run with <code>network_mode: service:iotedu-gateway</code>, that is, inside the gateway
+container's network: the same interfaces, the same IPs, the same <code>127.0.0.1</code>.
+<strong>Consequence.</strong> The three form a group: recreating the gateway recreates the other two.</p>
+</article><article class="gloss-term" id="macvlan-vlan-nic--macvlan-nic-da-vlan" data-search="macvlan, vlan nic · macvlan, nic da vlan"><h3><a class="gloss-anchor" href="#macvlan-vlan-nic--macvlan-nic-da-vlan" aria-hidden="true">#</a><span class="gloss-local">Macvlan, VLAN NIC</span> <span class="gloss-foreign"><em>Macvlan, NIC da VLAN</em></span></h3><p><strong>What it is.</strong> The network mode in physical mode: the gateway joins the VLAN as if it were its own machine, with its
+own MAC, through the host NIC attached to the VLAN (<code>LAN_PARENT_IFACE</code>, at UNIPAMPA <code>eno1</code>).
+<strong>Note.</strong> In a VM, the hypervisor must allow promiscuous mode and MAC spoofing (challenge 2).</p>
+</article><article class="gloss-term" id="capture-interface--interface-de-captura" data-search="capture interface · interface de captura"><h3><a class="gloss-anchor" href="#capture-interface--interface-de-captura" aria-hidden="true">#</a><span class="gloss-local">Capture interface</span> <span class="gloss-foreign"><em>Interface de captura</em></span></h3><p><strong>What it is.</strong> The interface the IDS listen on (<code>IDS_CAPTURE_IFACE</code>): the VLAN NIC in production, <code>br-gateway-lan</code> in
+the lab.
+<strong>In the system.</strong> The IDS see the traffic because they listen on the IoT network's own interface. No mirror (SPAN)
+port is configured.</p>
+</article></section><section id="5-detection-ids-probes-and-rules" class="gloss-section"><h2><span class="num">5</span> Detection: IDS, probes and rules</h2><article class="gloss-term" id="ids--ids-intrusion-detection-system" data-search="ids · ids (intrusion detection system)"><h3><a class="gloss-anchor" href="#ids--ids-intrusion-detection-system" aria-hidden="true">#</a><span class="gloss-local">IDS</span> <span class="gloss-foreign"><em>IDS (intrusion detection system)</em></span></h3><p><strong>What it is.</strong> A system that watches traffic and raises alerts when it matches an attack pattern. In IoTEdu it is the
+<code>ids</code> component, with three security probes.
+<strong>What it does in the system.</strong> It only <strong>detects</strong>. The IDS block nothing: the backend blocks, based on the alerts.
+That's why the &quot;IPS&quot; role doesn't apply, and &quot;Real-time IDS/IPS&quot; should come off the screen.
+<strong>On screen.</strong> <em>IDS</em> (plural <em>the IDS</em>) for the set.</p>
+</article><article class="gloss-term" id="security-probe--sonda-de-segurança--decided-42" data-search="security probe · sonda de segurança — decided (#42)"><h3><a class="gloss-anchor" href="#security-probe--sonda-de-segurança--decided-42" aria-hidden="true">#</a><span class="gloss-local">Security probe</span> <span class="gloss-foreign"><em>Sonda de segurança</em></span> <span class="gloss-badge"><strong>decided (#42)</strong></span></h3><p><strong>What it is.</strong> Each of the three detection programs: <strong>Suricata</strong>, <strong>Snort</strong> and <strong>Zeek</strong>.
+<strong>What it does in the system.</strong> Each probe is a container (<code>iotedu-ids-*</code>, host network), listens on the capture
+interface, writes its own alert file and touches <code>.engine_alive</code> every 30 s.
+<strong>Today the same concept has five names:</strong> &quot;Detection engines&quot;, &quot;Motores de detecção&quot;, &quot;Real-time IDS/IPS&quot;,
+&quot;Engine: …&quot; and &quot;scanner&quot;. All of them become <em>security probe</em> / <em>sonda de segurança</em>. On screen, when the context is
+already security, <em>probe</em> / <em>sonda</em> is enough (&quot;Probe: Suricata&quot;, &quot;All probes&quot;). The proper names (Suricata, Snort,
+Zeek) are always capitalized.
+<strong>In the code</strong> the old names stay: <code>engine</code>, <code>engines_status</code>, <code>sensor_type</code> and the <code>/api/scanners/...</code> routes.</p>
+<p><strong>Each probe's function</strong>, in operational language (replacing &quot;Real-time IDS/IPS&quot; and &quot;Complementary&quot;):</p>
+<div class="gloss-table-wrap"><table class="legal-table">
+<thead>
+<tr>
+<th>Probe</th>
+<th>How it detects</th>
+<th>On-screen function (en / pt)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Suricata</td>
+<td>signatures and rates (local rules + ET Open); writes <code>fast.log</code></td>
+<td><em>Signature-based detection</em> / Detecção por assinaturas</td>
+</tr>
+<tr>
+<td>Snort (3)</td>
+<td>signatures and rates (local rules, port scan inspector); writes <code>alert_fast.txt</code></td>
+<td><em>Signature-based detection</em> / Detecção por assinaturas</td>
+</tr>
+<tr>
+<td>Zeek</td>
+<td>behavior (scanning, DoS, exfiltration, DNS entropy, MQTT/CoAP/Zenoh); writes <code>notice.log</code></td>
+<td><em>Traffic behavior analysis</em> / Análise de comportamento do tráfego</td>
+</tr>
+</tbody>
+</table></div>
+</article><article class="gloss-term" id="ids-rule-signature--regra-de-ids-assinatura" data-search="ids rule, signature · regra de ids, assinatura"><h3><a class="gloss-anchor" href="#ids-rule-signature--regra-de-ids-assinatura" aria-hidden="true">#</a><span class="gloss-local">IDS rule, signature</span> <span class="gloss-foreign"><em>Regra de IDS, assinatura</em></span></h3><p><strong>What it is.</strong> A pattern a probe looks for in traffic. In Snort and Suricata, a <code>.rules</code> line
+(<code>alert … (msg; sid; rev; priority)</code>); in Zeek, a detector script.
+<strong>In the system.</strong> The copy that runs is the one in <code>ids/rules/</code> (mounted read-only). The copy in <code>implementation/</code>
+must be identical, and <code>scripts/verifica-ids-regras.sh</code> checks that.
+<strong>On screen.</strong> <em>Signature</em> (<em>Assinatura</em>) is the description of what was detected (the <code>msg</code>).</p>
+</article><article class="gloss-term" id="sid--sid-signature-id" data-search="sid · sid (signature id)"><h3><a class="gloss-anchor" href="#sid--sid-signature-id" aria-hidden="true">#</a><span class="gloss-local">SID</span> <span class="gloss-foreign"><em>SID (signature ID)</em></span></h3><p><strong>What it is.</strong> The rule's numeric identifier, shown as <code>[gid:sid:rev]</code>.
+<strong>In the system.</strong> A duplicate SID makes the probe drop rules silently. To find duplicates:
+<code>grep -oh 'sid:[0-9]*' &lt;rules&gt; | sort | uniq -d</code>.
+<strong>On screen.</strong> Only for managers and the superuser (#49).</p>
+</article><article class="gloss-term" id="et-open--et-open" data-search="et open · et open"><h3><a class="gloss-anchor" href="#et-open--et-open" aria-hidden="true">#</a><span class="gloss-local">ET Open</span> <span class="gloss-foreign"><em>ET Open</em></span></h3><p><strong>What it is.</strong> The public Emerging Threats ruleset. Suricata uses a subset of it (about 23 thousand rules), updated
+every 24 h.
+<strong>In the system.</strong> In <code>observe</code> mode (the default), every ET rule is lowered to priority 3: it appears in <code>fast.log</code>
+but doesn't reach the backend. In <code>enforce</code> mode, each rule keeps its original priority.</p>
+</article><article class="gloss-term" id="notice-zeek--notice" data-search="notice (zeek) · notice"><h3><a class="gloss-anchor" href="#notice-zeek--notice" aria-hidden="true">#</a><span class="gloss-local">Notice (Zeek)</span> <span class="gloss-foreign"><em>Notice</em></span></h3><p><strong>What it is.</strong> A Zeek detection, with a <code>note</code> (e.g. <code>PortScan::Aggressive_Port_Scan</code>) and a <code>msg</code>.
+<strong>In the system.</strong> It becomes an alert like the other probes' detections. Its severity comes from the
+<code>ZEEK_NOTE_SEVERITY</code> table.</p>
+</article><article class="gloss-term" id="simir--simir" data-search="simir · simir"><h3><a class="gloss-anchor" href="#simir--simir" aria-hidden="true">#</a><span class="gloss-local">SIMIR</span> <span class="gloss-foreign"><em>SIMIR</em></span></h3><p><strong>What it is.</strong> The upstream project the Zeek scripts come from. It defines the <code>SIMIR</code> module, which standardizes
+notice messages.</p>
+</article><article class="gloss-term" id="priority--prioridade" data-search="priority · prioridade"><h3><a class="gloss-anchor" href="#priority--prioridade" aria-hidden="true">#</a><span class="gloss-local">Priority</span> <span class="gloss-foreign"><em>Prioridade</em></span></h3><p><strong>What it is.</strong> The <code>priority</code> field of a Snort/Suricata rule: 1, 2, 3…
+<strong>It is not</strong> severity, but it determines severity (see below). The agent doesn't send alerts with priority above
+<code>IDS_PUSH_MAX_PRIORITY</code> (2).</p>
+</article><article class="gloss-term" id="severity--severidade" data-search="severity · severidade"><h3><a class="gloss-anchor" href="#severity--severidade" aria-hidden="true">#</a><span class="gloss-local">Severity</span> <span class="gloss-foreign"><em>Severidade</em></span></h3><p><strong>What it is.</strong> How serious an alert is, in four levels: <strong>Critical</strong>, <strong>High</strong>, <strong>Medium</strong>, <strong>Low</strong> (<em>Crítica, Alta,
+Média, Baixa</em>). <em>Severe</em> (<em>Graves</em>) = Critical + High.
+<strong>How it's computed</strong> (<code>ids_severity.py</code>, the same file in the agent and the backend):</p>
+<ul>
+<li><strong>Snort/Suricata:</strong> priority 1 is Critical. Priority 2 is Medium, or High if the message mentions scan, flood, DoS,
+brute force, injection, malware, exploit or nmap. Priority 3 and above is Low.</li>
+<li><strong>Zeek:</strong> by the <em>note</em> table (<code>ZEEK_NOTE_SEVERITY</code>), then by prefix, then by a <code>[LOW]</code>, <code>[MEDIUM]</code>, <code>[HIGH]</code> or
+<code>[CRITICAL]</code> tag in the message; if nothing matches, Low.</li>
+</ul>
+<p><strong>What it does in the system.</strong> Decides whether the alert goes up and whether it blocks (see <em>Automatic block</em>). On
+screen, each level has its own color (#64).
+<strong>Avoid</strong> <em>seriousness</em> and <em>criticality</em>.</p>
+</article><article class="gloss-term" id="alert--alerta" data-search="alert · alerta"><h3><a class="gloss-anchor" href="#alert--alerta" aria-hidden="true">#</a><span class="gloss-local">Alert</span> <span class="gloss-foreign"><em>Alerta</em></span></h3><p><strong>What it is.</strong> <strong>One</strong> detection by <strong>one</strong> probe about <strong>one</strong> source → destination pair. It is stored in
+<code>suricata_alerts</code>, <code>snort_alerts</code> or <code>zeek_alerts</code>, with signature, SID, severity, IPs, ports and protocol.
+<strong>In the system.</strong> The agent aggregates identical repeats and sends a summary with <code>count</code>, so one alert can stand for
+several <strong>occurrences</strong> (<em>ocorrências</em>).</p>
+</article><article class="gloss-term" id="incident--incidente--decided" data-search="incident · incidente — decided"><h3><a class="gloss-anchor" href="#incident--incidente--decided" aria-hidden="true">#</a><span class="gloss-local">Incident</span> <span class="gloss-foreign"><em>Incidente</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> The grouping the <em>Incidents</em> screen shows and the manager handles: alerts with the same probe,
+signature, severity, source and destination.
+<strong>What it does in the system.</strong> It is the unit of handling. <em>Handle</em>, <em>False positive</em> and <em>Reopen</em> act on the group
+(<code>POST /api/incidents/ack</code>). A new occurrence reopens the incident.
+<strong>Note.</strong> In the database, the <code>incidents</code> table (<code>Incident</code>) is the <strong>legacy</strong> Zeek flow, with other statuses
+(<code>new</code>, <code>investigating</code>…, of which only <code>new</code> and <code>resolved</code> are used). The on-screen incident is not that table.
+<strong>Decided:</strong> the legacy table is migrated to the alert model.
+<strong>Text rule.</strong> <em>Incident</em> for the group, <em>alert</em> for each detection, <em>occurrence</em> for each repeat. Today the Incidents
+screen talks about &quot;alerts from all three engines&quot; and the button says &quot;Handle alert&quot;. Related: #10 and #64.</p>
+</article><article class="gloss-term" id="incident-status--situação-do-incidente" data-search="incident status · situação do incidente"><h3><a class="gloss-anchor" href="#incident-status--situação-do-incidente" aria-hidden="true">#</a><span class="gloss-local">Incident status</span> <span class="gloss-foreign"><em>Situação do incidente</em></span></h3><div class="gloss-table-wrap"><table class="legal-table">
+<thead>
+<tr>
+<th>en</th>
+<th>pt</th>
+<th>In the code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open</td>
+<td>Em aberto</td>
+<td><code>ack_status = NULL</code></td>
+<td>nobody has handled it yet</td>
+</tr>
+<tr>
+<td>Handled</td>
+<td>Tratado</td>
+<td><code>resolved</code></td>
+<td>the manager saw it and acted</td>
+</tr>
+<tr>
+<td>False positive</td>
+<td>Falso positivo</td>
+<td><code>false_positive</code></td>
+<td>the traffic was legitimate</td>
+</tr>
+</tbody>
+</table></div>
+<p>Actions: <strong>Handle</strong> / <em>Tratar</em>, <strong>Mark as false positive</strong> / <em>Marcar como falso positivo</em>, <strong>Reopen</strong> / <em>Reabrir</em>.
+<strong>Avoid</strong> <em>resolved</em> on screen, which collides with appeals.</p>
+</article><article class="gloss-term" id="false-positive--falso-positivo" data-search="false positive · falso positivo"><h3><a class="gloss-anchor" href="#false-positive--falso-positivo" aria-hidden="true">#</a><span class="gloss-local">False positive</span> <span class="gloss-foreign"><em>Falso positivo</em></span></h3><p><strong>What it is.</strong> Legitimate traffic that matched a rule: DNS heuristics, phone photo backups, SYN bursts to a CDN.
+<strong>In the system.</strong> It is also the status a manager sets on an incident. Today, setting it doesn't change the rule or
+undo the block. Related: #6 and #11.</p>
+</article><article class="gloss-term" id="k-of-n-majority-vote--k-de-n-votação-por-maioria" data-search="k-of-n (majority vote) · k de n (votação por maioria)"><h3><a class="gloss-anchor" href="#k-of-n-majority-vote--k-de-n-votação-por-maioria" aria-hidden="true">#</a><span class="gloss-local">k-of-n (majority vote)</span> <span class="gloss-foreign"><em>k de n (votação por maioria)</em></span></h3><p><strong>What it is.</strong> An alert agent policy: a Critical or High alert goes up to the backend only when at least <strong>k</strong> of the
+<strong>n</strong> probes (default 2 of 3, <code>IDS_MAJORITY_K</code>) flag the same source IP within 20 s (<code>IDS_MAJORITY_WINDOW</code>).
+<strong>Why it exists.</strong> It reduces false positives (the group's SBSeg 2026 paper; #18).
+<strong>Decided: the agent's behavior applies.</strong> Medium and Low alerts <strong>don't go up</strong> to the backend; only Critical and High
+alerts confirmed by k probes do. The backend's Medium correlation (below) stays inactive: it only runs with
+<code>IDS_MAJORITY_K=0</code>, which is not the stack's configuration. The docs that describe the Medium path as active
+(<code>how-to-test</code>) need to be fixed.</p>
+</article><article class="gloss-term" id="aggregation--agregação" data-search="aggregation · agregação"><h3><a class="gloss-anchor" href="#aggregation--agregação" aria-hidden="true">#</a><span class="gloss-local">Aggregation</span> <span class="gloss-foreign"><em>Agregação</em></span></h3><p><strong>What it is.</strong> The agent merges identical alerts (probe, SID, source, destination): it sends the first one at once
+and a summary every 30 s (<code>IDS_AGGREGATE_WINDOW</code>).
+<strong>Not to be confused</strong> with grouping into an <em>incident</em>, which the screen does.
+<strong>Note.</strong> The screen shows the agent's summary as <strong>one</strong> row: it counts database rows and doesn't add up the summary's
+<code>count</code>.</p>
+</article><article class="gloss-term" id="automatic-block--bloqueio-automático" data-search="automatic block · bloqueio automático"><h3><a class="gloss-anchor" href="#automatic-block--bloqueio-automático" aria-hidden="true">#</a><span class="gloss-local">Automatic block</span> <span class="gloss-foreign"><em>Bloqueio automático</em></span></h3><p><strong>What it is.</strong> A block the <strong>backend</strong> applies based on alerts.
+<strong>How it decides</strong> (<code>incident_service.py</code>):</p>
+<ul>
+<li><strong>High</strong> or <strong>Critical</strong> severity (already confirmed by k probes in the agent): blocks at once.</li>
+<li><strong>Medium</strong> severity: with the stack's configuration, it doesn't reach the backend and doesn't block (see <em>k-of-n</em>).
+With <code>IDS_MAJORITY_K=0</code>, the backend would block by <strong>correlation</strong> on the same IP within a 60 s window: either
+<strong>diversity</strong> (3 distinct signatures, <code>IDS_AUTOBLOCK_DISTINCT_SIGNATURES</code>) or <strong>persistence</strong> (20 occurrences spread
+over at least 15 s; <code>IDS_AUTOBLOCK_REPEAT_COUNT</code>, <code>IDS_AUTOBLOCK_REPEAT_MIN_SPAN_SECONDS</code>,
+<code>IDS_AUTOBLOCK_REPEAT_WINDOW_SECONDS</code>).</li>
+<li><strong>Low</strong> severity: never blocks.</li>
+<li>IPs in <code>IDS_AUTOBLOCK_WHITELIST</code> (the <em>allowlist</em>) are never blocked. The same IP isn't blocked twice within
+<code>IDS_AUTOBLOCK_DEDUP_TTL</code> (300 s). That memory lives in the backend process and is not cleared when the manager
+allows the device again.</li>
+</ul>
+<p>The device is matched by IP <strong>within the alert's unit</strong>.
+<strong>Stored reason.</strong> Today it reads &quot;Bloqueio automático (suricata) - Suricata 1234: <signature>&quot;, where 1234 is the
+alert's database id (not the SID). Decided (#49): the user sees only what was detected, without the probe and that
+number. On <code>main</code> as of 2026-10-19 the user still sees both; the fix is in PRs <code>_backend#8</code> and <code>_frontend#7</code>.
+<strong>Avoid</strong> &quot;Administrative block&quot; for the automatic one: the automatic feedback row uses that text and confuses
+readers.</p>
+</article><article class="gloss-term" id="auto-block-allowlist--lista-de-exceção-do-bloqueio" data-search="auto-block allowlist · lista de exceção do bloqueio"><h3><a class="gloss-anchor" href="#auto-block-allowlist--lista-de-exceção-do-bloqueio" aria-hidden="true">#</a><span class="gloss-local">Auto-block allowlist</span> <span class="gloss-foreign"><em>Lista de exceção do bloqueio</em></span></h3><p><strong>What it is.</strong> <code>IDS_AUTOBLOCK_WHITELIST</code>: <strong>source</strong> IPs the IDS never block (CIDR accepted). It should hold at least
+the IoTEdu gateway, the VLAN router and the DNS servers. The default is empty; <code>implanta.sh configurar</code> suggests the
+router and <code>LAN_IP</code>, and <code>verificar</code> warns if they're missing.
+<strong>Avoid</strong> <em>whitelist</em> and <em>blacklist</em> in new text; use <em>allowlist</em>. The variable name stays.</p>
+</article></section><section id="6-alert-delivery-agent-and-credential" class="gloss-section"><h2><span class="num">6</span> Alert delivery (agent and credential)</h2><article class="gloss-term" id="alert-agent--agente-de-alertas--decided-42" data-search="alert agent · agente de alertas — decided (#42)"><h3><a class="gloss-anchor" href="#alert-agent--agente-de-alertas--decided-42" aria-hidden="true">#</a><span class="gloss-local">Alert agent</span> <span class="gloss-foreign"><em>Agente de alertas</em></span> <span class="gloss-badge"><strong>decided (#42)</strong></span></h3><p><strong>What it is.</strong> The <code>iotedu-ids-push-agent</code> container (component <code>ids-agent</code>).
+<strong>What it does in the system.</strong> One thread per probe reads the alert file:</p>
+<ul>
+<li>Suricata: <code>fast.log</code>;</li>
+<li>Snort: <code>alert_fast.txt</code>;</li>
+<li>Zeek: <code>notice.log</code>.</li>
+</ul>
+<p>The agent then:</p>
+<ol>
+<li>computes severity;</li>
+<li>applies k-of-n and aggregation;</li>
+<li>sends signed batches to <code>POST /api/ids/events</code>;</li>
+<li>sends a <strong>heartbeat</strong> (<code>POST /api/ids/heartbeat</code>) with each probe's state.</li>
+</ol>
+<p>If a probe's thread dies, nothing restarts it (#25).
+<strong>Today it is called:</strong> &quot;push agent&quot;, &quot;agente push&quot;, &quot;IDS sensor&quot;, &quot;push sensor&quot;.
+<strong>Decided.</strong> <em>Alert agent</em> / <em>Agente de alertas</em> on screen, and &quot;push agent&quot; only in technical docs.</p>
+</article><article class="gloss-term" id="agent-credential--credencial-do-agente--decided" data-search="agent credential · credencial do agente — decided"><h3><a class="gloss-anchor" href="#agent-credential--credencial-do-agente--decided" aria-hidden="true">#</a><span class="gloss-local">Agent credential</span> <span class="gloss-foreign"><em>Credencial do agente</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> The <strong>public UUID + secret</strong> pair that identifies an alert agent to the backend. It lives in the
+<code>ids_sources</code> table (<code>IdsSource</code>) and belongs to a unit.
+<strong>What it does in the system.</strong> Every request carries <code>X-IDS-Source-ID</code> and an HMAC-SHA256 signature of the body, with
+a 300 s clock tolerance. The backend checks the signature against the secret, which is stored encrypted. <code>db-init</code>
+writes the deployment's credential to <code>agent.env</code>. The superuser creates and disables credentials; the superuser and the unit's
+manager <strong>rotate</strong> the secret, which is shown only once.
+<strong>The screen currently calls it</strong> &quot;IDS sensors&quot;, and the list shows &quot;Engine: mixed&quot;.
+<strong>Decided.</strong> The screen becomes <em>Alert agents</em> / <em>Agentes de alertas</em>, and <code>mixed</code> becomes <em>All probes</em> / <em>Todas as
+sondas</em>.
+<strong>Note.</strong> The name <code>sensor_type</code> means the probe in an event but <code>mixed</code> on a credential.</p>
+</article><article class="gloss-term" id="heartbeat--sinal-de-vida" data-search="heartbeat · sinal de vida"><h3><a class="gloss-anchor" href="#heartbeat--sinal-de-vida" aria-hidden="true">#</a><span class="gloss-local">Heartbeat</span> <span class="gloss-foreign"><em>Sinal de vida</em></span></h3><p><strong>What it is.</strong> The agent's periodic message. It updates <code>last_seen_at</code> and <code>engines_status</code> (e.g.
+<code>{&quot;suricata&quot;:true,&quot;snort&quot;:false,&quot;zeek&quot;:true}</code>).
+<strong>In the system.</strong> The agent sends one every 60 s (<code>IDS_HEARTBEAT_INTERVAL</code>) and as soon as a probe changes state. A
+probe counts as up while its <code>.engine_alive</code> is less than 90 s old (<code>IDS_ENGINE_FRESH_SECONDS</code>). The agent counts as
+online if it spoke in the last 5 min; the map uses 15 min. These two thresholds need to be unified.
+<strong>Note.</strong> The heartbeat says whether the <strong>probe</strong> is running, not whether the agent is reading its file (#25).</p>
+</article><article class="gloss-term" id="sse-legacy--sse-legado" data-search="sse (legacy) · sse (legado)"><h3><a class="gloss-anchor" href="#sse-legacy--sse-legado" aria-hidden="true">#</a><span class="gloss-local">SSE (legacy)</span> <span class="gloss-foreign"><em>SSE (legado)</em></span></h3><p><strong>What it is.</strong> The old mode, in which the backend pulled alerts from the IDS host (<code>/api/scanners/*/sse/alerts</code>). Not
+part of the current flow.
+<strong>Note.</strong> <code>GET /api/incidents/stream</code> is also SSE, but it is something else: the real-time notice of a new incident
+sent to the dashboard.</p>
+</article></section><section id="7-appeals-and-history" class="gloss-section"><h2><span class="num">7</span> Appeals and history</h2><article class="gloss-term" id="appeal--contestação" data-search="appeal · contestação"><h3><a class="gloss-anchor" href="#appeal--contestação" aria-hidden="true">#</a><span class="gloss-local">Appeal</span> <span class="gloss-foreign"><em>Contestação</em></span></h3><p><strong>What it is.</strong> The owner's request to review a device's block.
+<strong>What it does in the system.</strong></p>
+<ul>
+<li>The owner submits the appeal (<code>POST /api/feedback/</code>).</li>
+<li>The network manager replies (<em>Manager response</em> / <em>Resposta da gestão</em>) and marks whether the problem was resolved.</li>
+<li>Problem resolved → the appeal is <strong>Reviewed</strong> (<code>reviewed</code>); not resolved → <strong>Action required</strong>
+(<code>action_required</code>).</li>
+</ul>
+<p>The appeal is kept even after the device is removed.
+<strong>In the code.</strong> <code>blocking_feedback_history</code>, <em>feedback</em>. The same table also holds rows the <strong>system</strong> writes on
+every block (&quot;Bloqueio administrativo: …&quot;, author &quot;Sistema Automático&quot;), so it is both a block log and an appeal log.
+<strong>Appeal status:</strong></p>
+<div class="gloss-table-wrap"><table class="legal-table">
+<thead>
+<tr>
+<th>en</th>
+<th>pt</th>
+<th>In the code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pending</td>
+<td>Pendente</td>
+<td><code>pending</code></td>
+</tr>
+<tr>
+<td>Reviewed</td>
+<td>Revisada</td>
+<td><code>reviewed</code></td>
+</tr>
+<tr>
+<td>Action required</td>
+<td>Requer ação</td>
+<td><code>action_required</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>The screen currently uses &quot;pending / under review / resolved / not reviewed&quot;, and none of those texts match the real
+values. <strong>Decided:</strong> use the three in the table.
+<strong>Avoid</strong> <em>feedback</em>, <em>dispute</em> and <em>contest</em> on screen.</p>
+</article><article class="gloss-term" id="block-history--histórico-de-bloqueios" data-search="block history · histórico de bloqueios"><h3><a class="gloss-anchor" href="#block-history--histórico-de-bloqueios" aria-hidden="true">#</a><span class="gloss-local">Block history</span> <span class="gloss-foreign"><em>Histórico de bloqueios</em></span></h3><p><strong>What it is.</strong> The screen that lists blocks and the appeals for each one.
+<strong>Decided.</strong> The name promised blocks, but the screen is organized by appeal: it becomes <em>Blocks and appeals</em> /
+<em>Bloqueios e contestações</em>. Related: #7 and #14.</p>
+</article><article class="gloss-term" id="activity--atividade--decided" data-search="activity · atividade — decided"><h3><a class="gloss-anchor" href="#activity--atividade--decided" aria-hidden="true">#</a><span class="gloss-local">Activity</span> <span class="gloss-foreign"><em>Atividade</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> The screen with the record of what happened: devices registered, allows, blocks, appeals, with who did
+it and when.
+<strong>What it does in the system.</strong> It shows registrations, blocks and appeals from the last 30 days. Today it is built in
+the browser from the appeals and the inventory: there is no audit table, and allows, edits and removals don't show up.
+It can be exported (#65).
+<strong>Rule.</strong> <em>Activity</em> is only this screen. The <em>History</em> tab in a device's detail shows that device's activity. Avoid
+&quot;Audit trail&quot;, &quot;audit log&quot; and &quot;decision history&quot; as alternative names.</p>
+</article></section><section id="8-screens-and-navigation" class="gloss-section"><h2><span class="num">8</span> Screens and navigation</h2><p>Official screen names (<code>frontend/app/prototipo/_proto/nav.ts</code>). Decided changes in <strong>bold</strong>.</p>
+<div class="gloss-table-wrap"><table class="legal-table">
+<thead>
+<tr>
+<th>Group (en / pt)</th>
+<th>Screen (en)</th>
+<th>Tela (pt)</th>
+<th>Who sees it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monitor / Acompanhar</td>
+<td>Overview</td>
+<td>Visão geral</td>
+<td>everyone</td>
+</tr>
+<tr>
+<td>Monitor</td>
+<td>Network map</td>
+<td>Mapa da rede</td>
+<td>manager, superuser</td>
+</tr>
+<tr>
+<td>Operate / Operar</td>
+<td>Devices (My devices for the user)</td>
+<td>Dispositivos (Meus dispositivos)</td>
+<td>everyone</td>
+</tr>
+<tr>
+<td>Operate</td>
+<td>Incidents</td>
+<td>Incidentes</td>
+<td>everyone (without the probe for the user)</td>
+</tr>
+<tr>
+<td>Operate</td>
+<td>Activity</td>
+<td>Atividade</td>
+<td>manager, superuser</td>
+</tr>
+<tr>
+<td>Operate</td>
+<td>Block history → <strong>Blocks and appeals</strong></td>
+<td>Histórico de bloqueios → <strong>Bloqueios e contestações</strong></td>
+<td>everyone</td>
+</tr>
+<tr>
+<td>Network / Rede</td>
+<td>My network</td>
+<td>Minha rede</td>
+<td>manager, superuser</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>Aliases</td>
+<td>Aliases</td>
+<td>manager, superuser</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>System health</td>
+<td>Saúde do sistema</td>
+<td>manager, superuser</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>IDS sensors → <strong>Alert agents</strong></td>
+<td>Sensores IDS → <strong>Agentes de alertas</strong></td>
+<td>manager (own unit only; rotates the secret), superuser</td>
+</tr>
+<tr>
+<td>Administer / Administrar</td>
+<td>Users</td>
+<td>Usuários</td>
+<td>superuser</td>
+</tr>
+<tr>
+<td>Administer</td>
+<td>Units</td>
+<td>Unidades</td>
+<td>superuser</td>
+</tr>
+<tr>
+<td>Administer</td>
+<td>Sign-in methods</td>
+<td>Métodos de login</td>
+<td>superuser</td>
+</tr>
+<tr>
+<td>(profile menu)</td>
+<td>My profile, Preferences, Help (and <em>About</em>, proposed in #60)</td>
+<td>Meu perfil, Preferências, Ajuda, Sobre</td>
+<td>everyone</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Notes:</strong></p>
+<ul>
+<li><em>My network</em> is the unit's configuration: addressing, wireless network, allow on registration, gateway, probes.
+Don't confuse it with the <em>Network</em> menu group or the <em>Network</em> column of the device list.</li>
+<li><em>System health</em> appears twice in the navigation (#61).</li>
+<li><em>Network map</em> shows the unit, the IoTEdu gateway, the probes and the devices as nodes. The root node is the
+<strong>unit</strong>, not &quot;Institution&quot;.</li>
+<li><code>frontend/lib/dashboard-nav.ts</code> is an old menu, Portuguese-only and imported by nothing. Remove it.</li>
+<li>Help is called <em>Help</em> / <em>Ajuda</em>: a single title, not &quot;Help and documentation&quot; and &quot;Documentation&quot; at the same time.</li>
+</ul>
+<article class="gloss-term" id="system-health--saúde-do-sistema" data-search="system health · saúde do sistema"><h3><a class="gloss-anchor" href="#system-health--saúde-do-sistema" aria-hidden="true">#</a><span class="gloss-local">System health</span> <span class="gloss-foreign"><em>Saúde do sistema</em></span></h3><p><strong>What it is.</strong> The screen that shows whether each IoTEdu service is responding.
+<strong>What it does today (#55, 2026-10-19).</strong> Managers and superusers only. It shows the host total (CPU and memory, summed
+over the containers Dozzle sees) and the list of services:</p>
+<ul>
+<li><strong>global services:</strong> Backend, MySQL, Frontend and Fingerprint;</li>
+<li><strong>unit services:</strong> DHCP, Firewall, Gateway, Suricata, Zeek and Snort.</li>
+</ul>
+<p>Each service shows status, CPU, memory, uptime and version. The data comes from <code>GET /api/devices/platform/health</code> and
+<code>/platform/telemetry</code> (Dozzle, re-read every 2 s while the screen is open), the gateway's <code>/health</code> and
+<code>/api/ids/push-status</code>. Latency and 30-day availability are still empty (#20, #41).
+<strong>Still missing (#40):</strong> IdP, monitoring, the gateway API as its own item and the alert agent as its own item (today
+its status only shows inside the probes' detail). The &quot;Gateway&quot; item still has the function &quot;Concessão DHCP e
+aplicação de regras&quot; and DHCP shows as &quot;DHCP&quot;, not <em>DHCP server</em> (#44).</p>
+<p><strong>Service states:</strong></p>
+<div class="gloss-table-wrap"><table class="legal-table">
+<thead>
+<tr>
+<th>en</th>
+<th>pt</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operational</td>
+<td>Operando</td>
+<td>responds normally</td>
+</tr>
+<tr>
+<td>Degraded</td>
+<td>Degradado</td>
+<td>responds with a partial failure</td>
+</tr>
+<tr>
+<td>Not responding</td>
+<td>Sem resposta</td>
+<td>doesn't respond</td>
+</tr>
+<tr>
+<td>Not checked</td>
+<td>Não verificado</td>
+<td>not tested yet</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Today</strong> the screen has only three states: whatever it can't check shows as <em>Degraded</em>, and <em>Not checked</em> exists only
+on the gateway cards in My network and Units.
+<strong>Avoid</strong> <em>Active</em> for a service (<em>active</em> is for accounts and units), and turning <em>Degraded</em> into &quot;unknown status&quot; or
+&quot;Not responding&quot; on another screen.</p>
+</article><article class="gloss-term" id="service--serviço" data-search="service · serviço"><h3><a class="gloss-anchor" href="#service--serviço" aria-hidden="true">#</a><span class="gloss-local">Service</span> <span class="gloss-foreign"><em>Serviço</em></span></h3><p><strong>What it is.</strong> A piece that runs and can go down. In the docs, it is a compose service. In System health, it is each
+monitored item.
+<strong>Function</strong> (<em>Função</em>) is the short description of what the service does (the column is currently called &quot;Role&quot;).</p>
+</article><article class="gloss-term" id="network-map--mapa-da-rede" data-search="network map · mapa da rede"><h3><a class="gloss-anchor" href="#network-map--mapa-da-rede" aria-hidden="true">#</a><span class="gloss-local">Network map</span> <span class="gloss-foreign"><em>Mapa da rede</em></span></h3><p><strong>What it is.</strong> The drawing of the unit, with the gateway, the probes and the devices. Each device's color comes from
+its access status; its outline, from presence.
+<strong>Groups:</strong> <em>Allowed and online</em>, <em>Allowed, offline</em>, <em>Awaiting approval</em>, <em>Blocked</em>.</p>
+</article><article class="gloss-term" id="preferences--preferências" data-search="preferences · preferências"><h3><a class="gloss-anchor" href="#preferences--preferências" aria-hidden="true">#</a><span class="gloss-local">Preferences</span> <span class="gloss-foreign"><em>Preferências</em></span></h3><p><strong>What it is.</strong> Each user's choices: language, appearance, table density, start screen and notifications. Today only
+the language is saved to the profile (#58).
+<strong>Note.</strong> <em>Notification</em> / <em>Aviso</em> is a notice to the user. Don't translate it as <em>Alert</em>, which is an IDS term.</p>
+</article><article class="gloss-term" id="report--report--decided" data-search="report · report — decided"><h3><a class="gloss-anchor" href="#report--report--decided" aria-hidden="true">#</a><span class="gloss-local">Report</span> <span class="gloss-foreign"><em>Report</em></span> <span class="gloss-badge"><strong>decided</strong></span></h3><p><strong>What it is.</strong> The dashboard's <strong>Report</strong> button. It opens a <em>Problem</em> or <em>Suggestion</em> form (<em>Problema</em> / <em>Sugestão</em>)
+and records the context: screen, role, unit, browser, commit.
+<strong>What it does in the system.</strong> Stores the report in <code>platform_reports</code>, and a background process creates the GitHub
+issue (title <code>[Report DD/MM · N]</code>, label <code>bug</code> or <code>enhancement</code>) and adds it to the project board. Open requests: #56
+(email copy) and #57 (<em>My reports</em> screen).
+<strong>Decided.</strong> Portuguese keeps the anglicism <em>report</em>, which is how the group already speaks. <em>Relato</em> leaves the
+interface.
+<strong>Issue convention.</strong> <code>[Report DD/MM · N]</code> belongs to the button only. Issues opened by hand use
+<code>[Revisão DD/MM · N]</code>.</p>
+</article></section><section id="9-authentication" class="gloss-section"><h2><span class="num">9</span> Authentication</h2><article class="gloss-term" id="sign-in-method--método-de-login" data-search="sign-in method · método de login"><h3><a class="gloss-anchor" href="#sign-in-method--método-de-login" aria-hidden="true">#</a><span class="gloss-local">Sign-in method</span> <span class="gloss-foreign"><em>Método de login</em></span></h3><p><strong>What it is.</strong> Each way of signing in: <strong>CAFe</strong>, <strong>Google</strong> and <strong>IoTEdu IdP</strong>.
+<strong>What it does in the system.</strong> The superuser turns each method on or off (<code>platform_settings['login_methods']</code>). A
+method only counts as configured when the server has its credentials. Turning a method off drops the sessions opened
+with it.</p>
+</article><article class="gloss-term" id="sign-in-sign-out--entrar-sair" data-search="sign in, sign out · entrar, sair"><h3><a class="gloss-anchor" href="#sign-in-sign-out--entrar-sair" aria-hidden="true">#</a><span class="gloss-local">Sign in, Sign out</span> <span class="gloss-foreign"><em>Entrar, Sair</em></span></h3><p>In English: <em>Sign in</em> / <em>Sign out</em>, never <em>Log in</em>. In Portuguese: <em>Entrar</em> and <em>Sair</em> on buttons, and <em>login</em> as a
+noun (&quot;Métodos de login&quot;).
+<strong>Sign out</strong> also ends the session at the identity provider.</p>
+</article><article class="gloss-term" id="cafe--cafe" data-search="cafe · cafe"><h3><a class="gloss-anchor" href="#cafe--cafe" aria-hidden="true">#</a><span class="gloss-local">CAFe</span> <span class="gloss-foreign"><em>CAFe</em></span></h3><p><strong>What it is.</strong> RNP's academic identity federation (SAML 2.0).
+<strong>What it does in the system.</strong> The <strong>backend</strong> is the service provider (SP), at <code>/saml2/</code>, with djangosaml2. The
+person picks their home institution in RNP's WAYF, authenticates at their IdP, and the backend receives the attributes
+(<code>eduPersonPrincipalName</code>, <code>mail</code>, <code>givenName</code>, <code>sn</code>). <strong>It doesn't work yet:</strong> the SP is waiting for registration in
+the production federation.
+<strong>Note.</strong> CAFe does <strong>not</strong> go through the <code>idp/</code> component.</p>
+</article><article class="gloss-term" id="service-provider-sp--provedor-de-serviço-sp" data-search="service provider (sp) · provedor de serviço (sp)"><h3><a class="gloss-anchor" href="#service-provider-sp--provedor-de-serviço-sp" aria-hidden="true">#</a><span class="gloss-local">Service provider (SP)</span> <span class="gloss-foreign"><em>Provedor de serviço (SP)</em></span></h3><p><strong>What it is.</strong> IoTEdu's side of a SAML federation: each deployment's own domain, key and certificate.</p>
+</article><article class="gloss-term" id="idp--idp-identity-provider" data-search="idp · idp (identity provider)"><h3><a class="gloss-anchor" href="#idp--idp-identity-provider" aria-hidden="true">#</a><span class="gloss-local">IdP</span> <span class="gloss-foreign"><em>IdP (identity provider)</em></span></h3><p><strong>What it is.</strong> Whoever authenticates the person. IoTEdu has three: the institution's IdP (via CAFe), Google and the
+IoTEdu IdP.</p>
+</article><article class="gloss-term" id="iotedu-idp--idp-iotedu" data-search="iotedu idp · idp iotedu"><h3><a class="gloss-anchor" href="#iotedu-idp--idp-iotedu" aria-hidden="true">#</a><span class="gloss-local">IoTEdu IdP</span> <span class="gloss-foreign"><em>IdP IoTEdu</em></span></h3><p><strong>What it is.</strong> The stack's Keycloak (component <code>idp/</code>, container <code>iotedu-idp</code>), with the realm generated by
+<code>bootstrap</code>.
+<strong>What it does in the system.</strong> OIDC sign-in with PKCE for local accounts: the demo accounts and anyone without CAFe or
+Google. New accounts start as User.</p>
+</article><article class="gloss-term" id="first-sign-in--primeiro-acesso" data-search="first sign-in · primeiro acesso"><h3><a class="gloss-anchor" href="#first-sign-in--primeiro-acesso" aria-hidden="true">#</a><span class="gloss-local">First sign-in</span> <span class="gloss-foreign"><em>Primeiro acesso</em></span></h3><p><strong>What it is.</strong> An account's first sign-in.
+<strong>What it does in the system.</strong> Creates the user and asks for the unit, which is then locked. Only the superuser can
+change it.</p>
+</article><article class="gloss-term" id="superuser-access--acesso-do-superusuário" data-search="superuser access · acesso do superusuário"><h3><a class="gloss-anchor" href="#superuser-access--acesso-do-superusuário" aria-hidden="true">#</a><span class="gloss-local">Superuser access</span> <span class="gloss-foreign"><em>Acesso do superusuário</em></span></h3><p><strong>What it is.</strong> The <code>/login/admin</code> entry, which works even with every method off, for the email in
+<code>SUPERUSER_ACCESS</code>.
+<strong>On screen</strong>, <em>Superuser access</em>. The variable name doesn't appear.</p>
+</article></section><section id="10-fingerprint" class="gloss-section"><h2><span class="num">10</span> Fingerprint</h2><article class="gloss-term" id="fingerprint--fingerprint" data-search="fingerprint · fingerprint"><h3><a class="gloss-anchor" href="#fingerprint--fingerprint" aria-hidden="true">#</a><span class="gloss-local">Fingerprint</span> <span class="gloss-foreign"><em>Fingerprint</em></span></h3><p><strong>What it is.</strong> The <code>fingerprint</code> component (container <code>iotedu-fingerprint</code>). Its name is <em>Fingerprint</em> in English and
+Portuguese; avoid IoT-ID, device fingerprinting and device identification as alternative names.
+<strong>What it does in the system.</strong> Listens to DHCP requests on the IoT network and characterizes each new MAC (DHCP
+options, UPnP, TCP stack). During self-registration it suggests name, type, manufacturer and model. The result is
+stored on the device as <code>fingerprint_sha256</code>. The <em>Fingerprints</em> screen was removed from the menu.</p>
+</article><article class="gloss-term" id="risk-fingerprint--risco" data-search="risk (fingerprint) · risco"><h3><a class="gloss-anchor" href="#risk-fingerprint--risco" aria-hidden="true">#</a><span class="gloss-local">Risk (fingerprint)</span> <span class="gloss-foreign"><em>Risco</em></span></h3><p><strong>What it is.</strong> The fingerprints screen's classification: <em>Safe</em>, <em>Monitor</em>, <em>Vulnerable</em> (<em>Seguro, Monitorar,
+Vulnerável</em>).
+<strong>Note.</strong> <em>Monitor</em> is already the name of the &quot;Acompanhar&quot; menu group. If the screen comes back, use <em>Watch</em>.</p>
+</article></section><section id="11-operations" class="gloss-section"><h2><span class="num">11</span> Operations</h2><article class="gloss-term" id="implantash--implantash" data-search="implanta.sh · implanta.sh"><h3><a class="gloss-anchor" href="#implantash--implantash" aria-hidden="true">#</a><span class="gloss-local">implanta.sh</span> <span class="gloss-foreign"><em>implanta.sh</em></span></h3><p><strong>What it is.</strong> The single deployment script (<code>scripts/implanta.sh</code>). Each command has a Portuguese and an English
+name:</p>
+<div class="gloss-table-wrap"><table class="legal-table">
+<thead>
+<tr>
+<th>pt</th>
+<th>en</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>preparar</code></td>
+<td><code>prepare</code></td>
+<td>prepares the host and the submodules</td>
+</tr>
+<tr>
+<td><code>configurar</code></td>
+<td><code>configure</code></td>
+<td>wizard that builds <code>.env</code></td>
+</tr>
+<tr>
+<td><code>verificar</code></td>
+<td><code>verify</code></td>
+<td>checks <code>.env</code>, network, DNS and ports without changing anything</td>
+</tr>
+<tr>
+<td><code>subir</code></td>
+<td><code>up</code></td>
+<td>verifies, then applies only what changed</td>
+</tr>
+<tr>
+<td><code>atualizar</code></td>
+<td><code>update</code></td>
+<td><code>git pull</code> and applies what changed, showing the plan first</td>
+</tr>
+<tr>
+<td><code>estado</code></td>
+<td><code>status</code></td>
+<td>says what is out of date</td>
+</tr>
+<tr>
+<td><code>validar</code></td>
+<td><code>validate</code></td>
+<td>tests the running instance</td>
+</tr>
+<tr>
+<td><code>backup</code></td>
+<td><code>backup</code></td>
+<td>database, <code>.env</code>, SAML key and gateway state</td>
+</tr>
+<tr>
+<td><code>recriar-tudo</code></td>
+<td><code>rebuild-all</code></td>
+<td>the only safe way to recreate the gateway group: backup before, restore after, and a check of reservations against the database</td>
+</tr>
+<tr>
+<td><code>cafe</code>, <code>realm</code></td>
+<td>—</td>
+<td>SP certificate and Keycloak realm</td>
+</tr>
+</tbody>
+</table></div>
+</article><article class="gloss-term" id="compose-profile--perfil-do-compose" data-search="compose profile · perfil (do compose)"><h3><a class="gloss-anchor" href="#compose-profile--perfil-do-compose" aria-hidden="true">#</a><span class="gloss-local">Compose profile</span> <span class="gloss-foreign"><em>Perfil (do compose)</em></span></h3><p><strong>What it is.</strong> An optional set of services: <code>ids</code> (probes and agent), <code>clients</code> (synthetic clients), <code>monitoring</code>.
+<strong>Note.</strong> In Portuguese, <em>Perfil</em> is also the <em>Meu perfil</em> screen. In the docs, always write &quot;compose profile&quot;.</p>
+</article><article class="gloss-term" id="caddy-reverse-proxy--caddy-proxy" data-search="caddy (reverse proxy) · caddy (proxy)"><h3><a class="gloss-anchor" href="#caddy-reverse-proxy--caddy-proxy" aria-hidden="true">#</a><span class="gloss-local">Caddy (reverse proxy)</span> <span class="gloss-foreign"><em>Caddy (proxy)</em></span></h3><p><strong>What it is.</strong> The reverse proxy <code>iotedu-app-proxy</code> (configured in <code>bootstrap</code>). It terminates TLS for the three
+domains (<code>APP_DOMAIN</code>, <code>API_DOMAIN</code>, <code>IDP_DOMAIN</code>).</p>
+</article><article class="gloss-term" id="monitoring--monitoramento" data-search="monitoring · monitoramento"><h3><a class="gloss-anchor" href="#monitoring--monitoramento" aria-hidden="true">#</a><span class="gloss-local">Monitoring</span> <span class="gloss-foreign"><em>Monitoramento</em></span></h3><p><strong>What it is.</strong> The <code>monitoring</code> component: cAdvisor → Prometheus → Grafana, with CPU, memory and network usage <strong>per
+container</strong>.
+<strong>It is not</strong> System health: that one says whether each service responds and shows a current snapshot of CPU and
+memory (Dozzle); Monitoring keeps historical series (Prometheus/Grafana).</p>
+</article><article class="gloss-term" id="dozzle--dozzle" data-search="dozzle · dozzle"><h3><a class="gloss-anchor" href="#dozzle--dozzle" aria-hidden="true">#</a><span class="gloss-local">Dozzle</span> <span class="gloss-foreign"><em>Dozzle</em></span></h3><p><strong>What it is.</strong> The container log viewer (<code>127.0.0.1:11080</code>). It is outside the <code>monitoring</code> profile, despite the name
+<code>iotedu-monitor-dozzle</code>.
+<strong>In the system.</strong> Since #55 it is also the source of System health telemetry (CPU, memory, version): the backend
+follows its event stream (<code>DOZZLE_INTERNAL_URL</code>). That's why its version is pinned in <code>DOZZLE_TAG</code>. The dashboard has
+no link to Dozzle.</p>
+</article><article class="gloss-term" id="synthetic-clients--clientes-sintéticos" data-search="synthetic clients · clientes sintéticos"><h3><a class="gloss-anchor" href="#synthetic-clients--clientes-sintéticos" aria-hidden="true">#</a><span class="gloss-local">Synthetic clients</span> <span class="gloss-foreign"><em>Clientes sintéticos</em></span></h3><p><strong>What it is.</strong> The <code>clients</code> component: two containers (<code>iotedu-gw-client1/2</code>) that request DHCP like a device does,
+to validate DHCP and the firewall.
+<strong>They are not</strong> simulated IoT devices. The component also holds the physical VLAN override.</p>
+</article><article class="gloss-term" id="attackzoo--attackzoo" data-search="attackzoo · attackzoo"><h3><a class="gloss-anchor" href="#attackzoo--attackzoo" aria-hidden="true">#</a><span class="gloss-local">AttackZoo</span> <span class="gloss-foreign"><em>AttackZoo</em></span></h3><p><strong>What it is.</strong> The <code>attack</code> component: a catalog of 60 attack containers (reconnaissance, L2/L3, web, brute force,
+tunneling, DoS, IoT protocols) and 9 target servers, for testing the IDS. It is outside the main compose and is run by
+hand.</p>
+</article><article class="gloss-term" id="gateway-state--estado-do-gateway" data-search="gateway state · estado do gateway"><h3><a class="gloss-anchor" href="#gateway-state--estado-do-gateway" aria-hidden="true">#</a><span class="gloss-local">Gateway state</span> <span class="gloss-foreign"><em>Estado do gateway</em></span></h3><p><strong>What it is.</strong> The reservations, firewall groups and leases, stored on the <code>iotedu_gateway_state</code> and
+<code>iotedu_gateway_leases</code> volumes.
+<strong>Note.</strong> The database and the gateway can diverge (the dashboard says <em>Allowed</em>, but the IP isn't in the group).
+<code>recriar-tudo</code> compares the two at the end.</p>
+</article></section><section id="internal-values-that-stay-off-the-screen" class="gloss-section"><h2>Internal values that stay off the screen</h2><div class="gloss-table-wrap"><table class="legal-table">
+<thead>
+<tr>
+<th>Value</th>
+<th>Where it leaks today</th>
+<th>What to show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mixed</code>, <code>suricata</code>, <code>snort</code>, <code>zeek</code> (lowercase)</td>
+<td>credentials list and form (<code>sensores.tsx:137</code>, <code>:189</code>)</td>
+<td><em>All probes</em>, <em>Suricata</em>, <em>Snort</em>, <em>Zeek</em></td>
+</tr>
+<tr>
+<td><code>USER</code>, <code>MANAGER</code>, <code>ADMIN</code>, <code>SUPERUSER</code></td>
+<td>users table, filter and form (<code>cadastros.tsx</code>), My profile (<code>conta.tsx</code>)</td>
+<td><em>User</em>, <em>Network manager</em>, <em>Superuser</em></td>
+</tr>
+<tr>
+<td><code>gwapi</code>, <code>pfsense</code> (&quot;Tipo&quot; field, &quot;Gateway IoTEdu (gwapi)&quot; option)</td>
+<td>My network, unit detail and form</td>
+<td>nothing for the manager; &quot;pfSense (legacy)&quot; for the superuser</td>
+</tr>
+<tr>
+<td><code>http://iotedu-gateway:8080</code></td>
+<td>map (<code>graph_builder.py</code>), System health (#66)</td>
+<td>the unit name or the status</td>
+</tr>
+<tr>
+<td><code>manual_allowed</code>, <code>manual_blocked</code>, <code>Autorizados</code></td>
+<td>registration texts (<code>cadastros.ts</code> catalog)</td>
+<td><em>Allowed</em> / <em>Blocked</em></td>
+</tr>
+<tr>
+<td><code>SUPERUSER_ACCESS</code>, <code>/login/admin</code></td>
+<td>Sign-in methods</td>
+<td><em>Superuser access</em></td>
+</tr>
+<tr>
+<td><code>global</code> (Unit column)</td>
+<td>System health export (<code>saude.tsx</code>)</td>
+<td><em>All units</em></td>
+</tr>
+<tr>
+<td>probe and alert id in the block reason</td>
+<td>user screens (#49)</td>
+<td>only what was detected</td>
+</tr>
+<tr>
+<td>unknown <code>log_type</code> becomes &quot;Zeek&quot;</td>
+<td><code>live-data.ts:656</code></td>
+<td><em>Unknown probe</em> (it's a data bug)</td>
+</tr>
+</tbody>
+</table></div>
+</section><section id="naming-decisions" class="gloss-section"><h2>Naming decisions</h2><p>Settled on 2026-10-16:</p>
+<div class="gloss-table-wrap"><table class="legal-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Decision</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>The gateway + firewall + DHCP set stays <em>IoTEdu gateway</em>, and its parts (Firewall, DHCP server, Gateway API) are named and monitored separately</td>
+<td>#44, #40</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Suricata, Snort and Zeek are <em>security probes</em> / <em>sondas de segurança</em></td>
+<td>#42</td>
+</tr>
+<tr>
+<td>3</td>
+<td>The &quot;IDS sensors&quot; screen becomes <em>Alert agents</em> / <em>Agentes de alertas</em>; <code>mixed</code> becomes <em>All probes</em></td>
+<td>#42</td>
+</tr>
+<tr>
+<td>4</td>
+<td><em>Dispositivo</em>, not <em>aparelho</em>, in Portuguese</td>
+<td>—</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Three roles: User, Network manager (<code>ADMIN</code>) and Superuser; <code>MANAGER</code> and &quot;Unit administrator&quot; are removed</td>
+<td>—</td>
+</tr>
+<tr>
+<td>6</td>
+<td>The groups stay <em>Autorizados</em> / <em>Bloqueados</em> in the code; the screen talks about status (<em>Allowed</em> / <em>Blocked</em>)</td>
+<td>#24</td>
+</tr>
+<tr>
+<td>7</td>
+<td>k-of-n: the agent's behavior applies (Medium and Low alerts don't go up); fix <code>how-to-test</code></td>
+<td>#18</td>
+</tr>
+<tr>
+<td>8</td>
+<td>&quot;Block history&quot; becomes <em>Blocks and appeals</em> / <em>Bloqueios e contestações</em></td>
+<td>#7, #14</td>
+</tr>
+<tr>
+<td>9</td>
+<td><em>Report</em> in Portuguese too; <em>relato</em> leaves the interface</td>
+<td>#56, #57</td>
+</tr>
+<tr>
+<td>10</td>
+<td>The legacy <code>incidents</code> table is migrated to the alert model</td>
+<td>—</td>
+</tr>
+<tr>
+<td>11</td>
+<td><em>Fingerprint</em> is the component's name, with no alternative names</td>
+<td>#67</td>
+</tr>
+</tbody>
+</table></div>
+<p>Open:</p>
+<div class="gloss-table-wrap"><table class="legal-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Question</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Is a unit always a campus, or can there be several units on the same campus (a building, a lab)?</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Does &quot;MVP&quot; become an official milestone, with a date and scope, or leave the vocabulary?</td>
+<td>#39</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+      </div>
+
+      <footer class="legal-foot">
+        <p><strong>GT-IoTEdu</strong> · <a href="https://iotedu.org">iotedu.org</a> · <a href="mailto:iotedu@unipampa.edu.br">iotedu@unipampa.edu.br</a></p>
+      </footer>
+    </article>
+      </div>
+    </div>
+
+    <button type="button" class="gs-open" id="gs-open" aria-controls="gloss-side" aria-expanded="false"><i data-lucide="list" aria-hidden="true"></i> Contents</button>
+    <a href="#top" class="gloss-top" id="gloss-top" aria-label="Back to top" title="Back to top"><i data-lucide="arrow-up" aria-hidden="true"></i></a>
+
+  </main>
+
+  <!-- FOOTER DO SITE -->
+  <footer class="py-8 px-6 bg-slate-900 border-t border-slate-700">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex items-center justify-center space-x-2 mb-4">
+        <div class="relative">
+          <i data-lucide="wifi" class="h-6 w-6 text-blue-400"></i>
+          <div class="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        </div>
+        <span class="text-lg font-bold">GT IoTEdu</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-4 text-sm">
+        <a href="politica-de-privacidade.html" class="text-slate-300 hover:text-blue-400 transition-colors">Privacy Policy</a>
+        <span class="text-slate-600" aria-hidden="true">·</span>
+        <a href="termos-de-uso.html" class="text-slate-300 hover:text-blue-400 transition-colors">Terms of Use</a>
+        <span class="text-slate-600" aria-hidden="true">·</span>
+        <a href="glossario.html" class="text-slate-300 hover:text-blue-400 transition-colors">Glossary</a>
+      </div>
+      <p class="text-slate-400 text-sm">
+        © 2025 GT-IoTEdu. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function wireMobileMenu() {
+      const button = document.getElementById('mobile-menu-button');
+      const menu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('mobile-menu-icon-open');
+      const iconClose = document.getElementById('mobile-menu-icon-close');
+
+      if (!button || !menu || !iconOpen || !iconClose) return;
+
+      const setOpen = (open) => {
+        menu.classList.toggle('hidden', !open);
+        iconOpen.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      };
+
+      const isOpen = () => button.getAttribute('aria-expanded') === 'true';
+
+      button.addEventListener('click', () => setOpen(!isOpen()));
+      menu.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && target.tagName === 'A') setOpen(false);
+      });
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setOpen(false);
+      });
+      window.addEventListener('resize', () => {
+        if (window.matchMedia('(min-width: 1280px)').matches) setOpen(false);
+      });
+
+      setOpen(false);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) { window.lucide.createIcons(); }
+      wireMobileMenu();
+    });
+  
+    // glossário: busca, barra lateral e seção atual
+    document.addEventListener('DOMContentLoaded', () => {
+      const q = document.getElementById('gloss-q');
+      if (!q) return;
+      const side = document.getElementById('gloss-side');
+      const status = document.getElementById('gs-status');
+      const empty = document.getElementById('gloss-empty');
+      const backdrop = document.getElementById('gs-backdrop');
+      const openBtn = document.getElementById('gs-open');
+      const norm = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+      const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+      const terms = [...document.querySelectorAll('.gloss-term')];
+      const sections = [...document.querySelectorAll('.gloss-section')];
+      const sideTerms = new Map([...side.querySelectorAll('.gs-term')].map((a) => [a.dataset.target, a]));
+      const sideLinks = new Map([...side.querySelectorAll('[data-target]')].map((a) => [a.dataset.target, a]));
+      terms.forEach((el) => {
+        el.dataset.title = norm(el.querySelector('h3').textContent);
+        el.dataset.body = norm(el.textContent);
+      });
+      sideTerms.forEach((a) => { a.dataset.label = a.textContent; });
+
+      // ---- busca --------------------------------------------------------
+      const mark = (label, needle) => {
+        if (!needle) return esc(label);
+        const i = norm(label).indexOf(needle);
+        if (i < 0) return esc(label);
+        return esc(label.slice(0, i)) + '<mark>' + esc(label.slice(i, i + needle.length)) + '</mark>' + esc(label.slice(i + needle.length));
+      };
+
+      const run = (scroll = true) => {
+        const needle = norm(q.value.trim());
+        document.body.classList.toggle('gloss-searching', !!needle);
+        let shown = 0;
+        terms.forEach((el) => {
+          // o título conta mais: quem casa só no texto aparece, mas marcado como "no texto"
+          const inTitle = !needle || el.dataset.title.includes(needle);
+          const ok = inTitle || el.dataset.body.includes(needle);
+          el.hidden = !ok;
+          const a = sideTerms.get(el.id);
+          if (a) {
+            a.parentElement.hidden = !ok;
+            a.classList.toggle('gs-weak', ok && !inTitle);
+            a.innerHTML = mark(a.dataset.label, needle);
+          }
+          if (ok) shown++;
+        });
+        sections.forEach((sec) => {
+          const has = sec.querySelector('.gloss-term');
+          const vis = !needle || (has && !!sec.querySelector('.gloss-term:not([hidden])'));
+          sec.hidden = !vis;
+          const box = side.querySelector(`.gs-sec[data-sec="${sec.id}"]`);
+          if (box) box.hidden = !vis;
+          const link = !box && sideLinks.get(sec.id);
+          if (link) link.hidden = !vis;
+        });
+        side.querySelectorAll('.gs-group').forEach((g) => { g.hidden = !!needle; });
+        status.textContent = needle ? '{n} of {total} terms'.replace('{n}', shown).replace('{total}', terms.length) : '';
+        empty.hidden = !needle || shown > 0;
+        if (needle && scroll) window.scrollTo({ top: document.querySelector('.gloss-body').getBoundingClientRect().top + window.scrollY - 100 });
+      };
+      let timer;
+      q.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(() => run(), 80); });
+      q.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') { q.value = ''; run(); q.blur(); }
+        if (e.key === 'Enter') {
+          const first = terms.find((el) => !el.hidden);
+          if (first) { location.hash = first.id; closeSide(); }
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== q && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+          e.preventDefault(); openSide(); q.focus();
+        }
+      });
+
+      // ---- gaveta no celular --------------------------------------------
+      const mobile = () => !window.matchMedia('(min-width: 1024px)').matches;
+      function openSide() {
+        if (!mobile()) return;
+        side.classList.add('open'); backdrop.hidden = false; openBtn.setAttribute('aria-expanded', 'true');
+      }
+      function closeSide() {
+        side.classList.remove('open'); backdrop.hidden = true; openBtn.setAttribute('aria-expanded', 'false');
+      }
+      openBtn.addEventListener('click', openSide);
+      backdrop.addEventListener('click', closeSide);
+      document.getElementById('gs-close').addEventListener('click', closeSide);
+      side.addEventListener('click', (e) => { if (e.target.closest('a')) closeSide(); });
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSide(); });
+
+      // ---- seção e termo atuais -----------------------------------------
+      const targets = [...sections, ...terms];
+      let current = null;
+      const setActive = (id) => {
+        if (id === current) return;
+        current = id;
+        side.querySelectorAll('.active, .current').forEach((a) => a.classList.remove('active', 'current'));
+        const el = document.getElementById(id);
+        const sec = el && (el.classList.contains('gloss-section') ? el : el.closest('.gloss-section'));
+        if (sec) {
+          const box = side.querySelector(`.gs-sec[data-sec="${sec.id}"]`);
+          if (box) box.classList.add('current');
+          sideLinks.get(sec.id)?.classList.add('active');
+        }
+        const link = sideLinks.get(id);
+        if (link) {
+          link.classList.add('active');
+          const nav = document.getElementById('gs-nav');
+          const r = link.getBoundingClientRect(), n = nav.getBoundingClientRect();
+          if (r.top < n.top + 40 || r.bottom > n.bottom - 40) nav.scrollTop += r.top - n.top - n.height / 3;
+        }
+      };
+      const onScroll = () => {
+        const line = 140;
+        let best = null;
+        for (const el of targets) {
+          if (el.hidden) continue;
+          const top = el.getBoundingClientRect().top;
+          if (top <= line && (!best || top > best.top)) best = { id: el.id, top };
+        }
+        if (best) setActive(best.id);
+        document.getElementById('gloss-top').classList.toggle('show', window.scrollY > 600);
+      };
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(() => { onScroll(); ticking = false; }); }
+      }, { passive: true });
+      const initial = new URLSearchParams(location.search).get('q');
+      if (initial) { q.value = initial; run(false); }
+      onScroll();
+    });
+  </script>
+</body>
+</html>
