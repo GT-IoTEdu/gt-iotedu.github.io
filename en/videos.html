@@ -141,6 +141,28 @@
       border-color: rgba(56,189,248,.4);
     }
 
+    /* ── FEATURED: new release demos ── */
+    .featured-heading {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent2); margin: 0 0 1.25rem;
+    }
+    .featured-stack {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem; margin-bottom: 3rem;
+    }
+    .featured-stack .featured-video { display: flex; flex-direction: column; }
+    .featured-stack .featured-video-body { flex: 1; padding: 2rem; }
+    .featured-video-meta {
+      display: inline-flex; align-items: center; flex-wrap: wrap; gap: .4rem;
+      font-size: .75rem; color: var(--ghost);
+    }
+    .featured-video-meta .nowrap { display: inline-flex; align-items: center; gap: .3rem; white-space: nowrap; }
+    @media (max-width: 900px) {
+      .featured-stack { grid-template-columns: 1fr; }
+      .featured-stack .featured-video-body { padding: 1.5rem; }
+    }
+
     /* ── ROW: 2 stacked horizontal videos + 1 vertical shorts ── */
     .videos-row {
       display: grid;
@@ -417,7 +439,7 @@
       </h1>
     </div>
     <div class="hero-meta">
-      <div class="hero-count">04</div>
+      <div class="hero-count">06</div>
       <div>videos<br>available</div>
     </div>
   </div>
@@ -427,6 +449,86 @@
 
 <!-- VIDEOS -->
 <main class="videos-section">
+
+  <!-- Featured: demos of the new platform release -->
+  <section aria-labelledby="featured-heading">
+    <h2 id="featured-heading" class="featured-heading">
+      <i data-lucide="star" style="width:14px;height:14px"></i>
+      New platform release
+    </h2>
+    <div class="featured-stack">
+      <article class="featured-video delay-0">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/QHRKRxoU3X8?cc_load_policy=1&amp;cc_lang_pref=en"
+            title="Full demo of the new release"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        </div>
+        <div class="featured-video-body">
+          <div>
+            <span class="featured-video-label">
+              <i data-lucide="sparkles" style="width:12px;height:12px"></i>
+              New
+            </span>
+            <h2 class="featured-video-title">Full demo of the new release</h2>
+            <p class="featured-video-desc">A complete walkthrough of the new IoTEdu release, which makes connecting IoT devices at universities simple and secure. The video shows, from start to finish, how the platform works for each access profile and how devices are registered, monitored and protected.</p>
+          </div>
+          <div class="featured-video-footer">
+            <span class="featured-video-meta">
+              <span class="nowrap"><i data-lucide="clock" style="width:12px;height:12px"></i> 7 min</span>
+              <span aria-hidden="true">·</span>
+              <i data-lucide="captions" style="width:12px;height:12px"></i>English audio with closed captions
+            </span>
+            <a class="featured-video-cta"
+               href="https://www.youtube.com/watch?v=QHRKRxoU3X8"
+               target="_blank" rel="noopener noreferrer">
+              YouTube
+              <i data-lucide="external-link" style="width:12px;height:12px"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+      <article class="featured-video delay-1">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/QAvwlrKyNRI?cc_load_policy=1&amp;cc_lang_pref=en"
+            title="Quick demo of the new release"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        </div>
+        <div class="featured-video-body">
+          <div>
+            <span class="featured-video-label">
+              <i data-lucide="sparkles" style="width:12px;height:12px"></i>
+              New
+            </span>
+            <h2 class="featured-video-title">Quick demo of the new release</h2>
+            <p class="featured-video-desc">A short version of the new IoTEdu release demo, ideal for getting to know the proposal and the main features of the platform in just a few minutes.</p>
+          </div>
+          <div class="featured-video-footer">
+            <span class="featured-video-meta">
+              <span class="nowrap"><i data-lucide="clock" style="width:12px;height:12px"></i> 3 min</span>
+              <span aria-hidden="true">·</span>
+              <i data-lucide="captions" style="width:12px;height:12px"></i>English audio with closed captions
+            </span>
+            <a class="featured-video-cta"
+               href="https://www.youtube.com/watch?v=QAvwlrKyNRI"
+               target="_blank" rel="noopener noreferrer">
+              YouTube
+              <i data-lucide="external-link" style="width:12px;height:12px"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <!-- 2 horizontal videos stacked on the left, 1 vertical shorts on the right -->
   <div class="videos-row">
